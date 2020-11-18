@@ -11,7 +11,8 @@ namespace InterTwitter
 {
     public partial class App : PrismApplication
     {
-        public App(IPlatformInitializer initializer = null) : base (initializer)
+        public App(IPlatformInitializer initializer = null)
+            : base(initializer)
         {
         }
 
@@ -30,7 +31,6 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<LogInPage, LogInPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpMainPage, SignUpMainPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpPasswordPage, SignUpPasswordPageViewModel>();
-
         }
 
         #endregion
