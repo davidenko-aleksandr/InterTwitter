@@ -49,6 +49,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Enums\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Services\Authorization\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\AppResource.resx">
