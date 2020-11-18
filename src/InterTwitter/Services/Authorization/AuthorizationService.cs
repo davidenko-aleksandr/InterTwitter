@@ -20,17 +20,19 @@ namespace InterTwitter.Services.Authorization
                     Id = 0,
                     Email = "vasya1984@mail.ru",
                     Name = "Vasiliy",
-                    Password = "v1984!"
+                    Password = "v1984!",
                 },
                 new User()
                 {
                     Id = 1,
                     Email = "petya25@gmail.com",
                     Name = "Peter Stevenson",
-                    Password = "qwerty123"
-                }
+                    Password = "qwerty123",
+                },
             };
         }
+
+        #region -- IAuthorizationService Implementation --
 
         public async Task<AOResult<bool>> LogInAsync(string email, string password)
         {
@@ -72,7 +74,7 @@ namespace InterTwitter.Services.Authorization
                         Id = _usersRepositoryMock.Count,
                         Email = email,
                         Name = name,
-                        Password = password
+                        Password = password,
                     });
                     result.SetSuccess(true);
                 }
@@ -88,5 +90,7 @@ namespace InterTwitter.Services.Authorization
 
             return result;
         }
+
+        #endregion
     }
 }
