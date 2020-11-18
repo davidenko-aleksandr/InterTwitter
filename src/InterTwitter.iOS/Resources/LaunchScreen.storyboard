@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="X5k-f2-b5h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X5k-f2-b5h">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -14,24 +16,27 @@
                         <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="23" tag="0.0" adjustsImageSizeForAccessibilityContentSizeCategory="YES" image="icon.png">
-                                <rect key="frame" x="334" y="462" width="100" height="100"/>
-                                <rect key="contentStretch" y="0.0" width="0.0" height="0.0" x="0.0"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" image="pic_logo_big.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                                <rect key="frame" x="157" y="398" width="100" height="100"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 <constraints>
-                                    <constraint id="1458" firstAttribute="width" constant="100"/>
-                                    <constraint id="1459" firstAttribute="height" constant="100"/>
-                                    <constraint id="1460" firstAttribute="width" secondItem="23" secondAttribute="height" multiplier="1:1"/>
+                                    <constraint firstAttribute="width" constant="100" id="1458"/>
+                                    <constraint firstAttribute="height" constant="100" id="1459"/>
+                                    <constraint firstAttribute="width" secondItem="23" secondAttribute="height" multiplier="1:1" id="1460"/>
+                                    <constraint firstAttribute="width" secondItem="23" secondAttribute="height" multiplier="1:1" id="Q7x-VC-62I"/>
                                 </constraints>
                             </imageView>
                         </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.4592103958" blue="0.89129447939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="23" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY" priority="1" id="39"/>
                             <constraint firstItem="23" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX" priority="1" id="41"/>
+                            <constraint firstItem="23" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX" id="TPF-Xx-K2M"/>
+                            <constraint firstItem="23" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY" id="czd-NY-S4t"/>
                         </constraints>
-                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.28235294117647058" green="0.28235294117647058" blue="0.28235294117647058" alpha="1"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -40,6 +45,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon.png" width="1024" height="1024"/>
+        <image name="pic_logo_big.png" width="78" height="78"/>
     </resources>
 </document>
