@@ -17,7 +17,7 @@ namespace InterTwitter.ViewModels
 
         #endregion
 
-        #region -- IDestructible Implementation -- 
+        #region -- IDestructible Implementation --
 
         public void Destroy()
         {
