@@ -15,5 +15,5 @@
         <local:MessagesPage/>
 
     </TabbedPage.Children>
-
+    
 </TabbedPage>
