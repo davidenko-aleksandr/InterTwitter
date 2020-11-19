@@ -1,5 +1,7 @@
 ﻿using System;
+using InterTwitter.ViewModels;
 using InterTwitter.ViewModels.Authorization;
+using InterTwitter.Views;
 using InterTwitter.Views.Authorization;
 using Prism;
 using Prism.Ioc;
@@ -31,7 +33,11 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<LogInPage, LogInPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpMainPage, SignUpMainPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpPasswordPage, SignUpPasswordPageViewModel>();
-            containerRegistry.RegisterForNavigation<TestView>();
+            containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>();
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<MessagesPage, MessagesPageViewModel>();
+            containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
+            containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
         }
 
         #endregion
