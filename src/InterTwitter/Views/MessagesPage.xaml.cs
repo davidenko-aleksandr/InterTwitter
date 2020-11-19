@@ -2,7 +2,7 @@
 
 namespace InterTwitter.Views
 {
-    public partial class MessagesPage : ContentPage
+    public partial class MessagesPage : BaseContentPage
     {
         public MessagesPage()
         {

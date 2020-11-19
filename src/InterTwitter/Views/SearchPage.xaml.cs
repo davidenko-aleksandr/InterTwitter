@@ -2,7 +2,7 @@
 
 namespace InterTwitter.Views
 {
-    public partial class SearchPage : ContentPage
+    public partial class SearchPage : BaseContentPage
     {
         public SearchPage()
         {

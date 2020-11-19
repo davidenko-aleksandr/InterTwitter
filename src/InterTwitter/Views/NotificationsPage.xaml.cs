@@ -2,7 +2,7 @@
 
 namespace InterTwitter.Views
 {
-    public partial class NotificationsPage : ContentPage
+    public partial class NotificationsPage : BaseContentPage
     {
         public NotificationsPage()
         {
