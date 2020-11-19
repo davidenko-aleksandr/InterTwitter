@@ -4,5 +4,5 @@
              x:Class="InterTwitter.Views.Authorization.LogInPage"
              ControlTemplate="{StaticResource SignPageTemplate}">   
 
-
+    
 </ContentPage>
