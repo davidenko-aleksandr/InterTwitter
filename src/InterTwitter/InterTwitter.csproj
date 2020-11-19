@@ -9,12 +9,14 @@
     <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <DebugSymbols>true</DebugSymbols>
-    <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
-    <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEV|AnyCPU' ">
     <IntermediateOutputPath>obj\DEV</IntermediateOutputPath>
@@ -24,7 +26,8 @@
     <DefineConstants>TRACE;DEV;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
     <NoWarn>1701;1702</NoWarn>
     <NoStdLib>false</NoStdLib>
-    <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'STAGE|AnyCPU' ">
     <IntermediateOutputPath>obj\STAGE</IntermediateOutputPath>
@@ -34,13 +37,11 @@
     <DefineConstants>TRACE;STAGE;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
-    <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="NGraphics" Version="0.5.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1909" />
@@ -56,9 +57,10 @@
     <Folder Include="Helpers\" />
     <Folder Include="Enums\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Services\Authorization\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Controls\CustomEntry.xaml">
+    <EmbeddedResource Update="Controls\CustomSignInNavigationBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\AppResource.resx">
