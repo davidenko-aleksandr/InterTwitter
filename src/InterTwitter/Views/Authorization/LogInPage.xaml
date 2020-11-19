@@ -5,7 +5,12 @@
                         xmlns:controls="clr-namespace:InterTwitter.Controls"
                         x:Class="InterTwitter.Views.Authorization.LogInPage">
 
-    <controls:CustomSignInNavigationBar GoBackCommand="{Binding ShowAlertCommand}"
-                                        IsShowBackButton="True"/>
+    <Grid>
+        <controls:HomePageNavigationBar GoBackCommand="{Binding ShowAlertCommand}"/>
+
+        <Label Text="{Binding TextOne}"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"/>
+    </Grid>
 
 </views:BaseContentPage>

@@ -60,7 +60,10 @@
     <Folder Include="Services\Authorization\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Controls\CustomSignInNavigationBar.xaml">
+    <EmbeddedResource Update="Controls\AuthorizationNavigationBar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\HomePageNavigationBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\AppResource.resx">
@@ -69,6 +72,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Controls\AuthorizationNavigationBar.xaml.cs">
+      <DependentUpon>AuthorizationNavigationBar.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Resources\AppResource.Designer.cs">
       <DependentUpon>AppResource.resx</DependentUpon>
       <DesignTime>True</DesignTime>
