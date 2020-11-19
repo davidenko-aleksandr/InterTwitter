@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterTwitter.Resources;
+using System;
 using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -137,11 +138,11 @@ namespace InterTwitter.Controls
         {
             if (IsPasswordLocal)
             {
-                Eye.Source = "ic_eye_on.png";
+                Eye.Source = AppResource.EyeOnImage;
             }
             else
             {
-                Eye.Source = "ic_eye_off.png";
+                Eye.Source = AppResource.EyeOffImage;
             }
 
             IsPasswordLocal = !IsPasswordLocal;

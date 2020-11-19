@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:controls="clr-namespace:InterTwitter.Controls" 
              x:Class="InterTwitter.Controls.CustomEntry"
+             xmlns:resources="clr-namespace:InterTwitter.Resources" 
              x:Name="_this">
     
     <Grid RowSpacing="0"
@@ -53,7 +54,7 @@
                                        BackgroundColor="Transparent"
                                        VerticalOptions="CenterAndExpand">
 
-            <Image Source="ic_eye_off.png" 
+            <Image Source="{x:Static resources:AppResource.EyeOffImage}" 
                    BindingContext="{x:Reference Name=_this}"
                    x:Name="Eye"/>
 
@@ -69,7 +70,7 @@
                                        Margin="0,0,4,0"
                                        VerticalOptions="CenterAndExpand">
 
-            <Image Source="ic_clear.png"/>
+            <Image Source="{x:Static resources:AppResource.ClearImage}"/>
             
         </controls:ClickableContentView>
 
