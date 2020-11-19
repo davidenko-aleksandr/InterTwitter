@@ -6,6 +6,7 @@
              x:Name="_this">
     
   <ContentView.Content>
+      
         <Frame VerticalOptions="Start"
                HorizontalOptions="FillAndExpand"
                HeightRequest="44"
@@ -29,7 +30,10 @@
                        VerticalOptions="Center"
                        HorizontalOptions="Center"/>
                 
-            </Grid>                        
+            </Grid>   
+            
         </Frame>
+      
   </ContentView.Content>
+    
 </ContentView>
