@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -117,9 +118,34 @@ namespace InterTwitter.Controls
             set => SetValue(TextProperty, value);
         }
 
+        private ICommand _clearClickCommand;
+        public ICommand ClearClickCommand => _clearClickCommand ??= new Command(OnClearClickCommand);
+
+        private ICommand _eyeClickCommand;
+        public ICommand EyeClickCommand => _eyeClickCommand ??= new Command(OnEyeClickCommand);
+
         #endregion
 
         #region -- Private Helpers --
+
+        private void OnClearClickCommand()
+        {
+            Text = null;
+        }
+
+        private void OnEyeClickCommand()
+        {
+            if (IsPasswordLocal)
+            {
+                Eye.Source = "ic_eye_on.png";
+            }
+            else
+            {
+                Eye.Source = "ic_eye_off.png";
+            }
+
+            IsPasswordLocal = !IsPasswordLocal;
+        }
 
         private static void OnIsPasswordPropertyChanged(BindableObject bindable, object oldvalue, object newValue)
         {
@@ -156,6 +182,7 @@ namespace InterTwitter.Controls
             {
                 ClearButton.IsVisible = true;
                 NameLabel.IsVisible = true;
+
                 if (IsPassword)
                 {
                     EyeButton.IsVisible = true;
@@ -167,25 +194,6 @@ namespace InterTwitter.Controls
             }
 
             TextChanged?.Invoke(this, new TextChangedEventArgs(oldValue, newValue));
-        }
-
-        private void ClearClick(object sender, EventArgs args)
-        {
-            Text = null;
-        }
-
-        private void EyeClick(object sender, EventArgs args)
-        {
-            if (IsPasswordLocal)
-            {
-                (sender as ImageButton).Source = "ic_eye_on.png";
-            }
-            else
-            {
-                (sender as ImageButton).Source = "ic_eye_off.png";
-            }
-
-            IsPasswordLocal = !IsPasswordLocal;
         }
 
         #endregion
