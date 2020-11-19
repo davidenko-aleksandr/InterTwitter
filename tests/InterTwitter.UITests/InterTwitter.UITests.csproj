@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -65,13 +65,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InterTwitter.iOS\InterTwitter.iOS.csproj">
+    <ProjectReference Include="..\..\src\InterTwitter.iOS\InterTwitter.iOS.csproj">
       <Project>{75BB6DA5-1830-4E99-991C-08DF5668CB9F}</Project>
       <Name>InterTwitter.iOS</Name>
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\InterTwitter.Android\InterTwitter.Android.csproj">
+    <ProjectReference Include="..\..\src\InterTwitter.Android\InterTwitter.Android.csproj">
       <Project>{83D13730-EB70-4E1A-805E-73D12D160A5D}</Project>
       <Name>InterTwitter.Android</Name>
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
