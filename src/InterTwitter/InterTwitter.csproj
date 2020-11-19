@@ -37,6 +37,7 @@
     <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NGraphics" Version="0.5.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -49,7 +50,6 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
     <Folder Include="Models\" />
-    <Folder Include="Controls\" />
     <Folder Include="Resources\" />
     <Folder Include="Views\Authorization\" />
     <Folder Include="ViewModels\Authorization\" />
@@ -59,6 +59,9 @@
     <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Controls\CustomSignInNavigationBar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\AppResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
