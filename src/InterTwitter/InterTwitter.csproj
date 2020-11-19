@@ -9,12 +9,14 @@
     <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <DebugSymbols>true</DebugSymbols>
-    <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
-    <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEV|AnyCPU' ">
     <IntermediateOutputPath>obj\DEV</IntermediateOutputPath>
@@ -24,7 +26,8 @@
     <DefineConstants>TRACE;DEV;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
     <NoWarn>1701;1702</NoWarn>
     <NoStdLib>false</NoStdLib>
-    <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'STAGE|AnyCPU' ">
     <IntermediateOutputPath>obj\STAGE</IntermediateOutputPath>
@@ -34,7 +37,8 @@
     <DefineConstants>TRACE;STAGE;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
-    <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NGraphics" Version="0.5.0" />
@@ -57,6 +61,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Enums\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Services\Authorization\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Controls\CustomSignInNavigationBar.xaml">
