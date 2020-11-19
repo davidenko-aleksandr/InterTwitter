@@ -43,11 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
     <Folder Include="Models\" />
-    <Folder Include="Controls\" />
     <Folder Include="Resources\" />
-    <Folder Include="Views\Authorization\" />
     <Folder Include="ViewModels\Authorization\" />
     <Folder Include="Services\" />
     <Folder Include="Helpers\" />
@@ -59,6 +56,9 @@
     <EmbeddedResource Update="Resources\AppResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Authorization\TestView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
