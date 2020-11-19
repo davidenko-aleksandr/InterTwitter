@@ -10,21 +10,57 @@ namespace InterTwitter.ViewModels.Authorization
         public LogInPageViewModel(INavigationService navigationService)
                                  : base(navigationService)
         {
+            SetStrings();
         }
 
-        private ICommand _showAlert;
-        public ICommand ShowAlertCommand => _showAlert ?? (_showAlert = new Command(ShowAlert));
+        #region --Public properties--
 
-        private void ShowAlert()
+        private string _firstEntry;
+        public string FirstEntry
         {
-            TextOne = "One";
+            get => _firstEntry;
+            set => SetProperty(ref _firstEntry, value);
         }
 
-        private string _noPins = string.Empty;
-        public string TextOne
+        private string _secondEntry;
+        public string SecondEntry
         {
-            get { return _noPins; }
-            set { SetProperty(ref _noPins, value); }
+            get => _secondEntry;
+            set => SetProperty(ref _secondEntry, value);
         }
+
+        private string _loginButtonText;
+        public string LoginButtonText
+        {
+            get => _loginButtonText;
+            set => SetProperty(ref _loginButtonText, value);
+        }
+
+        private bool _loginLableIsVisible;
+        public bool LoginLableIsVisible
+        {
+            get => _loginLableIsVisible;
+            set => SetProperty(ref _loginLableIsVisible, value);
+        }
+
+        #endregion
+
+        #region --Overrides--
+
+
+
+        #endregion
+
+        #region --Private helpers--
+
+        private void SetStrings()
+        {
+            LoginButtonText = "Login";
+            LoginLableIsVisible = true;
+        }
+
+        #endregion
+
+
     }
 }
