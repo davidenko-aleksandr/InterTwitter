@@ -49,7 +49,6 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
     <Folder Include="Models\" />
-    <Folder Include="Controls\" />
     <Folder Include="Resources\" />
     <Folder Include="Views\Authorization\" />
     <Folder Include="ViewModels\Authorization\" />
@@ -59,6 +58,9 @@
     <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Controls\CustomEntry.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\AppResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>

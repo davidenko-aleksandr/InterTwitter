@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:InterTwitter.Controls" 
+             x:Class="InterTwitter.Controls.CustomEntry"
+             x:Name="_this">
+    
+    <Grid RowSpacing="0"
+          ColumnSpacing="0">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="24"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0"
+               Grid.ColumnSpan="3"
+               Grid.Row="0"
+               Text="{Binding NameText}"
+               x:Name="NameLabel"
+               BindingContext="{x:Reference Name=_this}"
+               TextColor="#2356C5"
+               IsVisible="false"
+               HorizontalOptions="Start"
+               FontSize="12"
+               Margin="4,0,0,0"/>
+        
+        <controls:BorderlessEntry Grid.Column="0"
+                                  Grid.Row="1"
+                                  Placeholder="{Binding Placeholder}"
+                                  Text="{Binding Text}"
+                                  IsPassword="{Binding IsPasswordLocal}"
+                                  BindingContext="{x:Reference Name=_this}"
+                                  FontSize="16"
+                                  TextColor="#02060E"
+                                  PlaceholderColor="#66696E"
+                                  Margin="4,0,0,0"/>
+
+        <ImageButton Grid.Column="1"
+                     Grid.Row="1"
+                     IsVisible="false"
+                     Source="ic_eye_off.png"
+                     x:Name="EyeButton"
+                     BindingContext="{x:Reference Name=_this}"
+                     Clicked="EyeClick"
+                     BackgroundColor="Transparent"
+                     VerticalOptions="CenterAndExpand"/>
+
+        <ImageButton Grid.Column="2"
+                     Grid.Row="1"
+                     IsVisible="false"
+                     Source="ic_clear.png"
+                     x:Name="ClearButton"
+                     BindingContext="{x:Reference Name=_this}"
+                     Clicked="ClearClick"
+                     BackgroundColor="Transparent"
+                     Margin="0,0,4,0"
+                     VerticalOptions="CenterAndExpand"/>
+
+        <BoxView Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 Grid.Row="2"
+                 HeightRequest="1"
+                 HorizontalOptions="FillAndExpand"
+                 BindingContext="{x:Reference Name=_this}"
+                 BackgroundColor="{Binding LineColor}"
+                 Margin="0,10,0,0"/>
+
+        <Label Grid.Column="0"
+               Grid.ColumnSpan="3"
+               Grid.Row="3"
+               Text="{Binding ErrorText}"
+               BindingContext="{x:Reference Name=_this}"
+               TextColor="Red"
+               IsVisible="{Binding IsErrorVisible}"
+               HorizontalOptions="Start"
+               FontSize="12"
+               Margin="4,0,0,0"/>
+        
+    </Grid>
+    
+</ContentView>
