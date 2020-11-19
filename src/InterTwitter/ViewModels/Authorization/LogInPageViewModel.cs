@@ -10,6 +10,7 @@ namespace InterTwitter.ViewModels.Authorization
         public LogInPageViewModel(INavigationService navigationService)
                                  : base(navigationService)
         {
+            var a = 1;
         }
 
         private ICommand _showAlert;

@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace InterTwitter.Views.Authorization
 {
-    public partial class SignUpPasswordPage : ContentPage
+    public partial class SignUpPasswordPage : BaseContentPage
     {
         public SignUpPasswordPage()
         {
