@@ -34,6 +34,10 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<SignUpMainPage, SignUpMainPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpPasswordPage, SignUpPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>();
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<MessagesPage, MessagesPageViewModel>();
+            containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
+            containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
         }
 
         #endregion

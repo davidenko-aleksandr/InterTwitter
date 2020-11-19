@@ -10,11 +10,13 @@
     <Optimize>true</Optimize>
     <DebugSymbols>true</DebugSymbols>
     <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
     <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEV|AnyCPU' ">
     <IntermediateOutputPath>obj\DEV</IntermediateOutputPath>
@@ -25,6 +27,7 @@
     <NoWarn>1701;1702</NoWarn>
     <NoStdLib>false</NoStdLib>
     <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'STAGE|AnyCPU' ">
     <IntermediateOutputPath>obj\STAGE</IntermediateOutputPath>
@@ -35,6 +38,7 @@
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
     <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
