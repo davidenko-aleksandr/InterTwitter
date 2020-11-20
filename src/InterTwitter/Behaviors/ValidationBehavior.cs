@@ -91,7 +91,6 @@ namespace InterTwitter.Behaviors
             base.OnDetachingFrom(control);
 
             _control.Entry.TextChanged -= OnTextChanged;
-            _control.ErrorText = null;
             _control = null;
         }
 
@@ -109,28 +108,17 @@ namespace InterTwitter.Behaviors
 
                 _control.IsErrorVisible = !IsValid;
             }
-
-            #endregion
         }
 
         private bool CheckValidity(string value)
-        {
-            bool isMatch;
-
-            //if (IsPassword)
-            //{
-            //    isMatch = IsMatch(RegexPasswordContainsLower, value)
-            //        && IsMatch(RegexPasswordContainsUpper, value)
-            //        && IsMatch(RegexPasswordContainsNumber, value);
-            //}
-            //else
-            //{
-                isMatch = !string.IsNullOrEmpty(ComparableString)
-                        ? value.Equals(ComparableString)
-                        : !string.IsNullOrEmpty(Regex) && IsMatch(value, Regex);
-            //}
+        { 
+            bool isMatch = !string.IsNullOrEmpty(ComparableString)
+                    ? value.Equals(ComparableString)
+                    : IsMatch(value, Regex);
 
             return isMatch;
         }
+
+        #endregion
     }
 }
