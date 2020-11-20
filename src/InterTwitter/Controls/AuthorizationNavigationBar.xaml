@@ -8,7 +8,7 @@
 
     <Grid VerticalOptions="Start"
           HorizontalOptions="FillAndExpand"
-          HeightRequest="44"
+          HeightRequest="48"
           BackgroundColor="#FCFDFE">
 
         <Grid.ColumnDefinitions>
