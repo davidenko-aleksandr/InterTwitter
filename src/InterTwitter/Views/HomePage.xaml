@@ -2,11 +2,41 @@
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                         x:Class="InterTwitter.Views.HomePage"
                         Title="Home">
+    <Grid>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-    <Label Text="Home Page"
-           HorizontalOptions="Center"
-           VerticalOptions="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+        
+        <controls:HomePageNavigationBar Grid.Column="0"
+                                        Grid.Row="0"
+                                        Grid.ColumnSpan="2"/>
+
+        <Image Grid.Column="0"
+               Grid.Row="1"/>
+
+        <ListView Grid.Column="1"
+                  Grid.Row="1">
+            
+        </ListView>
+
+        <BoxView Grid.Column="0"
+                 Grid.Row="2"
+                 Grid.ColumnSpan="2"
+                 VerticalOptions="Fill"
+                 HorizontalOptions="Fill"
+                 BackgroundColor="Aqua"/>
+
+    </Grid>
 
 </views:BaseContentPage>
