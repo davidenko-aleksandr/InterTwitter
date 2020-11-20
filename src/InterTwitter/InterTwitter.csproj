@@ -56,7 +56,6 @@
     <Folder Include="Views\Authorization\" />
     <Folder Include="ViewModels\Authorization\" />
     <Folder Include="Services\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Extensions\" />
     <Folder Include="Services\Authorization\" />
   </ItemGroup>
