@@ -23,7 +23,7 @@ namespace InterTwitter
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync(nameof(SignUpPasswordPage));
+            await NavigationService.NavigateAsync(nameof(LogInPage));
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

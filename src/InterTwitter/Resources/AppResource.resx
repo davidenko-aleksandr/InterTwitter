@@ -123,11 +123,17 @@
   <data name="ConfirmButton" xml:space="preserve">
     <value>Confirm</value>
   </data>
-  <data name="CPasswordPText" xml:space="preserve">
+  <data name="ConfirmPasswordErrorMessage" xml:space="preserve">
+    <value>Passwords should match</value>
+  </data>
+  <data name="ConfirmPasswordText" xml:space="preserve">
     <value>Confirm Password</value>
   </data>
   <data name="CreateAccountLabel" xml:space="preserve">
     <value>Create your account</value>
+  </data>
+  <data name="EmailErrorMessage" xml:space="preserve">
+    <value>Email is not valid</value>
   </data>
   <data name="EmailText" xml:space="preserve">
     <value>Email</value>
@@ -164,6 +170,9 @@
   </data>
   <data name="NextButton" xml:space="preserve">
     <value>Next</value>
+  </data>
+  <data name="PasswordErrorMessage" xml:space="preserve">
+    <value>At least 8 characters, one uppercase and one lowercase</value>
   </data>
   <data name="PasswordText" xml:space="preserve">
     <value>Password</value>
