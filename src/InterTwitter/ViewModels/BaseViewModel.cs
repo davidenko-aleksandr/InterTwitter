@@ -1,46 +1,45 @@
-﻿using System;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Prism.Navigation;
 
 namespace InterTwitter.ViewModels
 {
-    public class BaseViewModel : BindableBase, INavigationAware, IInitialize, IDestructible
+    public class BaseViewModel : BindableBase, IInitialize, INavigationAware, IDestructible
     {
         public BaseViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
         }
 
-        #region -- Properties --
-
         protected INavigationService NavigationService { get; private set; }
 
-        #endregion
+        #region -- IInitialize implementation --
 
-        #region -- IDestructible Implementation --
-
-        public void Destroy()
+        public virtual void Initialize(INavigationParameters parameters)
         {
+
         }
 
         #endregion
 
-        #region -- IInitialize Implementation --
+        #region -- INavigationAware implementation --
 
-        public void Initialize(INavigationParameters parameters)
+        public virtual void OnNavigatedFrom(INavigationParameters parameters)
         {
+
+        }
+
+        public virtual void OnNavigatedTo(INavigationParameters parameters)
+        {
+
         }
 
         #endregion
 
-        #region -- INavigationAware Implementation --
+        #region -- IDestructible implementation --
 
-        public void OnNavigatedFrom(INavigationParameters parameters)
+        public virtual void Destroy()
         {
-        }
 
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
         }
 
         #endregion

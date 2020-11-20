@@ -6,6 +6,7 @@
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
                        xmlns:views="clr-namespace:InterTwitter.Views">
 
+
     <Grid HorizontalOptions="Fill"
           RowSpacing="0"
           VerticalOptions="Fill">
@@ -23,12 +24,14 @@
                      Orientation="Vertical"
                      VerticalOptions="Fill">
 
-            <controls:CustomSignInNavigationBar HorizontalOptions="Fill" 
-                                                VerticalOptions="Start"/>
+            <controls:AuthorizationNavigationBar HorizontalOptions="Fill" 
+                                                 VerticalOptions="Start"
+                                                 IsBackButtonVisible="True"
+                                                 GoBackCommand="{Binding ShowAlertCommand}"/>
 
             <Label Style="{StaticResource x:Key=AccountLabelStyle}" 
                    Text="{x:Static resources:AppResource.GetAccountLabel}"/>
-            
+
         </StackLayout>
 
         <!--  ENTRY BLOCK  -->
