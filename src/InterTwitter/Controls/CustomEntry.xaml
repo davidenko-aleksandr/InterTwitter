@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:InterTwitter.Controls" 
              x:Class="InterTwitter.Controls.CustomEntry"
              xmlns:resources="clr-namespace:InterTwitter.Resources" 
-             x:Name="_this">
+             x:Name="customEntry">
     
     <Grid RowSpacing="0"
           ColumnSpacing="0">
@@ -27,19 +27,20 @@
                Grid.Row="0"
                Text="{Binding NameText}"
                x:Name="NameLabel"
-               BindingContext="{x:Reference Name=_this}"
+               BindingContext="{x:Reference Name=customEntry}"
                TextColor="#2356C5"
                IsVisible="false"
                HorizontalOptions="Start"
                FontSize="12"
                Margin="4,0,0,0"/>
         
-        <controls:BorderlessEntry Grid.Column="0"
+        <controls:BorderlessEntry x:Name="entry"
+                                  Grid.Column="0"
                                   Grid.Row="1"
                                   Placeholder="{Binding Placeholder}"
                                   Text="{Binding Text}"
                                   IsPassword="{Binding IsPasswordLocal}"
-                                  BindingContext="{x:Reference Name=_this}"
+                                  BindingContext="{x:Reference Name=customEntry}"
                                   FontSize="16"
                                   TextColor="#02060E"
                                   PlaceholderColor="#66696E"
@@ -49,13 +50,13 @@
                                        Grid.Row="1"
                                        IsVisible="false" 
                                        x:Name="EyeButton"
-                                       BindingContext="{x:Reference Name=_this}"
+                                       BindingContext="{x:Reference Name=customEntry}"
                                        Command="{Binding EyeClickCommand}"
                                        BackgroundColor="Transparent"
                                        VerticalOptions="CenterAndExpand">
 
             <Image Source="{x:Static resources:AppResource.EyeOffImage}" 
-                   BindingContext="{x:Reference Name=_this}"
+                   BindingContext="{x:Reference Name=customEntry}"
                    x:Name="Eye"/>
 
         </controls:ClickableContentView>
@@ -64,7 +65,7 @@
                                        Grid.Row="1"
                                        IsVisible="false"
                                        x:Name="ClearButton"
-                                       BindingContext="{x:Reference Name=_this}"
+                                       BindingContext="{x:Reference Name=customEntry}"
                                        Command="{Binding ClearClickCommand}"
                                        BackgroundColor="Transparent"
                                        Margin="0,0,4,0"
@@ -79,7 +80,7 @@
                  Grid.Row="2"
                  HeightRequest="1"
                  HorizontalOptions="FillAndExpand"
-                 BindingContext="{x:Reference Name=_this}"
+                 BindingContext="{x:Reference Name=customEntry}"
                  BackgroundColor="{Binding LineColor}"
                  Margin="0,10,0,0"/>
 
@@ -87,7 +88,7 @@
                Grid.ColumnSpan="3"
                Grid.Row="3"
                Text="{Binding ErrorText}"
-               BindingContext="{x:Reference Name=_this}"
+               BindingContext="{x:Reference Name=customEntry}"
                TextColor="Red"
                IsVisible="{Binding IsErrorVisible}"
                HorizontalOptions="Start"
