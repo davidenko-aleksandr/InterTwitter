@@ -16,8 +16,14 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2"/>
+        </Grid.RowDefinitions>
 
         <controls:ClickableContentView Grid.Column="0"
+                                       Grid.Row="0"
                                        BindingContext="{x:Reference authorizationNavigationBar}"
                                        HorizontalOptions="FillAndExpand"
                                        VerticalOptions="FillAndExpand"
@@ -30,22 +36,32 @@
         </controls:ClickableContentView>
 
         <Label Grid.Column="1"
+               Grid.Row="0"
+               Margin="0, 2, 0 , 0"
                Text="{x:Static resources:AppResource.HomeTitle}"
+               FontSize="18"
                VerticalOptions="Center"
                HorizontalOptions="Center"/>
 
         <controls:ClickableContentView Grid.Column="2"
-                                   BindingContext="{x:Reference authorizationNavigationBar}"
-                                   HorizontalOptions="FillAndExpand"
-                                   VerticalOptions="FillAndExpand"
-                                   IsVisible="{Binding IsBackButtonVisible}"
-                                   Command="{Binding EditCommand}">
+                                       Grid.Row="0"
+                                       BindingContext="{x:Reference authorizationNavigationBar}"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="FillAndExpand"
+                                       IsVisible="{Binding IsBackButtonVisible}"
+                                       Command="{Binding EditCommand}">
 
             <Image Source="{x:Static resources:AppResource.LeftImage}"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"/>
 
         </controls:ClickableContentView>
+
+        <BoxView Grid.Row="1"
+                 Grid.ColumnSpan="3"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill"
+                 Color="#DEDFE1"/>
 
     </Grid>
 

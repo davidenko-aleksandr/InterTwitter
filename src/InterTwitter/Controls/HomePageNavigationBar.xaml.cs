@@ -13,9 +13,9 @@ namespace InterTwitter.Controls
         #region -- Public properties --
 
         public static BindableProperty GoBackCommandProperty = BindableProperty.Create(
-                                                                                        propertyName: nameof(GoBackCommand),
-                                                                                        returnType: typeof(ICommand),
-                                                                                        declaringType: typeof(AuthorizationNavigationBar));
+            propertyName: nameof(GoBackCommand),
+            returnType: typeof(ICommand),
+            declaringType: typeof(AuthorizationNavigationBar));
         public ICommand GoBackCommand
         {
             get => (ICommand)GetValue(GoBackCommandProperty);
@@ -23,9 +23,9 @@ namespace InterTwitter.Controls
         }
 
         public static BindableProperty EditCommandProperty = BindableProperty.Create(
-                                                                                        propertyName: nameof(EditCommand),
-                                                                                        returnType: typeof(ICommand),
-                                                                                        declaringType: typeof(AuthorizationNavigationBar));
+            propertyName: nameof(EditCommand),
+            returnType: typeof(ICommand),
+            declaringType: typeof(AuthorizationNavigationBar));
         public ICommand EditCommand
         {
             get => (ICommand)GetValue(EditCommandProperty);

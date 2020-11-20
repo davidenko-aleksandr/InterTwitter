@@ -6,7 +6,8 @@
                         x:Class="InterTwitter.Views.Authorization.LogInPage">
 
     <Grid>
-        <controls:HomePageNavigationBar GoBackCommand="{Binding ShowAlertCommand}"/>
+        <controls:AuthorizationNavigationBar GoBackCommand="{Binding ShowAlertCommand}"
+                                              IsBackButtonVisible="True"/>
 
         <Label Text="{Binding TextOne}"
                VerticalOptions="Center"
