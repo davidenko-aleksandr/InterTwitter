@@ -5,13 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:InterTwitter.Controls">
 
-    <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+    <Grid HorizontalOptions="Fill" VerticalOptions="Start">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="0.4*" />
-            <RowDefinition Height="0.35*" />
-            <RowDefinition Height="0.25*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
         <StackLayout
@@ -30,59 +28,11 @@
                 TextColor="#2356C5" />
         </StackLayout>
 
-        <!--  Entry Block  -->
-
-        <StackLayout
-            Grid.Row="1"
-            Margin="0,20,0,0"
-            BackgroundColor="Gray"
-            HorizontalOptions="Fill"
-            Orientation="Vertical"
-            VerticalOptions="Fill">
-
-            <Entry
-                Margin="20,30,0,0"
-                Placeholder="Email"
-                VerticalOptions="End" />
-
-            <Entry Placeholder="Password" VerticalOptions="End" />
-
-        </StackLayout>
-
-        <!--  Button Block  -->
-
-        <StackLayout
-            Grid.Row="2"
-            BackgroundColor="Red"
-            HorizontalOptions="Fill"
-            Orientation="Vertical"
-            VerticalOptions="Fill">
-
-            <Button
-                Margin="0,20,0,0"
-                BackgroundColor="#2356C5"
-                CornerRadius="20"
-                HeightRequest="40"
-                HorizontalOptions="Center"
-                Text="{TemplateBinding BindingContext.LoginButtonText}"
-                TextColor="#FCFDFE"
-                TextTransform="None"
-                WidthRequest="178" />
-
-            <Label
-                FontSize="14"
-                HorizontalOptions="Center"
-                IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
-                Text="Log in"
-                TextColor="#2356C5" />
-
-        </StackLayout>
-
         <ContentPresenter
-            Grid.Row="3"
+            Grid.Row="1"
             BackgroundColor="Green"
             HorizontalOptions="Fill"
-            VerticalOptions="End" />
+            VerticalOptions="Fill" />
 
         <ContentPresenter />
 
