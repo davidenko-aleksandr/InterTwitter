@@ -2,7 +2,7 @@
 
 namespace InterTwitter.Views
 {
-    public partial class MenuPageMaster : ContentPage
+    public partial class MenuPageMaster : BaseContentPage
     {
         public MenuPageMaster()
         {

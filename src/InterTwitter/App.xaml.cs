@@ -16,6 +16,7 @@ namespace InterTwitter
         public App(IPlatformInitializer initializer = null)
             : base(initializer)
         {
+
         }
 
         #region -- Overrides --

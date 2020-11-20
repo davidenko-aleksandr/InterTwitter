@@ -10,7 +10,11 @@ namespace InterTwitter.ViewModels.Authorization
         public LogInPageViewModel(INavigationService navigationService)
                                  : base(navigationService)
         {
+<<<<<<< HEAD
             SetStrings();
+=======
+            var a = 1;
+>>>>>>> 9a07134f8266f0fb65fe07baf2228f67413cab0c
         }
 
         #region --Public properties--
