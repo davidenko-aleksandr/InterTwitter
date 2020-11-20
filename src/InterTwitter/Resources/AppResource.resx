@@ -153,6 +153,9 @@
   <data name="LogoImage" xml:space="preserve">
     <value>pic_logo_small.png</value>
   </data>
+  <data name="NameEntryPlaceHolder" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="NameText" xml:space="preserve">
     <value>Name</value>
   </data>

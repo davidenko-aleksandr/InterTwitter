@@ -171,6 +171,15 @@ namespace InterTwitter.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
+        public static string NameEntryPlaceHolder {
+            get {
+                return ResourceManager.GetString("NameEntryPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
         public static string NameText {
             get {
                 return ResourceManager.GetString("NameText", resourceCulture);

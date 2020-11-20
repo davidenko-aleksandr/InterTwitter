@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<views:BaseContentPage
-    x:Class="InterTwitter.Views.Authorization.LogInPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:InterTwitter.Controls"
-    xmlns:views="clr-namespace:InterTwitter.Views">
+<views:BaseContentPage x:Class="InterTwitter.Views.Authorization.LogInPage"
+                       xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:controls="clr-namespace:InterTwitter.Controls"
+                       xmlns:resources="clr-namespace:InterTwitter.Resources"
+                       xmlns:views="clr-namespace:InterTwitter.Views">
 
-    <Grid
-        HorizontalOptions="Fill"
-        RowSpacing="0"
-        VerticalOptions="Fill">
+    <Grid HorizontalOptions="Fill"
+          RowSpacing="0"
+          VerticalOptions="Fill">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -18,46 +17,45 @@
 
         </Grid.RowDefinitions>
 
-        <!--  Navigation Bar  -->
+        <!--  NAVIGATION BAR  -->
+        <StackLayout Grid.Row="0"
+                     HorizontalOptions="Fill"
+                     Orientation="Vertical"
+                     VerticalOptions="Fill">
 
-        <StackLayout
-            Grid.Row="0"
-            HorizontalOptions="Fill"
-            Orientation="Vertical"
-            VerticalOptions="Fill">
+            <controls:CustomSignInNavigationBar HorizontalOptions="Fill" 
+                                                VerticalOptions="Start"/>
 
-            <controls:CustomSignInNavigationBar HorizontalOptions="Fill" VerticalOptions="Start" />
-
-            <Label Style="{StaticResource Key=AccauntLable}" Text="Get Your Accaunt" />
+            <Label Style="{StaticResource x:Key=AccountLabelStyle}" 
+                   Text="{x:Static resources:AppResource.GetAccountLabel}"/>
+            
         </StackLayout>
 
-        <!--  Entry Block  -->
+        <!--  ENTRY BLOCK  -->
+        <StackLayout Grid.Row="1"
+                     Margin="0,40,0,0"
+                     Orientation="Vertical">
 
-        <StackLayout
-            Grid.Row="1"
-            Margin="0,40,0,0"
-            Orientation="Vertical">
+            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
+                                  Style="{StaticResource x:Key=CustomEntryStyle}" />
 
-            <controls:CustomEntry Placeholder="Email" Style="{StaticResource Key=CustomEntryStyle}" />
-
-            <controls:CustomEntry Placeholder="Password" Style="{StaticResource Key=CustomEntryStyle}" />
+            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.PasswordText}"
+                                  Style="{StaticResource x:Key=CustomEntryStyle}" />
 
         </StackLayout>
 
-        <!--  Button Block  -->
+        <!--  BUTTON BLOCK  -->
+        <StackLayout Grid.Row="2"
+                     HorizontalOptions="Fill"
+                     Orientation="Vertical"
+                     VerticalOptions="Fill">
 
-        <StackLayout
-            Grid.Row="2"
-            HorizontalOptions="Fill"
-            Orientation="Vertical"
-            VerticalOptions="Fill">
+            <Button Style="{StaticResource x:Key=LoginButtonStyle}" 
+                    Text="{x:Static resources:AppResource.LogInButton}" />
 
-            <Button Style="{StaticResource Key=LoginButtonStyle}" Text="Log In" />
-
-            <Label
-                IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
-                Style="{StaticResource Key=UnderButtonLable}"
-                Text="Sign Up" />
+            <Label IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
+                   Style="{StaticResource x:Key=UnderButtonLabelStyle}"
+                   Text="{x:Static resources:AppResource.SignUpButton}" />
 
         </StackLayout>
 
