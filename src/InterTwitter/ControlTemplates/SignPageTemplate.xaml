@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ControlTemplate x:Class="InterTwitter.ControlTemplates.SignPageTemplate"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:controls="clr-namespace:InterTwitter.Controls">
+
+    <Grid HorizontalOptions="Fill" 
+          VerticalOptions="Start">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0"
+                     HorizontalOptions="Fill"
+                     Orientation="Vertical"
+                     VerticalOptions="Fill">
+
+            <controls:CustomSignInNavigationBar HorizontalOptions="Fill"
+                                                VerticalOptions="Start" />
+
+            <Label FontFamily="Ubuntu"
+                   FontSize="18"
+                   HorizontalOptions="Center"
+                   Text="Get Your Accaunt"
+                   TextColor="#2356C5" />
+            
+        </StackLayout>
+
+        <ContentPresenter Grid.Row="1"
+                          BackgroundColor="Green"
+                          HorizontalOptions="Fill"
+                          VerticalOptions="Fill" />
+
+        <ContentPresenter />
+
+    </Grid>
+
+
+</ControlTemplate>
