@@ -45,13 +45,7 @@ namespace InterTwitter.ViewModels.Authorization
             set => SetProperty(ref _loginLableIsVisible, value);
         }
 
-        #endregion
-
-        #region --Overrides--
-
-
-
-        #endregion
+        #endregion      
 
         #region --Private helpers--
 
