@@ -10,7 +10,7 @@ namespace InterTwitter.ViewModels.Authorization
         public LogInPageViewModel(INavigationService navigationService)
                                  : base(navigationService)
         {
-            var a = 1;
+
         }
 
         private ICommand _showAlert;
@@ -18,7 +18,7 @@ namespace InterTwitter.ViewModels.Authorization
 
         private void ShowAlert()
         {
-            TextOne = "One";
+            TextOne += "One";
         }
 
         private string _noPins = string.Empty;
