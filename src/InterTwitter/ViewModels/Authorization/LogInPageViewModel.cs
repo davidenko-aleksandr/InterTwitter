@@ -1,5 +1,8 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
+using InterTwitter.Helpers;
+using InterTwitter.Views;
+using InterTwitter.Views.Authorization;
 using Prism.Navigation;
 using Xamarin.Forms;
 
@@ -13,34 +16,40 @@ namespace InterTwitter.ViewModels.Authorization
 
         }
 
-        private ICommand _showAlert;
-        public ICommand ShowAlertCommand => _showAlert ?? (_showAlert = new Command(ShowAlert));
+        #region -- Public properties --
 
-        #region -- ViewModelBase implementation --
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        private string _emailEntry;
+        public string EmailEntry
         {
-            var a = 1;
+            get => _emailEntry;
+            set => SetProperty(ref _emailEntry, value);
         }
 
-        public async override void Initialize(INavigationParameters parameters)
+        private string _passwordEntry;
+        public string PasswordEntry
         {
-            var a = 1;
+            get => _passwordEntry;
+            set => SetProperty(ref _passwordEntry, value);
+        }
 
+        public ICommand LogInClickCommand => SingleExecutionCommand.FromFunc(OnLogInClickCommandAsync);
+        public ICommand SignUpClickCommand => SingleExecutionCommand.FromFunc(OnSignUpClickCommandAsync);
+
+        #endregion
+
+        #region -- Private helpers --
+
+        private async Task OnLogInClickCommandAsync()
+        {
+            await NavigationService.NavigateAsync(nameof(MenuPage));
+        }
+
+        private async Task OnSignUpClickCommandAsync()
+        {
+            await NavigationService.NavigateAsync(nameof(SignUpMainPage));
         }
 
         #endregion
 
-        private void ShowAlert()
-        {
-            TextOne += "One";
-        }
-
-        private string _noPins = string.Empty;
-        public string TextOne
-        {
-            get { return _noPins; }
-            set { SetProperty(ref _noPins, value); }
-        }
     }
 }

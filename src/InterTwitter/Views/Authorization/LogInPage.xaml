@@ -42,7 +42,8 @@
                      Orientation="Vertical">
 
             <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
-                                  Style="{StaticResource CustomEntryStyle}">
+                                  Style="{StaticResource CustomEntryStyle}"
+                                  Text="{Binding EmailEntry}">
 
                 <controls:CustomEntry.Behaviors>
 
@@ -54,7 +55,9 @@
             </controls:CustomEntry>
 
             <controls:CustomEntry Placeholder="{x:Static resources:AppResource.PasswordText}"
-                                  Style="{StaticResource CustomEntryStyle}">
+                                  Style="{StaticResource CustomEntryStyle}"
+                                  IsPassword="True"
+                                  Text="{Binding PasswordEntry}">
 
                 <controls:CustomEntry.Behaviors>
 
@@ -74,11 +77,18 @@
                      VerticalOptions="Fill">
 
             <Button Style="{StaticResource LoginButtonStyle}" 
-                    Text="{x:Static resources:AppResource.LogInButton}" />
+                    Text="{x:Static resources:AppResource.LogInButton}" 
+                    Command="{Binding SignUpClickCommand}"/>
 
-            <Label IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
+            <controls:ClickableContentView Command="{Binding SignUpClickCommand}">
+                
+                <Label IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
                    Style="{StaticResource UnderButtonLabelStyle}"
-                   Text="{x:Static resources:AppResource.SignUpButton}" />
+                   Text="{x:Static resources:AppResource.SignUpButton}"/>
+                
+            </controls:ClickableContentView>
+
+
 
         </StackLayout>
 
