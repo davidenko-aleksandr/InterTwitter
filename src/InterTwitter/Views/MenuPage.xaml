@@ -7,30 +7,51 @@
 
     <MasterDetailPage.Master>
 
-        <ContentPage Title="Menu">
+        <pages:BaseContentPage Title="Menu">
 
-            <StackLayout>
+            <Grid>
 
-                <StackLayout Orientation="Horizontal">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
                     <Image Source="pic_logo_small"
-                           HorizontalOptions="Start"/>
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Grid.Column="0"/>
 
-                    <StackLayout>
+                    <StackLayout Grid.Column="1"
+                                 VerticalOptions="Center">
 
-                        <Label Text="User name"/>
+                        <Label Text="User name"
+                               FontAttributes="Bold"/>
 
-                        <Label Text="@user_name"/>
+                        <Label Text="@user_name"
+                               TextColor="#66696E"/>
 
                     </StackLayout>
 
-                </StackLayout>
+                </Grid>
 
                 <ListView ItemsSource="{Binding MenuItems}"
                           SeparatorVisibility="None"
                           IsGroupingEnabled="True"
                           CachingStrategy="RecycleElement"
-                          HasUnevenRows="True">
+                          HasUnevenRows="True"
+                          Grid.Row="1">
 
                     <ListView.GroupHeaderTemplate>
 
@@ -40,7 +61,7 @@
 
                                 <BoxView HorizontalOptions="Fill"
                                          HeightRequest="1"
-                                         Color="Gray"
+                                         Color="#DEDFE1"
                                          IsVisible="{Binding HasSeparator}"/>
 
                             </ViewCell>
@@ -70,7 +91,7 @@
                                            VerticalTextAlignment="Center"
                                            HorizontalTextAlignment="Start"
                                            Text="{Binding Text}"
-                                           FontSize="24" />
+                                           FontSize="16" />
 
                                     <Grid.GestureRecognizers>
 
@@ -89,9 +110,20 @@
 
                 </ListView>
 
-            </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             Grid.Row="2">
 
-        </ContentPage>
+                    <Image Source="pic_logo_small"
+                           VerticalOptions="Center"/>
+
+                    <Label Text="Logout"
+                           VerticalOptions="Center"/>
+
+                </StackLayout>
+
+            </Grid>
+
+        </pages:BaseContentPage>
 
     </MasterDetailPage.Master>
 
