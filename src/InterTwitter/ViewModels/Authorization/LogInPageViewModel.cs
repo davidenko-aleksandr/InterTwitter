@@ -16,6 +16,21 @@ namespace InterTwitter.ViewModels.Authorization
         private ICommand _showAlert;
         public ICommand ShowAlertCommand => _showAlert ?? (_showAlert = new Command(ShowAlert));
 
+        #region -- ViewModelBase implementation --
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            var a = 1;
+        }
+
+        public async override void Initialize(INavigationParameters parameters)
+        {
+            var a = 1;
+
+        }
+
+        #endregion
+
         private void ShowAlert()
         {
             TextOne += "One";
