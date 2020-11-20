@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NGraphics" Version="0.5.0" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1909" />
@@ -60,7 +61,13 @@
     <Folder Include="Services\Authorization\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Controls\CustomSignInNavigationBar.xaml">
+    <EmbeddedResource Update="Controls\AuthorizationNavigationBar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\HomePageNavigationBar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ControlTemplates\SignPageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\AppResource.resx">
@@ -69,6 +76,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Controls\AuthorizationNavigationBar.xaml.cs">
+      <DependentUpon>AuthorizationNavigationBar.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Resources\AppResource.Designer.cs">
       <DependentUpon>AppResource.resx</DependentUpon>
       <DesignTime>True</DesignTime>

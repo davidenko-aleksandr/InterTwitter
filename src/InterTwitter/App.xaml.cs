@@ -1,5 +1,4 @@
-﻿using System;
-using InterTwitter.ViewModels;
+﻿using InterTwitter.ViewModels;
 using InterTwitter.ViewModels.Authorization;
 using InterTwitter.Views;
 using InterTwitter.Views.Authorization;
@@ -7,7 +6,6 @@ using Prism;
 using Prism.Ioc;
 using Prism.Unity;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace InterTwitter
 {
@@ -25,11 +23,12 @@ namespace InterTwitter
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync(nameof(LogInPage));
+            await NavigationService.NavigateAsync(nameof(SignUpPasswordPage));
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            //pages & viewmodels
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LogInPage, LogInPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpMainPage, SignUpMainPageViewModel>();
@@ -39,6 +38,7 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<MessagesPage, MessagesPageViewModel>();
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
+
         }
 
         #endregion
