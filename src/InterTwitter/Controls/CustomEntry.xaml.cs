@@ -13,11 +13,14 @@ namespace InterTwitter.Controls
         public CustomEntry()
         {
             InitializeComponent();
+            Entry = entry;
         }
 
         public static event EventHandler<TextChangedEventArgs> TextChanged;
 
         #region -- Public Properties --
+
+        public Entry Entry { get; set; }
 
         private static readonly BindableProperty IsPasswordLocalProperty = BindableProperty.Create(
                                                          propertyName: nameof(IsPasswordLocal),
