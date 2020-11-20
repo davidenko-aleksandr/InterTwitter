@@ -17,7 +17,7 @@
                      Orientation="Vertical"
                      VerticalOptions="Fill">
 
-            <controls:CustomSignInNavigationBar HorizontalOptions="Fill"
+            <controls:AuthorizationNavigationBar HorizontalOptions="Fill"
                                                 VerticalOptions="Start" />
 
             <Label FontFamily="Ubuntu"

@@ -4,6 +4,8 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
+                       xmlns:behaviors="clr-namespace:InterTwitter.Behaviors"
+                       xmlns:validators="clr-namespace:InterTwitter.Validators"
                        xmlns:views="clr-namespace:InterTwitter.Views">
 
 
@@ -29,7 +31,7 @@
                                                  IsBackButtonVisible="True"
                                                  GoBackCommand="{Binding ShowAlertCommand}"/>
 
-            <Label Style="{StaticResource x:Key=AccountLabelStyle}" 
+            <Label Style="{StaticResource AccountLabelStyle}" 
                    Text="{x:Static resources:AppResource.GetAccountLabel}"/>
 
         </StackLayout>
@@ -40,10 +42,28 @@
                      Orientation="Vertical">
 
             <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
-                                  Style="{StaticResource x:Key=CustomEntryStyle}" />
+                                  Style="{StaticResource CustomEntryStyle}">
+
+                <controls:CustomEntry.Behaviors>
+
+                    <behaviors:ValidationBehavior ErrorMessage="{x:Static resources:AppResource.EmailErrorMessage}"
+                                                  Regex="{x:Static validators:Validator.RegexEmail}"/>
+
+                </controls:CustomEntry.Behaviors>
+                
+            </controls:CustomEntry>
 
             <controls:CustomEntry Placeholder="{x:Static resources:AppResource.PasswordText}"
-                                  Style="{StaticResource x:Key=CustomEntryStyle}" />
+                                  Style="{StaticResource CustomEntryStyle}">
+
+                <controls:CustomEntry.Behaviors>
+
+                    <behaviors:ValidationBehavior ErrorMessage="{x:Static resources:AppResource.PasswordErrorMessage}"
+                                                  Regex="{x:Static validators:Validator.RegexPassword}"/>
+
+                </controls:CustomEntry.Behaviors>
+
+            </controls:CustomEntry>
 
         </StackLayout>
 
@@ -53,11 +73,11 @@
                      Orientation="Vertical"
                      VerticalOptions="Fill">
 
-            <Button Style="{StaticResource x:Key=LoginButtonStyle}" 
+            <Button Style="{StaticResource LoginButtonStyle}" 
                     Text="{x:Static resources:AppResource.LogInButton}" />
 
             <Label IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
-                   Style="{StaticResource x:Key=UnderButtonLabelStyle}"
+                   Style="{StaticResource UnderButtonLabelStyle}"
                    Text="{x:Static resources:AppResource.SignUpButton}" />
 
         </StackLayout>

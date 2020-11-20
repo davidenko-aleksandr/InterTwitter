@@ -39,17 +39,6 @@ namespace InterTwitter.Behaviors
             set => SetValue(RegexProperty, value);
         }
 
-        public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(
-            propertyName: nameof(IsPassword),
-            returnType: typeof(bool),
-            declaringType: typeof(CustomEntry));
-
-        public bool IsPassword
-        {
-            get => (bool)GetValue(IsPasswordProperty);
-            set => SetValue(IsPasswordProperty, value);
-        }
-
         public static readonly BindableProperty ComparableStringProperty = BindableProperty.Create(
             propertyName: nameof(ComparableString),
             returnType: typeof(string),
@@ -61,15 +50,15 @@ namespace InterTwitter.Behaviors
             set => SetValue(ComparableStringProperty, value);
         }
 
-        public static readonly BindableProperty MessageProperty = BindableProperty.Create(
-            propertyName: nameof(Message),
+        public static readonly BindableProperty ErrorMessageProperty = BindableProperty.Create(
+            propertyName: nameof(ErrorMessage),
             returnType: typeof(string),
             declaringType: typeof(CustomEntry));
 
-        public string Message
+        public string ErrorMessage
         {
-            get => (string)GetValue(MessageProperty);
-            set => SetValue(MessageProperty, value);
+            get => (string)GetValue(ErrorMessageProperty);
+            set => SetValue(ErrorMessageProperty, value);
         }
 
         #endregion
@@ -81,7 +70,7 @@ namespace InterTwitter.Behaviors
             base.OnAttachedTo(control);
 
             _control = control;
-            _control.ErrorText = Message;
+            _control.ErrorText = ErrorMessage;
             _control.Entry.TextChanged += OnTextChanged;
         }
 

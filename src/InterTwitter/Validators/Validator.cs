@@ -8,7 +8,7 @@ namespace InterTwitter.Validators
     public static class Validator
     {
         public const string RegexEmail = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
-        public const string RegexPassword = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,30}$";
+        public const string RegexPassword = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,128}$";
 
         public static bool IsMatch(string value, string regex)
         {

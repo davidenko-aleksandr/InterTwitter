@@ -79,11 +79,20 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passwords should match.
+        /// </summary>
+        public static string ConfirmPasswordErrorMessage {
+            get {
+                return ResourceManager.GetString("ConfirmPasswordErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
-        public static string CPasswordPText {
+        public static string ConfirmPasswordText {
             get {
-                return ResourceManager.GetString("CPasswordPText", resourceCulture);
+                return ResourceManager.GetString("ConfirmPasswordText", resourceCulture);
             }
         }
         
@@ -93,6 +102,15 @@ namespace InterTwitter.Resources {
         public static string CreateAccountLabel {
             get {
                 return ResourceManager.GetString("CreateAccountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is not valid.
+        /// </summary>
+        public static string EmailErrorMessage {
+            get {
+                return ResourceManager.GetString("EmailErrorMessage", resourceCulture);
             }
         }
         
@@ -201,6 +219,15 @@ namespace InterTwitter.Resources {
         public static string NextButton {
             get {
                 return ResourceManager.GetString("NextButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At least 8 characters, one uppercase and one lowercase.
+        /// </summary>
+        public static string PasswordErrorMessage {
+            get {
+                return ResourceManager.GetString("PasswordErrorMessage", resourceCulture);
             }
         }
         
