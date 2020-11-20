@@ -10,11 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace InterTwitter.Views.Authorization
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TestView : ContentPage
+    public partial class TestPage : ContentPage
     {
-        public TestView()
+        public TestPage()
         {
             InitializeComponent();
+        }
+
+        private void nextButtonClicked(object sender, EventArgs e)
+        {
+            password.Focus();
         }
     }
 }

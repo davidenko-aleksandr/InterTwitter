@@ -13,7 +13,7 @@ namespace InterTwitter.ViewModels.Authorization
         }
 
         private ICommand _showAlert;
-        public ICommand ShowAlertCommand => _showAlert ?? (_showAlert = new Command(ShowAlert));
+        public ICommand ShowAlertCommand => _showAlert ??= new Command(ShowAlert);
 
         private void ShowAlert()
         {
