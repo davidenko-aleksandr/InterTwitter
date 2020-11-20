@@ -1,12 +1,97 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:InterTwitter.Views"
                   x:Class="InterTwitter.Views.MenuPage"
-                  xmlns:pages="clr-namespace:InterTwitter.Views">
+                  IsPresented="{Binding IsPresented}">
 
     <MasterDetailPage.Master>
 
-        <pages:MenuPageMaster/>
+        <ContentPage Title="Menu">
+
+            <StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+
+                    <Image Source="pic_logo_small"
+                           HorizontalOptions="Start"/>
+
+                    <StackLayout>
+
+                        <Label Text="User name"/>
+
+                        <Label Text="@user_name"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <ListView ItemsSource="{Binding MenuItems}"
+                          SeparatorVisibility="None"
+                          IsGroupingEnabled="True"
+                          CachingStrategy="RecycleElement"
+                          HasUnevenRows="True">
+
+                    <ListView.GroupHeaderTemplate>
+
+                        <DataTemplate>
+
+                            <ViewCell Height="1">
+
+                                <BoxView HorizontalOptions="Fill"
+                                         HeightRequest="1"
+                                         Color="Gray"
+                                         IsVisible="{Binding HasSeparator}"/>
+
+                            </ViewCell>
+
+                        </DataTemplate>
+
+                    </ListView.GroupHeaderTemplate>
+
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <ViewCell>
+
+                                <Grid Padding="15,10"
+                                      HorizontalOptions="Fill"
+                                      ColumnDefinitions="Auto, *">
+
+                                    <Image Grid.Row="0"
+                                           Grid.Column="0"
+                                           Source="pic_logo_small"/>
+
+                                    <Label Grid.Row="0"
+                                           Grid.Column="1"
+                                           VerticalOptions="Fill"
+                                           HorizontalOptions="Fill"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Start"
+                                           Text="{Binding Text}"
+                                           FontSize="24" />
+
+                                    <Grid.GestureRecognizers>
+
+                                        <TapGestureRecognizer Command="{Binding NavigationCommand}"
+                                                              CommandParameter="{Binding .}"/>
+
+                                    </Grid.GestureRecognizers>
+
+                                </Grid>
+
+                            </ViewCell>
+
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+            </StackLayout>
+
+        </ContentPage>
 
     </MasterDetailPage.Master>
 

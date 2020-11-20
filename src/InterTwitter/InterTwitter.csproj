@@ -58,6 +58,7 @@
     <Folder Include="Enums\" />
     <Folder Include="Extensions\" />
     <Folder Include="Services\Authorization\" />
+    <Folder Include="Behaviors\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Controls\AuthorizationNavigationBar.xaml">

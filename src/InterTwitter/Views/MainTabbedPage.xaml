@@ -2,7 +2,14 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:InterTwitter.Views"
+            xmlns:behaviors="clr-namespace:InterTwitter.Behaviors"
             x:Class="InterTwitter.Views.MainTabbedPage">
+
+    <TabbedPage.Behaviors>
+
+        <behaviors:TabbedPageNavigationBehavior/>
+
+    </TabbedPage.Behaviors>
 
     <TabbedPage.Children>
 
@@ -15,5 +22,5 @@
         <local:MessagesPage/>
 
     </TabbedPage.Children>
-    
+
 </TabbedPage>

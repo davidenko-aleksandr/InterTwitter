@@ -23,7 +23,7 @@ namespace InterTwitter.ViewModels.Authorization
             var a = 1;
         }
 
-        public async override void Initialize(INavigationParameters parameters)
+        public override void Initialize(INavigationParameters parameters)
         {
             var a = 1;
 
