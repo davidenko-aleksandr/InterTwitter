@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                  xmlns:pages="clr-namespace:InterTwitter.Views"
+                  xmlns:pages="clr-namespace:InterTwitter.Views" 
+                  xmlns:controls="clr-namespace:InterTwitter.Controls" 
+                  xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                  xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                   x:Class="InterTwitter.Views.MenuPage"
                   IsPresented="{Binding IsPresented}">
 
@@ -12,7 +15,7 @@
             <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="80"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
@@ -24,22 +27,31 @@
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="0.3*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="pic_logo_small"
-                           HorizontalOptions="CenterAndExpand"
-                           VerticalOptions="CenterAndExpand"
-                           Grid.Column="0"/>
+                    <ffimageloading:CachedImage Source="pic_logo_small"
+                                                HorizontalOptions="CenterAndExpand"
+                                                VerticalOptions="CenterAndExpand"
+                                                Grid.Column="0">
+
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation/>
+                        </ffimageloading:CachedImage.Transformations>
+                        
+                    </ffimageloading:CachedImage>
 
                     <StackLayout Grid.Column="1"
                                  VerticalOptions="Center">
 
-                        <Label Text="User name"
-                               FontAttributes="Bold"/>
+                        <Label Text="User Name"
+                               FontAttributes="Bold"
+                               TextColor="Black"
+                               FontSize="20"
+                               FontFamily="Ubuntu"/>
 
-                        <Label Text="@user_name"
+                        <Label Text="username@gmail.com"
                                TextColor="#66696E"/>
 
                     </StackLayout>
@@ -74,7 +86,7 @@
 
                         <DataTemplate>
 
-                            <ViewCell>
+                            <ViewCell Height="60">
 
                                 <Grid Padding="15,10"
                                       HorizontalOptions="Fill"
@@ -82,7 +94,9 @@
 
                                     <Image Grid.Row="0"
                                            Grid.Column="0"
-                                           Source="pic_logo_small"/>
+                                           Source="{Binding Icon}"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="FillAndExpand"/>
 
                                     <Label Grid.Row="0"
                                            Grid.Column="1"
@@ -91,7 +105,8 @@
                                            VerticalTextAlignment="Center"
                                            HorizontalTextAlignment="Start"
                                            Text="{Binding Text}"
-                                           FontSize="16" />
+                                           FontSize="16"
+                                           TextColor="Black"/>
 
                                     <Grid.GestureRecognizers>
 
@@ -110,16 +125,23 @@
 
                 </ListView>
 
-                <StackLayout Orientation="Horizontal"
-                             Grid.Row="2">
+                <controls:ClickableContentView Grid.Row="2"
+                                               Command="{Binding LogoutCommand}">
 
-                    <Image Source="pic_logo_small"
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="15,0">
+
+                        <Image Source="ic_logout_gray"
                            VerticalOptions="Center"/>
 
-                    <Label Text="Logout"
-                           VerticalOptions="Center"/>
+                        <Label Text="Logout"
+                           VerticalOptions="Center"
+                           FontSize="16"
+                           TextColor="Black"/>
 
-                </StackLayout>
+                    </StackLayout>
+
+                </controls:ClickableContentView>
 
             </Grid>
 

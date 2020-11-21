@@ -6,11 +6,6 @@ namespace InterTwitter.ViewModels
 {
     public class MenuItemViewModel : BindableBase
     {
-        public MenuItemViewModel(ICommand navigationCommand)
-        {
-            _navigationCommand = navigationCommand;
-        }
-
         private string _text;
         public string Text
         {
