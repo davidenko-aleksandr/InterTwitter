@@ -4,11 +4,20 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
-                       xmlns:behaviors="clr-namespace:InterTwitter.Behaviors"
-                       xmlns:validators="clr-namespace:InterTwitter.Validators"
-                       xmlns:views="clr-namespace:InterTwitter.Views">
+                       xmlns:views="clr-namespace:InterTwitter.Views" 
+                       xmlns:converters="clr-namespace:InterTwitter.Converters"
+                       BackgroundColor="#FCFDFE">
 
+    <views:BaseContentPage.Resources>
+        
+        <ResourceDictionary>
 
+            <converters:MultiTriggerButtonConverter x:Key="isButtonEnabled"/>
+
+        </ResourceDictionary>
+        
+    </views:BaseContentPage.Resources>
+    
     <Grid HorizontalOptions="Fill"
           RowSpacing="0"
           VerticalOptions="Fill">
@@ -28,7 +37,6 @@
 
             <controls:AuthorizationNavigationBar HorizontalOptions="Fill" 
                                                  VerticalOptions="Start"
-                                                 IsBackButtonVisible="True"
                                                  GoBackCommand="{Binding ShowAlertCommand}"/>
 
             <Label Style="{StaticResource AccountLabelStyle}" 
@@ -41,30 +49,18 @@
                      Margin="0,40,0,0"
                      Orientation="Vertical">
 
-            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
+            <controls:CustomEntry x:Name="emailEntry"
+                                  Placeholder="{x:Static resources:AppResource.EmailText}" 
                                   Style="{StaticResource CustomEntryStyle}"
                                   Text="{Binding EmailEntry}">
 
-                <controls:CustomEntry.Behaviors>
-
-                    <behaviors:ValidationBehavior ErrorMessage="{x:Static resources:AppResource.EmailErrorMessage}"
-                                                  Regex="{x:Static validators:Validator.RegexEmail}"/>
-
-                </controls:CustomEntry.Behaviors>
-                
             </controls:CustomEntry>
 
-            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.PasswordText}"
+            <controls:CustomEntry x:Name="passwordEntry"
+                                  Placeholder="{x:Static resources:AppResource.PasswordText}"
                                   Style="{StaticResource CustomEntryStyle}"
                                   IsPassword="True"
                                   Text="{Binding PasswordEntry}">
-
-                <controls:CustomEntry.Behaviors>
-
-                    <behaviors:ValidationBehavior ErrorMessage="{x:Static resources:AppResource.PasswordErrorMessage}"
-                                                  Regex="{x:Static validators:Validator.RegexPassword}"/>
-
-                </controls:CustomEntry.Behaviors>
 
             </controls:CustomEntry>
 
@@ -78,17 +74,41 @@
 
             <Button Style="{StaticResource LoginButtonStyle}" 
                     Text="{x:Static resources:AppResource.LogInButton}" 
-                    Command="{Binding SignUpClickCommand}"/>
+                    Command="{Binding LogInClickCommand}"
+                    IsVisible="False">
 
-            <controls:ClickableContentView Command="{Binding SignUpClickCommand}">
+                <Button.Triggers>
+                    
+                    <MultiTrigger TargetType="Button">
+                        
+                        <MultiTrigger.Conditions>
+
+                            <BindingCondition Binding="{Binding Source={x:Reference emailEntry}, Path=Text, Converter={StaticResource isButtonEnabled}}"
+                                              Value="True"/>
+
+                            <BindingCondition Binding="{Binding Source={x:Reference passwordEntry}, Path=Text,  Converter={StaticResource isButtonEnabled}}"
+                                              Value="True"/>
+
+                        </MultiTrigger.Conditions>
+
+                        <Setter Property="IsEnabled" 
+                                Value="True"/>
+
+                    </MultiTrigger>
+                    
+                </Button.Triggers>
+
+            </Button>
+
+            <controls:ClickableContentView Command="{Binding SignUpClickCommand}"
+                                           Margin="0,12,0,0">
                 
                 <Label IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
-                   Style="{StaticResource UnderButtonLabelStyle}"
-                   Text="{x:Static resources:AppResource.SignUpButton}"/>
+                       Style="{StaticResource UnderButtonLabelStyle}"
+                       Text="{x:Static resources:AppResource.SignUpButton}"
+                       Padding="64,8,64,8"/>
                 
             </controls:ClickableContentView>
-
-
 
         </StackLayout>
 

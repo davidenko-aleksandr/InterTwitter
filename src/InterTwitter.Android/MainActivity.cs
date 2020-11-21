@@ -7,6 +7,7 @@ using Prism;
 using Prism.Ioc;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Acr.UserDialogs;
 
 namespace InterTwitter.Droid
 {
@@ -27,6 +28,8 @@ namespace InterTwitter.Droid
 
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
+            UserDialogs.Init(this);
+
             LoadApplication(new App(new AndroidInitializer()));
         }
 

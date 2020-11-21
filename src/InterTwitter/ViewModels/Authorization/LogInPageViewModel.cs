@@ -1,19 +1,27 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using InterTwitter.Helpers;
+using InterTwitter.Services.Authorization;
 using InterTwitter.Views;
 using InterTwitter.Views.Authorization;
 using Prism.Navigation;
-using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace InterTwitter.ViewModels.Authorization
 {
     public class LogInPageViewModel : BaseViewModel
     {
-        public LogInPageViewModel(INavigationService navigationService)
+        private readonly IAuthorizationService _authorizationService;
+        private readonly IUserDialogs _userDialogs;
+
+        public LogInPageViewModel(INavigationService navigationService,
+                                  IAuthorizationService authorizationService,
+                                  IUserDialogs userDialogs)
                                  : base(navigationService)
         {
-
+            _authorizationService = authorizationService;
+            _userDialogs = userDialogs;
         }
 
         #region -- Public properties --
@@ -41,7 +49,29 @@ namespace InterTwitter.ViewModels.Authorization
 
         private async Task OnLogInClickCommandAsync()
         {
-            await NavigationService.NavigateAsync(nameof(MenuPage));
+
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.Internet)
+            {
+                var result = await _authorizationService.LogInAsync(EmailEntry, PasswordEntry);
+
+                var isUserExist = result.Result;
+
+                if (isUserExist)
+                {
+                    await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+                }
+                else
+                {
+                    _userDialogs.Toast("Wrong email or password!");
+                }
+            }
+            else
+            {
+                _userDialogs.Toast("No Internet connection!");
+            }
+
         }
 
         private async Task OnSignUpClickCommandAsync()

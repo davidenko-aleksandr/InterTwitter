@@ -41,6 +41,7 @@
     <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.466" />
     <PackageReference Include="NGraphics" Version="0.5.0" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />

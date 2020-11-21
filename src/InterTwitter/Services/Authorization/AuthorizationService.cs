@@ -42,6 +42,7 @@ namespace InterTwitter.Services.Authorization
             {
                 var user = _usersRepositoryMock.First(x => x.Email == email && x.Password == password);
                 await Task.Delay(300);
+
                 if (user != null)
                 {
                     result.SetSuccess(true);
