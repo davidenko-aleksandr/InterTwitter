@@ -63,7 +63,7 @@
                                   Text="{Binding PasswordEntry}">
 
             </controls:CustomEntry>
-
+            
         </StackLayout>
 
         <!--  BUTTON BLOCK  -->
@@ -75,19 +75,19 @@
             <Button Style="{StaticResource LoginButtonStyle}" 
                     Text="{x:Static resources:AppResource.LogInButton}" 
                     Command="{Binding LogInClickCommand}"
-                    IsVisible="False">
+                    IsEnabled="{Binding IsButtonEnable}">
 
                 <Button.Triggers>
-                    
+
                     <MultiTrigger TargetType="Button">
-                        
+
                         <MultiTrigger.Conditions>
 
-                            <BindingCondition Binding="{Binding Source={x:Reference emailEntry}, Path=Text, Converter={StaticResource isButtonEnabled}}"
-                                              Value="True"/>
+                            <BindingCondition Binding="{Binding PasswordEntry, Converter={StaticResource isButtonEnabled}}"
+                                              Value="False"/>
 
-                            <BindingCondition Binding="{Binding Source={x:Reference passwordEntry}, Path=Text,  Converter={StaticResource isButtonEnabled}}"
-                                              Value="True"/>
+                            <BindingCondition Binding="{Binding EmailEntry, Converter={StaticResource isButtonEnabled}}"
+                                              Value="False"/>
 
                         </MultiTrigger.Conditions>
 
@@ -95,9 +95,9 @@
                                 Value="True"/>
 
                     </MultiTrigger>
-                    
-                </Button.Triggers>
 
+                </Button.Triggers>
+                
             </Button>
 
             <controls:ClickableContentView Command="{Binding SignUpClickCommand}"

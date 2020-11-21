@@ -112,7 +112,7 @@ namespace InterTwitter.Controls
                                                          propertyName: nameof(Text),
                                                          returnType: typeof(string),
                                                          declaringType: typeof(CustomEntry),
-                                                         defaultValue: null,
+                                                         defaultValue: string.Empty,
                                                          defaultBindingMode: BindingMode.TwoWay,
                                                          propertyChanged: (bindable, oldValue, newValue) => ((CustomEntry)bindable).OnTextChanged((string)oldValue, (string)newValue));
 

@@ -22,6 +22,8 @@ namespace InterTwitter.ViewModels.Authorization
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
+
+            IsButtonEnable = false;
         }
 
         #region -- Public properties --
@@ -40,6 +42,13 @@ namespace InterTwitter.ViewModels.Authorization
             set => SetProperty(ref _passwordEntry, value);
         }
 
+        private bool _isButtonEnabled;
+        public bool IsButtonEnable
+        {
+            get => _isButtonEnabled;
+            set => SetProperty(ref _isButtonEnabled, value);
+        }
+
         public ICommand LogInClickCommand => SingleExecutionCommand.FromFunc(OnLogInClickCommandAsync);
         public ICommand SignUpClickCommand => SingleExecutionCommand.FromFunc(OnSignUpClickCommandAsync);
 
@@ -49,7 +58,6 @@ namespace InterTwitter.ViewModels.Authorization
 
         private async Task OnLogInClickCommandAsync()
         {
-
             var current = Connectivity.NetworkAccess;
 
             if (current == NetworkAccess.Internet)
@@ -76,7 +84,7 @@ namespace InterTwitter.ViewModels.Authorization
 
         private async Task OnSignUpClickCommandAsync()
         {
-            await NavigationService.NavigateAsync(nameof(SignUpMainPage));
+           await NavigationService.NavigateAsync(nameof(SignUpMainPage));
         }
 
         #endregion

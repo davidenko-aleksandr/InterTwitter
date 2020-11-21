@@ -8,8 +8,7 @@ namespace InterTwitter.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var a = !string.IsNullOrWhiteSpace((string)value);
-            return a;
+            return string.IsNullOrEmpty((string)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
