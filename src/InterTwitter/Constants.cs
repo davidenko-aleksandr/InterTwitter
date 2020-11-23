@@ -12,5 +12,11 @@ namespace InterTwitter
 #else
         public const string BASE_URL = "";
 #endif
+
+        public static class Navigation
+        {
+            public static string Name = "Name";
+            public static string Email = "Email";
+        }
     }
 }

@@ -51,11 +51,9 @@
     <Folder Include="Enums\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
-    <Folder Include="Models\" />
     <Folder Include="Resources\" />
     <Folder Include="Views\Authorization\" />
     <Folder Include="ViewModels\Authorization\" />
-    <Folder Include="Services\" />
     <Folder Include="Extensions\" />
     <Folder Include="Services\Authorization\" />
   </ItemGroup>

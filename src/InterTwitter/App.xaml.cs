@@ -1,4 +1,5 @@
-﻿using InterTwitter.ViewModels;
+﻿using InterTwitter.Services.Authorization;
+using InterTwitter.ViewModels;
 using InterTwitter.ViewModels.Authorization;
 using InterTwitter.Views;
 using InterTwitter.Views.Authorization;
@@ -23,7 +24,7 @@ namespace InterTwitter
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync(nameof(LogInPage));
+            await NavigationService.NavigateAsync(nameof(SignUpMainPage));
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -38,6 +39,9 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<MessagesPage, MessagesPageViewModel>();
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
+
+            //services
+            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
 
         }
 

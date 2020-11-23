@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using InterTwitter.Helpers;
 using InterTwitter.Models;
+using InterTwitter.Services.Reposytory;
+using InterTwitter.Services.UserService;
 
 namespace InterTwitter.Services.Authorization
 {
@@ -11,25 +13,29 @@ namespace InterTwitter.Services.Authorization
     {
         private List<User> _usersRepositoryMock;
 
-        public AuthorizationService()
+        private readonly IUserService _userService;
+
+        public AuthorizationService(IUserService repository)
         {
-            _usersRepositoryMock = new List<User>()
-            {
-                new User()
-                {
-                    Id = 0,
-                    Email = "vasya1984@mail.ru",
-                    Name = "Vasiliy",
-                    Password = "v1984!",
-                },
-                new User()
-                {
-                    Id = 1,
-                    Email = "petya25@gmail.com",
-                    Name = "Peter Stevenson",
-                    Password = "qwerty123",
-                },
-            };
+            _userService = repository;
+
+            //_usersRepositoryMock = new List<User>()
+            //{
+            //    new User()
+            //    {
+            //        Id = 0,
+            //        Email = "vasya1984@mail.ru",
+            //        Name = "Vasiliy",
+            //        Password = "v1984!",
+            //    },
+            //    new User()
+            //    {
+            //        Id = 1,
+            //        Email = "petya25@gmail.com",
+            //        Name = "Peter Stevenson",
+            //        Password = "qwerty123",
+            //    },
+            //};
         }
 
         #region -- IAuthorizationService Implementation --
@@ -40,7 +46,9 @@ namespace InterTwitter.Services.Authorization
 
             try
             {
-                var user = _usersRepositoryMock.First(x => x.Email == email && x.Password == password);
+                var users = await _userService.GetUsersAsync();
+                var user = users.First(x => x.Email == email && x.Password == password);
+                //var user = _usersRepositoryMock.First(x => x.Email == email && x.Password == password);
                 await Task.Delay(300);
                 if (user != null)
                 {
@@ -65,13 +73,14 @@ namespace InterTwitter.Services.Authorization
 
             try
             {
-                var user = _usersRepositoryMock.First(x => x.Email == email);
+                var users = await _userService.GetUsersAsync();
+                var user = users.First(x => x.Email == email && x.Password == password);
+                //  var user = _usersRepositoryMock.First(x => x.Email == email);
                 await Task.Delay(300);
-                if (user != null)
+                if (user == null)
                 {
-                    _usersRepositoryMock.Add(new User()
+                    await _userService.AddOrUpdateAsync(new User()
                     {
-                        Id = _usersRepositoryMock.Count,
                         Email = email,
                         Name = name,
                         Password = password,

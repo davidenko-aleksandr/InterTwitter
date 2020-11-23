@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace TikBid.Helpers
+namespace InterTwitter.Helpers
 {
     public class SingleExecutionCommand : ICommand
     {
@@ -66,6 +66,7 @@ namespace TikBid.Helpers
                 _canExecute = obj => canExecute == null || canExecute((T)obj),
                 _delayMillisec = delayMillisec,
             };
+
             return ret;
         }
 
