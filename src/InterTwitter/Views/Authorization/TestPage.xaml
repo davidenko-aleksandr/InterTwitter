@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:cv="clr-namespace:InterTwitter.Controls.Views" 
+             xmlns:controls="clr-namespace:InterTwitter.Controls" 
              xmlns:prism="http://prismlibrary.com"
              x:Class="InterTwitter.Views.Authorization.TestPage">
     
-    <cv:KeyboardView HorizontalOptions="Fill" 
+    <controls:KeyboardView HorizontalOptions="Fill" 
                      VerticalOptions="Fill">
 
         <Grid.RowDefinitions>
@@ -117,6 +117,6 @@
 
         </Button>
 
-    </cv:KeyboardView>
+    </controls:KeyboardView>
     
 </ContentPage>
