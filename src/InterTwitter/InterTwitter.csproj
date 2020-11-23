@@ -71,6 +71,8 @@
   <ItemGroup>
     <Compile Update="Resources\AppResource.Designer.cs">
       <DependentUpon>AppResource.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
   </ItemGroup>
 </Project>

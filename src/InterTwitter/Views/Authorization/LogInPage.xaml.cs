@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace InterTwitter.Views.Authorization
 {
-    public partial class LogInPage : ContentPage
+    public partial class LogInPage : BaseContentPage
     {
         public LogInPage()
         {
