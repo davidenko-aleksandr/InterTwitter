@@ -15143,8 +15143,8 @@ namespace InterTwitter.Droid
 			// aapt resource value: 10
 			public const int CollapsingToolbarLayout_scrimAnimationDuration = 10;
 			
-			// aapt resource value: 5
-			public const int CollapsingToolbarLayout_expandedTitleMarginBottom = 5;
+			// aapt resource value: 11
+			public const int CollapsingToolbarLayout_scrimVisibleHeightTrigger = 11;
 			
 			// aapt resource value: 12
 			public const int CollapsingToolbarLayout_statusBarScrim = 12;

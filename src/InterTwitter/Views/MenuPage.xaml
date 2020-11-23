@@ -31,7 +31,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ffimageloading:CachedImage Source="pic_logo_small"
+                    <ffimageloading:CachedImage Source="pic_profile_big"
                                                 HorizontalOptions="CenterAndExpand"
                                                 VerticalOptions="CenterAndExpand"
                                                 Grid.Column="0">
@@ -146,13 +146,13 @@
                     <StackLayout Orientation="Horizontal"
                                  Margin="15,0">
 
-                        <Image Source="ic_logout_gray"
+                        <Image Source="ic_logout_blue"
                                VerticalOptions="Center"/>
 
                         <Label Text="Logout"
                                VerticalOptions="Center"
                                FontSize="16"
-                               TextColor="Black"/>
+                               TextColor="#2356C5"/>
 
                     </StackLayout>
 

@@ -3,10 +3,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using InterTwitter.Helpers;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Views;
 using Prism.Navigation;
-using TikBid.Helpers;
 using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
@@ -101,7 +101,9 @@ namespace InterTwitter.ViewModels
 
         private async Task OnNavigationCommandAsync(MenuItemViewModel item)
         {
-            await NavigationService.NavigateAsync(item.PageName);
+            SelectedTabName = item.PageName;
+            IsPresented = false;
+            //await NavigationService.NavigateAsync($"{nameof(MenuPage)}/{nameof(MainTabbedPage)}?selectedTab={item.PageName}");
         }
 
         protected override void OnPropertyChanged(PropertyChangedEventArgs args)
