@@ -6,7 +6,7 @@
                   xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                   xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                   x:Class="InterTwitter.Views.MenuPage"
-                  IsPresented="{Binding IsPresented}">
+                  IsPresented="{Binding IsPresented, Mode=TwoWay}">
 
     <MasterDetailPage.Master>
 
@@ -106,7 +106,22 @@
                                            HorizontalTextAlignment="Start"
                                            Text="{Binding Text}"
                                            FontSize="16"
-                                           TextColor="Black"/>
+                                           TextColor="Black">
+
+                                        <Label.Triggers>
+
+                                            <DataTrigger TargetType="Label"
+                                                     Binding="{Binding IsSelected}"
+                                                     Value="True">
+
+                                                <Setter Property="TextColor"
+                                                        Value="#2356C5" />
+
+                                            </DataTrigger>
+
+                                        </Label.Triggers>
+
+                                    </Label>
 
                                     <Grid.GestureRecognizers>
 
@@ -132,12 +147,12 @@
                                  Margin="15,0">
 
                         <Image Source="ic_logout_gray"
-                           VerticalOptions="Center"/>
+                               VerticalOptions="Center"/>
 
                         <Label Text="Logout"
-                           VerticalOptions="Center"
-                           FontSize="16"
-                           TextColor="Black"/>
+                               VerticalOptions="Center"
+                               FontSize="16"
+                               TextColor="Black"/>
 
                     </StackLayout>
 
@@ -155,7 +170,7 @@
 
             <x:Arguments>
 
-                <pages:MainTabbedPage/>
+                <pages:MainTabbedPage SelectedPageName="{Binding SelectedTabName, Mode=TwoWay}"/>
 
             </x:Arguments>
 

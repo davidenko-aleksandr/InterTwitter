@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using Prism.Mvvm;
 
@@ -20,6 +21,13 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _icon, value);
         }
 
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set => SetProperty(ref _isSelected, value);
+        }
+
         private string _pageName;
         public string PageName
         {
@@ -28,6 +36,10 @@ namespace InterTwitter.ViewModels
         }
 
         private ICommand _navigationCommand;
-        public ICommand NavigationCommand => _navigationCommand;
+        public ICommand NavigationCommand
+        {
+            get => _navigationCommand;
+            set => SetProperty(ref _navigationCommand, value);
+        }
     }
 }

@@ -1,8 +1,10 @@
-﻿using Xamarin.Forms;
+﻿using System.Runtime.CompilerServices;
+using InterTwitter.Controls;
+using Xamarin.Forms;
 
 namespace InterTwitter.Views
 {
-    public partial class MainTabbedPage : TabbedPage
+    public partial class MainTabbedPage : CustomTabbedPage
     {
         public MainTabbedPage()
         {
