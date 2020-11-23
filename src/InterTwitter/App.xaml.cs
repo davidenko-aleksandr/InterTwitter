@@ -1,9 +1,9 @@
 ﻿using Acr.UserDialogs;
 using InterTwitter.Services.Authorization;
+using InterTwitter.Services.Settings;
 using InterTwitter.ViewModels;
-using InterTwitter.ViewModels.Authorization;
 using InterTwitter.Views;
-using InterTwitter.Views.Authorization;
+using Plugin.Settings;
 using Prism;
 using Prism.Ioc;
 using Prism.Unity;
@@ -25,7 +25,16 @@ namespace InterTwitter
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync(nameof(LogInPage));
+            var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
+
+            if (isAuthorized)
+            {
+                await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+            }
+            else
+            {
+                await NavigationService.NavigateAsync(nameof(LogInPage));
+            }
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -43,8 +52,10 @@ namespace InterTwitter
 
             //packages
             containerRegistry.RegisterInstance(UserDialogs.Instance);
+            containerRegistry.RegisterInstance(CrossSettings.Current);
 
             //services
+            containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
         }
 

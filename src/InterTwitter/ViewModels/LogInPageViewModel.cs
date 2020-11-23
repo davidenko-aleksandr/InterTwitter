@@ -4,11 +4,10 @@ using Acr.UserDialogs;
 using InterTwitter.Helpers;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Views;
-using InterTwitter.Views.Authorization;
 using Prism.Navigation;
 using Xamarin.Essentials;
 
-namespace InterTwitter.ViewModels.Authorization
+namespace InterTwitter.ViewModels
 {
     public class LogInPageViewModel : BaseViewModel
     {

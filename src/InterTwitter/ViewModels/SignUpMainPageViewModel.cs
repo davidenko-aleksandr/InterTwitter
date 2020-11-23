@@ -1,10 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using InterTwitter.Helpers;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 
-namespace InterTwitter.ViewModels.Authorization
+namespace InterTwitter.ViewModels
 {
     public class SignUpMainPageViewModel : BaseViewModel
     {
