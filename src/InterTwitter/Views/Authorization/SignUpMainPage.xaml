@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<local:BaseContentPage x:Class="InterTwitter.Views.Authorization.SignUpMainPage"
+<views:BaseContentPage x:Class="InterTwitter.Views.Authorization.SignUpMainPage"
                        xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
                        xmlns:behaviors="clr-namespace:InterTwitter.Behaviors"
                        xmlns:validators="clr-namespace:InterTwitter.Validators"
-                       xmlns:local="clr-namespace:InterTwitter.Views">
+                       xmlns:views="clr-namespace:InterTwitter.Views"
+                       BackgroundColor="#FCFDFE">
     
-    <controls:KeyboardView HorizontalOptions="Fill"
-                           RowSpacing="0"
-                           VerticalOptions="Fill">
+    <Grid HorizontalOptions="Fill"
+          RowSpacing="0"
+          VerticalOptions="Fill">
 
         <Grid.RowDefinitions>
             
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="0.85*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="0.6*" />
 
         </Grid.RowDefinitions>
 
@@ -28,10 +28,11 @@
                      VerticalOptions="Fill">
 
             <controls:AuthorizationNavigationBar HorizontalOptions="Fill" 
-                                                VerticalOptions="Start"/>
+                                                 VerticalOptions="Start"/>
 
             <Label Style="{StaticResource AccountLabelStyle}"
                    Text="{x:Static resources:AppResource.GetAccountLabel}"/>
+            
         </StackLayout>
 
         <!--  ENTRY BLOCK  -->
@@ -39,12 +40,10 @@
                      Margin="0,40,0,0"
                      Orientation="Vertical">
 
-            <controls:CustomEntry x:Name="nameEntry"
-                                  Placeholder="{x:Static resources:AppResource.NameText}" 
+            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.NameText}" 
                                   Style="{StaticResource CustomEntryStyle}" />
 
-            <controls:CustomEntry x:Name="emailEntry"
-                                  Placeholder="{x:Static resources:AppResource.EmailText}" 
+            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
                                   Style="{StaticResource CustomEntryStyle}">
 
                 <controls:CustomEntry.Behaviors>
@@ -58,7 +57,7 @@
 
         </StackLayout>
 
-          <!--BUTTON BLOCK-->
+        <!--  BUTTON BLOCK  -->
         <StackLayout Grid.Row="2"
                      HorizontalOptions="Fill"
                      Orientation="Vertical"
@@ -72,32 +71,7 @@
 
         </StackLayout>
 
-        <Button x:Name="nextButton" 
-                VerticalOptions="EndAndExpand"
-                BackgroundColor="#2356C5"
-                HeightRequest="60"
-                TextColor="White"
-                CornerRadius="0"
-                Grid.Row="3"
-                IsVisible="False"
-                Text="Next">
-
-            <Button.Triggers>
-
-                <DataTrigger TargetType="Button"
-                             Binding="{Binding Source={x:Reference nameEntry}, Path=entry.IsFocused}"
-                             Value="False">
-
-                    <Setter Property="IsVisible"
-                            Value="False"/>
-
-                </DataTrigger>
-
-            </Button.Triggers>
-
-        </Button>
-
-    </controls:KeyboardView>
+    </Grid>
     
-</local:BaseContentPage>
+</views:BaseContentPage>
 

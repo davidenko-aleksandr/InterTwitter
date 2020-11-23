@@ -27,9 +27,9 @@
             <Setter Property="Margin" 
                     Value="0,20,0,0"/>            
             <Setter Property="CornerRadius"
-                    Value="20"/>
+                    Value="23"/>
             <Setter Property="HeightRequest"
-                    Value="40"/>
+                    Value="50"/>
             <Setter Property="HorizontalOptions"
                     Value="Center"/>
             <Setter Property="TextColor"
@@ -37,7 +37,7 @@
             <Setter Property="TextTransform" 
                     Value="None" />
             <Setter Property="WidthRequest"
-                    Value="178" />
+                    Value="200" />
             <Setter Property="FontSize"
                     Value="14"/>
             <Setter Property="BackgroundColor" 
