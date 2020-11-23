@@ -6,7 +6,8 @@
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
                        xmlns:behaviors="clr-namespace:InterTwitter.Behaviors"
                        xmlns:validators="clr-namespace:InterTwitter.Validators"
-                       xmlns:views="clr-namespace:InterTwitter.Views">
+                       xmlns:views="clr-namespace:InterTwitter.Views"
+                       BackgroundColor="#FCFDFE">
     
     <Grid HorizontalOptions="Fill"
           RowSpacing="0"
@@ -27,10 +28,11 @@
                      VerticalOptions="Fill">
 
             <controls:AuthorizationNavigationBar HorizontalOptions="Fill" 
-                                                VerticalOptions="Start"/>
+                                                 VerticalOptions="Start"/>
 
             <Label Style="{StaticResource AccountLabelStyle}"
                    Text="{x:Static resources:AppResource.GetAccountLabel}"/>
+            
         </StackLayout>
 
         <!--  ENTRY BLOCK  -->
