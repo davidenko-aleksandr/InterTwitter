@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace TikBid.Helpers
+namespace InterTwitter.Helpers
 {
     public class SingleExecutionCommand : ICommand
     {
