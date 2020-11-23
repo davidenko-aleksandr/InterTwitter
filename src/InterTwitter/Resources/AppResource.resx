@@ -171,6 +171,9 @@
   <data name="NextButton" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="NoInternetText" xml:space="preserve">
+    <value>No Internet connection!</value>
+  </data>
   <data name="PasswordErrorMessage" xml:space="preserve">
     <value>At least 8 characters, one uppercase and one lowercase</value>
   </data>
@@ -179,5 +182,8 @@
   </data>
   <data name="SignUpButton" xml:space="preserve">
     <value>Sign Up</value>
+  </data>
+  <data name="WrongEmailPasswordText" xml:space="preserve">
+    <value>Wrong email or password!</value>
   </data>
 </root>

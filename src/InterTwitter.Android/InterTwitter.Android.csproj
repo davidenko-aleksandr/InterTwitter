@@ -317,7 +317,7 @@
     <AndroidResource Include="Resources\drawable\ic_setting.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_ clear.png" />
+    <AndroidResource Include="Resources\drawable\ic_clear.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_add_blue.png" />

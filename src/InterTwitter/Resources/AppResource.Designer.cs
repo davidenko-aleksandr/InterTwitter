@@ -223,6 +223,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Internet connection!.
+        /// </summary>
+        public static string NoInternetText {
+            get {
+                return ResourceManager.GetString("NoInternetText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to At least 8 characters, one uppercase and one lowercase.
         /// </summary>
         public static string PasswordErrorMessage {
@@ -246,6 +255,15 @@ namespace InterTwitter.Resources {
         public static string SignUpButton {
             get {
                 return ResourceManager.GetString("SignUpButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong email or password!.
+        /// </summary>
+        public static string WrongEmailPasswordText {
+            get {
+                return ResourceManager.GetString("WrongEmailPasswordText", resourceCulture);
             }
         }
     }

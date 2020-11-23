@@ -72,12 +72,14 @@ namespace InterTwitter.ViewModels.Authorization
                 }
                 else
                 {
-                    _userDialogs.Toast("Wrong email or password!");
+                    var errorText = Resources.AppResource.WrongEmailPasswordText;
+                    _userDialogs.Toast(errorText);
                 }
             }
             else
             {
-                _userDialogs.Toast("No Internet connection!");
+                var errorText = Resources.AppResource.NoInternetText;
+                _userDialogs.Toast(errorText);
             }
 
         }
