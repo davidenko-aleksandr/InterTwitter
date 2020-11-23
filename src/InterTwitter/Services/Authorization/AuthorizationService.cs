@@ -28,6 +28,7 @@ namespace InterTwitter.Services.Authorization
                 var user = users.First(x => x.Email == email && x.Password == password);
                 
                 await Task.Delay(300);
+
                 if (user != null)
                 {
                     result.SetSuccess(true);
@@ -52,7 +53,7 @@ namespace InterTwitter.Services.Authorization
             try
             {
                 var users = (await _userService.GetUsersAsync()).Result;
-                var user = users.First(x => x.Email == email);
+                var user = users.First(x => x.Email.ToUpper() == email.ToUpper());
                 
                 await Task.Delay(300);
 

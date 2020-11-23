@@ -4,10 +4,8 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
-                       xmlns:behaviors="clr-namespace:InterTwitter.Behaviors"
-                       xmlns:validators="clr-namespace:InterTwitter.Validators"
-                       xmlns:views="clr-namespace:InterTwitter.Views">
-
+                       xmlns:views="clr-namespace:InterTwitter.Views" 
+                       BackgroundColor="#FCFDFE">
 
     <Grid HorizontalOptions="Fill"
           RowSpacing="0"
@@ -27,7 +25,12 @@
                      VerticalOptions="Fill">
 
             <controls:AuthorizationNavigationBar HorizontalOptions="Fill" 
+<<<<<<< HEAD
                                                  VerticalOptions="Start"/>
+=======
+                                                 VerticalOptions="Start"
+                                                 GoBackCommand="{Binding ShowAlertCommand}"/>
+>>>>>>> 526f426ef49a15ba09b93a36df094470cbb483ec
 
             <Label Style="{StaticResource AccountLabelStyle}" 
                    Text="{x:Static resources:AppResource.GetAccountLabel}"/>
@@ -39,30 +42,17 @@
                      Margin="0,40,0,0"
                      Orientation="Vertical">
 
-            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
-                                  Style="{StaticResource CustomEntryStyle}">
+            <controls:CustomEntry x:Name="emailEntry"
+                                  Placeholder="{x:Static resources:AppResource.EmailText}" 
+                                  Style="{StaticResource CustomEntryStyle}"
+                                  Text="{Binding EmailEntry}"/>
 
-                <controls:CustomEntry.Behaviors>
-
-                    <behaviors:ValidationBehavior ErrorMessage="{x:Static resources:AppResource.EmailErrorMessage}"
-                                                  Regex="{x:Static validators:Validator.RegexEmail}"/>
-
-                </controls:CustomEntry.Behaviors>
-                
-            </controls:CustomEntry>
-
-            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.PasswordText}"
-                                  Style="{StaticResource CustomEntryStyle}">
-
-                <controls:CustomEntry.Behaviors>
-
-                    <behaviors:ValidationBehavior ErrorMessage="{x:Static resources:AppResource.PasswordErrorMessage}"
-                                                  Regex="{x:Static validators:Validator.RegexPassword}"/>
-
-                </controls:CustomEntry.Behaviors>
-
-            </controls:CustomEntry>
-
+            <controls:CustomEntry x:Name="passwordEntry"
+                                  Placeholder="{x:Static resources:AppResource.PasswordText}"
+                                  Style="{StaticResource CustomEntryStyle}"
+                                  IsPassword="True"
+                                  Text="{Binding PasswordEntry}"/>
+            
         </StackLayout>
 
         <!--  BUTTON BLOCK  -->
@@ -72,11 +62,20 @@
                      VerticalOptions="Fill">
 
             <Button Style="{StaticResource LoginButtonStyle}" 
-                    Text="{x:Static resources:AppResource.LogInButton}" />
+                    Text="{x:Static resources:AppResource.LogInButton}" 
+                    Command="{Binding LogInClickCommand}"/>
 
-            <Label IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
-                   Style="{StaticResource UnderButtonLabelStyle}"
-                   Text="{x:Static resources:AppResource.SignUpButton}" />
+
+
+            <controls:ClickableContentView Command="{Binding SignUpClickCommand}"
+                                           Margin="0,12,0,0">
+                
+                <Label IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
+                       Style="{StaticResource UnderButtonLabelStyle}"
+                       Text="{x:Static resources:AppResource.SignUpButton}"
+                       Padding="64,8,64,8"/>
+                
+            </controls:ClickableContentView>
 
         </StackLayout>
 

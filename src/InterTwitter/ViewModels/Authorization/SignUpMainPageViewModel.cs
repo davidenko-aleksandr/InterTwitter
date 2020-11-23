@@ -1,5 +1,11 @@
 ﻿using System;
+<<<<<<< HEAD
 using InterTwitter.Services.Authorization;
+=======
+using System.Threading.Tasks;
+using System.Windows.Input;
+using InterTwitter.Helpers;
+>>>>>>> 526f426ef49a15ba09b93a36df094470cbb483ec
 using Prism.Navigation;
 using InterTwitter.Helpers;
 using System.Threading.Tasks;
@@ -22,6 +28,7 @@ namespace InterTwitter.ViewModels.Authorization
                                        IUserDialogs userDialogs)
                                       : base(navigationService)
         {
+<<<<<<< HEAD
             _userDialogs = userDialogs;
             _authorizationService = authorizationService;
         }
@@ -95,5 +102,11 @@ namespace InterTwitter.ViewModels.Authorization
         }
 
         #endregion
+=======
+
+        }
+
+
+>>>>>>> 526f426ef49a15ba09b93a36df094470cbb483ec
     }
 }

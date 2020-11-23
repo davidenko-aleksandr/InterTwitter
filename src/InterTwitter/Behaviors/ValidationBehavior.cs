@@ -94,6 +94,7 @@ namespace InterTwitter.Behaviors
             {
                 IsValid = CheckValidity(newValue);
 
+                _control.IsValid = IsValid;
                 _control.IsErrorVisible = !IsValid;
             }
         }
