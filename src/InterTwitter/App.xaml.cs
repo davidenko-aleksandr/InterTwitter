@@ -1,8 +1,14 @@
-﻿using InterTwitter.Services.Authorization;
+﻿using Acr.UserDialogs;
+using InterTwitter.Services.Authorization;
+using InterTwitter.Services.Reposytory;
+using InterTwitter.Services.SettingsManager;
+using InterTwitter.Services.UserService;
 using InterTwitter.ViewModels;
 using InterTwitter.ViewModels.Authorization;
 using InterTwitter.Views;
 using InterTwitter.Views.Authorization;
+using Plugin.Settings;
+using Plugin.Settings.Abstractions;
 using Prism;
 using Prism.Ioc;
 using Prism.Unity;
@@ -40,9 +46,14 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
 
-            //services
-            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
+            //plugins
+            containerRegistry.RegisterInstance<IUserDialogs>(UserDialogs.Instance);
+            containerRegistry.RegisterInstance<ISettings>(CrossSettings.Current);
 
+            //services
+            containerRegistry.RegisterInstance<IRepository>(Container.Resolve<RepositoryMock>());
+            containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
+            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
         }
 
         #endregion

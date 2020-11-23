@@ -1,40 +1,104 @@
-﻿using InterTwitter.Models;
+﻿using InterTwitter.Helpers;
+using InterTwitter.Models;
 using InterTwitter.Services.Reposytory;
+using InterTwitter.Services.SettingsManager;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace InterTwitter.Services.UserService
 {
     public class UserService : IUserService
     {
-        private readonly IRepository _repository;
-        private readonly ISettingsManager _settingsManager;
+       
+        private List<User> _usersRepositoryMock;
 
-        public UserService(IRepository repository,
-                            ISettingsManager settingsManager)
-        {
-            _repository = repository;
-            _settingsManager = settingsManager;
+        public UserService()
+        {            
+            _usersRepositoryMock = InitData();
         }
 
-        #region --IUserServiceImplementation--
+        #region -- IUserService Implementation --
 
-        public async Task<int> AddOrUpdateAsync(User user)
+        public async Task<AOResult<List<User>>> GetUsersAsync()
         {
-            return await _repository.AddOrrUpdateAsync(user);
+            var result = new AOResult<List<User>>();
+
+            try
+            {
+                result.SetSuccess(_usersRepositoryMock);
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetUsersAsync)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
         }
 
-        public async Task<int> DeleteUserAsync(User user)
+        public async Task<AOResult<bool>> AddUserAsync(User user)
         {
-            return await _repository.DeleteItemAsync(user);
+            var result = new AOResult<bool>();
+            try
+            {
+                _usersRepositoryMock.Add(user);
+                result.SetSuccess(true);
+            }
+            catch (Exception ex)
+            {
+                result.SetFailure(false);
+                result.SetError($"{nameof(AddUserAsync)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
         }
 
-        public async Task<IEnumerable<User>> GetUsersAsync()
+        public async Task<AOResult<bool>> UpdateUserAsync(User user)
         {
-            return await _repository.GetItemsAsync<User>();
+            var result = new AOResult<bool>();
+
+            try
+            {
+                var userIndex = _usersRepositoryMock.IndexOf(user);
+                _usersRepositoryMock.RemoveAt(userIndex);
+                _usersRepositoryMock.Insert(userIndex, user);
+
+                result.SetSuccess(true);
+            }
+            catch (Exception ex)
+            {
+                result.SetFailure(false);
+                result.SetError($"{nameof(UpdateUserAsync)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
         }
+
+        #endregion
+
+        #region -- Private Helpers -- 
+
+        private List<User> InitData()
+        {
+            return new List<User>()
+                {
+                    new User()
+                {
+                    Id = 0,
+                    Email = "vasya1984@mail.ru",
+                    Name = "Vasiliy",
+                    Password = "v1984!",
+                },
+                    new User()
+                {
+                    Id = 1,
+                    Email = "petya25@gmail.com",
+                    Name = "Peter Stevenson",
+                    Password = "qwerty123",
+                }
+                };
+        }
+
         #endregion
     }
 }

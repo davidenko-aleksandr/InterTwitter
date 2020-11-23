@@ -53,7 +53,7 @@ namespace InterTwitter.ViewModels.Authorization
             if(canContinue)
             {
                 await _authorizationService.SignUpAsync(_email, _name, Password);
-               // await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LogInPage)}");
+                await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LogInPage)}");
             }
             else
             {

@@ -27,9 +27,7 @@
                      VerticalOptions="Fill">
 
             <controls:AuthorizationNavigationBar HorizontalOptions="Fill" 
-                                                 VerticalOptions="Start"
-                                                 IsBackButtonVisible="True"
-                                                 GoBackCommand="{Binding ShowAlertCommand}"/>
+                                                 VerticalOptions="Start"/>
 
             <Label Style="{StaticResource AccountLabelStyle}" 
                    Text="{x:Static resources:AppResource.GetAccountLabel}"/>

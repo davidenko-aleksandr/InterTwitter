@@ -13,23 +13,12 @@ namespace InterTwitter.Services.Reposytory
         private List<User> _users;
         public RepositoryMock()
         {
-            _users = new List<User>()
-            {
-                new User()
-                {
-                    Id = 0,
-                    Email = "vasya1984@mail.ru",
-                    Name = "Vasiliy",
-                    Password = "v1984!",
-                },
-                new User()
-                {
-                    Id = 1,
-                    Email = "petya25@gmail.com",
-                    Name = "Peter Stevenson",
-                    Password = "qwerty123",
-                }
-            };
+           
+        }
+
+        public async Task<List<T>> GetItemsAsync<T>() where T : class, IEntity, new()
+        {
+            return _users as List<T>;
         }
 
         public async Task<int> AddOrrUpdateAsync<T>(T item) where T : class, IEntity, new()
@@ -56,11 +45,6 @@ namespace InterTwitter.Services.Reposytory
         public Task<List<T>> FindByAsync<T>(Expression<Func<T, bool>> predicate) where T : class, IEntity, new()
         {
             throw new NotImplementedException();
-        }
-
-        public async Task<List<T>> GetItemsAsync<T>() where T : class, IEntity, new()
-        {
-            return _users as List<T>;
-        }
+        }        
     }
 }

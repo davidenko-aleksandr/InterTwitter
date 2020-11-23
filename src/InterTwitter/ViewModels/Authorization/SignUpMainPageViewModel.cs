@@ -7,17 +7,22 @@ using InterTwitter.Views.Authorization;
 using System.Windows.Input;
 using Xamarin.Forms;
 using InterTwitter.Validators;
+using Xamarin.Essentials;
+using Acr.UserDialogs;
 
 namespace InterTwitter.ViewModels.Authorization
 {
     public class SignUpMainPageViewModel : BaseViewModel
     {
         private readonly IAuthorizationService _authorizationService;
+        private readonly IUserDialogs _userDialogs;
 
         public SignUpMainPageViewModel(INavigationService navigationService,
-                                       IAuthorizationService authorizationService)
+                                       IAuthorizationService authorizationService,
+                                       IUserDialogs userDialogs)
                                       : base(navigationService)
         {
+            _userDialogs = userDialogs;
             _authorizationService = authorizationService;
         }
 
@@ -41,7 +46,7 @@ namespace InterTwitter.ViewModels.Authorization
         public ICommand SignUpCommand => _signUpCommand ??= SingleExecutionCommand.FromFunc(OnSignUpCommand);
 
         private ICommand _loginCommand;
-        public ICommand LoginCommand => _loginCommand ??= SingleExecutionCommand.FromFunc(OnLOginCommand);       
+        public ICommand LoginCommand => _loginCommand ??= SingleExecutionCommand.FromFunc(OnLOginCommand);
 
         #endregion
 
@@ -49,21 +54,29 @@ namespace InterTwitter.ViewModels.Authorization
 
         private async Task OnSignUpCommand()
         {
-            var parameters = new NavigationParameters
+            var isConnected = Connectivity.NetworkAccess;
+            if (isConnected == NetworkAccess.Internet)
             {
-                { Constants.Navigation.Name, Name },
-                { Constants.Navigation.Email, Email }
-            };
-            
-            var canContinue = CanValidateData();
+                var canContinue = CanValidateData();
 
-            if (canContinue)
-            {
-                await NavigationService.NavigateAsync(nameof(SignUpPasswordPage), parameters);
+                if (canContinue)
+                {
+                    var parameters = new NavigationParameters
+                    {
+                        { Constants.Navigation.Name, Name },
+                        { Constants.Navigation.Email, Email }
+                    };
+
+                    await NavigationService.NavigateAsync(nameof(SignUpPasswordPage), parameters);
+                }
+                else
+                {
+                    // Registration data error
+                }
             }
-            else
-            { 
-            // Registration data error
+            else 
+            {
+                _userDialogs.Toast("no internet connection",new TimeSpan(2000));
             }
         }
 
@@ -78,7 +91,7 @@ namespace InterTwitter.ViewModels.Authorization
 
         private bool CanValidateData()
         {
-            return !string.IsNullOrEmpty(Name) && Validator.IsMatch(Email,Validator.RegexEmail);
+            return !string.IsNullOrEmpty(Name) && Validator.IsMatch(Email, Validator.RegexEmail);
         }
 
         #endregion

@@ -7,6 +7,7 @@ using Prism;
 using Prism.Ioc;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Acr.UserDialogs;
 
 namespace InterTwitter.Droid
 {
@@ -24,6 +25,8 @@ namespace InterTwitter.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
+            UserDialogs.Init(this);
 
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
