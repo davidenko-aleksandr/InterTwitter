@@ -66,9 +66,9 @@ namespace InterTwitter.Services.Authorization
 
             try
             {
-                var user = _usersRepositoryMock.First(x => x.Email == email);
+                var user = _usersRepositoryMock.First(x => x.Email.ToUpper() == email.ToUpper());
                 await Task.Delay(300);
-                if (user != null)
+                if (user == null)
                 {
                     _usersRepositoryMock.Add(new User()
                     {
