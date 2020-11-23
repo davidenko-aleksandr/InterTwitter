@@ -23,7 +23,7 @@ namespace InterTwitter.ViewModels.Authorization
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
 
-            IsButtonEnable = false;
+            IsButtonEnabled = false;
         }
 
         #region -- Public properties --
@@ -43,7 +43,7 @@ namespace InterTwitter.ViewModels.Authorization
         }
 
         private bool _isButtonEnabled;
-        public bool IsButtonEnable
+        public bool IsButtonEnabled
         {
             get => _isButtonEnabled;
             set => SetProperty(ref _isButtonEnabled, value);
@@ -62,17 +62,26 @@ namespace InterTwitter.ViewModels.Authorization
 
             if (current == NetworkAccess.Internet)
             {
-                var result = await _authorizationService.LogInAsync(EmailEntry, PasswordEntry);
 
-                var isUserExist = result.Result;
-
-                if (isUserExist)
+                if (!string.IsNullOrWhiteSpace(EmailEntry) || !string.IsNullOrWhiteSpace(PasswordEntry))
                 {
-                    await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+                    var result = await _authorizationService.LogInAsync(EmailEntry, PasswordEntry);
+
+                    var isUserExist = result.Result;
+
+                    if (isUserExist)
+                    {
+                        await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+                    }
+                    else
+                    {
+                        var errorText = Resources.AppResource.WrongEmailPasswordText;
+                        _userDialogs.Toast(errorText);
+                    }
                 }
                 else
                 {
-                    var errorText = Resources.AppResource.WrongEmailPasswordText;
+                    var errorText = Resources.AppResource.EmptyEntryText;
                     _userDialogs.Toast(errorText);
                 }
             }

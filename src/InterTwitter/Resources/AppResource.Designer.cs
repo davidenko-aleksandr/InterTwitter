@@ -124,6 +124,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email or Password shoudn&apos;t be empty!.
+        /// </summary>
+        public static string EmptyEntryText {
+            get {
+                return ResourceManager.GetString("EmptyEntryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ic_eye_off.png.
         /// </summary>
         public static string EyeOffImage {

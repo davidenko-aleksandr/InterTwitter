@@ -138,6 +138,9 @@
   <data name="EmailText" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="EmptyEntryText" xml:space="preserve">
+    <value>Email or Password shoudn't be empty!</value>
+  </data>
   <data name="EyeOffImage" xml:space="preserve">
     <value>ic_eye_off.png</value>
   </data>

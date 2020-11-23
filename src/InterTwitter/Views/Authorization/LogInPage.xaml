@@ -5,7 +5,8 @@
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
                        xmlns:views="clr-namespace:InterTwitter.Views" 
-                       xmlns:converters="clr-namespace:InterTwitter.Converters"
+                       xmlns:converters="clr-namespace:InterTwitter.Converters" 
+                       xmlns:behaviors="clr-namespace:InterTwitter.Behaviors"
                        BackgroundColor="#FCFDFE">
 
     <views:BaseContentPage.Resources>
@@ -52,17 +53,13 @@
             <controls:CustomEntry x:Name="emailEntry"
                                   Placeholder="{x:Static resources:AppResource.EmailText}" 
                                   Style="{StaticResource CustomEntryStyle}"
-                                  Text="{Binding EmailEntry}">
-
-            </controls:CustomEntry>
+                                  Text="{Binding EmailEntry}"/>
 
             <controls:CustomEntry x:Name="passwordEntry"
                                   Placeholder="{x:Static resources:AppResource.PasswordText}"
                                   Style="{StaticResource CustomEntryStyle}"
                                   IsPassword="True"
-                                  Text="{Binding PasswordEntry}">
-
-            </controls:CustomEntry>
+                                  Text="{Binding PasswordEntry}"/>
             
         </StackLayout>
 
@@ -74,31 +71,9 @@
 
             <Button Style="{StaticResource LoginButtonStyle}" 
                     Text="{x:Static resources:AppResource.LogInButton}" 
-                    Command="{Binding LogInClickCommand}"
-                    IsEnabled="{Binding IsButtonEnable}">
+                    Command="{Binding LogInClickCommand}"/>
 
-                <Button.Triggers>
 
-                    <MultiTrigger TargetType="Button">
-
-                        <MultiTrigger.Conditions>
-
-                            <BindingCondition Binding="{Binding PasswordEntry, Converter={StaticResource isButtonEnabled}}"
-                                              Value="False"/>
-
-                            <BindingCondition Binding="{Binding EmailEntry, Converter={StaticResource isButtonEnabled}}"
-                                              Value="False"/>
-
-                        </MultiTrigger.Conditions>
-
-                        <Setter Property="IsEnabled" 
-                                Value="True"/>
-
-                    </MultiTrigger>
-
-                </Button.Triggers>
-                
-            </Button>
 
             <controls:ClickableContentView Command="{Binding SignUpClickCommand}"
                                            Margin="0,12,0,0">
