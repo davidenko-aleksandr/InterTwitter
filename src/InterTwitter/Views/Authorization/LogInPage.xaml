@@ -5,20 +5,8 @@
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
                        xmlns:views="clr-namespace:InterTwitter.Views" 
-                       xmlns:converters="clr-namespace:InterTwitter.Converters" 
-                       xmlns:behaviors="clr-namespace:InterTwitter.Behaviors"
                        BackgroundColor="#FCFDFE">
 
-    <views:BaseContentPage.Resources>
-        
-        <ResourceDictionary>
-
-            <converters:MultiTriggerButtonConverter x:Key="isButtonEnabled"/>
-
-        </ResourceDictionary>
-        
-    </views:BaseContentPage.Resources>
-    
     <Grid HorizontalOptions="Fill"
           RowSpacing="0"
           VerticalOptions="Fill">
