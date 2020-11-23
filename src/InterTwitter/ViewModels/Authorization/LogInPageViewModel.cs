@@ -35,12 +35,8 @@ namespace InterTwitter.ViewModels.Authorization
             set => SetProperty(ref _emailEntry, value);
         }
 
-<<<<<<< HEAD
-        public override void Initialize(INavigationParameters parameters)
-=======
         private string _passwordEntry;
         public string PasswordEntry
->>>>>>> 786f357b32fe15819f7569d2b6298ba118801c34
         {
             get => _passwordEntry;
             set => SetProperty(ref _passwordEntry, value);

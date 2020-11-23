@@ -320,11 +320,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\pic_profile_big.png" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <AndroidResource Include="Resources\drawable\ic_clear.png" />
-=======
     <AndroidResource Include="Resources\drawable-hdpi\pic_profile_small.png" />
->>>>>>> 786f357b32fe15819f7569d2b6298ba118801c34
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_add_white.png" />

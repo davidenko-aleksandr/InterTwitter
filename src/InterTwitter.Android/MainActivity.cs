@@ -7,12 +7,9 @@ using Prism;
 using Prism.Ioc;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-<<<<<<< HEAD
 using FFImageLoading;
 using FFImageLoading.Forms.Platform;
-=======
 using Acr.UserDialogs;
->>>>>>> 786f357b32fe15819f7569d2b6298ba118801c34
 
 namespace InterTwitter.Droid
 {

@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-﻿using InterTwitter.Services.Authorization;
-=======
 ﻿using Acr.UserDialogs;
 using InterTwitter.Services.Authorization;
->>>>>>> 786f357b32fe15819f7569d2b6298ba118801c34
 using InterTwitter.ViewModels;
 using InterTwitter.ViewModels.Authorization;
 using InterTwitter.Views;
@@ -45,12 +41,9 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
 
-<<<<<<< HEAD
-=======
             //packages
             containerRegistry.RegisterInstance(UserDialogs.Instance);
 
->>>>>>> 786f357b32fe15819f7569d2b6298ba118801c34
             //services
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
         }
