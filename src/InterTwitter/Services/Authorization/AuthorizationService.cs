@@ -20,7 +20,7 @@ namespace InterTwitter.Services.Authorization
             _settingsService = settingsService;
         }
 
-        #region -- IAuthorizationService Implementation --
+        #region -- IAuthorizationService implementation --
 
         public bool IsAuthorized
         {

@@ -1,4 +1,3 @@
-using System;
 using InterTwitter.Services.Authorization;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -9,7 +8,6 @@ using InterTwitter.Validators;
 using Xamarin.Essentials;
 using Acr.UserDialogs;
 using InterTwitter.Views;
-using System.Diagnostics;
 
 namespace InterTwitter.ViewModels
 {
@@ -43,15 +41,15 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _email, value);
         }
        
-        public ICommand SignUpCommand => SingleExecutionCommand.FromFunc(OnSignUpCommand);
+        public ICommand SignUpCommand => SingleExecutionCommand.FromFunc(OnSignUpCommandAsync);
                 
-        public ICommand LoginCommand => SingleExecutionCommand.FromFunc(OnLoginCommand);
+        public ICommand LogInCommand => SingleExecutionCommand.FromFunc(OnLoginCommandAsync);
 
         #endregion
 
         #region -- Private helpers --
 
-        private async Task OnSignUpCommand()
+        private async Task OnSignUpCommandAsync()
         {
             var isConnected = Connectivity.NetworkAccess;
             if (isConnected == NetworkAccess.Internet)
@@ -79,7 +77,7 @@ namespace InterTwitter.ViewModels
             }
         }
 
-        private async Task OnLoginCommand()
+        private async Task OnLoginCommandAsync()
         {
             await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LogInPage)}");
         }

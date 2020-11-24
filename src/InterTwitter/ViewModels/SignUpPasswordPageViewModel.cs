@@ -8,7 +8,6 @@ using InterTwitter.Validators;
 using InterTwitter.Views;
 using Prism.Navigation;
 
-
 namespace InterTwitter.ViewModels
 {
     public class SignUpPasswordPageViewModel : BaseViewModel
@@ -69,7 +68,7 @@ namespace InterTwitter.ViewModels
 
         #endregion
 
-        #region -- Private heplers --
+        #region -- Private helpers --
 
         private Task OnGoBackCommandAsync()
         {
