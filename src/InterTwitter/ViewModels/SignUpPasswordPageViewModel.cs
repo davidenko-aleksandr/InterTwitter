@@ -1,7 +1,6 @@
-﻿using System;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 
-namespace InterTwitter.ViewModels.Authorization
+namespace InterTwitter.ViewModels
 {
     public class SignUpPasswordPageViewModel : BaseViewModel
     {
