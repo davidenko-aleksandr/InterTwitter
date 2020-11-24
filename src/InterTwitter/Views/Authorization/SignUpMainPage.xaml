@@ -31,7 +31,7 @@
                                                  VerticalOptions="Start"/>
 
             <Label Style="{StaticResource AccountLabelStyle}"
-                   Text="{x:Static resources:AppResource.GetAccountLabel}"/>
+                   Text="{x:Static resources:AppResource.CreateAccountLabel}"/>
             
         </StackLayout>
 
@@ -69,11 +69,11 @@
                     Text="{x:Static resources:AppResource.SignUpButton}"
                     Command="{Binding SignUpCommand}"/>
 
-            <controls:ClickableContentView Command="{Binding LoginCommand}">
+            <controls:ClickableContentView Command="{Binding LoginCommand}"
+                                            Style="{StaticResource ClickableContentViewStyle}">
 
                 <Label Style="{StaticResource UnderButtonLabelStyle}"
-                       Text="{x:Static resources:AppResource.LogInButton}"
-                       Padding="64,8"/>
+                       Text="{x:Static resources:AppResource.LogInButton}"/>
 
             </controls:ClickableContentView>
             

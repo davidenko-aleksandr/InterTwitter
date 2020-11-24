@@ -1,7 +1,5 @@
 ﻿using InterTwitter.Helpers;
 using InterTwitter.Models;
-using InterTwitter.Services.Reposytory;
-using InterTwitter.Services.SettingsManager;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,8 +7,7 @@ using System.Threading.Tasks;
 namespace InterTwitter.Services.UserService
 {
     public class UserService : IUserService
-    {
-       
+    {       
         private List<User> _usersRepositoryMock;
 
         public UserService()

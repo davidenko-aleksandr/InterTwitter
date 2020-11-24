@@ -4,8 +4,10 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
-                       xmlns:views="clr-namespace:InterTwitter.Views" 
+                       xmlns:views="clr-namespace:InterTwitter.Views"  
+                       x:Name="ParentView"
                        BackgroundColor="#FCFDFE">
+    
 
     <Grid HorizontalOptions="Fill"
           RowSpacing="0"
@@ -25,12 +27,7 @@
                      VerticalOptions="Fill">
 
             <controls:AuthorizationNavigationBar HorizontalOptions="Fill" 
-<<<<<<< HEAD
-                                                 VerticalOptions="Start"/>
-=======
-                                                 VerticalOptions="Start"
-                                                 GoBackCommand="{Binding ShowAlertCommand}"/>
->>>>>>> 526f426ef49a15ba09b93a36df094470cbb483ec
+                                                 VerticalOptions="Start"/>                                             
 
             <Label Style="{StaticResource AccountLabelStyle}" 
                    Text="{x:Static resources:AppResource.GetAccountLabel}"/>
@@ -68,23 +65,16 @@
 
 
             <controls:ClickableContentView Command="{Binding SignUpClickCommand}"
-                                           Margin="0,12,0,0">
+                                           Style="{StaticResource ClickableContentViewStyle}">
                 
                 <Label IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
                        Style="{StaticResource UnderButtonLabelStyle}"
-                       Text="{x:Static resources:AppResource.SignUpButton}"
-                       Padding="64,8,64,8"/>
+                       Text="{x:Static resources:AppResource.SignUpButton}"/>
                 
             </controls:ClickableContentView>
-
+           
         </StackLayout>
 
     </Grid>
 
 </views:BaseContentPage>
-
-
-
-
-
-

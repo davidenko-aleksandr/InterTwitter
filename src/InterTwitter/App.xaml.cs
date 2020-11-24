@@ -1,11 +1,10 @@
 ﻿using Acr.UserDialogs;
 using InterTwitter.Services.Authorization;
-<<<<<<< HEAD
+
 using InterTwitter.Services.Reposytory;
 using InterTwitter.Services.SettingsManager;
 using InterTwitter.Services.UserService;
-=======
->>>>>>> 526f426ef49a15ba09b93a36df094470cbb483ec
+
 using InterTwitter.ViewModels;
 using InterTwitter.ViewModels.Authorization;
 using InterTwitter.Views;
@@ -49,7 +48,6 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
 
-<<<<<<< HEAD
             //plugins
             containerRegistry.RegisterInstance<IUserDialogs>(UserDialogs.Instance);
             containerRegistry.RegisterInstance<ISettings>(CrossSettings.Current);
@@ -57,12 +55,6 @@ namespace InterTwitter
             //services
             containerRegistry.RegisterInstance<IRepository>(Container.Resolve<RepositoryMock>());
             containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
-=======
-            //packages
-            containerRegistry.RegisterInstance(UserDialogs.Instance);
-
-            //services
->>>>>>> 526f426ef49a15ba09b93a36df094470cbb483ec
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
         }
 

@@ -9,7 +9,7 @@ namespace InterTwitter.Views.Authorization
     {
         public LogInPage()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
     }
 }

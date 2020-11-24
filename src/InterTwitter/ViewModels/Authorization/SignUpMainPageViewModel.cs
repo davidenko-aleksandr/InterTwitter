@@ -1,16 +1,10 @@
 ﻿using System;
-<<<<<<< HEAD
 using InterTwitter.Services.Authorization;
-=======
 using System.Threading.Tasks;
 using System.Windows.Input;
 using InterTwitter.Helpers;
->>>>>>> 526f426ef49a15ba09b93a36df094470cbb483ec
 using Prism.Navigation;
-using InterTwitter.Helpers;
-using System.Threading.Tasks;
 using InterTwitter.Views.Authorization;
-using System.Windows.Input;
 using Xamarin.Forms;
 using InterTwitter.Validators;
 using Xamarin.Essentials;
@@ -28,7 +22,7 @@ namespace InterTwitter.ViewModels.Authorization
                                        IUserDialogs userDialogs)
                                       : base(navigationService)
         {
-<<<<<<< HEAD
+
             _userDialogs = userDialogs;
             _authorizationService = authorizationService;
         }
@@ -57,7 +51,7 @@ namespace InterTwitter.ViewModels.Authorization
 
         #endregion
 
-        #region --OnCommand Handlers--
+        #region -- Private helpers --
 
         private async Task OnSignUpCommand()
         {
@@ -83,7 +77,7 @@ namespace InterTwitter.ViewModels.Authorization
             }
             else 
             {
-                _userDialogs.Toast("no internet connection",new TimeSpan(2000));
+                _userDialogs.Toast("No internet connection",new TimeSpan(3000));
             }
         }
 
@@ -91,22 +85,13 @@ namespace InterTwitter.ViewModels.Authorization
         {
             await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LogInPage)}");
         }
-
-        #endregion
-
-        #region --Private Helpers--
-
+       
         private bool CanValidateData()
         {
             return !string.IsNullOrEmpty(Name) && Validator.IsMatch(Email, Validator.RegexEmail);
         }
 
         #endregion
-=======
-
-        }
-
-
->>>>>>> 526f426ef49a15ba09b93a36df094470cbb483ec
     }
 }
+
