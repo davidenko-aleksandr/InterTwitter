@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InterTwitter.Helpers;
 using InterTwitter.Models;
+using InterTwitter.Services.Settings;
 using InterTwitter.Services.UserService;
 
 namespace InterTwitter.Services.Authorization
@@ -10,13 +11,22 @@ namespace InterTwitter.Services.Authorization
     public class AuthorizationService : IAuthorizationService
     {       
         private readonly IUserService _userService;
+        private readonly ISettingsService _settingsService;
 
-        public AuthorizationService(IUserService userService)
+        public AuthorizationService(IUserService userService,
+                                    ISettingsService settingsService)
         {
             _userService = userService;
+            _settingsService = settingsService;
         }
 
         #region -- IAuthorizationService Implementation --
+
+        public bool IsAuthorized
+        {
+            get => _settingsService.UserEmail != string.Empty;
+        }
+
 
         public async Task<AOResult<bool>> LogInAsync(string email, string password)
         {
@@ -31,6 +41,8 @@ namespace InterTwitter.Services.Authorization
 
                 if (user != null)
                 {
+                    _settingsService.UserEmail = user.Email;
+  
                     result.SetSuccess(true);
                 }
                 else
@@ -65,6 +77,9 @@ namespace InterTwitter.Services.Authorization
                         Name = name,
                         Password = password,
                     });
+
+                    _settingsService.UserEmail = email;
+
                     result.SetSuccess(true);
                 }
                 else
@@ -78,6 +93,11 @@ namespace InterTwitter.Services.Authorization
             }
 
             return result;
+        }
+
+        public void LogOut()
+        {
+            _settingsService.ClearData();
         }
 
         #endregion
