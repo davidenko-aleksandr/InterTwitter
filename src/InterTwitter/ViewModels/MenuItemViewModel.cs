@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows.Input;
 using Prism.Mvvm;
 
@@ -28,11 +27,11 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isSelected, value);
         }
 
-        private string _pageName;
-        public string PageName
+        private Type _pageType;
+        public Type PageType
         {
-            get => _pageName;
-            set => SetProperty(ref _pageName, value);
+            get => _pageType;
+            set => SetProperty(ref _pageType, value);
         }
 
         private ICommand _navigationCommand;

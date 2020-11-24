@@ -3,11 +3,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using InterTwitter.Extensions;
 using InterTwitter.Helpers;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Views;
 using Prism.Navigation;
-using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
 {
@@ -30,28 +30,28 @@ namespace InterTwitter.ViewModels
                     new MenuItemViewModel()
                     {
                         Text = "Home",
-                        PageName = nameof(HomePage),
+                        PageType = typeof(HomePage),
                         Icon = "ic_home_gray",
                         NavigationCommand = navigationCommand
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Search",
-                        PageName = nameof(SearchPage),
+                        PageType = typeof(SearchPage),
                         Icon = "ic_search_gray",
                         NavigationCommand = navigationCommand
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Notifications",
-                        PageName = nameof(NotificationsPage),
+                        PageType = typeof(NotificationsPage),
                         Icon = "ic_notifications_gray",
                         NavigationCommand = navigationCommand
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Direct messages",
-                        PageName = nameof(MessagesPage),
+                        PageType = typeof(MessagesPage),
                         Icon = "ic_messages_gray",
                         NavigationCommand = navigationCommand
                     },
@@ -61,7 +61,7 @@ namespace InterTwitter.ViewModels
                     new MenuItemViewModel()
                     {
                         Text = "Settings",
-                        PageName = nameof(MessagesPage),
+                        PageType = typeof(MessagesPage),
                         Icon = "ic_setting",
                         NavigationCommand = navigationCommand
                     },
@@ -78,11 +78,11 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isPresented, value);
         }
 
-        private string _selectedTabName;
-        public string SelectedTabName
+        private Type _selectedTabType;
+        public Type SelectedTabType
         {
-            get => _selectedTabName;
-            set => SetProperty(ref _selectedTabName, value);
+            get => _selectedTabType;
+            set => SetProperty(ref _selectedTabType, value);
         }
 
         private ObservableCollection<MenuItemGroup> _menuItems;
@@ -94,6 +94,13 @@ namespace InterTwitter.ViewModels
 
         public ICommand LogoutCommand => SingleExecutionCommand.FromFunc(OnLogoutCommandAsync);
 
+        public ICommand GoToProfilePageCommand => SingleExecutionCommand.FromFunc(OnGoToProfilePageCommandAsync);
+
+        private async Task OnGoToProfilePageCommandAsync()
+        {
+            await NavigationService.NavigateAsync(nameof(ProfilePage), new NavigationParameters(), useModalNavigation:true, true);
+        }
+
         private Task OnLogoutCommandAsync()
         {
             return Task.FromResult(true);
@@ -101,9 +108,8 @@ namespace InterTwitter.ViewModels
 
         private async Task OnNavigationCommandAsync(MenuItemViewModel item)
         {
-            SelectedTabName = item.PageName;
+            NavigationService.FixedSelectTab(item.PageType);
             IsPresented = false;
-            //await NavigationService.NavigateAsync($"{nameof(MenuPage)}/{nameof(MainTabbedPage)}?selectedTab={item.PageName}");
         }
 
         protected override void OnPropertyChanged(PropertyChangedEventArgs args)
@@ -114,24 +120,23 @@ namespace InterTwitter.ViewModels
             {
                 foreach (MenuItemViewModel item in MenuItems[0])
                 {
-                    bool isSelected = SelectedTabName == item.PageName;
-                    item.IsSelected = isSelected;
-                    switch (item.PageName)
+                    item.IsSelected = SelectedTabType == item.PageType;
+
+                    if (item.PageType == typeof(HomePage))
                     {
-                        case nameof(HomePage):
-                            item.Icon = isSelected ? "ic_home_blue" : "ic_home_gray";
-                            break;
-                        case nameof(SearchPage):
-                            item.Icon = isSelected ? "ic_search_blue" : "ic_search_gray";
-                            break;
-                        case nameof(NotificationsPage):
-                            item.Icon = isSelected ? "ic_notifications_blue" : "ic_notifications_gray";
-                            break;
-                        case nameof(MessagesPage):
-                            item.Icon = isSelected ? "ic_messages_blue" : "ic_messages_gray";
-                            break;
-                        default:
-                            break;
+                        item.Icon = item.IsSelected ? "ic_home_blue" : "ic_home_gray";
+                    }
+                    else if (item.PageType == typeof(SearchPage))
+                    {
+                        item.Icon = item.IsSelected ? "ic_search_blue" : "ic_search_gray";
+                    }
+                    else if (item.PageType == typeof(NotificationsPage))
+                    {
+                        item.Icon = item.IsSelected ? "ic_notifications_blue" : "ic_notifications_gray";
+                    }
+                    else if (item.PageType == typeof(MessagesPage))
+                    {
+                        item.Icon = item.IsSelected ? "ic_messages_blue" : "ic_messages_gray";
                     }
                 }
             }

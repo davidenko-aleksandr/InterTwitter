@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using InterTwitter.Views;
 using Xamarin.Forms;
 
 namespace InterTwitter.Controls
@@ -12,45 +10,17 @@ namespace InterTwitter.Controls
         {
         }
 
-        public static readonly BindableProperty SelectedPageNameProperty =
+        public static readonly BindableProperty SelectedTabTypeProperty =
             BindableProperty.Create(
-                propertyName: nameof(SelectedPageName),
-                returnType: typeof(string),
+                propertyName: nameof(SelectedTabType),
+                returnType: typeof(Type),
                 declaringType: typeof(CustomTabbedPage),
-                defaultBindingMode: BindingMode.TwoWay,
-                propertyChanged: OnSelectedPageNamePropertyChanged);
+                defaultBindingMode: BindingMode.TwoWay);
 
-        private static void OnSelectedPageNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        public Type SelectedTabType
         {
-            var newPage = newValue as string;
-            var tabbedPage = bindable as TabbedPage;
-            
-            if (newValue != oldValue && tabbedPage != null && newPage != null)
-            {
-                switch (newPage)
-                {
-                    case nameof(HomePage):
-                        tabbedPage.CurrentPage = tabbedPage.Children.First(x => x.GetType() == typeof(HomePage));
-                        break;
-                    case nameof(SearchPage):
-                        tabbedPage.CurrentPage = tabbedPage.Children.First(x => x.GetType() == typeof(SearchPage));
-                        break;
-                    case nameof(NotificationsPage):
-                        tabbedPage.CurrentPage = tabbedPage.Children.First(x => x.GetType() == typeof(NotificationsPage));
-                        break;
-                    case nameof(MessagesPage):
-                        tabbedPage.CurrentPage = tabbedPage.Children.First(x => x.GetType() == typeof(MessagesPage));
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        public string SelectedPageName
-        {
-            get => (string)GetValue(SelectedPageNameProperty);
-            set => SetValue(SelectedPageNameProperty, value);
+            get => (Type)GetValue(SelectedTabTypeProperty);
+            set => SetValue(SelectedTabTypeProperty, value);
         }
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -59,7 +29,7 @@ namespace InterTwitter.Controls
 
             if (propertyName == nameof(CurrentPage) && CurrentPage != null)
             {
-                SelectedPageName = CurrentPage.GetType().Name;
+                SelectedTabType = CurrentPage.GetType();
             }
         }
     }

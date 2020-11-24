@@ -31,28 +31,40 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ffimageloading:CachedImage Source="pic_profile_big"
-                                                HorizontalOptions="CenterAndExpand"
-                                                VerticalOptions="CenterAndExpand"
-                                                Grid.Column="0">
+                    <controls:ClickableContentView Grid.Row="0"
+                                                   Command="{Binding GoToProfilePageCommand}">
 
-                        <ffimageloading:CachedImage.Transformations>
-                            <fftransformations:CircleTransformation/>
-                        </ffimageloading:CachedImage.Transformations>
-                        
-                    </ffimageloading:CachedImage>
+                        <ffimageloading:CachedImage Source="pic_profile_big"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    VerticalOptions="CenterAndExpand">
+
+                            <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:CircleTransformation/>
+                            </ffimageloading:CachedImage.Transformations>
+
+                        </ffimageloading:CachedImage>
+
+                    </controls:ClickableContentView>
 
                     <StackLayout Grid.Column="1"
                                  VerticalOptions="Center">
 
-                        <Label Text="User Name"
-                               FontAttributes="Bold"
-                               TextColor="Black"
-                               FontSize="20"
-                               FontFamily="Ubuntu"/>
+                        <controls:ClickableContentView Command="{Binding GoToProfilePageCommand}">
 
-                        <Label Text="username@gmail.com"
-                               TextColor="#66696E"/>
+                            <Label Text="User Name"
+                                   FontAttributes="Bold"
+                                   TextColor="Black"
+                                   FontSize="20"
+                                   FontFamily="Ubuntu"/>
+
+                        </controls:ClickableContentView>
+
+                        <controls:ClickableContentView Command="{Binding GoToProfilePageCommand}">
+
+                            <Label Text="username@gmail.com"
+                                   TextColor="#66696E"/>
+
+                        </controls:ClickableContentView>
 
                     </StackLayout>
 
@@ -170,7 +182,7 @@
 
             <x:Arguments>
 
-                <pages:MainTabbedPage SelectedPageName="{Binding SelectedTabName, Mode=TwoWay}"/>
+                <pages:MainTabbedPage SelectedTabType="{Binding SelectedTabType, Mode=TwoWay}"/>
 
             </x:Arguments>
 
