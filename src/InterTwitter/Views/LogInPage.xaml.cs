@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace InterTwitter.Views.Authorization
+namespace InterTwitter.Views
 {
-    public partial class SignUpMainPage : BaseContentPage
+    public partial class LogInPage : BaseContentPage
     {
-        public SignUpMainPage()
+        public LogInPage()
         {
             InitializeComponent();
         }
