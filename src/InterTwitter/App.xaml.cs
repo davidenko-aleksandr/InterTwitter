@@ -18,7 +18,6 @@ namespace InterTwitter
         public App(IPlatformInitializer initializer = null)
             : base(initializer)
         {
-
         }
 
         #region -- Overrides --
@@ -26,7 +25,6 @@ namespace InterTwitter
         protected override async void OnInitialized()
         {
             InitializeComponent();
-
 
             await NavigationService.NavigateAsync(nameof(SignUpMainPage));
 
@@ -40,7 +38,6 @@ namespace InterTwitter
             {
                 await NavigationService.NavigateAsync(nameof(LogInPage));
             }
-
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -56,7 +53,6 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
 
-
             //plugins
             containerRegistry.RegisterInstance<IUserDialogs>(UserDialogs.Instance);
             containerRegistry.RegisterInstance<ISettings>(CrossSettings.Current);
@@ -64,8 +60,7 @@ namespace InterTwitter
             //services           
             containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
-            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
- 
+            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
         }
 
         #endregion

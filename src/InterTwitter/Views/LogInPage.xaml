@@ -4,10 +4,8 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
-                       xmlns:views="clr-namespace:InterTwitter.Views"  
-                       x:Name="ParentView"
-                       BackgroundColor="#FCFDFE">
-    
+                       xmlns:views="clr-namespace:InterTwitter.Views"                         
+                       BackgroundColor="#FCFDFE">    
 
     <Grid HorizontalOptions="Fill"
           RowSpacing="0"

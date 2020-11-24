@@ -42,12 +42,10 @@ namespace InterTwitter.ViewModels
             get => _confirmPassword;
             set => SetProperty(ref _confirmPassword, value);
         }
-
-        private ICommand _confirmPasswordCommand;
-        public ICommand ConfirmPasswordCommand => _confirmPasswordCommand ??= SingleExecutionCommand.FromFunc(OnConfirmPasswordCommand);
-
-        private ICommand _goBackCommand;
-        public ICommand GoBackCommand => _goBackCommand ??= SingleExecutionCommand.FromFunc(OnGoBackCommand);
+        
+        public ICommand ConfirmPasswordCommand => SingleExecutionCommand.FromFunc(OnConfirmPasswordCommandAsync);
+                
+        public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
                
         #endregion
 
@@ -57,18 +55,12 @@ namespace InterTwitter.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            if (parameters.TryGetValue<string>(Constants.Navigation.Name, out string Name))
+            if (parameters.TryGetValue<string>(Constants.Navigation.Name, out string Name) &&
+                parameters.TryGetValue<string>(Constants.Navigation.Email, out string Email))
             {
                 _name = Name;
-            }
-            else
-            {
-                Debug.WriteLine("obtain next parameter");
-            }            
-            if (parameters.TryGetValue<string>(Constants.Navigation.Email, out string Email))
-            {
                 _email = Email;
-            }
+            }            
             else
             {
                 Debug.WriteLine("value error");
@@ -79,33 +71,33 @@ namespace InterTwitter.ViewModels
 
         #region -- Private heplers --
 
-        private async Task OnGoBackCommand()
+        private Task OnGoBackCommandAsync()
         {
-            await NavigationService.GoBackAsync();
+          return  NavigationService.GoBackAsync();            
         }
 
-        private async Task OnConfirmPasswordCommand()
+        private async Task OnConfirmPasswordCommandAsync()
         {
-            var canContinue = PasswordIsValidated();
+            var isValid = ValidatePassword();
 
-            if (canContinue)
+            if (isValid)
             {
                 await _authorizationService.SignUpAsync(_email, _name, Password);
 
-                var parametres = new NavigationParameters()
-                {
-                    { Constants.Navigation.Email, _email }
-                };
+                var parameters = new NavigationParameters
+                                {
+                                    { Constants.Navigation.Email, _email }
+                                };
 
                 await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
             }
             else
             {
-                _userDialogs.Toast("Password and ConfirmPassword should match");
+                _userDialogs.Toast("Passwords should match");
             }
         }
 
-        private bool PasswordIsValidated()
+        private bool ValidatePassword()
         {
             return Validator.IsMatch(Password, Validator.RegexPassword) && Password == ConfirmPassword;
         }

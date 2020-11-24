@@ -42,12 +42,10 @@ namespace InterTwitter.ViewModels
             get => _email;
             set => SetProperty(ref _email, value);
         }
-
-        private ICommand _signUpCommand;
-        public ICommand SignUpCommand => _signUpCommand ??= SingleExecutionCommand.FromFunc(OnSignUpCommand);
-
-        private ICommand _loginCommand;
-        public ICommand LoginCommand => _loginCommand ??= SingleExecutionCommand.FromFunc(OnLoginCommand);
+       
+        public ICommand SignUpCommand => SingleExecutionCommand.FromFunc(OnSignUpCommand);
+                
+        public ICommand LoginCommand => SingleExecutionCommand.FromFunc(OnLoginCommand);
 
         #endregion
 
@@ -58,9 +56,9 @@ namespace InterTwitter.ViewModels
             var isConnected = Connectivity.NetworkAccess;
             if (isConnected == NetworkAccess.Internet)
             {
-                var canContinue = CanValidateData();
+                var isValid = ValidateData();
 
-                if (canContinue)
+                if (isValid)
                 {
                     var parameters = new NavigationParameters
                     {
@@ -72,12 +70,12 @@ namespace InterTwitter.ViewModels
                 }
                 else
                 {
-                    Debug.WriteLine("Registration data error");
+                    _userDialogs.Toast("Registration data error");
                 }
             }
             else 
             {
-                _userDialogs.Toast("No internet connection",new TimeSpan(3000));
+                _userDialogs.Toast("No internet connection");
             }
         }
 
@@ -86,7 +84,7 @@ namespace InterTwitter.ViewModels
             await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LogInPage)}");
         }
        
-        private bool CanValidateData()
+        private bool ValidateData()
         {
             return !string.IsNullOrEmpty(Name) && Validator.IsMatch(Email, Validator.RegexEmail);
         }

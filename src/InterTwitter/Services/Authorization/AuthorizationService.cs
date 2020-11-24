@@ -9,7 +9,7 @@ using InterTwitter.Services.UserService;
 namespace InterTwitter.Services.Authorization
 {
     public class AuthorizationService : IAuthorizationService
-    {       
+    {
         private readonly IUserService _userService;
         private readonly ISettingsService _settingsService;
 
@@ -27,23 +27,32 @@ namespace InterTwitter.Services.Authorization
             get => _settingsService.UserEmail != string.Empty;
         }
 
-
         public async Task<AOResult<bool>> LogInAsync(string email, string password)
         {
             var result = new AOResult<bool>();
 
             try
             {
-                var users = (await _userService.GetUsersAsync()).Result;
-                var user = users.First(x => x.Email == email && x.Password == password);
-                
-                await Task.Delay(300);
+                var getUsersResult = await _userService.GetUsersAsync();
 
-                if (user != null)
+                if (getUsersResult.IsSuccess)
                 {
-                    _settingsService.UserEmail = user.Email;
-  
-                    result.SetSuccess(true);
+                    var users = getUsersResult.Result;
+
+                    var user = users.First(x => x.Email == email && x.Password == password);                
+
+                    await Task.Delay(300);
+
+                    if (user != null)
+                    {
+                        _settingsService.UserEmail = user.Email;
+                   
+                        result.SetSuccess(true);
+                    }
+                    else
+                    {
+                        result.SetFailure(false);
+                    }                 
                 }
                 else
                 {
@@ -64,25 +73,37 @@ namespace InterTwitter.Services.Authorization
 
             try
             {
-                var users = (await _userService.GetUsersAsync()).Result;
-                var user = users.First(x => x.Email.ToUpper() == email.ToUpper());
-                
-                await Task.Delay(300);
-
-                if (user == null)
+                var getUsersResult = await _userService.GetUsersAsync();
+               
+                if (getUsersResult.IsSuccess)
                 {
-                    await _userService.AddUserAsync(new User()
+                    var users = getUsersResult.Result;
+
+                    var user = users.First(x => x.Email.ToUpper() == email.ToUpper());
+
+                    await Task.Delay(300);
+
+                    if (user == null)
                     {
-                        Email = email,
-                        Name = name,
-                        Password = password,
-                    });
+                        user = new User()
+                                   {
+                                       Email = email,
+                                       Name = name,
+                                       Password = password,
+                                   };
 
-                    _settingsService.UserEmail = email;
+                        await _userService.AddUserAsync(user);
 
-                    result.SetSuccess(true);
+                        _settingsService.UserEmail = email;
+
+                        result.SetSuccess(true);
+                    }
+                    else
+                    {
+                        result.SetFailure(false);
+                    }
                 }
-                else
+                else 
                 {
                     result.SetFailure(false);
                 }

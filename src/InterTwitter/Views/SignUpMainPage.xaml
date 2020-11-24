@@ -70,7 +70,7 @@
                     Command="{Binding SignUpCommand}"/>
 
             <controls:ClickableContentView Command="{Binding LoginCommand}"
-                                            Style="{StaticResource ClickableContentViewStyle}">
+                                           Style="{StaticResource ClickableContentViewStyle}">
 
                 <Label Style="{StaticResource UnderButtonLabelStyle}"
                        Text="{x:Static resources:AppResource.LogInButton}"/>

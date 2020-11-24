@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace InterTwitter.Services.UserService
 {
     public class UserService : IUserService
-    {       
+    {
         private List<User> _usersRepositoryMock;
 
         public UserService()
-        {            
+        {
             _usersRepositoryMock = InitData();
         }
 
@@ -86,21 +86,21 @@ namespace InterTwitter.Services.UserService
         {
             return new List<User>()
                 {
-                    new User()
-                {
-                    Id = 0,
-                    Email = "vasya1984@mail.ru",
-                    Name = "Vasiliy",
-                    Password = "v1984!",
-                },
-                    new User()
-                {
-                    Id = 1,
-                    Email = "petya25@gmail.com",
-                    Name = "Peter Stevenson",
-                    Password = "qwerty123",
-                }
-                };
+                       new User()
+                  {
+                      Id = 0,
+                      Email = "vasya1984@mail.ru",
+                      Name = "Vasiliy",
+                      Password = "v1984!",
+                  },
+                      new User()
+                  {
+                      Id = 1,
+                      Email = "petya25@gmail.com",
+                      Name = "Peter Stevenson",
+                      Password = "qwerty123",
+                  }
+               };
         }
 
         #endregion
