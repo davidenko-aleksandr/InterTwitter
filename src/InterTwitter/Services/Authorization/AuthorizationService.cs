@@ -1,48 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InterTwitter.Helpers;
 using InterTwitter.Models;
 using InterTwitter.Services.Settings;
+using InterTwitter.Services.UserService;
 
 namespace InterTwitter.Services.Authorization
 {
     public class AuthorizationService : IAuthorizationService
     {
-        private List<User> _usersRepositoryMock;
+        private readonly IUserService _userService;
         private readonly ISettingsService _settingsService;
 
-        public AuthorizationService(ISettingsService settingsService)
+        public AuthorizationService(IUserService userService,
+                                    ISettingsService settingsService)
         {
-            _usersRepositoryMock = new List<User>()
-            {
-                new User()
-                {
-                    Id = 0,
-                    Email = "vasya1984@mail.ru",
-                    Name = "Vasiliy",
-                    Password = "v1984!",
-                },
-                new User()
-                {
-                    Id = 1,
-                    Email = "petya25@gmail.com",
-                    Name = "Peter Stevenson",
-                    Password = "qwerty123",
-                },
-            };
-
+            _userService = userService;
             _settingsService = settingsService;
         }
 
-        #region -- IAuthorizationService Implementation --
+        #region -- IAuthorizationService implementation --
 
         public bool IsAuthorized
         {
             get => _settingsService.UserEmail != string.Empty;
         }
-
 
         public async Task<AOResult<bool>> LogInAsync(string email, string password)
         {
@@ -50,14 +33,26 @@ namespace InterTwitter.Services.Authorization
 
             try
             {
-                var user = _usersRepositoryMock.First(x => x.Email == email && x.Password == password);
-                await Task.Delay(300);
+                var getUsersResult = await _userService.GetUsersAsync();
 
-                if (user != null)
+                if (getUsersResult.IsSuccess)
                 {
-                    _settingsService.UserEmail = user.Email;
-  
-                    result.SetSuccess(true);
+                    var users = getUsersResult.Result;
+
+                    var user = users.First(x => x.Email == email && x.Password == password);                
+
+                    await Task.Delay(300);
+
+                    if (user != null)
+                    {
+                        _settingsService.UserEmail = user.Email;
+                   
+                        result.SetSuccess(true);
+                    }
+                    else
+                    {
+                        result.SetFailure(false);
+                    }                 
                 }
                 else
                 {
@@ -78,23 +73,37 @@ namespace InterTwitter.Services.Authorization
 
             try
             {
-                var user = _usersRepositoryMock.First(x => x.Email.ToUpper() == email.ToUpper());
-                await Task.Delay(300);
-                if (user == null)
+                var getUsersResult = await _userService.GetUsersAsync();
+               
+                if (getUsersResult.IsSuccess)
                 {
-                    _usersRepositoryMock.Add(new User()
+                    var users = getUsersResult.Result;
+
+                    var user = users.First(x => x.Email.ToUpper() == email.ToUpper());
+
+                    await Task.Delay(300);
+
+                    if (user == null)
                     {
-                        Id = _usersRepositoryMock.Count,
-                        Email = email,
-                        Name = name,
-                        Password = password,
-                    });
+                        user = new User()
+                                   {
+                                       Email = email,
+                                       Name = name,
+                                       Password = password,
+                                   };
 
-                    _settingsService.UserEmail = email;
+                        await _userService.AddUserAsync(user);
 
-                    result.SetSuccess(true);
+                        _settingsService.UserEmail = email;
+
+                        result.SetSuccess(true);
+                    }
+                    else
+                    {
+                        result.SetFailure(false);
+                    }
                 }
-                else
+                else 
                 {
                     result.SetFailure(false);
                 }

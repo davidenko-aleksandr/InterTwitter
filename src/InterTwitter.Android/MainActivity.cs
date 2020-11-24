@@ -25,7 +25,7 @@ namespace InterTwitter.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-
+            
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             UserDialogs.Init(this);

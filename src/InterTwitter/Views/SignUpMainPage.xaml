@@ -31,7 +31,7 @@
                                                  VerticalOptions="Start"/>
 
             <Label Style="{StaticResource AccountLabelStyle}"
-                   Text="{x:Static resources:AppResource.GetAccountLabel}"/>
+                   Text="{x:Static resources:AppResource.CreateAccountLabel}"/>
             
         </StackLayout>
 
@@ -41,10 +41,12 @@
                      Orientation="Vertical">
 
             <controls:CustomEntry Placeholder="{x:Static resources:AppResource.NameText}" 
-                                  Style="{StaticResource CustomEntryStyle}" />
+                                  Style="{StaticResource CustomEntryStyle}" 
+                                  Text="{Binding Name}"/>
 
             <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
-                                  Style="{StaticResource CustomEntryStyle}">
+                                  Style="{StaticResource CustomEntryStyle}"
+                                  Text="{Binding Email}">               
 
                 <controls:CustomEntry.Behaviors>
 
@@ -64,11 +66,17 @@
                      VerticalOptions="Fill">
 
             <Button Style="{StaticResource LoginButtonStyle}"
-                    Text="{x:Static resources:AppResource.SignUpButton}" />
+                    Text="{x:Static resources:AppResource.SignUpButton}"
+                    Command="{Binding SignUpCommand}"/>
 
-            <Label Style="{StaticResource UnderButtonLabelStyle}"
-                   Text="{x:Static resources:AppResource.LogInButton}" />
+            <controls:ClickableContentView Command="{Binding LogInCommand}"
+                                           Style="{StaticResource ClickableContentViewStyle}">
 
+                <Label Style="{StaticResource UnderButtonLabelStyle}"
+                       Text="{x:Static resources:AppResource.LogInButton}"/>
+
+            </controls:ClickableContentView>
+            
         </StackLayout>
 
     </Grid>

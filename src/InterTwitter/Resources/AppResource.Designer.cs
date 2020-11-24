@@ -70,7 +70,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirm.
+        ///   Looks up a localized string similar to ConfirmPassword.
         /// </summary>
         public static string ConfirmButton {
             get {
@@ -88,7 +88,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirm Password.
+        ///   Looks up a localized string similar to ConfirmPassword Password.
         /// </summary>
         public static string ConfirmPasswordText {
             get {
