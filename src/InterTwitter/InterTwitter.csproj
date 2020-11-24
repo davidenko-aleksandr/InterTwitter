@@ -42,8 +42,11 @@
     <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="ViewModels\Authorization\**" />
     <Compile Remove="Views\Authorization\**" />
+    <EmbeddedResource Remove="ViewModels\Authorization\**" />
     <EmbeddedResource Remove="Views\Authorization\**" />
+    <None Remove="ViewModels\Authorization\**" />
     <None Remove="Views\Authorization\**" />
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +65,6 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
     <Folder Include="Resources\" />
-    <Folder Include="ViewModels\Authorization\" />
     <Folder Include="Models\" />
     <Folder Include="Resources\" />
     <Folder Include="Extensions\" />

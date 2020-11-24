@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
@@ -18,9 +19,9 @@ namespace InterTwitter.ViewModels
         private string _name;
 
         public SignUpPasswordPageViewModel(INavigationService navigationService,
-                                            IAuthorizationService authorizationService,
-                                            IUserDialogs userDialogs)
-                                          : base(navigationService)
+                                           IAuthorizationService authorizationService,
+                                           IUserDialogs userDialogs)
+                                           : base(navigationService)
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
@@ -35,15 +36,15 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _password, value);
         }
 
-        private string _confirm;
-        public string Confirm
+        private string _confirmPassword;
+        public string ConfirmPassword
         {
-            get => _confirm;
-            set => SetProperty(ref _confirm, value);
+            get => _confirmPassword;
+            set => SetProperty(ref _confirmPassword, value);
         }
 
-        private ICommand _confirmCommand;
-        public ICommand ConfirmCommand => _confirmCommand ??= SingleExecutionCommand.FromFunc(OnConfirmCommand);
+        private ICommand _confirmPasswordCommand;
+        public ICommand ConfirmPasswordCommand => _confirmPasswordCommand ??= SingleExecutionCommand.FromFunc(OnConfirmPasswordCommand);
 
         private ICommand _goBackCommand;
         public ICommand GoBackCommand => _goBackCommand ??= SingleExecutionCommand.FromFunc(OnGoBackCommand);
@@ -61,16 +62,16 @@ namespace InterTwitter.ViewModels
                 _name = Name;
             }
             else
-            { 
-            // obtain next parameter
+            {
+                Debug.WriteLine("obtain next parameter");
             }            
             if (parameters.TryGetValue<string>(Constants.Navigation.Email, out string Email))
             {
                 _email = Email;
             }
             else
-            { 
-            //
+            {
+                Debug.WriteLine("value error");
             }
         }
 
@@ -83,7 +84,7 @@ namespace InterTwitter.ViewModels
             await NavigationService.GoBackAsync();
         }
 
-        private async Task OnConfirmCommand()
+        private async Task OnConfirmPasswordCommand()
         {
             var canContinue = PasswordIsValidated();
 
@@ -93,20 +94,20 @@ namespace InterTwitter.ViewModels
 
                 var parametres = new NavigationParameters()
                 {
-                    {Constants.Navigation.Email, _email }
+                    { Constants.Navigation.Email, _email }
                 };
 
                 await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
             }
             else
             {
-                _userDialogs.Toast("Password and Confirm should match");
+                _userDialogs.Toast("Password and ConfirmPassword should match");
             }
         }
 
         private bool PasswordIsValidated()
         {
-            return Validator.IsMatch(Password, Validator.RegexPassword) && Password == Confirm;
+            return Validator.IsMatch(Password, Validator.RegexPassword) && Password == ConfirmPassword;
         }
 
         #endregion

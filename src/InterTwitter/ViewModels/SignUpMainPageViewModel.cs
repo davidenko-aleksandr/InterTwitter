@@ -9,6 +9,7 @@ using InterTwitter.Validators;
 using Xamarin.Essentials;
 using Acr.UserDialogs;
 using InterTwitter.Views;
+using System.Diagnostics;
 
 namespace InterTwitter.ViewModels
 {
@@ -20,9 +21,8 @@ namespace InterTwitter.ViewModels
         public SignUpMainPageViewModel(INavigationService navigationService,
                                        IAuthorizationService authorizationService,
                                        IUserDialogs userDialogs)
-                                      : base(navigationService)
+                                       : base(navigationService)
         {
-
             _userDialogs = userDialogs;
             _authorizationService = authorizationService;
         }
@@ -47,7 +47,7 @@ namespace InterTwitter.ViewModels
         public ICommand SignUpCommand => _signUpCommand ??= SingleExecutionCommand.FromFunc(OnSignUpCommand);
 
         private ICommand _loginCommand;
-        public ICommand LoginCommand => _loginCommand ??= SingleExecutionCommand.FromFunc(OnLOginCommand);
+        public ICommand LoginCommand => _loginCommand ??= SingleExecutionCommand.FromFunc(OnLoginCommand);
 
         #endregion
 
@@ -72,7 +72,7 @@ namespace InterTwitter.ViewModels
                 }
                 else
                 {
-                    // Registration data error
+                    Debug.WriteLine("Registration data error");
                 }
             }
             else 
@@ -81,7 +81,7 @@ namespace InterTwitter.ViewModels
             }
         }
 
-        private async Task OnLOginCommand()
+        private async Task OnLoginCommand()
         {
             await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LogInPage)}");
         }

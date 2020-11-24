@@ -23,7 +23,14 @@ namespace InterTwitter.Services.UserService
 
             try
             {
-                result.SetSuccess(_usersRepositoryMock);
+                if (_usersRepositoryMock != null)
+                {
+                    result.SetSuccess(_usersRepositoryMock);
+                }
+                else
+                {
+                    result.SetFailure();
+                }
             }
             catch (Exception ex)
             {

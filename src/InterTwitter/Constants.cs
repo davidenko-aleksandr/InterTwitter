@@ -15,8 +15,8 @@ namespace InterTwitter
 
         public static class Navigation
         {
-            public static string Name = "Name";
-            public static string Email = "Email";
+            public const string Name = "Name";
+            public const string Email = "Email";
         }
     }
 }
