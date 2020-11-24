@@ -1,4 +1,5 @@
-﻿using InterTwitter.ViewModels;
+﻿using InterTwitter.Services.Owl;
+using InterTwitter.ViewModels;
 using InterTwitter.ViewModels.Authorization;
 using InterTwitter.Views;
 using InterTwitter.Views.Authorization;
@@ -38,6 +39,9 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<MessagesPage, MessagesPageViewModel>();
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
+
+            //services
+            containerRegistry.RegisterInstance<IOwlService>(Container.Resolve<OwlService>());
 
         }
 
