@@ -1,9 +1,11 @@
 ﻿using Acr.UserDialogs;
 using InterTwitter.Services.Authorization;
+using InterTwitter.Services.UserService;
 using InterTwitter.Services.Settings;
 using InterTwitter.ViewModels;
 using InterTwitter.Views;
 using Plugin.Settings;
+using Plugin.Settings.Abstractions;
 using Prism;
 using Prism.Ioc;
 using Prism.Unity;
@@ -16,7 +18,6 @@ namespace InterTwitter
         public App(IPlatformInitializer initializer = null)
             : base(initializer)
         {
-
         }
 
         #region -- Overrides --
@@ -25,9 +26,6 @@ namespace InterTwitter
         {
             InitializeComponent();
 
-<<<<<<< HEAD
-            await NavigationService.NavigateAsync($"{nameof(MenuPage)}");
-=======
             var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
 
             if (isAuthorized)
@@ -38,7 +36,6 @@ namespace InterTwitter
             {
                 await NavigationService.NavigateAsync(nameof(LogInPage));
             }
->>>>>>> 2ea633cbd243f80f492e3380733af7f6acbbf773
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -55,13 +52,14 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
 
-            //packages
-            containerRegistry.RegisterInstance(UserDialogs.Instance);
-            containerRegistry.RegisterInstance(CrossSettings.Current);
+            //plugins
+            containerRegistry.RegisterInstance<IUserDialogs>(UserDialogs.Instance);
+            containerRegistry.RegisterInstance<ISettings>(CrossSettings.Current);
 
-            //services
+            //services           
+            containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
-            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
+            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
         }
 
         #endregion

@@ -74,7 +74,6 @@ namespace InterTwitter.Behaviors
             _control.Entry.TextChanged += OnTextChanged;
         }
 
-
         protected override void OnDetachingFrom(CustomEntry control)
         {
             base.OnDetachingFrom(control);
