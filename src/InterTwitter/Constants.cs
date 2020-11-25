@@ -12,6 +12,7 @@ namespace InterTwitter
 #else
         public const string BASE_URL = "";
 #endif
+        public const string OpenMenuMessage = "OpenMenu";
 
         public static class Navigation
         {
