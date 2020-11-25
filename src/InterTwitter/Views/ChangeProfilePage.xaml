@@ -5,7 +5,7 @@
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
-                       
+                       xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                        xmlns:views="clr-namespace:InterTwitter.Views">
 
     <Grid BackgroundColor="#FCFDFE">
@@ -68,7 +68,7 @@
                                         Aspect="Fill"                                       
                             >
                 <ffimageloading:CachedImage.Transformations>
-
+                    <fftransformations:CircleTransformation />
                 </ffimageloading:CachedImage.Transformations>
                 
             </ffimageloading:CachedImage>

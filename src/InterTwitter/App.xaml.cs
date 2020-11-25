@@ -27,15 +27,16 @@ namespace InterTwitter
             InitializeComponent();
 
             var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
+            await NavigationService.NavigateAsync($"/{nameof(ChangeProfilePage)}");
 
-            if (isAuthorized)
-            {
-                await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
-            }
-            else
-            {
-                await NavigationService.NavigateAsync(nameof(LogInPage));
-            }
+            //if (isAuthorized)
+            //{
+            //    await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+            //}
+            //else
+            //{
+            //    await NavigationService.NavigateAsync(nameof(LogInPage));
+            //}
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
