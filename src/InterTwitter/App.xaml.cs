@@ -1,9 +1,11 @@
 ﻿using Acr.UserDialogs;
 using InterTwitter.Services.Authorization;
+using InterTwitter.Services.UserService;
 using InterTwitter.Services.Settings;
 using InterTwitter.ViewModels;
 using InterTwitter.Views;
 using Plugin.Settings;
+using Plugin.Settings.Abstractions;
 using Prism;
 using Prism.Ioc;
 using Prism.Unity;
@@ -16,7 +18,6 @@ namespace InterTwitter
         public App(IPlatformInitializer initializer = null)
             : base(initializer)
         {
-
         }
 
         #region -- Overrides --
@@ -49,14 +50,16 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<MessagesPage, MessagesPageViewModel>();
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
+            containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
 
-            //packages
-            containerRegistry.RegisterInstance(UserDialogs.Instance);
-            containerRegistry.RegisterInstance(CrossSettings.Current);
+            //plugins
+            containerRegistry.RegisterInstance<IUserDialogs>(UserDialogs.Instance);
+            containerRegistry.RegisterInstance<ISettings>(CrossSettings.Current);
 
-            //services
+            //services           
+            containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
-            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
+            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
         }
 
         #endregion

@@ -4,8 +4,8 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
-                       xmlns:views="clr-namespace:InterTwitter.Views" 
-                       BackgroundColor="#FCFDFE">
+                       xmlns:views="clr-namespace:InterTwitter.Views"                         
+                       BackgroundColor="#FCFDFE">    
 
     <Grid HorizontalOptions="Fill"
           RowSpacing="0"
@@ -25,8 +25,7 @@
                      VerticalOptions="Fill">
 
             <controls:AuthorizationNavigationBar HorizontalOptions="Fill" 
-                                                 VerticalOptions="Start"
-                                                 GoBackCommand="{Binding ShowAlertCommand}"/>
+                                                 VerticalOptions="Start"/>                                             
 
             <Label Style="{StaticResource AccountLabelStyle}" 
                    Text="{x:Static resources:AppResource.GetAccountLabel}"/>
@@ -62,23 +61,16 @@
                     Command="{Binding LogInClickCommand}"/>
 
             <controls:ClickableContentView Command="{Binding SignUpClickCommand}"
-                                           Margin="0,12,0,0">
-
+                                           Style="{StaticResource ClickableContentViewStyle}">
+                
                 <Label IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
                        Style="{StaticResource UnderButtonLabelStyle}"
-                       Text="{x:Static resources:AppResource.SignUpButton}"
-                       Padding="64,8,64,8"/>
-
+                       Text="{x:Static resources:AppResource.SignUpButton}"/>
+                
             </controls:ClickableContentView>
-
+           
         </StackLayout>
 
     </Grid>
 
 </views:BaseContentPage>
-
-
-
-
-
-

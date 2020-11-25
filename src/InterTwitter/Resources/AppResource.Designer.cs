@@ -196,6 +196,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oops, something went wrong!.
+        /// </summary>
+        public static string LogOutError {
+            get {
+                return ResourceManager.GetString("LogOutError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string NameEntryPlaceHolder {
