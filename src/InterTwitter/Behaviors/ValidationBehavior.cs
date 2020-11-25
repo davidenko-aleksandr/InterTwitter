@@ -74,7 +74,6 @@ namespace InterTwitter.Behaviors
             _control.Entry.TextChanged += OnTextChanged;
         }
 
-
         protected override void OnDetachingFrom(CustomEntry control)
         {
             base.OnDetachingFrom(control);
@@ -95,6 +94,7 @@ namespace InterTwitter.Behaviors
             {
                 IsValid = CheckValidity(newValue);
 
+                _control.IsValid = IsValid;
                 _control.IsErrorVisible = !IsValid;
             }
         }

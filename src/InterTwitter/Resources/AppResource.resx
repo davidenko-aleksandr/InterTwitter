@@ -138,6 +138,9 @@
   <data name="EmailText" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="EmptyEntryText" xml:space="preserve">
+    <value>Email or Password shoudn't be empty!</value>
+  </data>
   <data name="EyeOffImage" xml:space="preserve">
     <value>ic_eye_off.png</value>
   </data>
@@ -159,6 +162,9 @@
   <data name="LogoImage" xml:space="preserve">
     <value>pic_logo_small.png</value>
   </data>
+  <data name="LogOutError" xml:space="preserve">
+    <value>Oops, something went wrong!</value>
+  </data>
   <data name="NameEntryPlaceHolder" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -171,6 +177,9 @@
   <data name="NextButton" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="NoInternetText" xml:space="preserve">
+    <value>No Internet connection!</value>
+  </data>
   <data name="PasswordErrorMessage" xml:space="preserve">
     <value>At least 8 characters, one uppercase and one lowercase</value>
   </data>
@@ -179,5 +188,8 @@
   </data>
   <data name="SignUpButton" xml:space="preserve">
     <value>Sign Up</value>
+  </data>
+  <data name="WrongEmailPasswordText" xml:space="preserve">
+    <value>Wrong email or password!</value>
   </data>
 </root>

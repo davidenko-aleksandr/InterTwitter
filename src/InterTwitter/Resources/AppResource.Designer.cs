@@ -124,6 +124,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email or Password shoudn&apos;t be empty!.
+        /// </summary>
+        public static string EmptyEntryText {
+            get {
+                return ResourceManager.GetString("EmptyEntryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ic_eye_off.png.
         /// </summary>
         public static string EyeOffImage {
@@ -187,6 +196,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oops, something went wrong!.
+        /// </summary>
+        public static string LogOutError {
+            get {
+                return ResourceManager.GetString("LogOutError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string NameEntryPlaceHolder {
@@ -223,6 +241,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Internet connection!.
+        /// </summary>
+        public static string NoInternetText {
+            get {
+                return ResourceManager.GetString("NoInternetText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to At least 8 characters, one uppercase and one lowercase.
         /// </summary>
         public static string PasswordErrorMessage {
@@ -246,6 +273,15 @@ namespace InterTwitter.Resources {
         public static string SignUpButton {
             get {
                 return ResourceManager.GetString("SignUpButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong email or password!.
+        /// </summary>
+        public static string WrongEmailPasswordText {
+            get {
+                return ResourceManager.GetString("WrongEmailPasswordText", resourceCulture);
             }
         }
     }
