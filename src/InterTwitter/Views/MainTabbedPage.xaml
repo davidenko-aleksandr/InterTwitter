@@ -1,9 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:local="clr-namespace:InterTwitter.Views"
-            x:Class="InterTwitter.Views.MainTabbedPage">
+<controls:CustomTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                           xmlns:local="clr-namespace:InterTwitter.Views"
+                           xmlns:controls="clr-namespace:InterTwitter.Controls"
+                           xmlns:behaviors="clr-namespace:InterTwitter.Behaviors"
+                           xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+                           android:TabbedPage.ToolbarPlacement="Bottom"
+                           android:TabbedPage.IsSwipePagingEnabled="False"
+                           x:Class="InterTwitter.Views.MainTabbedPage">
 
+    <TabbedPage.Behaviors>
+
+        <behaviors:TabbedPageNavigationBehavior/>
+
+    </TabbedPage.Behaviors>
+    
     <TabbedPage.Children>
 
         <local:HomePage/>
@@ -15,5 +26,5 @@
         <local:MessagesPage/>
 
     </TabbedPage.Children>
-    
-</TabbedPage>
+
+</controls:CustomTabbedPage>

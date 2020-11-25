@@ -66,6 +66,7 @@ namespace InterTwitter.Helpers
                 _canExecute = obj => canExecute == null || canExecute((T)obj),
                 _delayMillisec = delayMillisec,
             };
+
             return ret;
         }
 

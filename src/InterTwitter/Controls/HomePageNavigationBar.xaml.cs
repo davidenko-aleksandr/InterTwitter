@@ -12,14 +12,14 @@ namespace InterTwitter.Controls
 
         #region -- Public properties --
 
-        public static BindableProperty GoBackCommandProperty = BindableProperty.Create(
-            propertyName: nameof(GoBackCommand),
+        public static BindableProperty OpenMenuCommandProperty = BindableProperty.Create(
+            propertyName: nameof(OpenMenuCommand),
             returnType: typeof(ICommand),
             declaringType: typeof(AuthorizationNavigationBar));
-        public ICommand GoBackCommand
+        public ICommand OpenMenuCommand
         {
-            get => (ICommand)GetValue(GoBackCommandProperty);
-            set => SetValue(GoBackCommandProperty, value);
+            get => (ICommand)GetValue(OpenMenuCommandProperty);
+            set => SetValue(OpenMenuCommandProperty, value);
         }
 
         public static BindableProperty EditCommandProperty = BindableProperty.Create(
