@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ChangeProfileLable" xml:space="preserve">
+    <value>Change profile</value>
+  </data>
   <data name="ClearImage" xml:space="preserve">
     <value>ic_clear.png</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="PasswordText" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="SaveIcon" xml:space="preserve">
+    <value>ic_check_blue.png</value>
   </data>
   <data name="SignUpButton" xml:space="preserve">
     <value>Sign Up</value>

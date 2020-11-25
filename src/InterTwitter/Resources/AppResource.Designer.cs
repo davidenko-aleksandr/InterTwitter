@@ -61,6 +61,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change profile.
+        /// </summary>
+        public static string ChangeProfileLable {
+            get {
+                return ResourceManager.GetString("ChangeProfileLable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ic_clear.png.
         /// </summary>
         public static string ClearImage {
@@ -70,7 +79,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ConfirmPassword.
+        ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string ConfirmButton {
             get {
@@ -88,7 +97,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ConfirmPassword Password.
+        ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string ConfirmPasswordText {
             get {
@@ -255,6 +264,15 @@ namespace InterTwitter.Resources {
         public static string PasswordText {
             get {
                 return ResourceManager.GetString("PasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ic_check_blue.png.
+        /// </summary>
+        public static string SaveIcon {
+            get {
+                return ResourceManager.GetString("SaveIcon", resourceCulture);
             }
         }
         

@@ -29,7 +29,7 @@ namespace InterTwitter.Droid
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             UserDialogs.Init(this);
-
+            
             LoadApplication(new App(new AndroidInitializer()));
         }
 

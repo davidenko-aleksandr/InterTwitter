@@ -2,9 +2,14 @@
 <views:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        x:Class="InterTwitter.Views.ChangeProfilePage"
-                       xmlns:prism="http://prismlibrary.com"
+                       xmlns:controls="clr-namespace:InterTwitter.Controls"
+                       xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                       xmlns:resources="clr-namespace:InterTwitter.Resources"
+                       
                        xmlns:views="clr-namespace:InterTwitter.Views">
-    <Grid>
+
+    <Grid BackgroundColor="#FCFDFE">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
             <RowDefinition Height="0.2*"/>
@@ -12,7 +17,71 @@
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.2*"/>            
-        </Grid.RowDefinitions>        
+        </Grid.RowDefinitions>
+
+        <controls:ClickableContentView Grid.Row="0"                                       
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center"
+                                       Margin="10,0,0,0"
+                                       IsVisible="{Binding IsBackButtonVisible}"
+                                       Command="{Binding GoBackCommand}">
+
+            <Image Source="{x:Static resources:AppResource.LeftImage}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+
+        </controls:ClickableContentView>
+
+        <Label Grid.Row="0"
+               Text="{x:Static resources:AppResource.ChangeProfileLable}"
+               FontSize="18"
+               FontFamily="Ubuntu"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"/>
+
+        <controls:ClickableContentView Grid.Row="0"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="End"
+                                       Margin="0,0,10,0"
+                                       >
+            <Image Source="{x:Static resources:AppResource.SaveIcon}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+            
+        </controls:ClickableContentView>
+
+        <Grid Grid.Row="1"
+              VerticalOptions="Fill"
+              HorizontalOptions="Fill">
+
+            <ffimageloading:CachedImage HorizontalOptions="Fill"
+                                        VerticalOptions="Fill"
+                                        Source=""
+                                        ErrorPlaceholder=""/>
+
+            <ffimageloading:CachedImage HeightRequest="28"
+                                        WidthRequest="28"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        Source="{x:Static resources:AppResource.}"
+                                        
+                                        Aspect="Fill"                                       
+                            >
+                <ffimageloading:CachedImage.Transformations>
+
+                </ffimageloading:CachedImage.Transformations>
+                
+            </ffimageloading:CachedImage>
+
+            <Button BorderColor="#FCFDFE"
+                    BorderWidth="2"
+                    HeightRequest="52"
+                    WidthRequest="52"
+                    CornerRadius="26"/>
+
+        </Grid>
+
+        <controls:CustomEntry Grid.Row="2"/>
     </Grid>
 
 </views:BaseContentPage>
