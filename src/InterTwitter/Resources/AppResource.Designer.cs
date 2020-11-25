@@ -70,7 +70,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ConfirmPassword.
+        ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string ConfirmButton {
             get {
@@ -88,7 +88,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ConfirmPassword Password.
+        ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string ConfirmPasswordText {
             get {
@@ -192,6 +192,15 @@ namespace InterTwitter.Resources {
         public static string LogoImage {
             get {
                 return ResourceManager.GetString("LogoImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oops, something went wrong!.
+        /// </summary>
+        public static string LogOutError {
+            get {
+                return ResourceManager.GetString("LogOutError", resourceCulture);
             }
         }
         
