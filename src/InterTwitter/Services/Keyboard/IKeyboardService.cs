@@ -6,7 +6,7 @@ namespace InterTwitter.Services.Keyboard
 {
     public interface IKeyboardService
     {
-        event EventHandler KeyboardIsShown;
-        event EventHandler KeyboardIsHidden;
+        event EventHandler KeyboardShown;
+        event EventHandler KeyboardHidden;
     }
 }

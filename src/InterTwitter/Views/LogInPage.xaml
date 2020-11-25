@@ -5,11 +5,11 @@
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
                        xmlns:views="clr-namespace:InterTwitter.Views"                         
-                       BackgroundColor="#FCFDFE">    
+                       BackgroundColor="#FCFDFE">
 
-    <Grid HorizontalOptions="Fill"
-          RowSpacing="0"
-          VerticalOptions="Fill">
+    <controls:KeyboardView HorizontalOptions="Fill"
+                           RowSpacing="0"
+                           VerticalOptions="Fill">       
 
         <Grid.RowDefinitions>
             
@@ -35,18 +35,19 @@
         </StackLayout>
 
         <!--ENTRY BLOCK-->
-        <StackLayout Grid.Row="1"
-                     Margin="0,40,0,0"
-                     Orientation="Vertical">
+        <StackLayout Grid.Row="1">
 
             <controls:CustomEntry x:Name="emailEntry"
                                   Placeholder="{x:Static resources:AppResource.EmailText}" 
                                   Style="{StaticResource CustomEntryStyle}"
+                                  Keyboard="Email"
+                                  ReturnType="Next"
                                   Text="{Binding EmailEntry}"/>
 
             <controls:CustomEntry x:Name="passwordEntry"
                                   Placeholder="{x:Static resources:AppResource.PasswordText}"
                                   Style="{StaticResource CustomEntryStyle}"
+                                  ReturnType="Done"
                                   IsPassword="True"
                                   Text="{Binding PasswordEntry}"/>
             
@@ -81,6 +82,6 @@
                 IsVisible="{Binding IsKeyboardButtonVisible}"
                 Text="Sign Up"/>
 
-    </Grid>
+    </controls:KeyboardView>
 
 </views:BaseContentPage>

@@ -13,7 +13,6 @@ namespace InterTwitter.ViewModels
     public class LogInPageViewModel : BaseViewModel
     {
         private readonly IAuthorizationService _authorizationService;
-        private readonly IKeyboardService _keyboardService;
         private readonly IUserDialogs _userDialogs;
 
         public LogInPageViewModel(INavigationService navigationService,
@@ -23,11 +22,10 @@ namespace InterTwitter.ViewModels
                                  : base(navigationService)
         {
             _authorizationService = authorizationService;
-            _keyboardService = keyboardService;
             _userDialogs = userDialogs;
 
-            _keyboardService.KeyboardIsShown += KeyboardIsShown;
-            _keyboardService.KeyboardIsHidden += KeyboardIsHidden;
+            keyboardService.KeyboardShown += KeyboardShown;
+            keyboardService.KeyboardHidden += KeyboardHidden;
 
             IsButtonEnabled = false;
         }
@@ -62,7 +60,7 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isKeyboardButtonVisible, value);
         }
 
-        private bool _isSignButtonsBlockVisible;
+        private bool _isSignButtonsBlockVisible = true;
         public bool IsSignButtonsBlockVisible
         {
             get => _isSignButtonsBlockVisible;
@@ -118,13 +116,13 @@ namespace InterTwitter.ViewModels
            await NavigationService.NavigateAsync(nameof(SignUpMainPage));
         }
 
-        private void KeyboardIsHidden(object sender, System.EventArgs e)
+        private void KeyboardHidden(object sender, System.EventArgs e)
         {
             IsSignButtonsBlockVisible = true;
             IsKeyboardButtonVisible = false;
         }
 
-        private void KeyboardIsShown(object sender, System.EventArgs e)
+        private void KeyboardShown(object sender, System.EventArgs e)
         {
             IsSignButtonsBlockVisible = false;
             IsKeyboardButtonVisible = true;

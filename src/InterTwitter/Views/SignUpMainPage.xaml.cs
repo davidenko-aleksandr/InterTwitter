@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace InterTwitter.Views
 {
@@ -10,9 +7,13 @@ namespace InterTwitter.Views
         public SignUpMainPage()
         {
             InitializeComponent();
+
             keyboardButton.PropertyChanging += KeyboardButtonPropertyChanging;
             signButtonsBlock.PropertyChanging += SignButtonsBlockPropertyChanging;
         }
+
+
+        #region -- Private helpers -- 
 
         private void KeyboardButtonPropertyChanging(object sender, PropertyChangingEventArgs e)
         {
@@ -46,5 +47,6 @@ namespace InterTwitter.Views
             }
         }
 
+        #endregion
     }
 }
