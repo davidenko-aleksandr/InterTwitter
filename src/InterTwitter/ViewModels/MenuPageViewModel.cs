@@ -9,6 +9,7 @@ using InterTwitter.Helpers;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Views;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
 {
@@ -24,6 +25,8 @@ namespace InterTwitter.ViewModels
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
+
+            MessagingCenter.Subscribe<object>(this, Constants.OpenMenuMessage, (sender) => OpenMenu());
 
             FillMenuItemCollection();
         }
@@ -171,6 +174,11 @@ namespace InterTwitter.ViewModels
             };
 
             MenuItems = collection;
+        }
+
+        private void OpenMenu()
+        {
+            IsPresented = true;
         }
 
         #endregion

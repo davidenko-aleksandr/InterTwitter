@@ -27,7 +27,7 @@
                                        BindingContext="{x:Reference authorizationNavigationBar}"
                                        HorizontalOptions="FillAndExpand"
                                        VerticalOptions="FillAndExpand"
-                                       Command="{Binding GoBackCommand}">
+                                       Command="{Binding OpenMenuCommand}">
 
             <Image Source="{x:Static resources:AppResource.LeftImage}"
                    VerticalOptions="Center"

@@ -132,6 +132,8 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <BundleResource Include="stylecop.json" />
+    <BundleResource Include="Resources\ic_setting%402x.png" />
+    <BundleResource Include="Resources\ic_setting%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
