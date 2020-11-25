@@ -23,6 +23,7 @@ namespace InterTwitter.Controls
         public Entry Entry { get; set; }
 
         private static readonly BindableProperty IsValidProperty = BindableProperty.Create(
+                                                        
                                                         propertyName: nameof(IsValid),
                                                         returnType: typeof(bool),
                                                         declaringType: typeof(CustomEntry),

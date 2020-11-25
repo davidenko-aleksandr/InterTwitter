@@ -52,7 +52,6 @@
     <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1909" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Enums\" />
     <Folder Include="Resources\" />
     <Folder Include="Extensions\" />
     <Folder Include="Services\Authorization\" />

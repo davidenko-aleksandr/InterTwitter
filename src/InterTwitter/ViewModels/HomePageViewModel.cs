@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using InterTwitter.Enums;
 using InterTwitter.Helpers;
 using InterTwitter.Models;
 using Prism.Navigation;
-using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
 {
     public class HomePageViewModel : BaseViewModel
     {
-        private int _lastItemAppearedIdx = 0;
-        private bool _lastDirectionWasUp = false;
 
         public HomePageViewModel(INavigationService navigationService)
                                 : base(navigationService)
@@ -27,6 +25,13 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _items, value);
         }
 
+        private MovingStates _movingState;
+        public MovingStates MovingState
+        {
+            get => _movingState;
+            set => SetProperty(ref _movingState, value);
+        }
+
         public double LastY { get; set; }
 
         public ICommand ScrollCommand => SingleExecutionCommand.FromFunc<double>(OnScrollCommandAsync);
@@ -37,11 +42,25 @@ namespace InterTwitter.ViewModels
 
             if (scrollY > LastY)
             {
-                //BarMargin = new Thickness(BarMargin.Left, BarMargin.Top - 1, BarMargin.Right, BarMargin.Bottom);
+                if (MovingState is not MovingStates.MovingDown)
+                {
+                    MovingState = MovingStates.MovingDown;
+                }
+                else
+                {
+                    Debug.WriteLine("MovingState is MovingDown");
+                }
             }
             else if (scrollY < LastY)
             {
-                //BarMargin = new Thickness(BarMargin.Left, BarMargin.Top + 1, BarMargin.Right, BarMargin.Bottom);
+                if (MovingState is not MovingStates.MovingUp)
+                {
+                    MovingState = MovingStates.MovingUp;
+                }
+                else
+                {
+                    Debug.WriteLine("MovingState is MovingUp");
+                }
             }
 
             LastY = scrollY;

@@ -57,7 +57,7 @@
         <controls:HomePageNavigationBar  VerticalOptions="Start"
                                          HorizontalOptions="FillAndExpand"
                                          BackgroundColor="White"
-                                         Margin="{Binding BarMargin, Mode=TwoWay}"/>
+                                         MovingState="{Binding MovingState}"/>
         
     </Grid>
     
