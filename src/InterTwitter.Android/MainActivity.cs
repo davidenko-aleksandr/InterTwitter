@@ -8,6 +8,8 @@ using Prism.Ioc;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Acr.UserDialogs;
+using InterTwitter.Services.Keyboard;
+using InterTwitter.Droid.Services.Keyboard;
 
 namespace InterTwitter.Droid
 {
@@ -47,6 +49,7 @@ namespace InterTwitter.Droid
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<IKeyboardService, KeyboardService>();
         }
     }
 }

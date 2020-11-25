@@ -32,7 +32,6 @@ namespace InterTwitter
         {
             //pages & viewmodels
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<TestPage, TestPageViewModel>();
             containerRegistry.RegisterForNavigation<LogInPage, LogInPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpMainPage, SignUpMainPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpPasswordPage, SignUpPasswordPageViewModel>();

@@ -1,7 +1,7 @@
 ﻿using Foundation;
 using InterTwitter.iOS.Renderers.Views;
 using UIKit;
-using InterTwitter.Controls.Views;
+using InterTwitter.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using CoreGraphics;
@@ -33,7 +33,7 @@ namespace InterTwitter.iOS.Renderers.Views
 
         #endregion
 
-        #region -- Private Helpers --
+        #region -- Private helpers --
 
         private void RegisterForKeyboardNotifications()
         {

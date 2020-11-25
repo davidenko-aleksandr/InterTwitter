@@ -8,16 +8,17 @@
                        xmlns:validators="clr-namespace:InterTwitter.Validators"
                        xmlns:views="clr-namespace:InterTwitter.Views"
                        BackgroundColor="#FCFDFE">
-    
-    <Grid HorizontalOptions="Fill"
-          RowSpacing="0"
-          VerticalOptions="Fill">
+
+    <controls:KeyboardView x:Name="keyboardView"
+                           HorizontalOptions="Fill"
+                           RowSpacing="0">
 
         <Grid.RowDefinitions>
-            
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="0.4*" />
-            <RowDefinition Height="0.6*" />
+
+            <RowDefinition Height="100" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
 
         </Grid.RowDefinitions>
 
@@ -32,18 +33,37 @@
 
             <Label Style="{StaticResource AccountLabelStyle}"
                    Text="{x:Static resources:AppResource.GetAccountLabel}"/>
-            
+
         </StackLayout>
 
         <!--  ENTRY BLOCK  -->
         <StackLayout Grid.Row="1"
-                     Margin="0,40,0,0"
                      Orientation="Vertical">
 
-            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.NameText}" 
-                                  Style="{StaticResource CustomEntryStyle}" />
+            <controls:CustomEntry x:Name="nameEntry"
+                                  ReturnType="Next"
+                                  Keyboard="Email"
+                                  Placeholder="{x:Static resources:AppResource.NameText}" 
+                                  Style="{StaticResource CustomEntryStyle}">
 
-            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
+                <!--<controls:CustomEntry.Triggers>
+
+                    <EventTrigger Event="EntryFocusChanged">
+
+                        <triggers:ButtonsVisibilityTrigger SignInButton="{Binding Source={x:Reference signInLabel}}"
+                                                           SignUpButton="{Binding Source={x:Reference signUpButton}}"
+                                                           ShowUpButton="{Binding Source={x:Reference signUpKeyboardButton}}"/>
+
+                    </EventTrigger>
+
+                </controls:CustomEntry.Triggers>-->
+
+            </controls:CustomEntry>
+
+            <controls:CustomEntry x:Name="emailEntry"
+                                  ReturnType="Done"
+                                  Keyboard="Email"
+                                  Placeholder="{x:Static resources:AppResource.EmailText}"
                                   Style="{StaticResource CustomEntryStyle}">
 
                 <controls:CustomEntry.Behaviors>
@@ -53,25 +73,91 @@
 
                 </controls:CustomEntry.Behaviors>
 
+                <!--<controls:CustomEntry.Triggers>
+
+                    <EventTrigger Event="EntryFocusChanged">
+
+                        <triggers:ButtonsVisibilityTrigger SignInButton="{Binding Source={x:Reference signInLabel}}"
+                                                           SignUpButton="{Binding Source={x:Reference signUpButton}}"
+                                                           ShowUpButton="{Binding Source={x:Reference signUpKeyboardButton}}"/>
+
+                    </EventTrigger>
+
+                </controls:CustomEntry.Triggers>-->
+
             </controls:CustomEntry>
 
         </StackLayout>
 
         <!--  BUTTON BLOCK  -->
-        <StackLayout Grid.Row="2"
+        <StackLayout x:Name="signButtonsBlock"
+                     Grid.Row="2"
                      HorizontalOptions="Fill"
                      Orientation="Vertical"
-                     VerticalOptions="Fill">
+                     VerticalOptions="Fill"
+                     IsVisible="{Binding IsSignButtonsBlockVisible}">
 
-            <Button Style="{StaticResource LoginButtonStyle}"
-                    Text="{x:Static resources:AppResource.SignUpButton}" />
+            <!--<StackLayout.Triggers>
 
-            <Label Style="{StaticResource UnderButtonLabelStyle}"
-                   Text="{x:Static resources:AppResource.LogInButton}" />
+                <DataTrigger TargetType="StackLayout"
+                             Binding="{Binding Source={x:Reference signUpKeyboardButton}, Path=IsVisible}"
+                             Value="False">
+
+                    <Setter Property="IsVisible"
+                            Value="True"/>
+
+                </DataTrigger>
+
+            </StackLayout.Triggers>-->
+
+            <Button x:Name="signUpButton"
+                    Style="{StaticResource LoginButtonStyle}"
+                    Text="{x:Static resources:AppResource.SignUpButton}" >
+
+            </Button>
+
+            <Label x:Name="signInLabel"
+                   Style="{StaticResource UnderButtonLabelStyle}"
+                   Text="{x:Static resources:AppResource.LogInButton}">
+
+            </Label>
 
         </StackLayout>
 
-    </Grid>
-    
+        <Button x:Name="keyboardButton" 
+                VerticalOptions="EndAndExpand"
+                BackgroundColor="#2356C5"
+                HeightRequest="60"
+                TextColor="White"
+                CornerRadius="0"
+                Grid.Row="3"
+                IsVisible="{Binding IsKeyboardButtonVisible}"
+                Text="Sign Up">
+
+            <!--<Button.Triggers>
+
+                <MultiTrigger TargetType="Button">
+
+                    <MultiTrigger.Conditions>
+
+                        <BindingCondition Binding="{Binding Source={x:Reference nameEntry}, Path=IsEntryFocused}"
+                                          Value="False"/>
+
+                        <BindingCondition Binding="{Binding Source={x:Reference emailEntry}, Path=IsEntryFocused}"
+                                          Value="False"/>
+                        
+                    </MultiTrigger.Conditions>
+
+                    <Setter Property="IsVisible"
+                            Value="False"/>
+
+                </MultiTrigger>
+
+            </Button.Triggers>-->
+
+        </Button>
+
+    </controls:KeyboardView>
+
 </views:BaseContentPage>
 

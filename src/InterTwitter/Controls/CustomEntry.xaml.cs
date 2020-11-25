@@ -7,12 +7,12 @@ using Xamarin.Forms.Xaml;
 
 namespace InterTwitter.Controls
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CustomEntry : ContentView
     {
         public CustomEntry()
         {
             InitializeComponent();
+
             Entry = entry;
         }
 
@@ -20,7 +20,7 @@ namespace InterTwitter.Controls
 
         #region -- Public Properties --
 
-        public Entry Entry { get; set; }
+        public BorderlessEntry Entry { get; set; }
 
         private static readonly BindableProperty IsValidProperty = BindableProperty.Create(
                                                         propertyName: nameof(IsValid),
@@ -120,6 +120,30 @@ namespace InterTwitter.Controls
             set => SetValue(PlaceholderProperty, value);
         }
 
+        public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(
+                                                         propertyName: nameof(Keyboard),
+                                                         returnType: typeof(Keyboard),
+                                                         declaringType: typeof(CustomEntry),
+                                                         defaultValue: null,
+                                                         defaultBindingMode: BindingMode.TwoWay);
+        public Keyboard Keyboard
+        {
+            get => (Keyboard)GetValue(KeyboardProperty);
+            set => SetValue(KeyboardProperty, value);
+        }
+
+        public static readonly BindableProperty ReturnTypeProperty = BindableProperty.Create(
+                                                         propertyName: nameof(ReturnType),
+                                                         returnType: typeof(ReturnType),
+                                                         declaringType: typeof(CustomEntry),
+                                                         defaultValue: null,
+                                                         defaultBindingMode: BindingMode.TwoWay);
+        public ReturnType ReturnType
+        {
+            get => (ReturnType)GetValue(ReturnTypeProperty);
+            set => SetValue(ReturnTypeProperty, value);
+        }
+
         public static readonly BindableProperty TextProperty = BindableProperty.Create(
                                                          propertyName: nameof(Text),
                                                          returnType: typeof(string),
@@ -151,14 +175,7 @@ namespace InterTwitter.Controls
 
         private void OnEyeClickCommand()
         {
-            if (IsPasswordLocal)
-            {
-                Eye.Source = AppResource.EyeOnImage;
-            }
-            else
-            {
-                Eye.Source = AppResource.EyeOffImage;
-            }
+            Eye.Source = IsPasswordLocal ? AppResource.EyeOnImage : AppResource.EyeOffImage;
 
             IsPasswordLocal = !IsPasswordLocal;
         }
@@ -213,6 +230,5 @@ namespace InterTwitter.Controls
         }
 
         #endregion
-
     }
 }
