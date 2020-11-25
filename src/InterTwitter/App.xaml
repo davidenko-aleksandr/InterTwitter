@@ -83,7 +83,9 @@
             <Setter Property="BackgroundColor"
                     Value="#2356C5"/>
             <Setter Property="HeightRequest"
-                    Value="60"/>
+                    Value="50"/>
+            <Setter Property="TextTransform"
+                    Value="None"/>
             <Setter Property="TextColor"
                     Value="White"/>
             <Setter Property="CornerRadius"

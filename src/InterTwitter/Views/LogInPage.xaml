@@ -16,7 +16,7 @@
             <RowDefinition Height="100" />
             <RowDefinition Height="200" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="60" />
+            <RowDefinition Height="50" />
 
         </Grid.RowDefinitions>
 
@@ -37,15 +37,13 @@
         <!--ENTRY BLOCK-->
         <StackLayout Grid.Row="1">
 
-            <controls:CustomEntry x:Name="emailEntry"
-                                  Placeholder="{x:Static resources:AppResource.EmailText}" 
+            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
                                   Style="{StaticResource CustomEntryStyle}"
                                   Keyboard="Email"
                                   ReturnType="Next"
                                   Text="{Binding EmailEntry}"/>
 
-            <controls:CustomEntry x:Name="passwordEntry"
-                                  Placeholder="{x:Static resources:AppResource.PasswordText}"
+            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.PasswordText}"
                                   Style="{StaticResource CustomEntryStyle}"
                                   ReturnType="Done"
                                   IsPassword="True"
@@ -80,7 +78,8 @@
                 Grid.Row="3"
                 Style="{StaticResource KeyboardButton}"
                 IsVisible="{Binding IsKeyboardButtonVisible}"
-                Text="Sign Up"/>
+                Text="{x:Static resources:AppResource.LogInButton}" 
+                Command="{Binding LogInClickCommand}"/>
 
     </controls:KeyboardView>
 
