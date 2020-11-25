@@ -6,6 +6,9 @@ namespace InterTwitter.ViewModels
 {
     public class MenuItemViewModel : BindableBase
     {
+
+        #region -- Public properties --
+
         private string _text;
         public string Text
         {
@@ -40,5 +43,8 @@ namespace InterTwitter.ViewModels
             get => _navigationCommand;
             set => SetProperty(ref _navigationCommand, value);
         }
+
+        #endregion
+
     }
 }

@@ -39,20 +39,20 @@ namespace InterTwitter.Services.Authorization
                 {
                     var users = getUsersResult.Result;
 
-                    var user = users.First(x => x.Email == email && x.Password == password);                
+                    var user = users.First(x => x.Email == email && x.Password == password);
 
                     await Task.Delay(300);
 
                     if (user != null)
                     {
                         _settingsService.UserEmail = user.Email;
-                   
+
                         result.SetSuccess(true);
                     }
                     else
                     {
                         result.SetFailure(false);
-                    }                 
+                    }
                 }
                 else
                 {
@@ -74,7 +74,7 @@ namespace InterTwitter.Services.Authorization
             try
             {
                 var getUsersResult = await _userService.GetUsersAsync();
-               
+
                 if (getUsersResult.IsSuccess)
                 {
                     var users = getUsersResult.Result;
@@ -86,11 +86,11 @@ namespace InterTwitter.Services.Authorization
                     if (user == null)
                     {
                         user = new User()
-                                   {
-                                       Email = email,
-                                       Name = name,
-                                       Password = password,
-                                   };
+                        {
+                            Email = email,
+                            Name = name,
+                            Password = password,
+                        };
 
                         await _userService.AddUserAsync(user);
 
@@ -103,7 +103,7 @@ namespace InterTwitter.Services.Authorization
                         result.SetFailure(false);
                     }
                 }
-                else 
+                else
                 {
                     result.SetFailure(false);
                 }
@@ -116,9 +116,24 @@ namespace InterTwitter.Services.Authorization
             return result;
         }
 
-        public void LogOut()
+        public async Task<AOResult<bool>> LogOutAsync()
         {
-            _settingsService.ClearData();
+            var result = new AOResult<bool>();
+
+            try
+            {
+                _settingsService.ClearData();
+
+                await Task.Delay(300);
+
+                result.SetSuccess(true);
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(LogOutAsync)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
         }
 
         #endregion
