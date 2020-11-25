@@ -1,4 +1,5 @@
-﻿using InterTwitter.Helpers;
+﻿using InterTwitter.Enums;
+using InterTwitter.Helpers;
 using InterTwitter.ViewModels.HomePageItems;
 using System;
 using System.Collections.Generic;
@@ -9,32 +10,62 @@ namespace InterTwitter.Services.Owl
 {
     public class OwlService : IOwlService
     {
-        private List<OwlPictureViewModel> _owlPicturesMock;
-        private List<OwlSomePicturesViewModelcs> _owlSomePicturesMock;
-        private List<OwlAlbumViewModel> _owlTwoPicturesMock;
+        private List<OwlOneImageViewModel> _owlOneImageMock;
+        private List<OwlFewImagesViewModel> _owlFewImagesMock;
+        private List<OwlAlbumViewModel> _owlAlbumMock;
 
         public OwlService()
         {
-            GetOwlPicture();
-            GetOwlTwoPictures();
-            GetOwlSomePictures();
+            GetOwlOneImage();
+            GetOwlAlbum();
+            GetOwlFewImages();
         }
 
         #region -- IOwlService Implementation --
 
-        public async Task<AOResult<OwlPictureViewModel>> GetOwlPictureAsync()
+        public async Task<AOResult<T>> GetOwlDataAsync<T>(OwlType owlType) where T : OwlViewModel, new()
         {
-            var result = new AOResult<OwlPictureViewModel>();
+            var result = new AOResult<T>();
 
             try
             {
-                var owl = _owlPicturesMock.First(owl => owl.OwlId == owl.UserId);
+                T _owl;
 
-                await Task.Delay(300);
-
-                if (owl != null)
+                switch (owlType)
                 {
-                    result.SetSuccess(owl);
+                    case OwlType.OneImage:
+                        GetOwlOneImage();
+                        _owl = _owlOneImageMock.First(owl => owl.AuthorId == owl.Id) as T;
+                        break;
+
+                    case OwlType.FewImages:
+                        GetOwlFewImages();
+                        _owl = _owlFewImagesMock.First(owl => owl.AuthorId == owl.Id) as T;
+                        break;
+
+                    case OwlType.Album:
+                        GetOwlAlbum();
+                        _owl = _owlAlbumMock.First(owl => owl.AuthorId == owl.Id) as T;
+                        break;
+
+                    //case OwlType.video:
+                    //    break;
+
+                    //case OwlType.Gif:
+                    //    break;
+
+                    //case OwlType.NoMedia:
+                    //    break;
+
+                    default:
+                        _owl = null;
+                        break;
+                }
+                //await Task.Delay(300);
+
+                if (_owl != null)
+                {
+                    result.SetSuccess(_owl);
                 }
                 else
                 {
@@ -43,61 +74,7 @@ namespace InterTwitter.Services.Owl
             }
             catch (Exception ex)
             {
-                result.SetError($"{nameof(GetOwlPictureAsync)}: exception", "Something went wrong", ex);
-            }
-
-            return result;
-        }
-
-        public async Task<AOResult<OwlAlbumViewModel>> GetOwlTwoPicturesAsync()
-        {
-            var result = new AOResult<OwlAlbumViewModel>();
-
-            try
-            {
-                var owl = _owlTwoPicturesMock.First(owl => owl.OwlId == owl.UserId);
-
-                await Task.Delay(300);
-
-                if (owl != null)
-                {
-                    result.SetSuccess(owl);
-                }
-                else
-                {
-                    result.SetFailure();
-                }
-            }
-            catch (Exception ex)
-            {
-                result.SetError($"{nameof(GetOwlTwoPicturesAsync)}: exception", "Something went wrong", ex);
-            }
-
-            return result;
-        }
-
-        public async Task<AOResult<OwlSomePicturesViewModelcs>> GetOwlSomePicturesAsync()
-        {
-            var result = new AOResult<OwlSomePicturesViewModelcs>();
-
-            try
-            {
-                var owl = _owlSomePicturesMock.First(owl => owl.OwlId == owl.UserId);
-
-                await Task.Delay(300);
-
-                if (owl != null)
-                {
-                    result.SetSuccess(owl);
-                }
-                else
-                {
-                    result.SetFailure();
-                }
-            }
-            catch (Exception ex)
-            {
-                result.SetError($"{nameof(GetOwlTwoPicturesAsync)}: exception", "Something went wrong", ex);
+                result.SetError($"{nameof(GetOwlDataAsync)}: exception", "Something went wrong", ex);
             }
 
             return result;
@@ -107,60 +84,71 @@ namespace InterTwitter.Services.Owl
         #endregion
 
         #region -- Private helpers --
-        private void GetOwlPicture()
+        private List<OwlOneImageViewModel> GetOwlOneImage()
         {
-            _owlPicturesMock = new List<OwlPictureViewModel>()
+            _owlOneImageMock = new List<OwlOneImageViewModel>()
             {
-                new OwlPictureViewModel()
+                new OwlOneImageViewModel()
                 {
-                    UserId = 1,
-                    OwlId = 1,
+                    Id = 1,
+                    AuthorId = 1,
                     AuthorAvatar = "avatar.png",
-                    PostDate = DateTime.Now.ToString("dd/MM/yyyy"),
+                    PostDate = DateTime.Now.ToString("dd.MM.yyyy"),
                     PostTime = DateTime.Now.ToString("HH:mm"),
                     PostPhoto = "mac_book.png",
-                    PostLabel = "This is a Post Label",
-                    PostDescription = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                    AuthorNickName = "This is a Post Label",
+                    Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
                 }
             };
+
+            return _owlOneImageMock;
         }
 
-        private void GetOwlTwoPictures()
+        private List<OwlAlbumViewModel> GetOwlAlbum()
         {
-            _owlTwoPicturesMock = new List<OwlAlbumViewModel>()
+            _owlAlbumMock = new List<OwlAlbumViewModel>()
             {
                 new OwlAlbumViewModel()
                 {
-                    UserId = 1,
-                    OwlId = 1,
+                    Id = 1,
+                    AuthorId = 1,
                     AuthorAvatar = "avatar.png",
                     PostDate = DateTime.Now.ToString("dd/MM/yyyy"),
                     PostTime = DateTime.Now.ToString("HH:mm"),
                     PostPhotoOne = "mac_book.png",
                     PostPhotoTwo = "mac_book.png",
-                    PostLabel = "This is a Post Label",
-                    PostDescription = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
-                }
+                    PostPhotoThree = "mac_book.png",
+                    PostPhotoFour = "mac_book.png",
+                    PostPhotoFive = "mac_book.png",
+                    PostPhotoSix = "mac_book.png",
+                    AuthorNickName = "This is a Post Label",
+                    Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                }                
             };
+
+            return _owlAlbumMock;
         }
 
-        private void GetOwlSomePictures()
+        private List<OwlFewImagesViewModel> GetOwlFewImages()
         {
-            _owlSomePicturesMock = new List<OwlSomePicturesViewModelcs>()
+            _owlFewImagesMock = new List<OwlFewImagesViewModel>()
             {
-                new OwlSomePicturesViewModelcs()
+                new OwlFewImagesViewModel()
                 {
-                    UserId = 1,
-                    OwlId = 1,
+                    Id = 1,
+                    AuthorId = 1,
                     AuthorAvatar = "avatar.png",
                     PostDate = DateTime.Now.ToString("dd/MM/yyyy"),
                     PostTime = DateTime.Now.ToString("HH:mm"),
                     PostPhotoOne = "mac_book.png",
                     PostPhotoTwo = "mac_book.png",
-                    PostLabel = "This is a Post Label",
-                    PostDescription = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                    PostPhotoThree = "mac_book.png",
+                    AuthorNickName = "This is a Post Label",
+                    Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
                 }
             };
+
+            return _owlFewImagesMock;
         }
 
         #endregion

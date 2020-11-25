@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using InterTwitter.Enums;
 using InterTwitter.Services.Owl;
 using InterTwitter.ViewModels.HomePageItems;
 using Prism.Navigation;
 
 namespace InterTwitter.ViewModels
 {
-
     public class HomePageViewModel : BaseViewModel
     {
         private readonly IOwlService _owlService;
+
+        private OwlOneImageViewModel _owlOneImage;
+        private OwlAlbumViewModel _owlAlbum;
+        private OwlFewImagesViewModel _owlFewImages;
+
         public HomePageViewModel(
                                 INavigationService navigationService,
                                 IOwlService owlService)
@@ -28,57 +32,41 @@ namespace InterTwitter.ViewModels
             set { SetProperty(ref _owls, value); }
         }
 
-        private OwlPictureViewModel _owlPicture;
-        public OwlPictureViewModel OwlPicture
-        {
-            get { return _owlPicture; }
-            set { SetProperty(ref _owlPicture, value); }
-        }
-
-        private OwlAlbumViewModel _owlAlbum;
-        public OwlAlbumViewModel OwlAlbum
-        {
-            get { return _owlAlbum; }
-            set { SetProperty(ref _owlAlbum, value); }
-        }
-
-        private OwlSomePicturesViewModelcs _owlSomePictures;
-
         #endregion
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await GetOwlPicture();
-            await GetOwlTwoPictures();
-            await GetOwlSomePictures();
+            await GetOwlImage();
+            await GetOwlAlbum();
+            await GetOwlFewImages();
 
-            Owls = new ObservableCollection<OwlViewModel>() { _owlPicture, _owlAlbum, _owlSomePictures };
+            Owls = new ObservableCollection<OwlViewModel>() { _owlFewImages, _owlOneImage,  _owlAlbum };
         }
 
         #region -- Private helpers --
 
-        private async Task<OwlPictureViewModel> GetOwlPicture()
+        private async Task<OwlOneImageViewModel> GetOwlImage()
         {
-            _owlPicture = new OwlPictureViewModel();
-            var owlService = await _owlService.GetOwlPictureAsync();
+            _owlOneImage = new OwlOneImageViewModel();
+            var owlService = await _owlService.GetOwlDataAsync<OwlOneImageViewModel>(OwlType.OneImage);
 
-            return _owlPicture = owlService.Result;
+            return _owlOneImage = owlService.Result;
         }
 
-        private async Task<OwlAlbumViewModel> GetOwlTwoPictures()
+        private async Task<OwlAlbumViewModel> GetOwlAlbum()
         {
             _owlAlbum = new OwlAlbumViewModel();
-            var owlService = await _owlService.GetOwlTwoPicturesAsync();
+            var owlService = await _owlService.GetOwlDataAsync<OwlAlbumViewModel>(OwlType.Album);
 
             return _owlAlbum = owlService.Result;
         }
 
-        private async Task<OwlSomePicturesViewModelcs> GetOwlSomePictures()
+        private async Task<OwlFewImagesViewModel> GetOwlFewImages()
         {
-            _owlSomePictures = new OwlSomePicturesViewModelcs();
-            var owlService = await _owlService.GetOwlSomePicturesAsync();
+            _owlFewImages = new OwlFewImagesViewModel();
+            var owlService = await _owlService.GetOwlDataAsync<OwlFewImagesViewModel>(OwlType.FewImages);
 
-            return _owlSomePictures = owlService.Result;
+            return _owlFewImages = owlService.Result;
         }
         #endregion
     }

@@ -11,11 +11,12 @@
 
         <ResourceDictionary>
 
-            <DataTemplate x:Key="OwlPictureTemplate">
-                
+            <DataTemplate x:Key="OwlOneImageTemplate">
+
+
                 <ViewCell>
 
-                    <Grid>
+                    <Grid Margin="10">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="70" />
@@ -24,20 +25,95 @@
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <Image Source="{Binding AuthorAvatar}"
-                                                        Grid.Row="0" 
+                               Grid.Row="0" 
+                               Grid.Column="0" 
+                               Grid.RowSpan="3" 
+                               Margin="10,0,10,0"
+                               VerticalOptions="Start"
+                               HorizontalOptions="Center"
+                               Aspect="AspectFit" 
+                               HeightRequest="70" 
+                               WidthRequest="70"/>
+
+                        <!--<ffimageloading:CachedImage Grid.Row="0" 
                                                         Grid.Column="0" 
                                                         Grid.RowSpan="3" 
                                                         Margin="10,0,10,0"
                                                         VerticalOptions="Start"
                                                         HorizontalOptions="Center"
+                                                        DownsampleToViewSize="true"
                                                         Aspect="AspectFit" 
                                                         HeightRequest="70" 
-                                                        WidthRequest="70"/>
+                                                        WidthRequest="70"
+                                                        Source="{Binding AuthorAvatar}">
+
+                        </ffimageloading:CachedImage>-->
+                        
+                        <StackLayout Grid.Row="0"
+                                     Grid.Column="1">
+
+                            <Label Text="{Binding AuthorNickName}"
+                                   TextColor="#02060E"/>
+
+                            <Image Source="{Binding PostPhoto}"
+                                   HeightRequest="250"/>
+
+                            <Label Text="{Binding Text}"
+                                   TextColor="#02060E"/>
+
+                            <StackLayout Orientation="Horizontal">
+
+                                <Label Text="{Binding PostDate}"
+                                       TextColor="#66696E"/>
+
+                                <BoxView HeightRequest="3" VerticalOptions="Center"
+                                       WidthRequest="3"
+                                       CornerRadius="1.5"
+                                       BackgroundColor="DarkGray"/> 
+
+                                <Label Text="{Binding PostTime}"
+                                       TextColor="#66696E"/>
+                                
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </Grid>
+
+                </ViewCell>
+
+            </DataTemplate>
+
+            <DataTemplate x:Key="OwlFewImageTemplate">
+
+                <ViewCell>
+
+                    <Grid Margin="10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Source="{Binding AuthorAvatar}"
+                               Grid.Row="0" 
+                               Grid.Column="0" 
+                               Grid.RowSpan="3" 
+                               Margin="10,0,10,0"
+                               VerticalOptions="Start"
+                               HorizontalOptions="Center"
+                               Aspect="AspectFit" 
+                               HeightRequest="70" 
+                               WidthRequest="70"/>
 
                         <!--<ffimageloading:CachedImage Grid.Row="0" 
                                                         Grid.Column="0" 
@@ -56,27 +132,56 @@
                         <StackLayout Grid.Row="0"
                                      Grid.Column="1">
 
-                            <Label Text="{Binding PostLabel}"/>
+                            <Label Text="{Binding AuthorNickName}"
+                                   TextColor="#02060E"/>
 
-                            <Image Source="{Binding PostPhoto}"/>
+                            <StackLayout Orientation="Horizontal">
+                                    
+                                <Image Source="{Binding PostPhotoOne}"
+                                       HeightRequest="80"
+                                       WidthRequest="80"/>
+                                
+                                <Image Source="{Binding PostPhotoTwo}"
+                                       HeightRequest="80"
+                                       WidthRequest="80"/>
 
-                            <Label Text="{Binding PostDescription}"/>
+                                <Image Source="{Binding PostPhotoThree}"
+                                       HeightRequest="80"
+                                       WidthRequest="80"/>
 
-                            <Label Text="{Binding PostTime}"/>
+                            </StackLayout>
+
+                            <Label Text="{Binding Text}"
+                                   TextColor="#02060E"/>
+
+                            <StackLayout Orientation="Horizontal">
+
+                                <Label Text="{Binding PostDate}"
+                                       TextColor="#66696E"/>
+
+                                <BoxView HeightRequest="3" VerticalOptions="Center"
+                                       WidthRequest="3"
+                                       CornerRadius="1.5"
+                                       BackgroundColor="DarkGray"/>
+
+                                <Label Text="{Binding PostTime}"
+                                       TextColor="#66696E"/>
+
+                            </StackLayout>
 
                         </StackLayout>
 
                     </Grid>
 
                 </ViewCell>
-                
+
             </DataTemplate>
 
-            <DataTemplate x:Key="OwlTwoPicturesTemplate">
+            <DataTemplate x:Key="OwlAlbumTemplate">
 
                 <ViewCell>
 
-                    <Grid>
+                    <Grid Margin="10">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="70" />
@@ -117,7 +222,8 @@
                         <StackLayout Grid.Row="0"
                                      Grid.Column="1">
 
-                            <Label Text="{Binding PostLabel}"/>
+                            <Label Text="{Binding AuthorNickName}"
+                                   TextColor="#02060E"/>
 
                             <StackLayout Orientation="Horizontal">
 
@@ -157,9 +263,23 @@
 
                             </StackLayout>
 
-                            <Label Text="{Binding PostDescription}"/>
+                            <Label Text="{Binding Text}"
+                                   TextColor="#02060E"/>
 
-                            <Label Text="{Binding PostTime}"/>
+                            <StackLayout Orientation="Horizontal">
+
+                                <Label Text="{Binding PostDate}"
+                                       TextColor="#66696E"/>
+
+                                <BoxView HeightRequest="3" VerticalOptions="Center"
+                                       WidthRequest="3"
+                                       CornerRadius="1.5"
+                                       BackgroundColor="DarkGray"/>
+
+                                <Label Text="{Binding PostTime}"
+                                       TextColor="#66696E"/>
+
+                            </StackLayout>
 
                         </StackLayout>
 
@@ -170,12 +290,14 @@
             </DataTemplate>
 
             <local:OwlTemplateSelector x:Key="OwlTemplateSelector"
-                                       OwlPictureTemplate="{StaticResource OwlPictureTemplate}"
-                                       OwlTwoPicturesTemplate="{StaticResource OwlTwoPicturesTemplate}"/>
+                                       OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
+                                       OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
+                                       OwlAlbumTemplate="{StaticResource OwlAlbumTemplate}"/>
         </ResourceDictionary>
+        
     </views:BaseContentPage.Resources>
 
-<Grid>
+    <Grid>
     
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -189,6 +311,18 @@
                   ItemsSource="{Binding Owls}"
                   HasUnevenRows="True"
                   ItemTemplate="{StaticResource OwlTemplateSelector}"/>
+
+        <Button Grid.Row="1"
+                ImageSource="ic_add_white.png"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                Margin="0, 0, 35, 30"
+                HeightRequest="48"
+                WidthRequest="48"
+                CornerRadius="24"
+                BackgroundColor="#2356C5">
+            
+        </Button>
 
         <BoxView Grid.Row="2"
                  VerticalOptions="Fill"

@@ -2,7 +2,7 @@
 
 namespace InterTwitter.ViewModels.HomePageItems
 {
-    public class OwlPictureViewModel : OwlViewModel
+    public class OwlOneImageViewModel : OwlViewModel
     {
         #region -- Public properties --
 

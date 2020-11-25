@@ -5,18 +5,18 @@ namespace InterTwitter.ViewModels.HomePageItems
     public class OwlViewModel : BindableBase
     {
 
-        private int _userId;
-        public int UserId
+        private int _Id;
+        public int Id
         {
-            get { return _userId; }
-            set { SetProperty(ref _userId, value); }
+            get { return _Id; }
+            set { SetProperty(ref _Id, value); }
         }
 
-        private int _owlId;
-        public int OwlId
+        private int _authorId;
+        public int AuthorId
         {
-            get { return _owlId; }
-            set { SetProperty(ref _owlId, value); }
+            get { return _authorId; }
+            set { SetProperty(ref _authorId, value); }
         }
 
         private string _authorAvatar;
@@ -26,18 +26,18 @@ namespace InterTwitter.ViewModels.HomePageItems
             set { SetProperty(ref _authorAvatar, value); }
         }
 
-        private string _postLabel;
-        public string PostLabel
+        private string _authorNickName;
+        public string AuthorNickName
         {
-            get { return _postLabel; }
-            set { SetProperty(ref _postLabel, value); }
+            get { return _authorNickName; }
+            set { SetProperty(ref _authorNickName, value); }
         }
 
-        private string _postDescription;
-        public string PostDescription
+        private string _text;
+        public string Text
         {
-            get { return _postDescription; }
-            set { SetProperty(ref _postDescription, value); }
+            get { return _text; }
+            set { SetProperty(ref _text, value); }
         }
 
         private string _postDate;
