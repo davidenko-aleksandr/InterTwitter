@@ -13,13 +13,7 @@ namespace InterTwitter.Services.Owl
         private List<OwlOneImageViewModel> _owlOneImageMock;
         private List<OwlFewImagesViewModel> _owlFewImagesMock;
         private List<OwlAlbumViewModel> _owlAlbumMock;
-
-        public OwlService()
-        {
-            GetOwlOneImage();
-            GetOwlAlbum();
-            GetOwlFewImages();
-        }
+        private List<OwlNoMediaViewModel> _owlNoMedia;
 
         #region -- IOwlService Implementation --
 
@@ -48,20 +42,23 @@ namespace InterTwitter.Services.Owl
                         _owl = _owlAlbumMock.First(owl => owl.AuthorId == owl.Id) as T;
                         break;
 
+                    case OwlType.NoMedia:
+                        GetOwlNoMedia();
+                        _owl = _owlNoMedia.First(owl => owl.AuthorId == owl.Id) as T;
+                        break;
+
                     //case OwlType.video:
                     //    break;
 
                     //case OwlType.Gif:
                     //    break;
 
-                    //case OwlType.NoMedia:
-                    //    break;
-
                     default:
                         _owl = null;
                         break;
                 }
-                //await Task.Delay(300);
+
+                await Task.Delay(300);
 
                 if (_owl != null)
                 {
@@ -80,10 +77,10 @@ namespace InterTwitter.Services.Owl
             return result;
         }
 
-
         #endregion
 
         #region -- Private helpers --
+
         private List<OwlOneImageViewModel> GetOwlOneImage()
         {
             _owlOneImageMock = new List<OwlOneImageViewModel>()
@@ -149,6 +146,25 @@ namespace InterTwitter.Services.Owl
             };
 
             return _owlFewImagesMock;
+        }
+
+        private List<OwlNoMediaViewModel> GetOwlNoMedia()
+        {
+            _owlNoMedia = new List<OwlNoMediaViewModel>()
+            {
+                new OwlNoMediaViewModel()
+                {
+                    Id = 1,
+                    AuthorId = 1,
+                    AuthorAvatar = "avatar.png",
+                    PostDate = DateTime.Now.ToString("dd.MM.yyyy"),
+                    PostTime = DateTime.Now.ToString("HH:mm"),
+                    AuthorNickName = "Rocky Balboa",
+                    Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone.",
+                }
+            };
+
+            return _owlNoMedia;
         }
 
         #endregion

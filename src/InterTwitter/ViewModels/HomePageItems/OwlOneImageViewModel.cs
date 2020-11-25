@@ -1,6 +1,4 @@
-﻿
-
-namespace InterTwitter.ViewModels.HomePageItems
+﻿namespace InterTwitter.ViewModels.HomePageItems
 {
     public class OwlOneImageViewModel : OwlViewModel
     {

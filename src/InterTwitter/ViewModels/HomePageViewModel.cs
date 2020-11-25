@@ -14,6 +14,7 @@ namespace InterTwitter.ViewModels
         private OwlOneImageViewModel _owlOneImage;
         private OwlAlbumViewModel _owlAlbum;
         private OwlFewImagesViewModel _owlFewImages;
+        private OwlNoMediaViewModel _owlNoMedia;
 
         public HomePageViewModel(
                                 INavigationService navigationService,
@@ -32,16 +33,7 @@ namespace InterTwitter.ViewModels
             set { SetProperty(ref _owls, value); }
         }
 
-        #endregion
-
-        public override async void OnNavigatedTo(INavigationParameters parameters)
-        {
-            await GetOwlImage();
-            await GetOwlAlbum();
-            await GetOwlFewImages();
-
-            Owls = new ObservableCollection<OwlViewModel>() { _owlFewImages, _owlOneImage,  _owlAlbum };
-        }
+        #endregion       
 
         #region -- Private helpers --
 
@@ -68,6 +60,29 @@ namespace InterTwitter.ViewModels
 
             return _owlFewImages = owlService.Result;
         }
+
+        private async Task<OwlNoMediaViewModel> GetOwlNoMedia()
+        {
+            _owlNoMedia = new OwlNoMediaViewModel();
+            var owlService = await _owlService.GetOwlDataAsync<OwlNoMediaViewModel>(OwlType.NoMedia);
+
+            return _owlNoMedia = owlService.Result;
+        }
+
+        #endregion
+
+        #region -- Overrides --
+
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            await GetOwlImage();
+            await GetOwlAlbum();
+            await GetOwlFewImages();
+            await GetOwlNoMedia();
+
+            Owls = new ObservableCollection<OwlViewModel>() { _owlFewImages, _owlNoMedia, _owlOneImage, _owlAlbum, _owlNoMedia };
+        }
+
         #endregion
     }
 }

@@ -4,6 +4,7 @@ namespace InterTwitter.ViewModels.HomePageItems
 {
     public class OwlViewModel : BindableBase
     {
+        #region -- Public properties --
 
         private int _Id;
         public int Id
@@ -53,5 +54,7 @@ namespace InterTwitter.ViewModels.HomePageItems
             get { return _postTime; }
             set { SetProperty(ref _postTime, value); }
         }
+
+        #endregion
     }
 }
