@@ -86,19 +86,26 @@ namespace InterTwitter.Services.UserService
         {
             return new List<User>()
                 {
-                       new User()
+                  new User()
                   {
                       Id = 0,
                       Email = "vasya1984@mail.ru",
                       Name = "Vasiliy",
-                      Password = "v1984!",
+                      Password = "V1984FAT",
                   },
-                      new User()
+                  new User()
                   {
                       Id = 1,
                       Email = "petya25@gmail.com",
                       Name = "Peter Stevenson",
-                      Password = "qwerty123",
+                      Password = "Qwerty123",
+                  },
+                  new User()
+                  {
+                      Id = 2,
+                      Email = "test@i.ua",
+                      Name = "Test UserName",
+                      Password = "Qwerty12",
                   }
                };
         }

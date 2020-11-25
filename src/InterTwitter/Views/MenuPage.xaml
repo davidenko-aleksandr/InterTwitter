@@ -1,12 +1,178 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:InterTwitter.Views" 
+                  xmlns:controls="clr-namespace:InterTwitter.Controls" 
+                  xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                  xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                   x:Class="InterTwitter.Views.MenuPage"
-                  xmlns:pages="clr-namespace:InterTwitter.Views">
+                  IsPresented="{Binding IsPresented, Mode=TwoWay}">
 
     <MasterDetailPage.Master>
 
-        <pages:MenuPageMaster/>
+        <pages:BaseContentPage Title="Menu">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <controls:ClickableContentView Grid.Row="0"
+                                                   Command="{Binding GoToProfilePageCommand}">
+
+                        <ffimageloading:CachedImage Source="pic_profile_big"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    VerticalOptions="CenterAndExpand">
+
+                            <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:CircleTransformation/>
+                            </ffimageloading:CachedImage.Transformations>
+
+                        </ffimageloading:CachedImage>
+
+                    </controls:ClickableContentView>
+
+                    <StackLayout Grid.Column="1"
+                                 VerticalOptions="Center">
+
+                        <controls:ClickableContentView Command="{Binding GoToProfilePageCommand}">
+
+                            <Label Text="User Name"
+                                   FontAttributes="Bold"
+                                   TextColor="Black"
+                                   FontSize="20"
+                                   FontFamily="Ubuntu"/>
+
+                        </controls:ClickableContentView>
+
+                        <controls:ClickableContentView Command="{Binding GoToProfilePageCommand}">
+
+                            <Label Text="username@gmail.com"
+                                   TextColor="#66696E"/>
+
+                        </controls:ClickableContentView>
+
+                    </StackLayout>
+
+                </Grid>
+
+                <ListView ItemsSource="{Binding MenuItems}"
+                          SeparatorVisibility="None"
+                          IsGroupingEnabled="True"
+                          CachingStrategy="RecycleElement"
+                          HasUnevenRows="True"
+                          Grid.Row="1">
+
+                    <ListView.GroupHeaderTemplate>
+
+                        <DataTemplate>
+
+                            <ViewCell Height="1">
+
+                                <BoxView HorizontalOptions="Fill"
+                                         HeightRequest="1"
+                                         Color="#DEDFE1"
+                                         IsVisible="{Binding HasSeparator}"/>
+
+                            </ViewCell>
+
+                        </DataTemplate>
+
+                    </ListView.GroupHeaderTemplate>
+
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <ViewCell Height="60">
+
+                                <Grid Padding="15,10"
+                                      HorizontalOptions="Fill"
+                                      ColumnDefinitions="Auto, *">
+
+                                    <Image Grid.Row="0"
+                                           Grid.Column="0"
+                                           Source="{Binding Icon}"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="FillAndExpand"/>
+
+                                    <Label Grid.Row="0"
+                                           Grid.Column="1"
+                                           VerticalOptions="Fill"
+                                           HorizontalOptions="Fill"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Start"
+                                           Text="{Binding Text}"
+                                           FontSize="16"
+                                           TextColor="Black">
+
+                                        <Label.Triggers>
+
+                                            <DataTrigger TargetType="Label"
+                                                     Binding="{Binding IsSelected}"
+                                                     Value="True">
+
+                                                <Setter Property="TextColor"
+                                                        Value="#2356C5" />
+
+                                            </DataTrigger>
+
+                                        </Label.Triggers>
+
+                                    </Label>
+
+                                    <Grid.GestureRecognizers>
+
+                                        <TapGestureRecognizer Command="{Binding NavigationCommand}"
+                                                              CommandParameter="{Binding .}"/>
+
+                                    </Grid.GestureRecognizers>
+
+                                </Grid>
+
+                            </ViewCell>
+
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+                <controls:ClickableContentView Grid.Row="2"
+                                               Command="{Binding LogoutCommand}">
+
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="15,0">
+
+                        <Image Source="ic_logout_blue"
+                               VerticalOptions="Center"/>
+
+                        <Label Text="Logout"
+                               VerticalOptions="Center"
+                               FontSize="16"
+                               TextColor="#2356C5"/>
+
+                    </StackLayout>
+
+                </controls:ClickableContentView>
+
+            </Grid>
+
+        </pages:BaseContentPage>
 
     </MasterDetailPage.Master>
 
@@ -16,7 +182,7 @@
 
             <x:Arguments>
 
-                <pages:MainTabbedPage/>
+                <pages:MainTabbedPage SelectedTabType="{Binding SelectedTabType, Mode=TwoWay}"/>
 
             </x:Arguments>
 

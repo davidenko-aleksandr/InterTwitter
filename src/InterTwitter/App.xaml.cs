@@ -26,8 +26,6 @@ namespace InterTwitter
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync(nameof(SignUpMainPage));
-
             var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
 
             if (isAuthorized)
@@ -52,6 +50,7 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<MessagesPage, MessagesPageViewModel>();
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
+            containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
 
             //plugins
             containerRegistry.RegisterInstance<IUserDialogs>(UserDialogs.Instance);

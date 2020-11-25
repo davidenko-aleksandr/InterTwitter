@@ -165,6 +165,9 @@
   <data name="LogoImage" xml:space="preserve">
     <value>pic_logo_small.png</value>
   </data>
+  <data name="LogOutError" xml:space="preserve">
+    <value>Oops, something went wrong!</value>
+  </data>
   <data name="NameEntryPlaceHolder" xml:space="preserve">
     <value>Name</value>
   </data>

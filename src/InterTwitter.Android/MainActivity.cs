@@ -7,6 +7,8 @@ using Prism;
 using Prism.Ioc;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using FFImageLoading;
+using FFImageLoading.Forms.Platform;
 using Acr.UserDialogs;
 
 namespace InterTwitter.Droid
@@ -25,7 +27,19 @@ namespace InterTwitter.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            
+
+            var config = new FFImageLoading.Config.Configuration()
+            {
+                VerboseLogging = false,
+                VerbosePerformanceLogging = false,
+                VerboseMemoryCacheLogging = false,
+                VerboseLoadingCancelledLogging = false,
+            };
+            ImageService.Instance.Initialize(config);
+
+            CachedImageRenderer.Init(true);
+            CachedImageRenderer.InitImageViewHandler();
+
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             UserDialogs.Init(this);
