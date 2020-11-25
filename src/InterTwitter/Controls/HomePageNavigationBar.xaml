@@ -29,9 +29,9 @@
                                        VerticalOptions="FillAndExpand"
                                        Command="{Binding GoBackCommand}">
 
-            <Image Source="{x:Static resources:AppResource.LeftImage}"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"/>
+            <Image Source="pic_profile_small.png"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"/>
 
         </controls:ClickableContentView>
 
@@ -51,17 +51,11 @@
                                        IsVisible="{Binding IsBackButtonVisible}"
                                        Command="{Binding EditCommand}">
 
-            <Image Source="{x:Static resources:AppResource.LeftImage}"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"/>
+            <Image Source="ic_add_blue.png"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"/>
 
         </controls:ClickableContentView>
-
-        <BoxView Grid.Row="1"
-                 Grid.ColumnSpan="3"
-                 HorizontalOptions="Fill"
-                 VerticalOptions="Fill"
-                 Color="#DEDFE1"/>
 
     </Grid>
 

@@ -1,12 +1,64 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:controls="clr-namespace:InterTwitter.Controls"
+                        xmlns:prism="http://prismlibrary.com"
                         x:Class="InterTwitter.Views.HomePage"
-                        Title="Home">
+                        Title="Home"
+                        BackgroundColor="White">
 
-    <Label Text="Home Page"
-           HorizontalOptions="Center"
-           VerticalOptions="Center"/>
+    <Grid>
+        
+        <ListView ItemsSource="{Binding Items}"
+                  BackgroundColor="White">
 
+            <ListView.Behaviors>
+
+                <prism:EventToCommandBehavior EventName="Scrolled"
+                                              Command="{Binding ScrollCommand}"
+                                              EventArgsParameterPath="ScrollY"/>
+
+            </ListView.Behaviors>
+
+            <ListView.Header>
+
+                <ContentView>
+                    
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                                 HeightRequest="48"/>
+                    
+                </ContentView>
+                
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <ViewCell>
+
+                        <StackLayout>
+
+                            <Label Text="{Binding Content}"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"/>
+
+                        </StackLayout>
+
+                    </ViewCell>
+
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+        <controls:HomePageNavigationBar  VerticalOptions="Start"
+                                         HorizontalOptions="FillAndExpand"
+                                         BackgroundColor="White"
+                                         Margin="{Binding BarMargin, Mode=TwoWay}"/>
+        
+    </Grid>
+    
 </views:BaseContentPage>

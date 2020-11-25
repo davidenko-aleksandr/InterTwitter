@@ -31,6 +31,13 @@ namespace InterTwitter.Services.Authorization
                     Name = "Peter Stevenson",
                     Password = "qwerty123",
                 },
+                new User()
+                {
+                    Id = 1,
+                    Email = "test@i.ua",
+                    Name = "Test",
+                    Password = "Qwerty1",
+                },
             };
 
             _settingsService = settingsService;
