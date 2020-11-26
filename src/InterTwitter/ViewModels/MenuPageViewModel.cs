@@ -6,9 +6,11 @@ using System.Windows.Input;
 using Acr.UserDialogs;
 using InterTwitter.Extensions;
 using InterTwitter.Helpers;
+using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Views;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
 {
@@ -25,10 +27,19 @@ namespace InterTwitter.ViewModels
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
 
-            FillMenuItemCollection();
+            MessagingCenter.Subscribe<object>(this, Constants.OpenMenuMessage, (sender) => OpenMenu());
+
+            InitMenuItems();
         }
 
         #region -- Public properties --
+
+        private UserModel _authorizedUser;
+        public UserModel AuthorizedUser
+        {
+            get => _authorizedUser;
+            set => SetProperty(ref _authorizedUser, value);
+        }
 
         private bool _isPresented;
         public bool IsPresented
@@ -89,6 +100,11 @@ namespace InterTwitter.ViewModels
             }
         }
 
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            await SetUserDataAsync();
+        }
+
         #endregion
 
         #region -- Private helpers --
@@ -121,7 +137,7 @@ namespace InterTwitter.ViewModels
             IsPresented = false;
         }
 
-        private void FillMenuItemCollection()
+        private void InitMenuItems()
         {
             ICommand navigationCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnNavigationCommandAsync);
 
@@ -173,6 +189,17 @@ namespace InterTwitter.ViewModels
             MenuItems = collection;
         }
 
+        private void OpenMenu()
+        {
+            IsPresented = true;
+        }
+
+        private async Task SetUserDataAsync()
+        {
+            var result = await _authorizationService.GetAuthorizedUserAsync();
+            AuthorizedUser = result.Result;
+        }
+
         #endregion
 
     }
@@ -189,6 +216,5 @@ namespace InterTwitter.ViewModels
         public bool HasSeparator { get; set; }
 
         #endregion
-
     }
 }

@@ -40,7 +40,7 @@ namespace InterTwitter.Controls
             }
             else
             {
-                Debug.WriteLine("propertyName isn't CurrentPage and CurrentPage is null");
+                //Debug.WriteLine("propertyName isn't CurrentPage and CurrentPage is null");
             }
         }
 

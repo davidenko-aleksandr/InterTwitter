@@ -3,8 +3,9 @@ using Prism.Behaviors;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using Xamarin.Forms;
-using static InterTwitter.Validators.Validator;
+using InterTwitter.Validators;
 
 namespace InterTwitter.Behaviors
 {
@@ -13,20 +14,6 @@ namespace InterTwitter.Behaviors
         private CustomEntry _control;
 
         #region -- Public Properties --
-
-        static readonly BindablePropertyKey IsValidPropertyKey = BindableProperty.CreateReadOnly(
-            propertyName: nameof(IsValid),
-            returnType: typeof(bool),
-            declaringType: typeof(CustomEntry),
-            defaultValue: false);
-
-        public static readonly BindableProperty IsValidProperty = IsValidPropertyKey.BindableProperty;
-
-        public bool IsValid
-        {
-            get => (bool)GetValue(IsValidProperty);
-            set => SetValue(IsValidPropertyKey, value);
-        }
 
         public static readonly BindableProperty RegexProperty = BindableProperty.Create(
             propertyName: nameof(Regex),
@@ -37,6 +24,18 @@ namespace InterTwitter.Behaviors
         {
             get => (string)GetValue(RegexProperty);
             set => SetValue(RegexProperty, value);
+        }
+
+        public static readonly BindableProperty RegexOptionsProperty = BindableProperty.Create(
+            propertyName: nameof(RegexOptions),
+            returnType: typeof(RegexOptions),
+            declaringType: typeof(CustomEntry),
+            defaultValue: RegexOptions.None);
+
+        public RegexOptions RegexOptions
+        {
+            get => (RegexOptions)GetValue(RegexOptionsProperty);
+            set => SetValue(RegexOptionsProperty, value);
         }
 
         public static readonly BindableProperty ComparableStringProperty = BindableProperty.Create(
@@ -69,17 +68,23 @@ namespace InterTwitter.Behaviors
         {
             base.OnAttachedTo(control);
 
-            _control = control;
-            _control.ErrorText = ErrorMessage;
-            _control.Entry.TextChanged += OnTextChanged;
+            if (control != null)
+            {
+                _control = control;
+                _control.ErrorText = ErrorMessage;
+                _control.Entry.TextChanged += OnTextChanged;
+            }
         }
 
         protected override void OnDetachingFrom(CustomEntry control)
         {
             base.OnDetachingFrom(control);
 
-            _control.Entry.TextChanged -= OnTextChanged;
-            _control = null;
+            if (_control != null)
+            {
+                _control.Entry.TextChanged -= OnTextChanged;
+                _control = null;
+            }
         }
 
         #endregion
@@ -92,20 +97,16 @@ namespace InterTwitter.Behaviors
 
             if (!string.IsNullOrEmpty(newValue))
             {
-                IsValid = CheckValidity(newValue);
-
-                _control.IsValid = IsValid;
-                _control.IsErrorVisible = !IsValid;
+                _control.IsValid = CheckValidity(newValue);
+                _control.IsErrorVisible = !_control.IsValid;
             }
         }
 
         private bool CheckValidity(string value)
-        { 
-            bool isMatch = !string.IsNullOrEmpty(ComparableString)
-                    ? value.Equals(ComparableString)
-                    : IsMatch(value, Regex);
-
-            return isMatch;
+        {
+            return !string.IsNullOrEmpty(ComparableString)
+                ? value.Equals(ComparableString)
+                : Validator.IsMatch(value, Regex, RegexOptions);
         }
 
         #endregion

@@ -19,8 +19,8 @@ namespace InterTwitter.Controls
             BindableProperty.Create(nameof(GoBackCommand), typeof(ICommand), typeof(AuthorizationNavigationBar));
         public ICommand GoBackCommand
         {
-            get => (ICommand)GetValue(GoBackCommandProperty);
-            set => SetValue(GoBackCommandProperty, value);
+            get => (ICommand)GetValue(OpenMenuCommandProperty);
+            set => SetValue(OpenMenuCommandProperty, value);
         }
 
         public static BindableProperty MovingStateProperty =

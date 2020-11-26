@@ -9,10 +9,10 @@ namespace InterTwitter.Services.UserService
 {
     public interface IUserService
     {
-        Task<AOResult<List<User>>> GetUsersAsync();
+        Task<AOResult<List<UserModel>>> GetUsersAsync();
 
-        Task<AOResult<bool>> AddUserAsync(User user);
+        Task<AOResult<bool>> AddUserAsync(UserModel user);
 
-        Task<AOResult<bool>> UpdateUserAsync(User user);     
+        Task<AOResult<bool>> UpdateUserAsync(UserModel user);     
     }
 }

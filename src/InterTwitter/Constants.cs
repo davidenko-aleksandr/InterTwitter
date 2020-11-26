@@ -12,6 +12,10 @@ namespace InterTwitter
 #else
         public const string BASE_URL = "";
 #endif
+        public const string OpenMenuMessage = "OpenMenu";
+
+        public const int NoAuthorizedUser = -1;
+        public const string DefaultProfilePicture = "pic_profile_big";
 
         public static class Navigation
         {

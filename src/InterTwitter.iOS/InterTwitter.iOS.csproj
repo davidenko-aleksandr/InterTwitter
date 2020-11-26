@@ -128,10 +128,14 @@
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\Controls\ClickableContentViewRenderer.cs" />
     <Compile Include="Renderers\Controls\UITouchesGestureRecognizer.cs" />
+    <Compile Include="Renderers\Views\KeyboardViewRenderer.cs" />
+    <Compile Include="Services\Keyboard\KeyboardService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <BundleResource Include="stylecop.json" />
+    <BundleResource Include="Resources\ic_setting%402x.png" />
+    <BundleResource Include="Resources\ic_setting%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -189,6 +193,9 @@
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.1.0.466</Version>
+    </PackageReference>
+    <PackageReference Include="Hackiftekhar.IQKeyboardManager.Xamarin">
+      <Version>6.5.6</Version>
     </PackageReference>
     <PackageReference Include="NGraphics">
       <Version>0.5.0</Version>

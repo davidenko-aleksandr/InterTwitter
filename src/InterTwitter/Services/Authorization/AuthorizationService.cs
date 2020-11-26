@@ -24,7 +24,7 @@ namespace InterTwitter.Services.Authorization
 
         public bool IsAuthorized
         {
-            get => _settingsService.UserEmail != string.Empty;
+            get => _settingsService.AuthorizedUserId != Constants.NoAuthorizedUser;
         }
 
         public async Task<AOResult<bool>> LogInAsync(string email, string password)
@@ -45,7 +45,7 @@ namespace InterTwitter.Services.Authorization
 
                     if (user != null)
                     {
-                        _settingsService.UserEmail = user.Email;
+                        _settingsService.AuthorizedUserId = user.Id;
 
                         result.SetSuccess(true);
                     }
@@ -85,16 +85,18 @@ namespace InterTwitter.Services.Authorization
 
                     if (user == null)
                     {
-                        user = new User()
+                        user = new UserModel()
                         {
+                            Id = users.Count,
                             Email = email,
                             Name = name,
                             Password = password,
-                        };
+                            Picture = Constants.DefaultProfilePicture,
+                    };
 
                         await _userService.AddUserAsync(user);
 
-                        _settingsService.UserEmail = email;
+                        _settingsService.AuthorizedUserId = user.Id;
 
                         result.SetSuccess(true);
                     }
@@ -122,7 +124,7 @@ namespace InterTwitter.Services.Authorization
 
             try
             {
-                _settingsService.ClearData();
+                _settingsService.ResetSettings();
 
                 await Task.Delay(300);
 
@@ -131,6 +133,44 @@ namespace InterTwitter.Services.Authorization
             catch (Exception ex)
             {
                 result.SetError($"{nameof(LogOutAsync)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
+        public async Task<AOResult<UserModel>> GetAuthorizedUserAsync()
+        {
+            var result = new AOResult<UserModel>();
+
+            try
+            {
+                var getUsersResult = await _userService.GetUsersAsync();
+
+                if (getUsersResult.IsSuccess)
+                {
+                    var users = getUsersResult.Result;
+
+                    var user = users.First(x => x.Id == _settingsService.AuthorizedUserId);
+
+                    await Task.Delay(300);
+
+                    if (user != null)
+                    {
+                        result.SetSuccess(user);
+                    }
+                    else
+                    {
+                        result.SetFailure();
+                    }
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetAuthorizedUserAsync)}: exception", "Something went wrong", ex);
             }
 
             return result;
