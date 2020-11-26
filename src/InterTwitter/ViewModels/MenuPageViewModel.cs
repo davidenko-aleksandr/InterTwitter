@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Acr.UserDialogs;
 using InterTwitter.Extensions;
 using InterTwitter.Helpers;
+using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Views;
 using Prism.Navigation;
@@ -28,10 +29,18 @@ namespace InterTwitter.ViewModels
 
             MessagingCenter.Subscribe<object>(this, Constants.OpenMenuMessage, (sender) => OpenMenu());
 
-            FillMenuItemCollection();
+            InitMenuItems();
+            SetUserDataAsync();
         }
 
         #region -- Public properties --
+
+        private UserModel _authorizedUser;
+        public UserModel AuthorizedUser
+        {
+            get => _authorizedUser;
+            set => SetProperty(ref _authorizedUser, value);
+        }
 
         private bool _isPresented;
         public bool IsPresented
@@ -124,7 +133,7 @@ namespace InterTwitter.ViewModels
             IsPresented = false;
         }
 
-        private void FillMenuItemCollection()
+        private void InitMenuItems()
         {
             ICommand navigationCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnNavigationCommandAsync);
 
@@ -181,6 +190,12 @@ namespace InterTwitter.ViewModels
             IsPresented = true;
         }
 
+        private async Task SetUserDataAsync()
+        {
+            var result = await _authorizationService.GetAuthorizedUserAsync();
+            AuthorizedUser = result.Result;
+        }
+
         #endregion
 
     }
@@ -197,6 +212,5 @@ namespace InterTwitter.ViewModels
         public bool HasSeparator { get; set; }
 
         #endregion
-
     }
 }

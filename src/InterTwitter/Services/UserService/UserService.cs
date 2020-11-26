@@ -8,7 +8,7 @@ namespace InterTwitter.Services.UserService
 {
     public class UserService : IUserService
     {
-        private List<User> _usersRepositoryMock;
+        private List<UserModel> _usersRepositoryMock;
 
         public UserService()
         {
@@ -17,9 +17,9 @@ namespace InterTwitter.Services.UserService
 
         #region -- IUserService Implementation --
 
-        public async Task<AOResult<List<User>>> GetUsersAsync()
+        public async Task<AOResult<List<UserModel>>> GetUsersAsync()
         {
-            var result = new AOResult<List<User>>();
+            var result = new AOResult<List<UserModel>>();
 
             try
             {
@@ -40,7 +40,7 @@ namespace InterTwitter.Services.UserService
             return result;
         }
 
-        public async Task<AOResult<bool>> AddUserAsync(User user)
+        public async Task<AOResult<bool>> AddUserAsync(UserModel user)
         {
             var result = new AOResult<bool>();
             try
@@ -57,7 +57,7 @@ namespace InterTwitter.Services.UserService
             return result;
         }
 
-        public async Task<AOResult<bool>> UpdateUserAsync(User user)
+        public async Task<AOResult<bool>> UpdateUserAsync(UserModel user)
         {
             var result = new AOResult<bool>();
 
@@ -82,25 +82,25 @@ namespace InterTwitter.Services.UserService
 
         #region -- Private Helpers -- 
 
-        private List<User> InitData()
+        private List<UserModel> InitData()
         {
-            return new List<User>()
+            return new List<UserModel>()
                 {
-                  new User()
+                  new UserModel()
                   {
                       Id = 0,
                       Email = "vasya1984@mail.ru",
                       Name = "Vasiliy",
                       Password = "V1984FAT",
                   },
-                  new User()
+                  new UserModel()
                   {
                       Id = 1,
                       Email = "petya25@gmail.com",
                       Name = "Peter Stevenson",
                       Password = "Qwerty123",
                   },
-                  new User()
+                  new UserModel()
                   {
                       Id = 2,
                       Email = "test@i.ua",

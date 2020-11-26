@@ -1,7 +1,4 @@
 ﻿using Plugin.Settings.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace InterTwitter.Services.Settings
 {
@@ -16,15 +13,15 @@ namespace InterTwitter.Services.Settings
 
         #region -- ISettingsService implementation --
 
-        public string UserEmail
+        public int AuthorizedUserId
         {
-            get => _appSettings.GetValueOrDefault(nameof(UserEmail), string.Empty);
-            set => _appSettings.AddOrUpdateValue(nameof(UserEmail), value);
+            get => _appSettings.GetValueOrDefault(nameof(AuthorizedUserId), Constants.NoAuthorizedUser);
+            set => _appSettings.AddOrUpdateValue(nameof(AuthorizedUserId), value);
         }
 
         public void ClearData()
         {
-            UserEmail = string.Empty;
+            AuthorizedUserId = Constants.NoAuthorizedUser;
         }
 
         #endregion
