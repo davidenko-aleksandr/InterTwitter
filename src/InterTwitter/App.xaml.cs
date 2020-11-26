@@ -26,7 +26,7 @@ namespace InterTwitter
         {
             InitializeComponent();
 
-            await Navigate();
+            await NavigateAsync();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -57,7 +57,7 @@ namespace InterTwitter
 
         #region -- Private Helpers --
 
-        private async Task Navigate()
+        private async Task NavigateAsync()
         {
             var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
 

@@ -19,7 +19,7 @@ namespace InterTwitter.Services.Settings
             set => _appSettings.AddOrUpdateValue(nameof(AuthorizedUserId), value);
         }
 
-        public void ClearData()
+        public void ResetSettings()
         {
             AuthorizedUserId = Constants.NoAuthorizedUser;
         }

@@ -3,6 +3,6 @@
     public interface ISettingsService
     {
         int AuthorizedUserId { get; set; }
-        void ClearData();
+        void ResetSettings();
     }
 }

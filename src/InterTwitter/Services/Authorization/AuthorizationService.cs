@@ -123,7 +123,7 @@ namespace InterTwitter.Services.Authorization
 
             try
             {
-                _settingsService.ClearData();
+                _settingsService.ResetSettings();
 
                 await Task.Delay(300);
 
