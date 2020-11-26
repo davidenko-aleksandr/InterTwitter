@@ -10,17 +10,10 @@
 
     <Grid>
 
-        <CollectionView ItemsSource="{Binding Items}"
-                        BackgroundColor="White"
-                        SelectionMode="None">
-
-            <CollectionView.Behaviors>
-
-                <prism:EventToCommandBehavior EventName="Scrolled"
-                                              Command="{Binding ScrollCommand}"
-                                              EventArgsParameterPath="VerticalOffset"/>
-
-            </CollectionView.Behaviors>
+        <controls:CustomCollectionView x:Name="customCollectionView"
+                                       ItemsSource="{Binding Items}"
+                                       BackgroundColor="White"
+                                       SelectionMode="None">
 
             <CollectionView.Header>
 
@@ -49,12 +42,12 @@
 
             </CollectionView.ItemTemplate>
 
-        </CollectionView>
+        </controls:CustomCollectionView>
 
         <controls:HomePageNavigationBar  VerticalOptions="Start"
                                          HorizontalOptions="FillAndExpand"
                                          BackgroundColor="White"
-                                         OffsetY="{Binding OffsetY}"/>
+                                         MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"/>
         
         <controls:CustomImageButton  Source="ic_add_white.png"
                                      VerticalOptions="End"
@@ -63,7 +56,7 @@
                                      Padding="12"
                                      CornerRadius="25"
                                      Margin="16"
-                                     MovingState="{Binding MovingButtonState}"/>
+                                     MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"/>
 
     </Grid>
     

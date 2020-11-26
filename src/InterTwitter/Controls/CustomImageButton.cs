@@ -6,15 +6,14 @@ namespace InterTwitter.Controls
 {
     public class CustomImageButton : ImageButton
     {
-        private static double DefaultButtonImageY { get; set; }
         public CustomImageButton()
         {
-           
+            MovingState = MovingStates.MovingDown;
         }
         #region -- Public properties --
 
         public static BindableProperty MovingStateProperty =
-            BindableProperty.Create(nameof(MovingState), typeof(MovingStates), typeof(AuthorizationNavigationBar), propertyChanged: OnMovingStatePropertyChanged);
+           BindableProperty.Create(nameof(MovingState), typeof(MovingStates), typeof(AuthorizationNavigationBar), propertyChanged: OnMovingStatePropertyChanged);
         public MovingStates MovingState
         {
             get => (MovingStates)GetValue(MovingStateProperty);
@@ -27,33 +26,34 @@ namespace InterTwitter.Controls
 
         private static void OnMovingStatePropertyChanged(BindableObject bindable, object oldvalue, object newValue)
         {
-            //var button = bindable as CustomImageButton;
-            //var newState = (MovingStates)newValue;
+            var button = bindable as CustomImageButton;
+            var oldOffset = (MovingStates)oldvalue;
+            var newOffset = (MovingStates)newValue;
 
-            //if (button is not null)
-            //{
-            //    switch (newState)
-            //    {
-            //        case MovingStates.MovingUp:
-            //            {
-            //                button.TranslateTo(button.X, button.Y + button.Height);
-            //                break;
-            //            }
-            //        case MovingStates.MovingDown:
-            //            {
-            //                button.TranslateTo(button.X, button.Y - button.Height);
-            //                break;
-            //            }
-            //        default:
-            //            {
-            //                break;
-            //            }
-            //    }
-            //}
-            //else
-            //{
-            //    Debug.WriteLine("Tab is null");
-            //}
+            if (button is not null && oldOffset != newOffset)
+            {
+                switch (newOffset)
+                {
+                    case MovingStates.MovingUp:
+                        {
+                            button.TranslateTo(0, button.Height * 2);
+                            break;
+                        }
+                    case MovingStates.MovingDown:
+                        {
+                            button.TranslateTo(0, 0);
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+            }
+            else
+            {
+                //button is null of oldOffset == newOffset 
+            }
         }
 
         #endregion

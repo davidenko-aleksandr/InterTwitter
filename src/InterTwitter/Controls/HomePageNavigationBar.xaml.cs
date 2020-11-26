@@ -23,12 +23,12 @@ namespace InterTwitter.Controls
             set => SetValue(GoBackCommandProperty, value);
         }
 
-        public static BindableProperty OffsetYProperty =
-           BindableProperty.Create(nameof(OffsetY), typeof(double), typeof(AuthorizationNavigationBar), propertyChanged: OnOffsetYPropertyChanged);
-        public double OffsetY
+        public static BindableProperty MovingStateProperty =
+           BindableProperty.Create(nameof(MovingState), typeof(MovingStates), typeof(AuthorizationNavigationBar), propertyChanged: OnMovingStatePropertyChanged);
+        public MovingStates MovingState
         {
-            get => (double)GetValue(OffsetYProperty);
-            set => SetValue(OffsetYProperty, value);
+            get => (MovingStates)GetValue(MovingStateProperty);
+            set => SetValue(MovingStateProperty, value);
         }
 
         public static BindableProperty EditCommandProperty =
@@ -39,79 +39,39 @@ namespace InterTwitter.Controls
             set => SetValue(EditCommandProperty, value);
         }
 
-        public MovingStates MovingState { get; set; }
         #endregion
 
         #region -- Private helpers --
 
-        private static void OnOffsetYPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnMovingStatePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var tab = bindable as HomePageNavigationBar;
-            var oldOffset = (double)oldValue;
-            var newOffset = (double)newValue;
+            var oldOffset = (MovingStates)oldValue;
+            var newOffset = (MovingStates)newValue;
 
-            if (tab is not null)
+            if (tab is not null && oldOffset != newOffset)
             {
-                if (newOffset > oldOffset)
+                switch (newOffset)
                 {
-                    if (tab.MovingState != MovingStates.Closed)
-                    {
-                        tab.TranslateTo(0, -tab.Height);
-                        tab.MovingState = MovingStates.Closed;
-                    }
-                }
-                else if ()
-                {
-
-                }
-                else
-                {
-                    if (tab.MovingState != MovingStates.Opened)
-                    {
-                        tab.TranslateTo(0, 0);
-                        tab.MovingState = MovingStates.Opened;
-                    }
+                    case MovingStates.MovingUp:
+                        {
+                            tab.TranslateTo(0, 0);
+                            break;
+                        }
+                    case MovingStates.MovingDown:
+                        {
+                            tab.TranslateTo(0, -tab.Height);
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
                 }
             }
             else
             {
-
-            }
-        }
-
-        private static void OnMovingStatePropertyChanged(BindableObject bindable, object oldvalue, object newValue)
-        {
-
-            var tab = bindable as HomePageNavigationBar;
-            var newState = (MovingStates)newValue;
-
-            if (tab is not null)
-            {
-
-
-
-                //switch (newState)
-                //{
-                //    case MovingStates.MovingUp:
-                //        {
-                //            tab.TranslateTo(0, -tab.Height);
-                //            tab.TranslationY 
-                //            break;
-                //        }
-                //    case MovingStates.MovingDown:
-                //        {
-                //            tab.TranslateTo(0, 0);
-                //            break;
-                //        }
-                //    default:
-                //        {
-                //            break;
-                //        }
-                //}
-            }
-            else
-            {
-                Debug.WriteLine("Tab is null");
+                //tab is null of oldOffset == newOffset 
             }
         }
 

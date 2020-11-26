@@ -1,5 +1,7 @@
-﻿using System;
+﻿using InterTwitter.Enums;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -9,16 +11,39 @@ namespace InterTwitter.Controls
 {
     public class CustomCollectionView : CollectionView
     {
+        private double _oldVerticalOffset;
         public CustomCollectionView()
         {
-            test();
+
         }
-        
-        private void test()
+
+        public static BindableProperty MovingStateProperty =
+           BindableProperty.Create(nameof(MovingState), typeof(MovingStates), typeof(CustomCollectionView));
+        public MovingStates MovingState
         {
-            
-            
-            var b = 5;
+            get => (MovingStates)GetValue(MovingStateProperty);
+            set => SetValue(MovingStateProperty, value);
         }
+
+        protected override void OnScrolled(ItemsViewScrolledEventArgs e)
+        {
+            base.OnScrolled(e);
+
+            if (e.VerticalOffset == 0d)
+            {
+                MovingState = MovingStates.MovingUp;
+            }
+            else if (e.VerticalOffset > _oldVerticalOffset)
+            {
+                MovingState = MovingStates.MovingDown;
+            }
+            else
+            {
+                MovingState = MovingStates.MovingUp;
+            }
+
+            _oldVerticalOffset = e.VerticalOffset;
+        }
+
     }
 }
