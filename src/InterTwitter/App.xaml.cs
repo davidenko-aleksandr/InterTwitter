@@ -42,6 +42,7 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<AddPostPage, AddPostPageViewModel>();
 
             //plugins
             containerRegistry.RegisterInstance(UserDialogs.Instance);
@@ -62,7 +63,7 @@ namespace InterTwitter
             var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
 
             var path = isAuthorized ? nameof(MenuPage) : nameof(LogInPage);
-            
+
             await NavigationService.NavigateAsync(path);
         }
 
