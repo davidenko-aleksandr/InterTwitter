@@ -43,7 +43,16 @@
                                   Style="{StaticResource CustomEntryStyle}" 
                                   ReturnType="Next"
                                   Keyboard="Email"
-                                  Text="{Binding Name}"/>
+                                  Text="{Binding Name}">
+
+                <controls:CustomEntry.Behaviors>
+
+                    <behaviors:ValidationBehavior ErrorMessage="{x:Static resources:AppResource.NameErrorMessage}"
+                                                  Regex="{x:Static validators:Validator.RegexName}"/>
+
+                </controls:CustomEntry.Behaviors>
+                
+            </controls:CustomEntry>
 
             <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
                                   Style="{StaticResource CustomEntryStyle}"
@@ -54,7 +63,8 @@
                 <controls:CustomEntry.Behaviors>
 
                     <behaviors:ValidationBehavior ErrorMessage="{x:Static resources:AppResource.EmailErrorMessage}"
-                                                  Regex="{x:Static validators:Validator.RegexEmail}"/>
+                                                  Regex="{x:Static validators:Validator.RegexEmail}"
+                                                  RegexOptions="IgnoreCase"/>
 
                 </controls:CustomEntry.Behaviors>
 

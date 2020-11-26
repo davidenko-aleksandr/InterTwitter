@@ -9,6 +9,7 @@ using Xamarin.Essentials;
 using Acr.UserDialogs;
 using InterTwitter.Views;
 using InterTwitter.Services.Keyboard;
+using System.Text.RegularExpressions;
 
 namespace InterTwitter.ViewModels
 {
@@ -103,7 +104,7 @@ namespace InterTwitter.ViewModels
        
         private bool ValidateData()
         {
-            return !string.IsNullOrEmpty(Name) && Validator.IsMatch(Email, Validator.RegexEmail);
+            return Validator.IsMatch(Name, Validator.RegexName) && Validator.IsMatch(Email, Validator.RegexEmail, RegexOptions.IgnoreCase);
         }
 
         private void KeyboardHidden(object sender, System.EventArgs e)
