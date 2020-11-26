@@ -12,6 +12,8 @@ namespace InterTwitter.ViewModels
     public class HomePageViewModel : BaseViewModel
     {
 
+        private double LastKnownY { get; set; }
+
         public HomePageViewModel(INavigationService navigationService)
                                 : base(navigationService)
         {
@@ -25,46 +27,61 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _items, value);
         }
 
-        private MovingStates _movingState;
-        public MovingStates MovingState
+        private MovingStates _movingBarState;
+        public MovingStates MovingBarState
         {
-            get => _movingState;
-            set => SetProperty(ref _movingState, value);
+            get => _movingBarState;
+            set => SetProperty(ref _movingBarState, value);
         }
 
-        public double LastY { get; set; }
+        private MovingStates _movingButtonState;
+        public MovingStates MovingButtonState
+        {
+            get => _movingButtonState;
+            set => SetProperty(ref _movingButtonState, value);
+        }
+
+        private double _offsetY;
+        public double OffsetY
+        {
+            get => _offsetY;
+            set => SetProperty(ref _offsetY, value);
+        }
 
         public ICommand ScrollCommand => SingleExecutionCommand.FromFunc<double>(OnScrollCommandAsync);
 
-
-        private async Task OnScrollCommandAsync(double scrollY)
+        private async Task OnScrollCommandAsync(double OffSet)
         {
 
-            if (scrollY > LastY)
-            {
-                if (MovingState is not MovingStates.MovingDown)
-                {
-                    MovingState = MovingStates.MovingDown;
-                }
-                else
-                {
-                    Debug.WriteLine("MovingState is MovingDown");
-                }
-            }
-            else if (scrollY < LastY)
-            {
-                if (MovingState is not MovingStates.MovingUp)
-                {
-                    MovingState = MovingStates.MovingUp;
-                }
-                else
-                {
-                    Debug.WriteLine("MovingState is MovingUp");
-                }
-            }
 
-            LastY = scrollY;
+            OffsetY = OffSet;
+            //if (OffSet > LastKnownY)
+            //{
+            //    if (MovingBarState is not MovingStates.MovingUp)
+            //    {
+            //        MovingBarState = MovingStates.MovingUp;
+            //        //MovingButtonState = MovingStates.MovingDown;
+            //    }
+            //    else
+            //    {
+            //        Debug.WriteLine("MovingState is MovingUp");
+            //    }
+            //}
+            //else if (OffSet < LastKnownY)
+            //{
+            //    if (MovingBarState is not MovingStates.MovingDown)
+            //    {
+            //        MovingBarState = MovingStates.MovingDown;
+            //        //MovingButtonState = MovingStates.MovingUp;
+            //    }
+            //    else
+            //    {
+            //        Debug.WriteLine("MovingState is MovingDown");
+            //    }
+            //}
 
+            //Debug.WriteLine(LastKnownY.ToString() + " " + OffSet.ToString());
+            //LastKnownY = OffSet;
         }
 
         private void FillTheList()

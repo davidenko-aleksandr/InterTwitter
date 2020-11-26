@@ -1,64 +1,70 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:prism="http://prismlibrary.com" 
                         xmlns:controls="clr-namespace:InterTwitter.Controls"
-                        xmlns:prism="http://prismlibrary.com"
                         x:Class="InterTwitter.Views.HomePage"
                         Title="Home"
                         BackgroundColor="White">
 
     <Grid>
-        
-        <ListView ItemsSource="{Binding Items}"
-                  BackgroundColor="White">
 
-            <ListView.Behaviors>
+        <CollectionView ItemsSource="{Binding Items}"
+                        BackgroundColor="White"
+                        SelectionMode="None">
+
+            <CollectionView.Behaviors>
 
                 <prism:EventToCommandBehavior EventName="Scrolled"
                                               Command="{Binding ScrollCommand}"
-                                              EventArgsParameterPath="ScrollY"/>
+                                              EventArgsParameterPath="VerticalOffset"/>
 
-            </ListView.Behaviors>
+            </CollectionView.Behaviors>
 
-            <ListView.Header>
+            <CollectionView.Header>
 
                 <ContentView>
-                    
+
                     <StackLayout HorizontalOptions="CenterAndExpand"
                                  HeightRequest="48"/>
-                    
-                </ContentView>
-                
-            </ListView.Header>
 
-            <ListView.ItemTemplate>
+                </ContentView>
+
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
 
                 <DataTemplate>
 
-                    <ViewCell>
+                    <StackLayout HeightRequest="50">
 
-                        <StackLayout>
-
-                            <Label Text="{Binding Content}"
+                        <Label Text="{Binding Content}"
                                VerticalOptions="CenterAndExpand"
                                HorizontalOptions="CenterAndExpand"/>
 
-                        </StackLayout>
-
-                    </ViewCell>
+                    </StackLayout>
 
                 </DataTemplate>
 
-            </ListView.ItemTemplate>
+            </CollectionView.ItemTemplate>
 
-        </ListView>
+        </CollectionView>
 
         <controls:HomePageNavigationBar  VerticalOptions="Start"
                                          HorizontalOptions="FillAndExpand"
                                          BackgroundColor="White"
-                                         MovingState="{Binding MovingState}"/>
+                                         OffsetY="{Binding OffsetY}"/>
         
+        <controls:CustomImageButton  Source="ic_add_white.png"
+                                     VerticalOptions="End"
+                                     HorizontalOptions="End"
+                                     BackgroundColor="#2356C5"
+                                     Padding="12"
+                                     CornerRadius="25"
+                                     Margin="16"
+                                     MovingState="{Binding MovingButtonState}"/>
+
     </Grid>
     
 </views:BaseContentPage>
