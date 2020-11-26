@@ -1,12 +1,70 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:controls="clr-namespace:InterTwitter.Controls" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                         x:Class="InterTwitter.Views.SearchPage"
                         IconImageSource="{Binding Icon}">
 
-    <Label Text="Search Page"
-           HorizontalOptions="Center"
-           VerticalOptions="Center"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+
+        <Frame Grid.Row="0"
+               Padding="0">
+
+            <StackLayout Orientation="Horizontal">
+
+                <controls:ClickableContentView Margin="15">
+
+                    <ffimageloading:CachedImage Source="{Binding AuthorizedUser.Picture}"
+                                                HorizontalOptions="CenterAndExpand"
+                                                VerticalOptions="CenterAndExpand">
+
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation/>
+                        </ffimageloading:CachedImage.Transformations>
+
+                    </ffimageloading:CachedImage>
+
+                </controls:ClickableContentView>
+
+                <Frame CornerRadius="20"
+                       Margin="0,11,11,11"
+                       HasShadow="False"
+                       HorizontalOptions="FillAndExpand"
+                       Padding="15,0"
+                       
+                       BackgroundColor="#DEDFE1">
+
+                    <controls:BorderlessEntry Placeholder="Search"
+                                              FontSize="Body"
+                                              FontFamily="Ubuntu"/>
+
+                </Frame>
+
+            </StackLayout>
+
+        </Frame>
+
+        <StackLayout Grid.Row="1"
+                     Margin="15">
+
+            <Label TextColor="Black"
+                   FontFamily="Ubuntu"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   Text="Popular theme"/>
+
+            <BoxView HeightRequest="2"
+                     Margin="0,5"
+                     BackgroundColor="#DEDFE1"/>
+
+        </StackLayout>
+
+    </Grid>
 
 </views:BaseContentPage>
