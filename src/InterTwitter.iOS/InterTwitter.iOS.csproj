@@ -430,7 +430,7 @@
     <BundleResource Include="Resources\ic_home_blue%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\._pic_profile_header_photo.jpg" />
+    <BundleResource Include="Resources\pic_profile_header_photo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default.png" />

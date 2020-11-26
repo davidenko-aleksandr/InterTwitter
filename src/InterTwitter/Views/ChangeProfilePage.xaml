@@ -11,18 +11,20 @@
     <Grid BackgroundColor="#FCFDFE">
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>            
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.24*"/>
+            <RowDefinition Height="0.17*"/>
+            <RowDefinition Height="0.17*"/>
+            <RowDefinition Height="0.17*"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <controls:ClickableContentView Grid.Row="0"                                       
+        <!--NAVIGATION BAR BLOCK-->
+        <controls:ClickableContentView Grid.Row="0" 
                                        HorizontalOptions="Start"
-                                       VerticalOptions="Center"
-                                       Margin="10,0,0,0"
+                                       VerticalOptions="End"
+                                       Margin="10,0,0,5"
                                        IsVisible="{Binding IsBackButtonVisible}"
                                        Command="{Binding GoBackCommand}">
 
@@ -34,15 +36,18 @@
 
         <Label Grid.Row="0"
                Text="{x:Static resources:AppResource.ChangeProfileLable}"
+               TextColor="#02060E"
                FontSize="18"
+               FontAttributes="Bold"
                FontFamily="Ubuntu"
-               VerticalOptions="Center"
+               Margin="0,0,0,5"
+               VerticalOptions="End"
                HorizontalOptions="Center"/>
 
         <controls:ClickableContentView Grid.Row="0"
-                                       VerticalOptions="Center"
+                                       VerticalOptions="End"
                                        HorizontalOptions="End"
-                                       Margin="0,0,10,0"
+                                       Margin="0,0,10,5"
                                        >
             <Image Source="{x:Static resources:AppResource.SaveIcon}"
                    VerticalOptions="Center"
@@ -50,38 +55,125 @@
             
         </controls:ClickableContentView>
 
-        <Grid Grid.Row="1"
-              VerticalOptions="Fill"
-              HorizontalOptions="Fill">
 
-            <ffimageloading:CachedImage HorizontalOptions="Fill"
-                                        VerticalOptions="Fill"
-                                        Source=""
-                                        ErrorPlaceholder=""/>
+        <!--BACKGROUND PICTURE BLOCK-->        
+        <ffimageloading:CachedImage Grid.Row="1"
+                                    VerticalOptions="Fill"
+                                    HorizontalOptions="Fill"
+                                    
+                                    Margin="0"
+                                    DownsampleToViewSize="True"
+                                    ErrorPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
+                                    LoadingPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
+                                    Source="{x:Static resources:AppResource.PicProfileHeaderImage}"
+                                    Aspect="AspectFit"/>
 
-            <ffimageloading:CachedImage HeightRequest="28"
-                                        WidthRequest="28"
-                                        VerticalOptions="Center"
-                                        HorizontalOptions="Center"
-                                        Source="{x:Static resources:AppResource.}"
-                                        
-                                        Aspect="Fill"                                       
-                            >
-                <ffimageloading:CachedImage.Transformations>
-                    <fftransformations:CircleTransformation />
-                </ffimageloading:CachedImage.Transformations>
+        <Frame Grid.Row="1" 
+               WidthRequest="48"
+               HeightRequest="48"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               BackgroundColor="#02060E"
+               BorderColor="#02060E"
+               CornerRadius="24"
+               Padding="0">
+            
+        <ffimageloading:CachedImage
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    DownsampleToViewSize="True"
+                                    WidthRequest="24"
+                                    HeightRequest="24"            
+                                    BackgroundColor="#02060E"
+                                    Source="{x:Static resources:AppResource.AddPhotoIcon}"
+                                    Aspect="AspectFit"
+                                    >
+            <ffimageloading:CachedImage.Transformations>
+                <fftransformations:CircleTransformation />
+            </ffimageloading:CachedImage.Transformations>
+            
+        </ffimageloading:CachedImage>
+                        
+        </Frame>
+        
+        <!--PROFILE DATA BLOCK--> 
+        <controls:ClickableContentView Grid.Row="2"
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="Start"
+                                        WidthRequest="60"
+                                        HeightRequest="60"
+                                        Padding="0"
+                                        Margin="10,-36,0,0">
+           
+            <Grid VerticalOptions="CenterAndExpand"
+                  HorizontalOptions="CenterAndExpand"
+                  BackgroundColor="Transparent">
                 
-            </ffimageloading:CachedImage>
+                  <ffimageloading:CachedImage HeightRequest="52"
+                                              WidthRequest="52"                                    
+                                              VerticalOptions="Start"
+                                              HorizontalOptions="Start"
+                                              Margin="0"
+                                              DownsampleToViewSize="True"
+                                              Aspect="AspectFit"                                              
+                                              Source="pic_profile_header_phot.jpg">
+                      
+                      <ffimageloading:CachedImage.Transformations>
+                          
+                          <fftransformations:CircleTransformation BorderSize="8"
+                                                                  BorderHexColor="#FCFDFE"/>
+                          
+                      </ffimageloading:CachedImage.Transformations> 
 
-            <Button BorderColor="#FCFDFE"
-                    BorderWidth="2"
-                    HeightRequest="52"
-                    WidthRequest="52"
-                    CornerRadius="26"/>
+                  </ffimageloading:CachedImage>
 
-        </Grid>
+                    <ffimageloading:CachedImage HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                HeightRequest="24"
+                                                WidthRequest="24"
+                                                Source="{x:Static resources:AppResource.AddPhotoIcon}">
 
-        <controls:CustomEntry Grid.Row="2"/>
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CornersTransformation CornersTransformType="AllRounded"/>
+                        </ffimageloading:CachedImage.Transformations>
+
+                    </ffimageloading:CachedImage>
+
+                </Grid>
+
+        </controls:ClickableContentView>
+
+        <controls:CustomEntry Grid.Row="2" 
+                              NameText="{x:Static resources:AppResource.NameText}"
+                              HorizontalOptions="Fill"
+                              Placeholder="{x:Static resources:AppResource.NameText}"
+                              VerticalOptions="End"
+                              Margin="20,0"/>
+        
+         <controls:CustomEntry Grid.Row="3" 
+                               NameText="{x:Static resources:AppResource.EmailText}"
+                               Placeholder="{x:Static resources:AppResource.EmailText}"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="End"
+                               Margin="20,0"/>
+        
+        <controls:CustomEntry Grid.Row="4" 
+                              NameText="{x:Static resources:AppResource.OldPasswordText}"
+                              Placeholder="{x:Static resources:AppResource.OldPasswordText}"
+                              HorizontalOptions="Fill"
+                              VerticalOptions="End"
+                              IsPassword="True"
+                              Margin="20,0"/>
+        
+        <controls:CustomEntry Grid.Row="5" 
+                              NameText="{x:Static resources:AppResource.NewPasswordText}"
+                              Placeholder="{x:Static resources:AppResource.NewPasswordText}"
+                              HorizontalOptions="Fill"
+                              VerticalOptions="End"
+                              IsPassword="True"
+                              Margin="20,0"/>
+        
+
     </Grid>
 
 </views:BaseContentPage>

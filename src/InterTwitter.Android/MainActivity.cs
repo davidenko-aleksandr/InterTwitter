@@ -36,7 +36,7 @@ namespace InterTwitter.Droid
                 VerboseLoadingCancelledLogging = false,
             };
             ImageService.Instance.Initialize(config);
-
+           
             CachedImageRenderer.Init(true);
             CachedImageRenderer.InitImageViewHandler();
 

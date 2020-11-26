@@ -2,10 +2,118 @@
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                        xmlns:resources="clr-namespace:InterTwitter.Resources" 
+                        xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                         x:Class="InterTwitter.Views.ProfilePage">
 
-    <Label Text="Profile Page"
-           HorizontalOptions="Center"
-           VerticalOptions="Center"/>
+    <views:BaseContentPage.Resources>
+        <ResourceDictionary>
+            
+            <Style TargetType="ImageButton" 
+                   x:Key="OnHeaderImageButtonStyle">
+                
+                <Setter Property="WidthRequest"
+                        Value="24"/>
+                <Setter Property="HeightRequest" 
+                        Value="24"/>
+                <Setter Property="Margin"
+                        Value="15,15"/>
+                <Setter Property="BackgroundColor"
+                        Value="#5002060E"/>
+                <Setter Property="CornerRadius"
+                        Value="12"/>
+                
+            </Style>
+            
+        </ResourceDictionary>
+    </views:BaseContentPage.Resources>
+
+    <Grid Padding="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+
+        <!--PROFILE HEADER PHOTO BLOCK-->
+        <ffimageloading:CachedImage Grid.Row="0"
+                                    HorizontalOptions="Fill"
+                                    Margin="0"
+                                    VerticalOptions="Fill"
+                                    DownsampleToViewSize="True"
+                                    ErrorPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
+                                    LoadingPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
+                                    Source="pic_profile_header_photo"
+                                    Aspect="AspectFill"/>
+
+        <ImageButton Grid.Row="0"
+                     Style="{StaticResource OnHeaderImageButtonStyle}"
+                     VerticalOptions="Start"
+                     HorizontalOptions="Start"                                   
+                     Source="ic_left_round"/>
+
+        <ImageButton Grid.Row="0"
+                     Style="{StaticResource OnHeaderImageButtonStyle}"
+                     VerticalOptions="Start"
+                     HorizontalOptions="End"
+                     Source="ic_hidden_menu_gray"/>
+
+        <ffimageloading:CachedImage Grid.Row="1"
+                                    HeightRequest="52"
+                                    WidthRequest="52"      
+                                    Margin="15,-32,0,0"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Start"                                    
+                                    DownsampleToViewSize="True"
+                                    Aspect="AspectFit"                                              
+                                    Source="pic_profile_header_photo">
+
+            <ffimageloading:CachedImage.Transformations>
+
+                <fftransformations:CircleTransformation BorderSize="8"
+                                                        BorderHexColor="#FCFDFE"/>
+
+            </ffimageloading:CachedImage.Transformations>
+
+        </ffimageloading:CachedImage>
+
+        <Button Grid.Row="1"
+                Text="{x:Static resources:AppResource.ChangeProfileLable}"
+                FontSize="12"
+                FontFamily="Ubuntu"
+                VerticalOptions="Start"
+                HorizontalOptions="End"
+                Margin="10,2"
+                TextTransform="None"
+                CornerRadius="12"
+                Padding="0"
+                HeightRequest="24"
+                WidthRequest="120"
+                BorderColor="#66696E"
+                BackgroundColor="Transparent"
+                BorderWidth="1"/>
+
+        <Label Grid.Row="1"
+               VerticalOptions="Start"
+               HorizontalOptions="Start"
+               TextColor="#02060E"
+               Margin="12,32"
+               Text="Jaylon Kenter"
+               FontAttributes="Bold"
+               FontSize="16"
+               FontFamily="Ubuntu"/>
+
+        <Label Grid.Row="1"
+               VerticalOptions="Start"
+               HorizontalOptions="Start"
+               Text="jaulonkenter@gmail.com"
+               TextColor="#66696E"
+               Margin="12,52"
+               FontSize="12"
+               FontFamily="Ubuntu"/>
+                
+    </Grid>
 
 </views:BaseContentPage>

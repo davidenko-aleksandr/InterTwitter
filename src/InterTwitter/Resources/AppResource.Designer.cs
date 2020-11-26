@@ -61,6 +61,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ic_add_photo.png.
+        /// </summary>
+        public static string AddPhotoIcon {
+            get {
+                return ResourceManager.GetString("AddPhotoIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change profile.
         /// </summary>
         public static string ChangeProfileLable {
@@ -241,6 +250,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New password.
+        /// </summary>
+        public static string NewPasswordText {
+            get {
+                return ResourceManager.GetString("NewPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string NextButton {
@@ -259,6 +277,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Old password.
+        /// </summary>
+        public static string OldPasswordText {
+            get {
+                return ResourceManager.GetString("OldPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to At least 8 characters, one uppercase and one lowercase.
         /// </summary>
         public static string PasswordErrorMessage {
@@ -273,6 +300,15 @@ namespace InterTwitter.Resources {
         public static string PasswordText {
             get {
                 return ResourceManager.GetString("PasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pic_profile_header_photo.jpg.
+        /// </summary>
+        public static string PicProfileHeaderImage {
+            get {
+                return ResourceManager.GetString("PicProfileHeaderImage", resourceCulture);
             }
         }
         

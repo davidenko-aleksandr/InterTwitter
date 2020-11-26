@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddPhotoIcon" xml:space="preserve">
+    <value>ic_add_photo.png</value>
+  </data>
   <data name="ChangeProfileLable" xml:space="preserve">
     <value>Change profile</value>
   </data>
@@ -177,17 +180,26 @@
   <data name="NeedPasswordLabel" xml:space="preserve">
     <value>You’ll need a password</value>
   </data>
+  <data name="NewPasswordText" xml:space="preserve">
+    <value>New password</value>
+  </data>
   <data name="NextButton" xml:space="preserve">
     <value>Next</value>
   </data>
   <data name="NoInternetText" xml:space="preserve">
     <value>No Internet connection!</value>
   </data>
+  <data name="OldPasswordText" xml:space="preserve">
+    <value>Old password</value>
+  </data>
   <data name="PasswordErrorMessage" xml:space="preserve">
     <value>At least 8 characters, one uppercase and one lowercase</value>
   </data>
   <data name="PasswordText" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="PicProfileHeaderImage" xml:space="preserve">
+    <value>pic_profile_header_photo.jpg</value>
   </data>
   <data name="SaveIcon" xml:space="preserve">
     <value>ic_check_blue.png</value>

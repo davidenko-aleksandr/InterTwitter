@@ -27,7 +27,7 @@ namespace InterTwitter
             InitializeComponent();
 
             var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
-            await NavigationService.NavigateAsync($"/{nameof(ChangeProfilePage)}");
+            await NavigationService.NavigateAsync($"/{nameof(ProfilePage)}");
 
             //if (isAuthorized)
             //{
@@ -52,6 +52,7 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<ChangeProfilePage,ChangeProfilePageViewModel>();
 
             //plugins
             containerRegistry.RegisterInstance<IUserDialogs>(UserDialogs.Instance);
