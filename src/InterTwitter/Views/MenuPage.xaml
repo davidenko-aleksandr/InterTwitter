@@ -34,7 +34,7 @@
                     <controls:ClickableContentView Grid.Row="0"
                                                    Command="{Binding GoToProfilePageCommand}">
 
-                        <ffimageloading:CachedImage Source="pic_profile_big"
+                        <ffimageloading:CachedImage Source="{Binding AuthorizedUser.Picture}"
                                                     HorizontalOptions="CenterAndExpand"
                                                     VerticalOptions="CenterAndExpand">
 
@@ -51,7 +51,7 @@
 
                         <controls:ClickableContentView Command="{Binding GoToProfilePageCommand}">
 
-                            <Label Text="User Name"
+                            <Label Text="{Binding AuthorizedUser.Name}"
                                    FontAttributes="Bold"
                                    TextColor="Black"
                                    FontSize="20"
@@ -61,7 +61,7 @@
 
                         <controls:ClickableContentView Command="{Binding GoToProfilePageCommand}">
 
-                            <Label Text="username@gmail.com"
+                            <Label Text="{Binding AuthorizedUser.Email}"
                                    TextColor="#66696E"/>
 
                         </controls:ClickableContentView>

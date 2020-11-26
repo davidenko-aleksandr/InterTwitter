@@ -1,9 +1,7 @@
 ﻿using InterTwitter.Resources;
 using System;
-using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace InterTwitter.Controls
 {
@@ -190,7 +188,7 @@ namespace InterTwitter.Controls
             }
             else
             {
-                Debug.WriteLine("entry is null");
+                //Debug.WriteLine("entry is null");
             }
         }
 
@@ -208,7 +206,7 @@ namespace InterTwitter.Controls
                 }
                 else
                 {
-                    Debug.WriteLine("IsPassword is false");
+                    //Debug.WriteLine("IsPassword is false");
                 }
             }
             else
@@ -222,7 +220,7 @@ namespace InterTwitter.Controls
                 }
                 else
                 {
-                    Debug.WriteLine("IsPassword is false");
+                    //Debug.WriteLine("IsPassword is false");
                 }
             }
 
