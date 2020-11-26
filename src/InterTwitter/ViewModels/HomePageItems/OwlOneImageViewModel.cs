@@ -8,13 +8,7 @@
         public string PostPhoto
         {
             get { return _postPhoto; }
-            set
-            {
-                if (_postPhoto != value)
-                {
-                    _postPhoto = value;
-                }
-            }
+            set { SetProperty(ref _postPhoto, value); }
         }
 
         #endregion        

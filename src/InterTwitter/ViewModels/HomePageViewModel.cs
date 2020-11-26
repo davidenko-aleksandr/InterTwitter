@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using InterTwitter.Enums;
 using InterTwitter.Services.Owl;
 using InterTwitter.ViewModels.HomePageItems;
-using System;
 using System.Windows.Input;
 using InterTwitter.Helpers;
 using Prism.Navigation;
@@ -19,6 +18,8 @@ namespace InterTwitter.ViewModels
         private OwlAlbumViewModel _owlAlbum;
         private OwlFewImagesViewModel _owlFewImages;
         private OwlNoMediaViewModel _owlNoMedia;
+        private OwlGifViewModel _owlGif;
+        private OwlVideoViewModel _owlVideo;
 
         public HomePageViewModel(
                                 INavigationService navigationService,
@@ -36,6 +37,15 @@ namespace InterTwitter.ViewModels
             get { return _owls; }
             set { SetProperty(ref _owls, value); }
         }
+
+        private string _icon = "ic_home_gray";
+        public string Icon
+        {
+            get => _icon;
+            set => SetProperty(ref _icon, value);
+        }
+
+        public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
 
         #endregion       
 
@@ -73,16 +83,21 @@ namespace InterTwitter.ViewModels
             return _owlNoMedia = owlService.Result;
         }
 
-        #region -- Public Properties --
-
-        private string _icon = "ic_home_gray";
-        public string Icon
+        private async Task<OwlGifViewModel> GetOwlGif()
         {
-            get => _icon;
-            set => SetProperty(ref _icon, value);
+            _owlGif = new OwlGifViewModel();
+            var owlService = await _owlService.GetOwlDataAsync<OwlGifViewModel>(OwlType.Gif);
+
+            return _owlGif = owlService.Result;
         }
 
-        public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
+        private async Task<OwlVideoViewModel> GetOwlVideo()
+        {
+            _owlVideo = new OwlVideoViewModel();
+            var owlService = await _owlService.GetOwlDataAsync<OwlVideoViewModel>(OwlType.Video);
+
+            return _owlVideo = owlService.Result;
+        }
 
         private async Task OnOpenMenuCommandAsync()
         {
@@ -92,10 +107,7 @@ namespace InterTwitter.ViewModels
         #endregion
 
         #region -- Overrides --
-        public override void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            Icon = "ic_home_gray";
-        }
+       
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             Icon = "ic_home_blue";
@@ -104,8 +116,15 @@ namespace InterTwitter.ViewModels
             await GetOwlAlbum();
             await GetOwlFewImages();
             await GetOwlNoMedia();
+            await GetOwlGif();
+            await GetOwlVideo();
 
-            Owls = new ObservableCollection<OwlViewModel>() { _owlFewImages, _owlNoMedia, _owlOneImage, _owlAlbum, _owlNoMedia };
+            Owls = new ObservableCollection<OwlViewModel>() { _owlGif, _owlFewImages, _owlOneImage, _owlAlbum, _owlNoMedia, _owlVideo };
+        }
+
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            Icon = "ic_home_gray";
         }
 
         #endregion

@@ -14,6 +14,8 @@ namespace InterTwitter.Services.Owl
         private List<OwlFewImagesViewModel> _owlFewImagesMock;
         private List<OwlAlbumViewModel> _owlAlbumMock;
         private List<OwlNoMediaViewModel> _owlNoMedia;
+        private List<OwlGifViewModel> _owlGif;
+        private List<OwlVideoViewModel> _owlVideo;
 
         #region -- IOwlService Implementation --
 
@@ -47,11 +49,15 @@ namespace InterTwitter.Services.Owl
                         _owl = _owlNoMedia.First(owl => owl.AuthorId == owl.Id) as T;
                         break;
 
-                    //case OwlType.video:
-                    //    break;
+                    case OwlType.Gif:
+                        GetOwlGif();
+                        _owl = _owlGif.First(owl => owl.AuthorId == owl.Id) as T;
+                        break;
 
-                    //case OwlType.Gif:
-                    //    break;
+                    case OwlType.Video:
+                        GetOwlVideo();
+                        _owl = _owlVideo.First(owl => owl.AuthorId == owl.Id) as T;
+                        break;
 
                     default:
                         _owl = null;
@@ -89,11 +95,11 @@ namespace InterTwitter.Services.Owl
                 {
                     Id = 1,
                     AuthorId = 1,
-                    AuthorAvatar = "avatar.png",
+                    AuthorAvatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTztRLQ_Wq4fE2jBk97nbACnuE2FEaBWKAUtg&usqp=CAU",
                     PostDate = DateTime.Now.ToString("dd.MM.yyyy"),
                     PostTime = DateTime.Now.ToString("HH:mm"),
-                    PostPhoto = "mac_book.png",
-                    AuthorNickName = "This is a Post Label",
+                    PostPhoto = "https://consequenceofsound.net/wp-content/uploads/2015/11/maxresdefault-1.jpg?quality=80&w=807",
+                    AuthorNickName = "Rocky Balboa",
                     Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
                 }
             };
@@ -109,17 +115,17 @@ namespace InterTwitter.Services.Owl
                 {
                     Id = 1,
                     AuthorId = 1,
-                    AuthorAvatar = "avatar.png",
-                    PostDate = DateTime.Now.ToString("dd/MM/yyyy"),
+                    AuthorAvatar = "https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop",
+                    PostDate = DateTime.Now.ToString("dd.MM.yyyy"),
                     PostTime = DateTime.Now.ToString("HH:mm"),
-                    PostPhotoOne = "mac_book.png",
-                    PostPhotoTwo = "mac_book.png",
-                    PostPhotoThree = "mac_book.png",
-                    PostPhotoFour = "mac_book.png",
-                    PostPhotoFive = "mac_book.png",
-                    PostPhotoSix = "mac_book.png",
-                    AuthorNickName = "This is a Post Label",
-                    Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                    PostPhotoOne = "https://icdn.lenta.ru/images/2020/01/28/17/20200128170822958/square_320_9146846fb3b1bfae5672755bc1896214.jpg",
+                    PostPhotoTwo = "https://s0.rbk.ru/v6_top_pics/media/img/7/06/755581025099067.jpeg",
+                    PostPhotoThree = "https://static.toiimg.com/thumb/msid-67586673,width-800,height-600,resizemode-75,imgsize-3918697,pt-32,y_pad-40/67586673.jpg",
+                    PostPhotoFour = "https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9",
+                    PostPhotoFive = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4BQSpilYy5KuAptMxbOAxm4uKjFYDG6_wg&usqp=CAU",
+                    PostPhotoSix = "https://img.huffingtonpost.com/asset/5e848c4825000056010586d9.jpeg?ops=1778_1000",
+                    AuthorNickName = "cute cats",
+                    Text = "There may be some funny text here",
                 }                
             };
 
@@ -134,14 +140,13 @@ namespace InterTwitter.Services.Owl
                 {
                     Id = 1,
                     AuthorId = 1,
-                    AuthorAvatar = "avatar.png",
-                    PostDate = DateTime.Now.ToString("dd/MM/yyyy"),
+                    AuthorAvatar = "https://stuki-druki.com/aforizms/Shakira-01.jpg",
+                    PostDate = DateTime.Now.ToString("dd.MM.yyyy"),
                     PostTime = DateTime.Now.ToString("HH:mm"),
-                    PostPhotoOne = "mac_book.png",
-                    PostPhotoTwo = "mac_book.png",
-                    PostPhotoThree = "mac_book.png",
-                    AuthorNickName = "This is a Post Label",
-                    Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                    PostPhotoOne = "https://kor.ill.in.ua/m/610x385/2457536.jpg",
+                    PostPhotoTwo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TyjVGHZ5enIB5v4ixtwheiBzB_seknSyWQ&usqp=CAU",
+                    AuthorNickName = "Shakira",
+                    Text = "Wah kakaya beautiful girl...!",
                 }
             };
 
@@ -156,7 +161,7 @@ namespace InterTwitter.Services.Owl
                 {
                     Id = 1,
                     AuthorId = 1,
-                    AuthorAvatar = "avatar.png",
+                    AuthorAvatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTztRLQ_Wq4fE2jBk97nbACnuE2FEaBWKAUtg&usqp=CAU",
                     PostDate = DateTime.Now.ToString("dd.MM.yyyy"),
                     PostTime = DateTime.Now.ToString("HH:mm"),
                     AuthorNickName = "Rocky Balboa",
@@ -165,6 +170,46 @@ namespace InterTwitter.Services.Owl
             };
 
             return _owlNoMedia;
+        }
+
+        private List<OwlGifViewModel> GetOwlGif()
+        {
+            _owlGif = new List<OwlGifViewModel>()
+            {
+                new OwlGifViewModel()
+                {
+                    Id = 1,
+                    AuthorId = 1,
+                    AuthorAvatar = "https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop",
+                    PostDate = DateTime.Now.ToString("dd.MM.yyyy"),
+                    PostTime = DateTime.Now.ToString("HH:mm"),
+                    AuthorNickName = "cute cats",
+                    Text = "There may be some funny text here",
+                    Gif = "https://i.gifer.com/Ar.gif",
+                }
+            };
+
+            return _owlGif;
+        }
+
+        private List<OwlVideoViewModel> GetOwlVideo()
+        {
+            _owlVideo = new List<OwlVideoViewModel>()
+            {
+                new OwlVideoViewModel()
+                {
+                    Id = 1,
+                    AuthorId = 1,
+                    AuthorAvatar = "https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop",
+                    PostDate = DateTime.Now.ToString("dd.MM.yyyy"),
+                    PostTime = DateTime.Now.ToString("HH:mm"),
+                    AuthorNickName = "cute cats",
+                    Text = "There may be some funny text here",
+                    Video = "https://youtu.be/aIwTGjLmfVM",
+                }
+            };
+
+            return _owlVideo;
         }
 
         #endregion

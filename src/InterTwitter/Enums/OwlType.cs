@@ -5,7 +5,7 @@
         OneImage,
         FewImages,
         Album,
-        video,
+        Video,
         Gif,
         NoMedia
     }

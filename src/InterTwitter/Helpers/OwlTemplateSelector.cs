@@ -16,6 +16,10 @@ namespace InterTwitter.Enums
 
         public DataTemplate OwlNoMediaTemplate { get; set; }
 
+        public DataTemplate OwlGifTemplate { get; set; }
+
+        public DataTemplate OwlVideoTemplate { get; set; }
+
         #endregion
 
         #region -- Overrides --
@@ -51,6 +55,24 @@ namespace InterTwitter.Enums
             if (item is OwlNoMediaViewModel)
             {
                 return OwlNoMediaTemplate;
+            }
+            else
+            {
+                Debug.WriteLine($"{nameof(OwlTemplateSelector)} - {nameof(SelectTemplate)} item is null or can't be executed;");
+            }
+
+            if (item is OwlGifViewModel)
+            {
+                return OwlGifTemplate;
+            }
+            else
+            {
+                Debug.WriteLine($"{nameof(OwlTemplateSelector)} - {nameof(SelectTemplate)} item is null or can't be executed;");
+            }
+
+            if (item is OwlVideoViewModel)
+            {
+                return OwlVideoTemplate;
             }
             else
             {
