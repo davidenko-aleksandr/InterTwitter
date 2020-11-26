@@ -38,44 +38,116 @@
 
             <DataTemplate x:Key="OwlOneImageTemplate">
 
-                <ViewCell>
+                <Grid Margin="10">
 
-                    <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                    <ffimageloading:CachedImage Source="{Binding AuthorAvatar}"
+                                                Style="{StaticResource ImageAvatarStyle}">
 
-                        <ffimageloading:CachedImage Source="{Binding AuthorAvatar}"
-                                                    Style="{StaticResource ImageAvatarStyle}">
+                        <ffimageloading:CachedImage.Transformations>
 
+                            <fftransformations:CircleTransformation/>
+
+                        </ffimageloading:CachedImage.Transformations>
+
+                    </ffimageloading:CachedImage>
+
+                    <StackLayout Grid.Row="0"
+                                 Grid.Column="1"
+                                 Margin="0, 10, 0, 0">
+
+                        <Label Text="{Binding AuthorNickName}"
+                               TextColor="#02060E"
+                               FontSize="Large"/>
+
+                        <Label Text="{Binding Text}"
+                               TextColor="#02060E"/>
+
+                        <ffimageloading:CachedImage Source="{Binding PostPhoto}"
+                                                    HeightRequest="250">
                             <ffimageloading:CachedImage.Transformations>
-                                
-                                <fftransformations:CircleTransformation/>
-                                
-                            </ffimageloading:CachedImage.Transformations>
-                            
-                        </ffimageloading:CachedImage>
-                        
-                        <StackLayout Grid.Row="0"
-                                     Grid.Column="1"
-                                     Margin="0, 10, 0, 0">
 
-                            <Label Text="{Binding AuthorNickName}"
-                                   TextColor="#02060E"
-                                   FontSize="Large"/>
-                            
-                            <Label Text="{Binding Text}"
-                                   TextColor="#02060E"/>
-                            
-                            <ffimageloading:CachedImage Source="{Binding PostPhoto}"
-                                                        HeightRequest="250">
+                                <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                         BottomLeftCornerSize="5"
+                                                                         TopLeftCornerSize="5"
+                                                                         BottomRightCornerSize="5"
+                                                                         TopRightCornerSize="5"/>
+
+                            </ffimageloading:CachedImage.Transformations>
+
+                        </ffimageloading:CachedImage>
+
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label Text="{Binding PostDate}"
+                                   TextColor="#66696E"/>
+
+                            <BoxView HeightRequest="3" VerticalOptions="Center"
+                                     WidthRequest="3"
+                                     CornerRadius="1.5"
+                                     BackgroundColor="DarkGray"/>
+
+                            <Label Text="{Binding PostTime}"
+                                   TextColor="#66696E"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </Grid>
+
+            </DataTemplate>
+
+            <DataTemplate x:Key="OwlFewImageTemplate">
+
+                <Grid Margin="10">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <ffimageloading:CachedImage Source="{Binding AuthorAvatar}"
+                                                Style="{StaticResource ImageAvatarStyle}">
+
+                        <ffimageloading:CachedImage.Transformations>
+
+                            <fftransformations:CircleTransformation/>
+
+                        </ffimageloading:CachedImage.Transformations>
+
+                    </ffimageloading:CachedImage>
+
+                    <StackLayout Grid.Row="0"
+                                 Grid.Column="1">
+
+                        <Label Text="{Binding AuthorNickName}"
+                               TextColor="#02060E"
+                               FontSize="Large"/>
+
+                        <Label Text="{Binding Text}"
+                               TextColor="#02060E"/>
+
+                        <StackLayout Orientation="Horizontal">
+
+                            <ffimageloading:CachedImage Source="{Binding PostPhotoOne}"
+                                                        HeightRequest="80"
+                                                        WidthRequest="80">
+
                                 <ffimageloading:CachedImage.Transformations>
 
                                     <fftransformations:CornersTransformation CornersTransformType="AllRounded"
@@ -85,368 +157,281 @@
                                                                              TopRightCornerSize="5"/>
 
                                 </ffimageloading:CachedImage.Transformations>
-                                
+
                             </ffimageloading:CachedImage>
-                            
-                            <StackLayout Orientation="Horizontal">
 
-                                <Label Text="{Binding PostDate}"
-                                       TextColor="#66696E"/>
+                            <ffimageloading:CachedImage Source="{Binding PostPhotoTwo}"
+                                                        HeightRequest="80"
+                                                        WidthRequest="80">
 
-                                <BoxView HeightRequest="3" VerticalOptions="Center"
-                                         WidthRequest="3"
-                                         CornerRadius="1.5"
-                                         BackgroundColor="DarkGray"/> 
+                                <ffimageloading:CachedImage.Transformations>
 
-                                <Label Text="{Binding PostTime}"
-                                       TextColor="#66696E"/>
-                                
-                            </StackLayout>
+                                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                             BottomLeftCornerSize="5"
+                                                                             TopLeftCornerSize="5"
+                                                                             BottomRightCornerSize="5"
+                                                                             TopRightCornerSize="5"/>
 
-                        </StackLayout>
+                                </ffimageloading:CachedImage.Transformations>
 
-                    </Grid>
+                            </ffimageloading:CachedImage>
 
-                </ViewCell>
+                            <ffimageloading:CachedImage Source="{Binding PostPhotoThree}"
+                                                        HeightRequest="80"
+                                                        WidthRequest="80">
 
-            </DataTemplate>
+                                <ffimageloading:CachedImage.Transformations>
 
-            <DataTemplate x:Key="OwlFewImageTemplate">
+                                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                             BottomLeftCornerSize="5"
+                                                                             TopLeftCornerSize="5"
+                                                                             BottomRightCornerSize="5"
+                                                                             TopRightCornerSize="5"/>
 
-                <ViewCell>
+                                </ffimageloading:CachedImage.Transformations>
 
-                    <Grid Margin="10">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <ffimageloading:CachedImage Source="{Binding AuthorAvatar}"
-                                                    Style="{StaticResource ImageAvatarStyle}">
-
-                            <ffimageloading:CachedImage.Transformations>
-
-                                <fftransformations:CircleTransformation/>
-
-                            </ffimageloading:CachedImage.Transformations>
-
-                        </ffimageloading:CachedImage>
-
-                        <StackLayout Grid.Row="0"
-                                     Grid.Column="1">
-
-                            <Label Text="{Binding AuthorNickName}"
-                                   TextColor="#02060E"
-                                   FontSize="Large"/>
-
-                            <Label Text="{Binding Text}"
-                                   TextColor="#02060E"/>
-
-                            <StackLayout Orientation="Horizontal">
-
-                                <ffimageloading:CachedImage Source="{Binding PostPhotoOne}"
-                                                            HeightRequest="80"
-                                                            WidthRequest="80">
-                                    
-                                    <ffimageloading:CachedImage.Transformations>
-
-                                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                                 BottomLeftCornerSize="5"
-                                                                                 TopLeftCornerSize="5"
-                                                                                 BottomRightCornerSize="5"
-                                                                                 TopRightCornerSize="5"/>
-
-                                    </ffimageloading:CachedImage.Transformations>
-
-                                </ffimageloading:CachedImage>
-
-                                <ffimageloading:CachedImage Source="{Binding PostPhotoTwo}"
-                                                            HeightRequest="80"
-                                                            WidthRequest="80">
-                                    
-                                    <ffimageloading:CachedImage.Transformations>
-
-                                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                                 BottomLeftCornerSize="5"
-                                                                                 TopLeftCornerSize="5"
-                                                                                 BottomRightCornerSize="5"
-                                                                                 TopRightCornerSize="5"/>
-
-                                    </ffimageloading:CachedImage.Transformations>
-
-                                </ffimageloading:CachedImage>
-
-                                <ffimageloading:CachedImage Source="{Binding PostPhotoThree}"
-                                                            HeightRequest="80"
-                                                            WidthRequest="80">
-
-                                    <ffimageloading:CachedImage.Transformations>
-
-                                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                                 BottomLeftCornerSize="5"
-                                                                                 TopLeftCornerSize="5"
-                                                                                 BottomRightCornerSize="5"
-                                                                                 TopRightCornerSize="5"/>
-
-                                    </ffimageloading:CachedImage.Transformations>
-
-                                </ffimageloading:CachedImage>
-
-                            </StackLayout>
-
-                            <StackLayout Orientation="Horizontal">
-
-                                <Label Text="{Binding PostDate}"
-                                       TextColor="#66696E"/>
-
-                                <BoxView HeightRequest="3" VerticalOptions="Center"
-                                       WidthRequest="3"
-                                       CornerRadius="1.5"
-                                       BackgroundColor="DarkGray"/>
-
-                                <Label Text="{Binding PostTime}"
-                                       TextColor="#66696E"/>
-
-                            </StackLayout>
+                            </ffimageloading:CachedImage>
 
                         </StackLayout>
 
-                    </Grid>
+                        <StackLayout Orientation="Horizontal">
 
-                </ViewCell>
+                            <Label Text="{Binding PostDate}"
+                                   TextColor="#66696E"/>
+
+                            <BoxView HeightRequest="3" VerticalOptions="Center"
+                                     WidthRequest="3"
+                                     CornerRadius="1.5"
+                                     BackgroundColor="DarkGray"/>
+
+                            <Label Text="{Binding PostTime}"
+                                   TextColor="#66696E"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </Grid>
 
             </DataTemplate>
 
             <DataTemplate x:Key="OwlAlbumTemplate">
 
-                <ViewCell>
+                <Grid Margin="10">
 
-                    <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                    <ffimageloading:CachedImage Source="{Binding AuthorAvatar}"
+                                                Style="{StaticResource ImageAvatarStyle}">
 
-                        <ffimageloading:CachedImage Source="{Binding AuthorAvatar}"
-                                                    Style="{StaticResource ImageAvatarStyle}">
+                        <ffimageloading:CachedImage.Transformations>
 
-                            <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation/>
 
-                                <fftransformations:CircleTransformation/>
+                        </ffimageloading:CachedImage.Transformations>
 
-                            </ffimageloading:CachedImage.Transformations>
+                    </ffimageloading:CachedImage>
 
-                        </ffimageloading:CachedImage>
+                    <StackLayout Grid.Row="0"
+                                 Grid.Column="1">
 
-                        <StackLayout Grid.Row="0"
-                                     Grid.Column="1">
+                        <Label Text="{Binding AuthorNickName}"
+                               TextColor="#02060E"
+                               FontSize="Large"/>
 
-                            <Label Text="{Binding AuthorNickName}"
-                                   TextColor="#02060E"
-                                   FontSize="Large"/>
-                            
-                            <Label Text="{Binding Text}"
-                                   TextColor="#02060E"/>
-                            
-                            <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Text}"
+                               TextColor="#02060E"/>
 
-                                <ffimageloading:CachedImage Source="{Binding PostPhotoOne}"
-                                                            HeightRequest="80"
-                                                            WidthRequest="80">
+                        <StackLayout Orientation="Horizontal">
 
-                                    <ffimageloading:CachedImage.Transformations>
+                            <ffimageloading:CachedImage Source="{Binding PostPhotoOne}"
+                                                        HeightRequest="80"
+                                                        WidthRequest="80">
 
-                                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                                 BottomLeftCornerSize="5"
-                                                                                 TopLeftCornerSize="5"
-                                                                                 BottomRightCornerSize="5"
-                                                                                 TopRightCornerSize="5"/>
+                                <ffimageloading:CachedImage.Transformations>
 
-                                    </ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                             BottomLeftCornerSize="5"
+                                                                             TopLeftCornerSize="5"
+                                                                             BottomRightCornerSize="5"
+                                                                             TopRightCornerSize="5"/>
 
-                                </ffimageloading:CachedImage>
-                                
-                                <ffimageloading:CachedImage Source="{Binding PostPhotoTwo}"
-                                                            HeightRequest="80"
-                                                            WidthRequest="80">
+                                </ffimageloading:CachedImage.Transformations>
 
-                                    <ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
 
-                                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                                 BottomLeftCornerSize="5"
-                                                                                 TopLeftCornerSize="5"
-                                                                                 BottomRightCornerSize="5"
-                                                                                 TopRightCornerSize="5"/>
+                            <ffimageloading:CachedImage Source="{Binding PostPhotoTwo}"
+                                                        HeightRequest="80"
+                                                        WidthRequest="80">
 
-                                    </ffimageloading:CachedImage.Transformations>
+                                <ffimageloading:CachedImage.Transformations>
 
-                                </ffimageloading:CachedImage>
+                                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                             BottomLeftCornerSize="5"
+                                                                             TopLeftCornerSize="5"
+                                                                             BottomRightCornerSize="5"
+                                                                             TopRightCornerSize="5"/>
 
-                                <ffimageloading:CachedImage Source="{Binding PostPhotoThree}"
-                                                            HeightRequest="80"
-                                                            WidthRequest="80">
+                                </ffimageloading:CachedImage.Transformations>
 
-                                    <ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
 
-                                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                                 BottomLeftCornerSize="5"
-                                                                                 TopLeftCornerSize="5"
-                                                                                 BottomRightCornerSize="5"
-                                                                                 TopRightCornerSize="5"/>
+                            <ffimageloading:CachedImage Source="{Binding PostPhotoThree}"
+                                                        HeightRequest="80"
+                                                        WidthRequest="80">
 
-                                    </ffimageloading:CachedImage.Transformations>
+                                <ffimageloading:CachedImage.Transformations>
 
-                                </ffimageloading:CachedImage>
+                                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                             BottomLeftCornerSize="5"
+                                                                             TopLeftCornerSize="5"
+                                                                             BottomRightCornerSize="5"
+                                                                             TopRightCornerSize="5"/>
 
-                            </StackLayout>
+                                </ffimageloading:CachedImage.Transformations>
 
-                            <StackLayout Orientation="Horizontal">
-
-                                <ffimageloading:CachedImage Source="{Binding PostPhotoFour}"
-                                                            HeightRequest="80"
-                                                            WidthRequest="80">
-
-                                    <ffimageloading:CachedImage.Transformations>
-
-                                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                                 BottomLeftCornerSize="5"
-                                                                                 TopLeftCornerSize="5"
-                                                                                 BottomRightCornerSize="5"
-                                                                                 TopRightCornerSize="5"/>
-
-                                    </ffimageloading:CachedImage.Transformations>
-
-                                </ffimageloading:CachedImage>
-
-                                <ffimageloading:CachedImage Source="{Binding PostPhotoFive}"
-                                                            HeightRequest="80"
-                                                            WidthRequest="80">
-
-                                    <ffimageloading:CachedImage.Transformations>
-
-                                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                                 BottomLeftCornerSize="5"
-                                                                                 TopLeftCornerSize="5"
-                                                                                 BottomRightCornerSize="5"
-                                                                                 TopRightCornerSize="5"/>
-
-                                    </ffimageloading:CachedImage.Transformations>
-
-                                </ffimageloading:CachedImage>
-
-                                <ffimageloading:CachedImage Source="{Binding PostPhotoSix}"
-                                                            HeightRequest="80"
-                                                            WidthRequest="80">
-
-                                    <ffimageloading:CachedImage.Transformations>
-
-                                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                                 BottomLeftCornerSize="5"
-                                                                                 TopLeftCornerSize="5"
-                                                                                 BottomRightCornerSize="5"
-                                                                                 TopRightCornerSize="5"/>
-
-                                    </ffimageloading:CachedImage.Transformations>
-
-                                </ffimageloading:CachedImage>
-
-                            </StackLayout>
-
-                            <StackLayout Orientation="Horizontal">
-
-                                <Label Text="{Binding PostDate}"
-                                       TextColor="#66696E"/>
-
-                                <BoxView HeightRequest="3" VerticalOptions="Center"
-                                       WidthRequest="3"
-                                       CornerRadius="1.5"
-                                       BackgroundColor="DarkGray"/>
-
-                                <Label Text="{Binding PostTime}"
-                                       TextColor="#66696E"/>
-
-                            </StackLayout>
+                            </ffimageloading:CachedImage>
 
                         </StackLayout>
 
-                    </Grid>
+                        <StackLayout Orientation="Horizontal">
 
-                </ViewCell>
+                            <ffimageloading:CachedImage Source="{Binding PostPhotoFour}"
+                                                        HeightRequest="80"
+                                                        WidthRequest="80">
+
+                                <ffimageloading:CachedImage.Transformations>
+
+                                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                             BottomLeftCornerSize="5"
+                                                                             TopLeftCornerSize="5"
+                                                                             BottomRightCornerSize="5"
+                                                                             TopRightCornerSize="5"/>
+
+                                </ffimageloading:CachedImage.Transformations>
+
+                            </ffimageloading:CachedImage>
+
+                            <ffimageloading:CachedImage Source="{Binding PostPhotoFive}"
+                                                        HeightRequest="80"
+                                                        WidthRequest="80">
+
+                                <ffimageloading:CachedImage.Transformations>
+
+                                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                             BottomLeftCornerSize="5"
+                                                                             TopLeftCornerSize="5"
+                                                                             BottomRightCornerSize="5"
+                                                                             TopRightCornerSize="5"/>
+
+                                </ffimageloading:CachedImage.Transformations>
+
+                            </ffimageloading:CachedImage>
+
+                            <ffimageloading:CachedImage Source="{Binding PostPhotoSix}"
+                                                        HeightRequest="80"
+                                                        WidthRequest="80">
+
+                                <ffimageloading:CachedImage.Transformations>
+
+                                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                             BottomLeftCornerSize="5"
+                                                                             TopLeftCornerSize="5"
+                                                                             BottomRightCornerSize="5"
+                                                                             TopRightCornerSize="5"/>
+
+                                </ffimageloading:CachedImage.Transformations>
+
+                            </ffimageloading:CachedImage>
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label Text="{Binding PostDate}"
+                                   TextColor="#66696E"/>
+
+                            <BoxView HeightRequest="3" VerticalOptions="Center"
+                                     WidthRequest="3"
+                                     CornerRadius="1.5"
+                                     BackgroundColor="DarkGray"/>
+
+                            <Label Text="{Binding PostTime}"
+                                   TextColor="#66696E"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </Grid>
 
             </DataTemplate>
 
             <DataTemplate x:Key="OwlNoMediaTemplate">
 
-                <ViewCell>
+                <Grid Margin="10">
 
-                    <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                    <ffimageloading:CachedImage Source="{Binding AuthorAvatar}"
+                                                Style="{StaticResource ImageAvatarStyle}">
 
-                        <ffimageloading:CachedImage Source="{Binding AuthorAvatar}"
-                                                    Style="{StaticResource ImageAvatarStyle}">
+                        <ffimageloading:CachedImage.Transformations>
 
-                            <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation/>
 
-                                <fftransformations:CircleTransformation/>
+                        </ffimageloading:CachedImage.Transformations>
 
-                            </ffimageloading:CachedImage.Transformations>
+                    </ffimageloading:CachedImage>
 
-                        </ffimageloading:CachedImage>
+                    <StackLayout Grid.Row="0"
+                                 Grid.Column="1"
+                                 Margin="0, 10, 0, 0">
 
-                        <StackLayout Grid.Row="0"
-                                     Grid.Column="1"
-                                     Margin="0, 10, 0, 0">
+                        <Label Text="{Binding AuthorNickName}"
+                               TextColor="#02060E"
+                               FontSize="Large"/>
 
-                            <Label Text="{Binding AuthorNickName}"
-                                   TextColor="#02060E"
-                                   FontSize="Large"/>
+                        <Label Text="{Binding Text}"
+                               TextColor="#02060E"/>
 
-                            <Label Text="{Binding Text}"
-                                   TextColor="#02060E"/>
-                           
-                            <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal">
 
-                                <Label Text="{Binding PostDate}"
-                                       TextColor="#66696E"/>
+                            <Label Text="{Binding PostDate}"
+                                   TextColor="#66696E"/>
 
-                                <BoxView HeightRequest="3" VerticalOptions="Center"
-                                         WidthRequest="3"
-                                         CornerRadius="1.5"
-                                         BackgroundColor="DarkGray"/>
+                            <BoxView HeightRequest="3" VerticalOptions="Center"
+                                     WidthRequest="3"
+                                     CornerRadius="1.5"
+                                     BackgroundColor="DarkGray"/>
 
-                                <Label Text="{Binding PostTime}"
-                                       TextColor="#66696E"/>
-
-                            </StackLayout>
+                            <Label Text="{Binding PostTime}"
+                                   TextColor="#66696E"/>
 
                         </StackLayout>
 
-                    </Grid>
+                    </StackLayout>
 
-                </ViewCell>
-                
+                </Grid>
+
+
             </DataTemplate>
             
 
@@ -468,9 +453,8 @@
 
         <controls:HomePageNavigationBar Grid.Row="0"/>
 
-        <ListView Grid.Row="1"
+        <CollectionView Grid.Row="1"
                   ItemsSource="{Binding Owls}"
-                  HasUnevenRows="True"
                   SelectionMode="None"
                   ItemTemplate="{StaticResource OwlTemplateSelector}"/>
 
