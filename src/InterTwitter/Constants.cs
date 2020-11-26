@@ -14,6 +14,9 @@ namespace InterTwitter
 #endif
         public const string OpenMenuMessage = "OpenMenu";
 
+        public const int NoAuthorizedUser = -1;
+        public const string DefaultProfilePicture = "pic_profile_big";
+
         public static class Navigation
         {
             public const string Name = "Name";
