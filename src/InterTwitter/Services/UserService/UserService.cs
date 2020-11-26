@@ -92,6 +92,7 @@ namespace InterTwitter.Services.UserService
                       Email = "vasya1984@mail.ru",
                       Name = "Vasiliy",
                       Password = "V1984FAT",
+                      Picture = Constants.DefaultProfilePicture,
                   },
                   new UserModel()
                   {
@@ -99,6 +100,7 @@ namespace InterTwitter.Services.UserService
                       Email = "petya25@gmail.com",
                       Name = "Peter Stevenson",
                       Password = "Qwerty123",
+                      Picture = Constants.DefaultProfilePicture,
                   },
                   new UserModel()
                   {
@@ -106,6 +108,7 @@ namespace InterTwitter.Services.UserService
                       Email = "test@i.ua",
                       Name = "Test UserName",
                       Password = "Qwerty12",
+                      Picture = Constants.DefaultProfilePicture,
                   }
                };
         }

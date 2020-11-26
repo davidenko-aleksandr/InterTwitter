@@ -30,7 +30,6 @@ namespace InterTwitter.ViewModels
             MessagingCenter.Subscribe<object>(this, Constants.OpenMenuMessage, (sender) => OpenMenu());
 
             InitMenuItems();
-            SetUserDataAsync();
         }
 
         #region -- Public properties --
@@ -99,6 +98,11 @@ namespace InterTwitter.ViewModels
                     }
                 }
             }
+        }
+
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            await SetUserDataAsync();
         }
 
         #endregion

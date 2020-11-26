@@ -91,7 +91,8 @@ namespace InterTwitter.Services.Authorization
                             Email = email,
                             Name = name,
                             Password = password,
-                        };
+                            Picture = Constants.DefaultProfilePicture,
+                    };
 
                         await _userService.AddUserAsync(user);
 
@@ -169,7 +170,7 @@ namespace InterTwitter.Services.Authorization
             }
             catch (Exception ex)
             {
-                result.SetError($"{nameof(LogInAsync)}: exception", "Something went wrong", ex);
+                result.SetError($"{nameof(GetAuthorizedUserAsync)}: exception", "Something went wrong", ex);
             }
 
             return result;
