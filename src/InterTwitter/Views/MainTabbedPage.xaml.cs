@@ -9,6 +9,7 @@ namespace InterTwitter.Views
         public MainTabbedPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

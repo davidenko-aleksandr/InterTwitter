@@ -4,6 +4,8 @@ using System.Linq;
 using FFImageLoading;
 using FFImageLoading.Forms.Platform;
 using Foundation;
+using InterTwitter.iOS.Services.Keyboard;
+using InterTwitter.Services.Keyboard;
 using Prism;
 using Prism.Ioc;
 using UIKit;
@@ -46,7 +48,7 @@ namespace InterTwitter.iOS
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            containerRegistry.RegisterSingleton<IKeyboardService, KeyboardService>();
         }
     }
 }

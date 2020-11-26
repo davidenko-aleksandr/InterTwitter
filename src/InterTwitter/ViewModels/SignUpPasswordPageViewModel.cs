@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Acr.UserDialogs;
 using InterTwitter.Helpers;
 using InterTwitter.Services.Authorization;
+using InterTwitter.Services.Keyboard;
 using InterTwitter.Validators;
 using InterTwitter.Views;
 using Prism.Navigation;
@@ -19,11 +20,15 @@ namespace InterTwitter.ViewModels
 
         public SignUpPasswordPageViewModel(INavigationService navigationService,
                                            IAuthorizationService authorizationService,
-                                           IUserDialogs userDialogs)
+                                           IUserDialogs userDialogs,
+                                           IKeyboardService keyboardService)
                                            : base(navigationService)
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
+
+            keyboardService.KeyboardShown += KeyboardShown;
+            keyboardService.KeyboardHidden += KeyboardHidden;
         }
 
         #region -- Public Properties --
@@ -41,7 +46,21 @@ namespace InterTwitter.ViewModels
             get => _confirmPassword;
             set => SetProperty(ref _confirmPassword, value);
         }
-        
+
+        private bool _isKeyboardButtonVisible;
+        public bool IsKeyboardButtonVisible
+        {
+            get => _isKeyboardButtonVisible;
+            set => SetProperty(ref _isKeyboardButtonVisible, value);
+        }
+
+        private bool _isSignButtonsBlockVisible = true;
+        public bool IsSignButtonsBlockVisible
+        {
+            get => _isSignButtonsBlockVisible;
+            set => SetProperty(ref _isSignButtonsBlockVisible, value);
+        }
+
         public ICommand ConfirmPasswordCommand => SingleExecutionCommand.FromFunc(OnConfirmPasswordCommandAsync);
                 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
@@ -99,6 +118,18 @@ namespace InterTwitter.ViewModels
         private bool ValidatePassword()
         {
             return Validator.IsMatch(Password, Validator.RegexPassword) && Password == ConfirmPassword;
+        }
+
+        private void KeyboardHidden(object sender, System.EventArgs e)
+        {
+            IsSignButtonsBlockVisible = true;
+            IsKeyboardButtonVisible = false;
+        }
+
+        private void KeyboardShown(object sender, System.EventArgs e)
+        {
+            IsSignButtonsBlockVisible = false;
+            IsKeyboardButtonVisible = true;
         }
 
         #endregion

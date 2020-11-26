@@ -7,7 +7,8 @@
                         xmlns:local="clr-namespace:InterTwitter.Enums" 
                         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                         x:Class="InterTwitter.Views.HomePage"
-                        NavigationPage.HasNavigationBar="False">
+                        NavigationPage.HasNavigationBar="False"
+                        IconImageSource="{Binding Icon}">
     
     <views:BaseContentPage.Resources>
 
@@ -451,7 +452,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <controls:HomePageNavigationBar Grid.Row="0"/>
+        <controls:HomePageNavigationBar OpenMenuCommand="{Binding OpenMenuCommand}"
+                                         Grid.Row="0"/>
 
         <CollectionView Grid.Row="1"
                   ItemsSource="{Binding Owls}"
