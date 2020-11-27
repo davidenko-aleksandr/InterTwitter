@@ -1,9 +1,21 @@
-﻿using Prism.Mvvm;
+﻿using InterTwitter.Models;
+using Prism.Mvvm;
 
 namespace InterTwitter.ViewModels.HomePageItems
 {
     public class OwlViewModel : BindableBase
     {
+        public OwlViewModel(OwlModel model, UserModel author)
+        {
+            Id = model.Id;
+            AuthorId = author.Id;
+            AuthorAvatar = author.Picture;
+            AuthorNickName = author.Name;
+            Text = model.Text;
+            PostDate = model.Date.ToString("dd.MM.yyyy");
+            PostTime = model.Date.ToString("HH:mm");
+        }
+
         #region -- Public properties --
 
         private int _Id;

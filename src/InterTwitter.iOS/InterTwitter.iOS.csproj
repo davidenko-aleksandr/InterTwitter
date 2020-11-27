@@ -125,10 +125,10 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\Controls\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\Controls\ClickableContentViewRenderer.cs" />
+    <Compile Include="Renderers\Controls\CustomCollectionViewRenderer.cs" />
     <Compile Include="Renderers\Controls\UITouchesGestureRecognizer.cs" />
-    <Compile Include="Renderers\Views\KeyboardViewRenderer.cs" />
     <Compile Include="Services\Keyboard\KeyboardService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
@@ -205,9 +205,6 @@
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.1.0.466</Version>
-    </PackageReference>
-    <PackageReference Include="Hackiftekhar.IQKeyboardManager.Xamarin">
-      <Version>6.5.6</Version>
     </PackageReference>
     <PackageReference Include="NGraphics">
       <Version>0.5.0</Version>
@@ -453,6 +450,12 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_home_blue%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add_blue%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add_blue%403x.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

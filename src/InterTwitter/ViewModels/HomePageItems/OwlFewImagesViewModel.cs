@@ -1,7 +1,16 @@
-﻿namespace InterTwitter.ViewModels.HomePageItems
+﻿using InterTwitter.Models;
+
+namespace InterTwitter.ViewModels.HomePageItems
 {
     public class OwlFewImagesViewModel : OwlViewModel
     {
+        public OwlFewImagesViewModel(OwlModel model, UserModel author) : base(model, author)
+        {
+            PostPhotoOne = model.Media[0];
+            PostPhotoTwo = model.Media[1];
+            //PostPhotoThree = model.Media[2]; //TODO rework after new ListView
+        }
+
         #region -- Public properties --
 
         private string _postPhotoOne;

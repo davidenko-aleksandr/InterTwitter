@@ -61,7 +61,7 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isSignButtonsBlockVisible, value);
         }
 
-        public ICommand ConfirmPasswordCommand => SingleExecutionCommand.FromFunc(OnConfirmPasswordCommandAsync);
+        public ICommand ConfirmCommand => SingleExecutionCommand.FromFunc(OnConfirmCommandAsync);
                 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
                
@@ -94,7 +94,7 @@ namespace InterTwitter.ViewModels
           return  NavigationService.GoBackAsync();            
         }
 
-        private async Task OnConfirmPasswordCommandAsync()
+        private async Task OnConfirmCommandAsync()
         {
             var isValid = ValidatePassword();
 
