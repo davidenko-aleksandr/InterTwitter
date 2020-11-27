@@ -12,6 +12,8 @@ namespace InterTwitter.Controls
             InitializeComponent();
 
             Entry = entry;
+            Entry.Focused += OnEntryFocusChanged;
+            Entry.Unfocused += OnEntryFocusChanged;
         }
 
         public static event EventHandler<TextChangedEventArgs> TextChanged;
@@ -21,6 +23,7 @@ namespace InterTwitter.Controls
         public BorderlessEntry Entry { get; set; }
 
         private static readonly BindableProperty IsValidProperty = BindableProperty.Create(
+                                                        
                                                         propertyName: nameof(IsValid),
                                                         returnType: typeof(bool),
                                                         declaringType: typeof(CustomEntry),
@@ -30,6 +33,18 @@ namespace InterTwitter.Controls
         {
             get => (bool)GetValue(IsValidProperty);
             set => SetValue(IsValidProperty, value);
+        }
+
+        private static readonly BindableProperty IsEntryFocusedProperty = BindableProperty.Create(
+                                                        propertyName: nameof(IsEntryFocused),
+                                                        returnType: typeof(bool),
+                                                        declaringType: typeof(CustomEntry),
+                                                        defaultValue: false,
+                                                        defaultBindingMode: BindingMode.TwoWay);
+        public bool IsEntryFocused
+        {
+            get => (bool)GetValue(IsEntryFocusedProperty);
+            set => SetValue(IsEntryFocusedProperty, value);
         }
 
         private static readonly BindableProperty IsPasswordLocalProperty = BindableProperty.Create(
@@ -225,6 +240,11 @@ namespace InterTwitter.Controls
             }
 
             TextChanged?.Invoke(this, new TextChangedEventArgs(oldValue, newValue));
+        }
+
+        private void OnEntryFocusChanged(object sender, FocusEventArgs e)
+        {
+            IsEntryFocused = e.IsFocused;
         }
 
         #endregion

@@ -2,9 +2,13 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using InterTwitter.Services.Owl;
 using InterTwitter.ViewModels.HomePageItems;
-using System.Windows.Input;
 using InterTwitter.Helpers;
+using InterTwitter.Models;
 using Prism.Navigation;
+using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
@@ -37,18 +41,16 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _icon, value);
         }
 
+        private List<TestModel> _items;
+        public List<TestModel> Items
+        {
+            get => _items;
+            set => SetProperty(ref _items, value);
+        }
+
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
 
         #endregion       
-
-        #region -- Private helpers --
-
-        private async Task OnOpenMenuCommandAsync()
-        {
-            MessagingCenter.Send<object>(this, Constants.OpenMenuMessage);
-        }
-
-        #endregion
 
         #region -- Overrides --
        
@@ -64,6 +66,15 @@ namespace InterTwitter.ViewModels
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             Icon = "ic_home_gray";
+        }
+
+        #endregion
+
+        #region -- Private helpers --
+
+        private async Task OnOpenMenuCommandAsync()
+        {
+            MessagingCenter.Send<object>(this, Constants.OpenMenuMessage);
         }
 
         #endregion

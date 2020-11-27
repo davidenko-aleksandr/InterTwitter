@@ -1,10 +1,10 @@
 ﻿using InterTwitter.Controls;
-using InterTwitter.Droid.Renderers;
+using InterTwitter.Droid.Renderers.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(BorderlessEntry), typeof(BorderlessEntryRenderer))]
-namespace InterTwitter.Droid.Renderers
+namespace InterTwitter.Droid.Renderers.Controls
 {
     public class BorderlessEntryRenderer : EntryRenderer
     {

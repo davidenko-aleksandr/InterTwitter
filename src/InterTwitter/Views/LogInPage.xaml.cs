@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace InterTwitter.Views
 {
@@ -7,10 +10,27 @@ namespace InterTwitter.Views
         public LogInPage()
         {
             InitializeComponent();
+        }
+
+        #region -- Overrides --
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
             keyboardButton.PropertyChanging += KeyboardButtonPropertyChanging;
             signButtonsBlock.PropertyChanging += SignButtonsBlockPropertyChanging;
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            keyboardButton.PropertyChanging -= KeyboardButtonPropertyChanging;
+            signButtonsBlock.PropertyChanging -= SignButtonsBlockPropertyChanging;
+        }
+
+        #endregion
 
         #region -- Private helpers -- 
 
@@ -20,12 +40,12 @@ namespace InterTwitter.Views
             {
                 if (keyboardButton.IsVisible)
                 {
-                    keyboardButton.FadeTo(300, 1);
+                    keyboardButton.FadeTo(0);
                 }
                 else
                 {
                     keyboardButton.Opacity = 0;
-                    keyboardButton.FadeTo(1, 300);
+                    keyboardButton.FadeTo(1);
                 }
             }
         }
@@ -36,16 +56,21 @@ namespace InterTwitter.Views
             {
                 if (signButtonsBlock.IsVisible)
                 {
-                    signButtonsBlock.FadeTo(300, 1);
+                    signButtonsBlock.FadeTo(0);
                 }
                 else
                 {
                     signButtonsBlock.Opacity = 0;
-                    signButtonsBlock.FadeTo(1, 300);
+                    signButtonsBlock.FadeTo(1);
                 }
             }
         }
 
         #endregion
+
+        private void NextButtonClicked(object sender, System.EventArgs e)
+        {
+            passwordEntry.Entry.Focus();
+        }
     }
 }
