@@ -28,7 +28,7 @@
                Text="{Binding NameText}"
                x:Name="NameLabel"
                BindingContext="{x:Reference Name=customEntry}"
-               TextColor="#2356C5"
+               TextColor="{StaticResource tx_2}"
                IsVisible="false"
                HorizontalOptions="Start"
                FontSize="12"
@@ -44,8 +44,8 @@
                                   Keyboard="{Binding Keyboard}"
                                   BindingContext="{x:Reference Name=customEntry}"
                                   FontSize="16"
-                                  TextColor="#02060E"
-                                  PlaceholderColor="#66696E"
+                                  TextColor="{StaticResource tx_3}"
+                                  PlaceholderColor="{StaticResource tx_5}"
                                   Margin="4,0,0,0">
             
         </controls:BorderlessEntry>
@@ -95,7 +95,7 @@
                              Value="True">
 
                     <Setter Property="BackgroundColor" 
-                            Value="Red"/>
+                            Value="{StaticResource bg_6}"/>
 
                 </DataTrigger>
 
@@ -108,7 +108,7 @@
                Grid.Row="3"
                Text="{Binding ErrorText}"
                BindingContext="{x:Reference Name=customEntry}"
-               TextColor="Red"
+               TextColor="{StaticResource tx_4}"
                IsVisible="{Binding IsErrorVisible}"
                HorizontalOptions="Start"
                FontSize="12"

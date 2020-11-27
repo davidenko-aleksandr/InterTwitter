@@ -31,30 +31,29 @@ namespace InterTwitter.Enums
             {
                 dataTemplate = OwlOneImageTemplate;
             }
-
             else if (item is OwlFewImagesViewModel)
             {
                 dataTemplate = OwlFewImageTemplate;
             }
-
             else if (item is OwlAlbumViewModel)
             {
                 dataTemplate = OwlAlbumTemplate;
             }
-
             else if (item is OwlNoMediaViewModel)
             {
                 dataTemplate = OwlNoMediaTemplate;
             }
-
             else if (item is OwlGifViewModel)
             {
                 dataTemplate = OwlGifTemplate;
             }
-
             else if (item is OwlVideoViewModel)
             {
                 dataTemplate = OwlVideoTemplate;
+            }
+            else
+            {
+                //
             }
 
             return dataTemplate;

@@ -2,7 +2,8 @@
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                        x:Class="InterTwitter.Views.ProfilePage">
+                        x:Class="InterTwitter.Views.ProfilePage"
+                        BackgroundColor="{StaticResource bg_1}">
 
     <Label Text="Profile Page"
            HorizontalOptions="Center"

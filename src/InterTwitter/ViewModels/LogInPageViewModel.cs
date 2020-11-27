@@ -111,9 +111,9 @@ namespace InterTwitter.ViewModels
 
         }
 
-        private async Task OnSignUpClickCommandAsync()
+        private Task OnSignUpClickCommandAsync()
         {
-           await NavigationService.NavigateAsync(nameof(SignUpMainPage));
+           return NavigationService.NavigateAsync(nameof(SignUpMainPage));
         }
 
         private void KeyboardHidden(object sender, System.EventArgs e)
