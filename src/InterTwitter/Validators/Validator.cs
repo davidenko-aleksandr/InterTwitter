@@ -14,7 +14,7 @@ namespace InterTwitter.Validators
 
         public static bool IsMatch(string value, string regex, RegexOptions regexOptions = RegexOptions.None)
         {
-            return string.IsNullOrEmpty(regex) 
+            return !string.IsNullOrEmpty(regex) 
                 && !string.IsNullOrEmpty(value) 
                 && Regex.IsMatch(value, regex, regexOptions);
         }
