@@ -3,17 +3,17 @@ using Xamarin.Forms;
 
 namespace InterTwitter.Controls
 {
-    public class MovingFrame : Frame
+    public class MovingImageButton : ImageButton
     {
-        public MovingFrame()
+        public MovingImageButton()
         {
-
+            Opacity = 0;
         }
 
         #region -- Public properties --
 
         public static BindableProperty MovingStateProperty =
-           BindableProperty.Create(nameof(MovingState), typeof(MovingStates), typeof(MovingFrame), propertyChanged: OnMovingStatePropertyChanged);
+           BindableProperty.Create(nameof(MovingState), typeof(MovingStates), typeof(MovingImageButton), propertyChanged: OnMovingStatePropertyChanged);
         public MovingStates MovingState
         {
             get => (MovingStates)GetValue(MovingStateProperty);
@@ -26,7 +26,7 @@ namespace InterTwitter.Controls
 
         private static void OnMovingStatePropertyChanged(BindableObject bindable, object oldvalue, object newValue)
         {
-            var frame = bindable as MovingFrame;
+            var frame = bindable as MovingImageButton;
             var oldOffset = (MovingStates)oldvalue;
             var newOffset = (MovingStates)newValue;
 
@@ -54,7 +54,7 @@ namespace InterTwitter.Controls
             }
             else
             {
-                //button is null of oldOffset == newOffset 
+                //button is null or oldOffset == newOffset 
             }
         }
 

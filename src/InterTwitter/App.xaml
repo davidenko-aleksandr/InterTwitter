@@ -23,7 +23,29 @@
         <Color x:Key="tx_3">#02060E</Color> <!-- System Black -->
         <Color x:Key="tx_4">#F44336</Color> <!-- Error -->
         <Color x:Key="tx_5">#66696E</Color> <!-- Dark Grey -->
-        
+
+        <Style x:Key="boxViewPoint"
+               TargetType="BoxView">
+
+            <Setter Property="HeightRequest" 
+                    Value="3"/>
+            <Setter Property="WidthRequest" 
+                    Value="3"/>
+            <Setter Property="CornerRadius"
+                    Value="1.5"/>
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource bg_5}"/>
+
+        </Style>
+
+        <Style x:Key="boxViewSeparator" 
+               TargetType="BoxView">
+
+            <Setter Property="Color" 
+                    Value="{StaticResource bg_3}"/>
+
+        </Style>
+
         <Style x:Key="CustomEntryStyle"
                TargetType="controls:CustomEntry">
             
@@ -111,7 +133,8 @@
         <Style x:Key="ClickableContentViewStyle" 
                TargetType="controls:ClickableContentView">
             
-            <Setter Property="Margin" Value="0,12,0,0"/>
+            <Setter Property="Margin" 
+                    Value="0,12,0,0"/>
             
         </Style> 
 
