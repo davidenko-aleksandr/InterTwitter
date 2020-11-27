@@ -1,11 +1,13 @@
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using InterTwitter.Enums;
 using InterTwitter.Services.Owl;
 using InterTwitter.ViewModels.HomePageItems;
-using System.Windows.Input;
 using InterTwitter.Helpers;
+using InterTwitter.Models;
 using Prism.Navigation;
+using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
@@ -45,11 +47,45 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _icon, value);
         }
 
+        private List<TestModel> _items;
+        public List<TestModel> Items
+        {
+            get => _items;
+            set => SetProperty(ref _items, value);
+        }
+
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
 
         #endregion       
 
+        #region -- Overrides --
+       
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            Icon = "ic_home_blue";
+            ResetCollection();
+        }
+
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            Icon = "ic_home_gray";
+        }
+
+        #endregion
+
         #region -- Private helpers --
+
+        private async void ResetCollection()
+        {
+            await GetOwlImage();
+            await GetOwlAlbum();
+            await GetOwlFewImages();
+            await GetOwlNoMedia();
+            await GetOwlGif();
+            await GetOwlVideo();
+
+            Owls = new ObservableCollection<OwlViewModel>() { _owlGif, _owlFewImages, _owlOneImage, _owlAlbum, _owlNoMedia, _owlVideo };
+        }
 
         private async Task<OwlOneImageViewModel> GetOwlImage()
         {
@@ -106,27 +142,5 @@ namespace InterTwitter.ViewModels
 
         #endregion
 
-        #region -- Overrides --
-       
-        public override async void OnNavigatedTo(INavigationParameters parameters)
-        {
-            Icon = "ic_home_blue";
-
-            await GetOwlImage();
-            await GetOwlAlbum();
-            await GetOwlFewImages();
-            await GetOwlNoMedia();
-            await GetOwlGif();
-            await GetOwlVideo();
-
-            Owls = new ObservableCollection<OwlViewModel>() { _owlGif, _owlFewImages, _owlOneImage, _owlAlbum, _owlNoMedia, _owlVideo };
-        }
-
-        public override void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            Icon = "ic_home_gray";
-        }
-
-        #endregion
     }
 }

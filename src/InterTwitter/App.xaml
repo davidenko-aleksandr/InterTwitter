@@ -9,6 +9,43 @@
 
     <Application.Resources>
        
+        <!-- BACKGROUND COLOR -->
+        <Color x:Key="bg_1">#FCFDFE</Color>   <!-- System White -->
+        <Color x:Key="bg_2">#2356C5</Color>   <!-- Primary -->
+        <Color x:Key="bg_3">#DEDFE1</Color>   <!-- Light Grey -->
+        <Color x:Key="bg_4">#8002060E</Color> <!-- Backout -->
+        <Color x:Key="bg_5">#66696E</Color>   <!-- Dark Grey -->
+        <Color x:Key="bg_6">#F44336</Color>   <!-- Error -->
+        
+        <!-- TEXT COLOR -->
+        <Color x:Key="tx_1">#FCFDFE</Color> <!-- System White -->
+        <Color x:Key="tx_2">#2356C5</Color> <!-- Primary -->
+        <Color x:Key="tx_3">#02060E</Color> <!-- System Black -->
+        <Color x:Key="tx_4">#F44336</Color> <!-- Error -->
+        <Color x:Key="tx_5">#66696E</Color> <!-- Dark Grey -->
+
+        <Style x:Key="boxViewPoint"
+               TargetType="BoxView">
+
+            <Setter Property="HeightRequest" 
+                    Value="3"/>
+            <Setter Property="WidthRequest" 
+                    Value="3"/>
+            <Setter Property="CornerRadius"
+                    Value="1.5"/>
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource bg_5}"/>
+
+        </Style>
+
+        <Style x:Key="boxViewSeparator" 
+               TargetType="BoxView">
+
+            <Setter Property="Color" 
+                    Value="{StaticResource bg_3}"/>
+
+        </Style>
+
         <Style x:Key="CustomEntryStyle"
                TargetType="controls:CustomEntry">
             
@@ -33,7 +70,7 @@
             <Setter Property="HorizontalOptions"
                     Value="Center"/>
             <Setter Property="TextColor"
-                    Value="#FCFDFE"/>
+                    Value="{StaticResource tx_1}"/>
             <Setter Property="TextTransform" 
                     Value="None" />
             <Setter Property="WidthRequest"
@@ -41,7 +78,7 @@
             <Setter Property="FontSize"
                     Value="14"/>
             <Setter Property="BackgroundColor" 
-                    Value="#2356C5" />
+                    Value="{StaticResource bg_2}" />
             
         </Style>
 
@@ -57,7 +94,7 @@
             <Setter Property="HorizontalOptions" 
                     Value="Center" />
             <Setter Property="TextColor"
-                    Value="#2356C5" />
+                    Value="{StaticResource tx_2}" />
             
         </Style>
 
@@ -69,7 +106,7 @@
             <Setter Property="FontSize"
                     Value="14"/>
             <Setter Property="TextColor" 
-                    Value="#2356C5"/>
+                    Value="{StaticResource tx_2}"/>
             <Setter Property="HorizontalOptions" 
                     Value="Center"/>
             
@@ -79,13 +116,13 @@
                TargetType="Button">
 
             <Setter Property="BackgroundColor"
-                    Value="#2356C5"/>
+                    Value="{StaticResource bg_2}"/>
             <Setter Property="HeightRequest"
                     Value="50"/>
             <Setter Property="TextTransform"
                     Value="None"/>
             <Setter Property="TextColor"
-                    Value="White"/>
+                    Value="{StaticResource tx_1}"/>
             <Setter Property="CornerRadius"
                     Value="0"/>
 
@@ -94,7 +131,8 @@
         <Style x:Key="ClickableContentViewStyle" 
                TargetType="controls:ClickableContentView">
             
-            <Setter Property="Margin" Value="0,12,0,0"/>
+            <Setter Property="Margin" 
+                    Value="0,12,0,0"/>
             
         </Style> 
 

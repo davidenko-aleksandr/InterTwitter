@@ -7,7 +7,7 @@
                        xmlns:behaviors="clr-namespace:InterTwitter.Behaviors"
                        xmlns:validators="clr-namespace:InterTwitter.Validators"
                        xmlns:views="clr-namespace:InterTwitter.Views"
-                       BackgroundColor="#FCFDFE">
+                       BackgroundColor="{StaticResource bg_1}">
 
     <Grid HorizontalOptions="Fill"
           RowSpacing="0"
