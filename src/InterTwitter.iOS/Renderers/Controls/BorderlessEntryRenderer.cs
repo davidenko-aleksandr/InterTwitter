@@ -1,11 +1,11 @@
 ﻿using InterTwitter.Controls;
-using InterTwitter.iOS.Renderers;
+using InterTwitter.iOS.Renderers.Controls;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(BorderlessEntry), typeof(BorderlessEntryRenderer))]
-namespace InterTwitter.iOS.Renderers
+namespace InterTwitter.iOS.Renderers.Controls
 {
     public class BorderlessEntryRenderer : EntryRenderer
     {

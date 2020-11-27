@@ -1,19 +1,19 @@
 ﻿using InterTwitter.Enums;
-using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace InterTwitter.Controls
 {
-    public class CustomImageButton : ImageButton
+    public class MovingFrame : Frame
     {
-        public CustomImageButton()
+        public MovingFrame()
         {
-            MovingState = MovingStates.MovingDown;
+
         }
+
         #region -- Public properties --
 
         public static BindableProperty MovingStateProperty =
-           BindableProperty.Create(nameof(MovingState), typeof(MovingStates), typeof(AuthorizationNavigationBar), propertyChanged: OnMovingStatePropertyChanged);
+           BindableProperty.Create(nameof(MovingState), typeof(MovingStates), typeof(MovingFrame), propertyChanged: OnMovingStatePropertyChanged);
         public MovingStates MovingState
         {
             get => (MovingStates)GetValue(MovingStateProperty);
@@ -26,22 +26,24 @@ namespace InterTwitter.Controls
 
         private static void OnMovingStatePropertyChanged(BindableObject bindable, object oldvalue, object newValue)
         {
-            var button = bindable as CustomImageButton;
+            var frame = bindable as MovingFrame;
             var oldOffset = (MovingStates)oldvalue;
             var newOffset = (MovingStates)newValue;
 
-            if (button is not null && oldOffset != newOffset)
+            if (frame is not null && oldOffset != newOffset)
             {
                 switch (newOffset)
                 {
                     case MovingStates.MovingUp:
                         {
-                            button.TranslateTo(0, button.Height * 2);
+                            frame.TranslateTo(0, frame.Height * 2);
+                            frame.FadeTo(0, 300);
                             break;
                         }
                     case MovingStates.MovingDown:
                         {
-                            button.TranslateTo(0, 0);
+                            frame.TranslateTo(0, 0);
+                            frame.FadeTo(1, 300);
                             break;
                         }
                     default:

@@ -5,7 +5,7 @@
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
                        xmlns:views="clr-namespace:InterTwitter.Views"                         
-                       BackgroundColor="#FCFDFE">
+                       BackgroundColor="{StaticResource bg_1}">
 
     <controls:KeyboardView HorizontalOptions="Fill"
                            RowSpacing="0"

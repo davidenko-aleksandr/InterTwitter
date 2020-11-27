@@ -1,6 +1,4 @@
 ﻿using InterTwitter.Enums;
-using System;
-using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -15,9 +13,9 @@ namespace InterTwitter.Controls
 
         #region -- Public properties --
 
-        public static BindableProperty GoBackCommandProperty =
-            BindableProperty.Create(nameof(GoBackCommand), typeof(ICommand), typeof(AuthorizationNavigationBar));
-        public ICommand GoBackCommand
+        public static BindableProperty OpenMenuCommandProperty =
+            BindableProperty.Create(nameof(OpenMenuCommand), typeof(ICommand), typeof(AuthorizationNavigationBar));
+        public ICommand OpenMenuCommand
         {
             get => (ICommand)GetValue(OpenMenuCommandProperty);
             set => SetValue(OpenMenuCommandProperty, value);
@@ -56,11 +54,13 @@ namespace InterTwitter.Controls
                     case MovingStates.MovingUp:
                         {
                             tab.TranslateTo(0, 0);
+                            tab.FadeTo(1, 300);
                             break;
                         }
                     case MovingStates.MovingDown:
                         {
                             tab.TranslateTo(0, -tab.Height);
+                            tab.FadeTo(0, 300);
                             break;
                         }
                     default:

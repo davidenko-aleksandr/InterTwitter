@@ -1,10 +1,4 @@
 ﻿using InterTwitter.Enums;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using Xamarin.Forms;
 
 namespace InterTwitter.Controls
@@ -14,8 +8,10 @@ namespace InterTwitter.Controls
         private double _oldVerticalOffset;
         public CustomCollectionView()
         {
-
+            
         }
+
+        #region -- Public properties --
 
         public static BindableProperty MovingStateProperty =
            BindableProperty.Create(nameof(MovingState), typeof(MovingStates), typeof(CustomCollectionView));
@@ -24,6 +20,10 @@ namespace InterTwitter.Controls
             get => (MovingStates)GetValue(MovingStateProperty);
             set => SetValue(MovingStateProperty, value);
         }
+
+        #endregion
+
+        #region -- Private helpers --
 
         protected override void OnScrolled(ItemsViewScrolledEventArgs e)
         {
@@ -41,9 +41,11 @@ namespace InterTwitter.Controls
             {
                 MovingState = MovingStates.MovingUp;
             }
-
+            
             _oldVerticalOffset = e.VerticalOffset;
         }
+
+        #endregion
 
     }
 }
