@@ -8,20 +8,21 @@
                        xmlns:validators="clr-namespace:InterTwitter.Validators"
                        xmlns:views="clr-namespace:InterTwitter.Views"
                        BackgroundColor="#FCFDFE">
-    
-    <Grid HorizontalOptions="Fill"
-          RowSpacing="0"
-          VerticalOptions="Fill">
+
+    <controls:KeyboardView HorizontalOptions="Fill"
+                           RowSpacing="0"
+                           VerticalOptions="Fill">   
 
         <Grid.RowDefinitions>
-            
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="0.4*" />
-            <RowDefinition Height="0.6*" />
+
+            <RowDefinition Height="100" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
 
         </Grid.RowDefinitions>
 
-        <!--  NAVIGATION BAR  -->
+        <!--NAVIGATION BAR-->
         <StackLayout Grid.Row="0"
                      HorizontalOptions="Fill"
                      Orientation="Vertical"
@@ -35,23 +36,35 @@
             
         </StackLayout>
 
-        <!--  ENTRY BLOCK  -->
-        <StackLayout Grid.Row="1"
-                     Margin="0,40,0,0"
-                     Orientation="Vertical">
+        <!--ENTRY BLOCK-->
+        <StackLayout Grid.Row="1">
 
             <controls:CustomEntry Placeholder="{x:Static resources:AppResource.NameText}" 
                                   Style="{StaticResource CustomEntryStyle}" 
-                                  Text="{Binding Name}"/>
+                                  ReturnType="Next"
+                                  Keyboard="Email"
+                                  Text="{Binding Name}">
+
+                <controls:CustomEntry.Behaviors>
+
+                    <behaviors:ValidationBehavior ErrorMessage="{x:Static resources:AppResource.NameErrorMessage}"
+                                                  Regex="{x:Static validators:Validator.RegexName}"/>
+
+                </controls:CustomEntry.Behaviors>
+                
+            </controls:CustomEntry>
 
             <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
                                   Style="{StaticResource CustomEntryStyle}"
+                                  ReturnType="Done"
+                                  Keyboard="Email"
                                   Text="{Binding Email}">               
 
                 <controls:CustomEntry.Behaviors>
 
                     <behaviors:ValidationBehavior ErrorMessage="{x:Static resources:AppResource.EmailErrorMessage}"
-                                                  Regex="{x:Static validators:Validator.RegexEmail}"/>
+                                                  Regex="{x:Static validators:Validator.RegexEmail}"
+                                                  RegexOptions="IgnoreCase"/>
 
                 </controls:CustomEntry.Behaviors>
 
@@ -59,11 +72,12 @@
 
         </StackLayout>
 
-        <!--  BUTTON BLOCK  -->
-        <StackLayout Grid.Row="2"
+        <!--BUTTON BLOCK-->
+        <StackLayout x:Name="signButtonsBlock" 
+                     Grid.Row="2"
                      HorizontalOptions="Fill"
-                     Orientation="Vertical"
-                     VerticalOptions="Fill">
+                     VerticalOptions="Fill"
+                     IsVisible="{Binding IsSignButtonsBlockVisible}">
 
             <Button Style="{StaticResource LoginButtonStyle}"
                     Text="{x:Static resources:AppResource.SignUpButton}"
@@ -76,10 +90,18 @@
                        Text="{x:Static resources:AppResource.LogInButton}"/>
 
             </controls:ClickableContentView>
-            
+
         </StackLayout>
 
-    </Grid>
+        <!--KEYBOARD BUTTON-->
+        <Button x:Name="keyboardButton"
+                Grid.Row="3"
+                Style="{StaticResource KeyboardButton}"
+                IsVisible="{Binding IsKeyboardButtonVisible}"
+                Text="{x:Static resources:AppResource.SignUpButton}"
+                Command="{Binding SignUpCommand}"/>
+
+    </controls:KeyboardView>
     
 </views:BaseContentPage>
 

@@ -130,7 +130,7 @@
     <value>Confirm</value>
   </data>
   <data name="ConfirmPasswordErrorMessage" xml:space="preserve">
-    <value>Passwords should match</value>
+    <value>Do not match</value>
   </data>
   <data name="ConfirmPasswordText" xml:space="preserve">
     <value>Confirm Password</value>
@@ -139,13 +139,13 @@
     <value>Create your account</value>
   </data>
   <data name="EmailErrorMessage" xml:space="preserve">
-    <value>Email is not valid</value>
+    <value>Wrong Email</value>
   </data>
   <data name="EmailText" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="EmptyEntryText" xml:space="preserve">
-    <value>Email or Password shoudn't be empty!</value>
+    <value>Fields shoudn't be empty</value>
   </data>
   <data name="EyeOffImage" xml:space="preserve">
     <value>ic_eye_off.png</value>
@@ -169,10 +169,13 @@
     <value>pic_logo_small.png</value>
   </data>
   <data name="LogOutError" xml:space="preserve">
-    <value>Oops, something went wrong!</value>
+    <value>Oops, something went wrong</value>
   </data>
   <data name="NameEntryPlaceHolder" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="NameErrorMessage" xml:space="preserve">
+    <value>Please, type your name</value>
   </data>
   <data name="NameText" xml:space="preserve">
     <value>Name</value>
@@ -187,13 +190,13 @@
     <value>Next</value>
   </data>
   <data name="NoInternetText" xml:space="preserve">
-    <value>No Internet connection!</value>
+    <value>No Internet connection</value>
   </data>
   <data name="OldPasswordText" xml:space="preserve">
     <value>Old password</value>
   </data>
   <data name="PasswordErrorMessage" xml:space="preserve">
-    <value>At least 8 characters, one uppercase and one lowercase</value>
+    <value>The password is too short or contains whitespace</value>
   </data>
   <data name="PasswordText" xml:space="preserve">
     <value>Password</value>
@@ -208,6 +211,6 @@
     <value>Sign Up</value>
   </data>
   <data name="WrongEmailPasswordText" xml:space="preserve">
-    <value>Wrong email or password!</value>
+    <value>Wrong email or password</value>
   </data>
 </root>

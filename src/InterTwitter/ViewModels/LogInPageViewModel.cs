@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Acr.UserDialogs;
 using InterTwitter.Helpers;
 using InterTwitter.Services.Authorization;
+using InterTwitter.Services.Keyboard;
 using InterTwitter.Views;
 using Prism.Navigation;
 using Xamarin.Essentials;
@@ -16,11 +17,15 @@ namespace InterTwitter.ViewModels
 
         public LogInPageViewModel(INavigationService navigationService,
                                   IAuthorizationService authorizationService,
+                                  IKeyboardService keyboardService,
                                   IUserDialogs userDialogs)
                                  : base(navigationService)
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
+
+            keyboardService.KeyboardShown += KeyboardShown;
+            keyboardService.KeyboardHidden += KeyboardHidden;
 
             IsButtonEnabled = false;
         }
@@ -46,6 +51,20 @@ namespace InterTwitter.ViewModels
         {
             get => _isButtonEnabled;
             set => SetProperty(ref _isButtonEnabled, value);
+        }
+
+        private bool _isKeyboardButtonVisible;
+        public bool IsKeyboardButtonVisible
+        {
+            get => _isKeyboardButtonVisible;
+            set => SetProperty(ref _isKeyboardButtonVisible, value);
+        }
+
+        private bool _isSignButtonsBlockVisible = true;
+        public bool IsSignButtonsBlockVisible
+        {
+            get => _isSignButtonsBlockVisible;
+            set => SetProperty(ref _isSignButtonsBlockVisible, value);
         }
 
         public ICommand LogInClickCommand => SingleExecutionCommand.FromFunc(OnLogInClickCommandAsync);
@@ -95,6 +114,18 @@ namespace InterTwitter.ViewModels
         private async Task OnSignUpClickCommandAsync()
         {
            await NavigationService.NavigateAsync(nameof(SignUpMainPage));
+        }
+
+        private void KeyboardHidden(object sender, System.EventArgs e)
+        {
+            IsSignButtonsBlockVisible = true;
+            IsKeyboardButtonVisible = false;
+        }
+
+        private void KeyboardShown(object sender, System.EventArgs e)
+        {
+            IsSignButtonsBlockVisible = false;
+            IsKeyboardButtonVisible = true;
         }
 
         #endregion

@@ -5,11 +5,12 @@ using InterTwitter.Services.Settings;
 using InterTwitter.ViewModels;
 using InterTwitter.Views;
 using Plugin.Settings;
-using Plugin.Settings.Abstractions;
 using Prism;
 using Prism.Ioc;
 using Prism.Unity;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+using Plugin.Media;
 
 namespace InterTwitter
 {
@@ -26,17 +27,7 @@ namespace InterTwitter
         {
             InitializeComponent();
 
-            var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
-            await NavigationService.NavigateAsync($"/{nameof(ProfilePage)}");
-
-            //if (isAuthorized)
-            //{
-            //    await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
-            //}
-            //else
-            //{
-            //    await NavigationService.NavigateAsync(nameof(LogInPage));
-            //}
+            await NavigateAsync();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -55,13 +46,29 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<ChangeProfilePage,ChangeProfilePageViewModel>();
 
             //plugins
-            containerRegistry.RegisterInstance<IUserDialogs>(UserDialogs.Instance);
-            containerRegistry.RegisterInstance<ISettings>(CrossSettings.Current);
+            containerRegistry.RegisterInstance(UserDialogs.Instance);
+            containerRegistry.RegisterInstance(CrossSettings.Current);
+            containerRegistry.RegisterInstance(CrossMedia.Current);
 
-            //services           
+            //services
             containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
+        }
+
+        #endregion
+
+        #region -- Private Helpers --
+
+        private async Task NavigateAsync()
+        {
+            var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
+
+            var path = isAuthorized ? nameof(MenuPage) : nameof(LogInPage);
+
+            await NavigationService.NavigateAsync(nameof(path));
+
+            //await NavigationService.NavigateAsync(nameof(ProfilePage));
         }
 
         #endregion

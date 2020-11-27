@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using InterTwitter.Helpers;
+using InterTwitter.Models;
 
 namespace InterTwitter.Services.Authorization
 {
@@ -10,5 +11,6 @@ namespace InterTwitter.Services.Authorization
         Task<AOResult<bool>> LogInAsync(string email, string password);
         Task<AOResult<bool>> SignUpAsync(string email, string name, string password);
         Task<AOResult<bool>> LogOutAsync();
+        Task<AOResult<UserModel>> GetAuthorizedUserAsync();
     }
 }

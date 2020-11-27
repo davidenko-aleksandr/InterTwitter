@@ -44,11 +44,13 @@
                VerticalOptions="End"
                HorizontalOptions="Center"/>
 
+        <!--SAVE BUTTON-->
         <controls:ClickableContentView Grid.Row="0"
                                        VerticalOptions="End"
                                        HorizontalOptions="End"
                                        Margin="0,0,10,5"
-                                       >
+                                       Command="{Binding SaveProfileCommand}">
+            
             <Image Source="{x:Static resources:AppResource.SaveIcon}"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"/>
@@ -59,13 +61,12 @@
         <!--BACKGROUND PICTURE BLOCK-->        
         <ffimageloading:CachedImage Grid.Row="1"
                                     VerticalOptions="Fill"
-                                    HorizontalOptions="Fill"
-                                    
+                                    HorizontalOptions="Fill"                                    
                                     Margin="0"
                                     DownsampleToViewSize="True"
                                     ErrorPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
                                     LoadingPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
-                                    Source="{x:Static resources:AppResource.PicProfileHeaderImage}"
+                                    Source="{Binding User.ProfileHeaderImage}"
                                     Aspect="AspectFit"/>
 
         <Frame Grid.Row="1" 
@@ -78,32 +79,32 @@
                CornerRadius="24"
                Padding="0">
             
-        <ffimageloading:CachedImage
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="Center"
-                                    DownsampleToViewSize="True"
-                                    WidthRequest="24"
-                                    HeightRequest="24"            
-                                    BackgroundColor="#02060E"
-                                    Source="{x:Static resources:AppResource.AddPhotoIcon}"
-                                    Aspect="AspectFit"
-                                    >
-            <ffimageloading:CachedImage.Transformations>
-                <fftransformations:CircleTransformation />
-            </ffimageloading:CachedImage.Transformations>
-            
-        </ffimageloading:CachedImage>
+                <ffimageloading:CachedImage VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            DownsampleToViewSize="True"
+                                            WidthRequest="24"
+                                            HeightRequest="24"            
+                                            BackgroundColor="#02060E"
+                                            Source="{x:Static resources:AppResource.AddPhotoIcon}"
+                                            Aspect="AspectFit">
+                    
+                    <ffimageloading:CachedImage.Transformations>
+                        <fftransformations:CircleTransformation />
+                    </ffimageloading:CachedImage.Transformations>
+                    
+                </ffimageloading:CachedImage>
                         
         </Frame>
         
         <!--PROFILE DATA BLOCK--> 
         <controls:ClickableContentView Grid.Row="2"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="Start"
-                                        WidthRequest="60"
-                                        HeightRequest="60"
-                                        Padding="0"
-                                        Margin="10,-36,0,0">
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="Start"
+                                       WidthRequest="60"
+                                       HeightRequest="60"
+                                       Padding="0"
+                                       Margin="10,-36,0,0"
+                                       Command="{Binding SetAvatarCommand}">
            
             <Grid VerticalOptions="CenterAndExpand"
                   HorizontalOptions="CenterAndExpand"
@@ -116,7 +117,7 @@
                                               Margin="0"
                                               DownsampleToViewSize="True"
                                               Aspect="AspectFit"                                              
-                                              Source="pic_profile_header_phot.jpg">
+                                              Source="{Binding User.Picture}">
                       
                       <ffimageloading:CachedImage.Transformations>
                           
@@ -143,31 +144,39 @@
 
         </controls:ClickableContentView>
 
+        <!--NAME ENTRY-->
         <controls:CustomEntry Grid.Row="2" 
                               NameText="{x:Static resources:AppResource.NameText}"
                               HorizontalOptions="Fill"
                               Placeholder="{x:Static resources:AppResource.NameText}"
                               VerticalOptions="End"
+                              Text="{Binding User.Name}"
                               Margin="20,0"/>
         
+        <!--EMEIL ENTRY-->
          <controls:CustomEntry Grid.Row="3" 
                                NameText="{x:Static resources:AppResource.EmailText}"
                                Placeholder="{x:Static resources:AppResource.EmailText}"
+                               Text="{Binding User.Email}"
                                HorizontalOptions="Fill"
                                VerticalOptions="End"
                                Margin="20,0"/>
         
+        <!--OLD PASSWORD ENTRY-->
         <controls:CustomEntry Grid.Row="4" 
                               NameText="{x:Static resources:AppResource.OldPasswordText}"
                               Placeholder="{x:Static resources:AppResource.OldPasswordText}"
+                              Text="{Binding User.Password}"
                               HorizontalOptions="Fill"
                               VerticalOptions="End"
                               IsPassword="True"
                               Margin="20,0"/>
-        
+         
+        <!--NEW PASSWORD ENTRY-->
         <controls:CustomEntry Grid.Row="5" 
                               NameText="{x:Static resources:AppResource.NewPasswordText}"
                               Placeholder="{x:Static resources:AppResource.NewPasswordText}"
+                              Text="{Binding NewPassword}"
                               HorizontalOptions="Fill"
                               VerticalOptions="End"
                               IsPassword="True"

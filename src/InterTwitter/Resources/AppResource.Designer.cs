@@ -97,7 +97,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwords should match.
+        ///   Looks up a localized string similar to Do not match.
         /// </summary>
         public static string ConfirmPasswordErrorMessage {
             get {
@@ -124,7 +124,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email is not valid.
+        ///   Looks up a localized string similar to Wrong Email.
         /// </summary>
         public static string EmailErrorMessage {
             get {
@@ -142,7 +142,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email or Password shoudn&apos;t be empty!.
+        ///   Looks up a localized string similar to Fields shoudn&apos;t be empty.
         /// </summary>
         public static string EmptyEntryText {
             get {
@@ -214,7 +214,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oops, something went wrong!.
+        ///   Looks up a localized string similar to Oops, something went wrong.
         /// </summary>
         public static string LogOutError {
             get {
@@ -228,6 +228,15 @@ namespace InterTwitter.Resources {
         public static string NameEntryPlaceHolder {
             get {
                 return ResourceManager.GetString("NameEntryPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, type your name.
+        /// </summary>
+        public static string NameErrorMessage {
+            get {
+                return ResourceManager.GetString("NameErrorMessage", resourceCulture);
             }
         }
         
@@ -268,7 +277,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Internet connection!.
+        ///   Looks up a localized string similar to No Internet connection.
         /// </summary>
         public static string NoInternetText {
             get {
@@ -286,7 +295,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to At least 8 characters, one uppercase and one lowercase.
+        ///   Looks up a localized string similar to The password is too short or contains whitespace.
         /// </summary>
         public static string PasswordErrorMessage {
             get {
@@ -331,7 +340,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wrong email or password!.
+        ///   Looks up a localized string similar to Wrong email or password.
         /// </summary>
         public static string WrongEmailPasswordText {
             get {

@@ -8,6 +8,7 @@
                         x:Class="InterTwitter.Views.ProfilePage">
 
     <views:BaseContentPage.Resources>
+        
         <ResourceDictionary>
             
             <Style TargetType="ImageButton" 
@@ -27,6 +28,7 @@
             </Style>
             
         </ResourceDictionary>
+        
     </views:BaseContentPage.Resources>
 
     <Grid Padding="0">
@@ -45,7 +47,7 @@
                                     DownsampleToViewSize="True"
                                     ErrorPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
                                     LoadingPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
-                                    Source="pic_profile_header_photo"
+                                    Source="{Binding User.ProfileHeaderImage}"
                                     Aspect="AspectFill"/>
 
         <ImageButton Grid.Row="0"
@@ -68,7 +70,7 @@
                                     HorizontalOptions="Start"                                    
                                     DownsampleToViewSize="True"
                                     Aspect="AspectFit"                                              
-                                    Source="pic_profile_header_photo">
+                                    Source="{Binding User.Picture}">
 
             <ffimageloading:CachedImage.Transformations>
 
@@ -100,7 +102,7 @@
                HorizontalOptions="Start"
                TextColor="#02060E"
                Margin="12,32"
-               Text="Jaylon Kenter"
+               Text="{Binding User Name}"
                FontAttributes="Bold"
                FontSize="16"
                FontFamily="Ubuntu"/>
@@ -108,7 +110,7 @@
         <Label Grid.Row="1"
                VerticalOptions="Start"
                HorizontalOptions="Start"
-               Text="jaulonkenter@gmail.com"
+               Text="{Binding User.Email}"
                TextColor="#66696E"
                Margin="12,52"
                FontSize="12"

@@ -10,6 +10,8 @@ using Xamarin.Forms;
 using FFImageLoading;
 using FFImageLoading.Forms.Platform;
 using Acr.UserDialogs;
+using InterTwitter.Services.Keyboard;
+using InterTwitter.Droid.Services.Keyboard;
 
 namespace InterTwitter.Droid
 {
@@ -61,6 +63,7 @@ namespace InterTwitter.Droid
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<IKeyboardService, KeyboardService>();
         }
     }
 }
