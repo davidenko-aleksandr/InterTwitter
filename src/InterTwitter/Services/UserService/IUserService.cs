@@ -11,6 +11,8 @@ namespace InterTwitter.Services.UserService
     {
         Task<AOResult<List<UserModel>>> GetUsersAsync();
 
+        Task<AOResult<UserModel>> GetUserAsync(int id);
+
         Task<AOResult<bool>> AddUserAsync(UserModel user);
 
         Task<AOResult<bool>> UpdateUserAsync(UserModel user);     
