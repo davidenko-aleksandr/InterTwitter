@@ -115,8 +115,6 @@
         <Style x:Key="KeyboardButton"
                TargetType="Button">
 
-            <Setter Property="VerticalOptions"
-                    Value="EndAndExpand"/>
             <Setter Property="BackgroundColor"
                     Value="{StaticResource bg_2}"/>
             <Setter Property="HeightRequest"
