@@ -34,8 +34,8 @@ namespace InterTwitter.ViewModels
         private ObservableCollection<OwlViewModel> _owls;
         public ObservableCollection<OwlViewModel> Owls
         {
-            get { return _owls; }
-            set { SetProperty(ref _owls, value); }
+            get => _owls;
+            set => SetProperty(ref _owls, value);
         }
 
         private string _icon = "ic_home_gray";
