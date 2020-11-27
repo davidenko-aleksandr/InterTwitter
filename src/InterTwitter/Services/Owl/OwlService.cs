@@ -71,28 +71,41 @@ namespace InterTwitter.Services.Owl
                     switch (owl.MediaType)
                     {
                         case OwlType.OneImage:
-                            owls.Add(owlVM = new OwlOneImageViewModel(owl, author));
-                            break;
+                            {
+                                owls.Add(owlVM = new OwlOneImageViewModel(owl, author));
+                                break;
+                            }
 
                         case OwlType.FewImages:
-                            owls.Add(owlVM = new OwlFewImagesViewModel(owl, author));
-                            break;
+                            {
+                                owls.Add(owlVM = new OwlFewImagesViewModel(owl, author));
+                                break;
+                            }
 
                         case OwlType.Album:
-                            owls.Add(owlVM = new OwlAlbumViewModel(owl, author));
-                            break;
+                            {
+                                owls.Add(owlVM = new OwlAlbumViewModel(owl, author));
+                                break;
+                            }
 
                         case OwlType.Gif:
-                            owls.Add(owlVM = new OwlGifViewModel(owl, author));
-                            break;
+                            {
+                                owls.Add(owlVM = new OwlGifViewModel(owl, author));
+                                break;
+                            }
 
                         case OwlType.Video:
-                            owls.Add(owlVM = new OwlVideoViewModel(owl, author));
-                            break;
+                            {
+                                owls.Add(owlVM = new OwlVideoViewModel(owl, author));
+                                break;
+                            }
 
                         case OwlType.NoMedia:
-                            owls.Add(owlVM = new OwlNoMediaViewModel(owl, author));
-                            break;
+                            {
+                                owls.Add(owlVM = new OwlNoMediaViewModel(owl, author));
+                                break;
+                            }
+
                         default:
                             break;
                     }
@@ -153,7 +166,7 @@ namespace InterTwitter.Services.Owl
         {
             _owlsMock = new List<OwlModel>();
 
-            _owlsMock.Add(new OwlModel
+            var owlModel = new OwlModel
             {
                 Id = _owlsMock.Count,
                 AuthorId = 1,
@@ -164,9 +177,11 @@ namespace InterTwitter.Services.Owl
                 {
                     "https://consequenceofsound.net/wp-content/uploads/2015/11/maxresdefault-1.jpg?quality=80&w=807",
                 }
-            });
+            };
 
-            _owlsMock.Add(new OwlModel
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
             {
                 Id = _owlsMock.Count,
                 AuthorId = 1,
@@ -183,9 +198,11 @@ namespace InterTwitter.Services.Owl
                     "https://img.huffingtonpost.com/asset/5e848c4825000056010586d9.jpeg?ops=1778_1000",
 
                 }
-            });
+            };
 
-            _owlsMock.Add(new OwlModel
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
             {
                 Id = _owlsMock.Count,
                 AuthorId = 1,
@@ -197,9 +214,11 @@ namespace InterTwitter.Services.Owl
                     "https://kor.ill.in.ua/m/610x385/2457536.jpg",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TyjVGHZ5enIB5v4ixtwheiBzB_seknSyWQ&usqp=CAU",
                 }
-            });
+            };
 
-            _owlsMock.Add(new OwlModel
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
             {
                 Id = _owlsMock.Count,
                 AuthorId = 1,
@@ -210,7 +229,9 @@ namespace InterTwitter.Services.Owl
                 {
                     "https://i.gifer.com/Ar.gif",
                 }
-            });
+            };
+
+            _owlsMock.Add(owlModel);
 
             _owlsMock.OrderBy(x => x.Date);
 
