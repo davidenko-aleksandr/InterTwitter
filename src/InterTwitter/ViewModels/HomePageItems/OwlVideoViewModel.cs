@@ -7,8 +7,8 @@
         private string _video;
         public string Video
         {
-            get { return _video; }
-            set { SetProperty(ref _video, value); }
+            get => _video;
+            set => SetProperty(ref _video, value);
         }
 
         #endregion    

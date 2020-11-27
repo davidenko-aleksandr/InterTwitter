@@ -7,8 +7,8 @@
         private string _postPhoto;
         public string PostPhoto
         {
-            get { return _postPhoto; }
-            set { SetProperty(ref _postPhoto, value); }
+            get => _postPhoto;
+            set => SetProperty(ref _postPhoto, value);
         }
 
         #endregion        

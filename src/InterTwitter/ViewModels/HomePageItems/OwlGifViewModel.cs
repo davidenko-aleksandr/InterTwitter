@@ -7,8 +7,8 @@
         private string _gif;
         public string Gif
         {
-            get { return _gif; }
-            set { SetProperty(ref _gif, value); }                        
+            get => _gif;
+            set => SetProperty(ref _gif, value);
         }
 
         #endregion      

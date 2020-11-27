@@ -8,10 +8,5 @@ namespace InterTwitter.Views
         {
             InitializeComponent();
         }
-
-        private void CollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
-        {
-
-        }
     }
 }

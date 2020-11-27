@@ -442,9 +442,6 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_home_blue%403x.png" />
   </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\cat.gif" />
-  </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties TriggeredFromHotReload="False" />

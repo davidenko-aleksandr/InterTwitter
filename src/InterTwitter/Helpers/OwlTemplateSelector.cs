@@ -1,5 +1,4 @@
 ﻿using InterTwitter.ViewModels.HomePageItems;
-using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace InterTwitter.Enums
@@ -23,63 +22,42 @@ namespace InterTwitter.Enums
         #endregion
 
         #region -- Overrides --
+
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
+            DataTemplate dataTemplate = null;
+
             if (item is OwlOneImageViewModel)
             {
-                return OwlOneImageTemplate;
-            }
-            else
-            {
-                Debug.WriteLine($"{nameof(OwlTemplateSelector)} - {nameof(SelectTemplate)} item is null or can't be executed;");
+                dataTemplate = OwlOneImageTemplate;
             }
 
-            if (item is OwlFewImagesViewModel) 
+            else if (item is OwlFewImagesViewModel)
             {
-                return OwlFewImageTemplate;
-            }
-            else
-            {
-                Debug.WriteLine($"{nameof(OwlTemplateSelector)} - {nameof(SelectTemplate)} item is null or can't be executed;");
+                dataTemplate = OwlFewImageTemplate;
             }
 
-            if (item is OwlAlbumViewModel)
+            else if (item is OwlAlbumViewModel)
             {
-                return OwlAlbumTemplate;
-            }
-            else
-            {
-                Debug.WriteLine($"{nameof(OwlTemplateSelector)} - {nameof(SelectTemplate)} item is null or can't be executed;");
+                dataTemplate = OwlAlbumTemplate;
             }
 
-            if (item is OwlNoMediaViewModel)
+            else if (item is OwlNoMediaViewModel)
             {
-                return OwlNoMediaTemplate;
-            }
-            else
-            {
-                Debug.WriteLine($"{nameof(OwlTemplateSelector)} - {nameof(SelectTemplate)} item is null or can't be executed;");
+                dataTemplate = OwlNoMediaTemplate;
             }
 
-            if (item is OwlGifViewModel)
+            else if (item is OwlGifViewModel)
             {
-                return OwlGifTemplate;
-            }
-            else
-            {
-                Debug.WriteLine($"{nameof(OwlTemplateSelector)} - {nameof(SelectTemplate)} item is null or can't be executed;");
+                dataTemplate = OwlGifTemplate;
             }
 
-            if (item is OwlVideoViewModel)
+            else if (item is OwlVideoViewModel)
             {
-                return OwlVideoTemplate;
-            }
-            else
-            {
-                Debug.WriteLine($"{nameof(OwlTemplateSelector)} - {nameof(SelectTemplate)} item is null or can't be executed;");
+                dataTemplate = OwlVideoTemplate;
             }
 
-            return null;
+            return dataTemplate;
         }
 
         #endregion
