@@ -12,6 +12,7 @@ using FFImageLoading.Forms.Platform;
 using Acr.UserDialogs;
 using InterTwitter.Services.Keyboard;
 using InterTwitter.Droid.Services.Keyboard;
+using Octane.Xamarin.Forms.VideoPlayer.Android;
 
 namespace InterTwitter.Droid
 {
@@ -27,7 +28,7 @@ namespace InterTwitter.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            
             base.OnCreate(savedInstanceState);
 
             var config = new FFImageLoading.Config.Configuration()
@@ -39,13 +40,15 @@ namespace InterTwitter.Droid
             };
             ImageService.Instance.Initialize(config);
 
+            
+
             CachedImageRenderer.Init(true);
             CachedImageRenderer.InitImageViewHandler();
 
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             UserDialogs.Init(this);
-
+            FormsVideoPlayer.Init();
             LoadApplication(new App(new AndroidInitializer()));
         }
 

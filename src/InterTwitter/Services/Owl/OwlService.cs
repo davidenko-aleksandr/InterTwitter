@@ -205,7 +205,7 @@ namespace InterTwitter.Services.Owl
                     PostTime = DateTime.Now.ToString("HH:mm"),
                     AuthorNickName = "cute cats",
                     Text = "There may be some funny text here",
-                    Video = "https://youtu.be/aIwTGjLmfVM",
+                    Video = "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
                 }
             };
 

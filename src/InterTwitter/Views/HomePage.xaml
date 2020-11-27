@@ -5,6 +5,7 @@
                         xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                         xmlns:local="clr-namespace:InterTwitter.Enums" 
                         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                        xmlns:videoplayer="clr-namespace:Octane.Xamarin.Forms.VideoPlayer;assembly=Octane.Xamarin.Forms.VideoPlayer"
                         x:Class="InterTwitter.Views.HomePage"
                         NavigationPage.HasNavigationBar="False"
                         IconImageSource="{Binding Icon}">
@@ -500,8 +501,7 @@
                                                     HeightRequest="250"
                                                     Margin="0, 0, 10, 0"
                                                     IsEnabled="True"
-                                                    DownsampleToViewSize="True"
-                                                    >
+                                                    LoadingPlaceholder="loading...">
                             
                             <ffimageloading:CachedImage.Transformations>
 
@@ -571,22 +571,10 @@
                         <Label Text="{Binding Text}"
                                TextColor="#02060E"/>
 
-                        <ffimageloading:CachedImage Source="{Binding Video}"
-                                                    HeightRequest="250"
-                                                    Margin="0, 0, 10, 0"
-                                                    IsEnabled="True"
-                                                    DownsampleToViewSize="True">
-
-                            <ffimageloading:CachedImage.Transformations>
-
-                                <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                         BottomLeftCornerSize="5"
-                                                                         TopLeftCornerSize="5"
-                                                                         BottomRightCornerSize="5"
-                                                                         TopRightCornerSize="5"/>
-
-                            </ffimageloading:CachedImage.Transformations>
-                        </ffimageloading:CachedImage>
+                        <videoplayer:VideoPlayer Source="{Binding Video}"
+                                                 HeightRequest="250"
+                                                 AutoPlay="False"
+                                                 DisplayControls="True" />
 
                         <StackLayout Orientation="Horizontal">
 
