@@ -3,7 +3,8 @@
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         x:Class="InterTwitter.Views.NotificationsPage"
-                        IconImageSource="{Binding Icon}">
+                        IconImageSource="{Binding Icon}"
+                        BackgroundColor="{StaticResource bg_1}">
 
     <Label Text="Notifications Page"
            HorizontalOptions="Center"

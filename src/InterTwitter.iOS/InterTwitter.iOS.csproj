@@ -125,8 +125,9 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\Controls\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\Controls\ClickableContentViewRenderer.cs" />
+    <Compile Include="Renderers\Controls\CustomCollectionViewRenderer.cs" />
     <Compile Include="Renderers\Controls\UITouchesGestureRecognizer.cs" />
     <Compile Include="Renderers\Views\KeyboardViewRenderer.cs" />
     <Compile Include="Services\Keyboard\KeyboardService.cs" />
@@ -444,6 +445,15 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_home_blue%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add_blue%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add_blue%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\loading.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
