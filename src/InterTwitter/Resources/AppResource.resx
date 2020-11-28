@@ -183,6 +183,9 @@
   <data name="NoInternetText" xml:space="preserve">
     <value>No Internet connection</value>
   </data>
+  <data name="NotificationPageTitle" xml:space="preserve">
+    <value>Notification</value>
+  </data>
   <data name="PasswordErrorMessage" xml:space="preserve">
     <value>The password is too short or contains whitespace</value>
   </data>

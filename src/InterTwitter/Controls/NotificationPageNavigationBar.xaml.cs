@@ -1,12 +1,12 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace InterTwitter.Views.Templates
+namespace InterTwitter.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OwlNoMediaTemplate : DataTemplate
+    public partial class NotificationPageNavigationBar : Grid
     {
-        public OwlNoMediaTemplate()
+        public NotificationPageNavigationBar()
         {
             InitializeComponent();
         }

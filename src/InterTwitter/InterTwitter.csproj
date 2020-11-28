@@ -78,26 +78,32 @@
     <EmbeddedResource Update="Controls\HomePageNavigationBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Controls\NotificationPageNavigationBar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\AppResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlAlbumTemplate.xaml">
+    <EmbeddedResource Update="Views\NotificationTemplates\NotificationTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlFewImageTemplate.xaml">
+    <EmbeddedResource Update="Views\OwlTemplates\OwlAlbumTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlGifTemplate.xaml">
+    <EmbeddedResource Update="Views\OwlTemplates\OwlFewImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlNoMediaTemplate.xaml">
+    <EmbeddedResource Update="Views\OwlTemplates\OwlGifTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlOneImageTemplate.xaml">
+    <EmbeddedResource Update="Views\OwlTemplates\OwlNoMediaTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlVideoTemplate.xaml">
+    <EmbeddedResource Update="Views\OwlTemplates\OwlOneImageTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OwlTemplates\OwlVideoTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

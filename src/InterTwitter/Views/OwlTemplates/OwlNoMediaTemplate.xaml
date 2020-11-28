@@ -3,7 +3,7 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-              x:Class="InterTwitter.Views.Templates.OwlVideoTemplate">
+              x:Class="InterTwitter.Views.OwlTemplates.OwlNoMediaTemplate">
     
     <Grid Margin="10">
 
@@ -49,23 +49,6 @@
             <Label Text="{Binding Text}"
                                TextColor="{StaticResource tx_3}"/>
 
-            <ffimageloading:CachedImage Source="{Binding Video}"
-                                                    HeightRequest="250"
-                                                    Margin="0, 0, 10, 0"
-                                                    IsEnabled="True"
-                                                    DownsampleToViewSize="True">
-
-                <ffimageloading:CachedImage.Transformations>
-
-                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                         BottomLeftCornerSize="5"
-                                                                         TopLeftCornerSize="5"
-                                                                         BottomRightCornerSize="5"
-                                                                         TopRightCornerSize="5"/>
-
-                </ffimageloading:CachedImage.Transformations>
-            </ffimageloading:CachedImage>
-
             <StackLayout Orientation="Horizontal">
 
                 <Label Text="{Binding PostDate}"
@@ -82,11 +65,11 @@
         </StackLayout>
 
         <BoxView Grid.Row="2"
-                             Grid.ColumnSpan="2"
-                             Style="{StaticResource boxViewSeparator}"
-                             HorizontalOptions="Fill"
-                             VerticalOptions="Fill"/>
+                 Grid.ColumnSpan="2"
+                 Style="{StaticResource boxViewSeparator}"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill"/>
 
     </Grid>
-
+    
 </DataTemplate>

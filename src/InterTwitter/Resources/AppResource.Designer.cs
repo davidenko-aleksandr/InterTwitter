@@ -259,6 +259,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notification.
+        /// </summary>
+        public static string NotificationPageTitle {
+            get {
+                return ResourceManager.GetString("NotificationPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The password is too short or contains whitespace.
         /// </summary>
         public static string PasswordErrorMessage {

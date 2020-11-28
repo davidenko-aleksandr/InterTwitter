@@ -1,10 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Grid xmlns="http://xamarin.com/schemas/2014/forms" 
-      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-      xmlns:controls="clr-namespace:InterTwitter.Controls"
-      x:Class="InterTwitter.Controls.HomePageNavigationBar"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="InterTwitter.Controls.NotificationPageNavigationBar"
       xmlns:resources="clr-namespace:InterTwitter.Resources" 
-      x:Name="authorizationNavigationBar"
       VerticalOptions="Start"
       HorizontalOptions="FillAndExpand"
       ColumnSpacing="0"
@@ -18,21 +16,26 @@
         <ColumnDefinition Width="40"/>
     </Grid.ColumnDefinitions>
 
-    <controls:ClickableContentView Grid.Column="0"
-                                   BindingContext="{x:Reference authorizationNavigationBar}"
-                                   Command="{Binding OpenMenuCommand}"
-                                   Padding="5">
-    
-        <Image Source="pic_profile_small.png"/>
-    
-    </controls:ClickableContentView>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="1"/>
+    </Grid.RowDefinitions>
 
     <Label Grid.Column="1"
-           Text="{x:Static resources:AppResource.HomeTitle}"
+           Grid.Row="0"
+           Text="{x:Static resources:AppResource.NotificationPageTitle}"
            FontSize="18"
            TextColor="{StaticResource tx_3}"
            FontAttributes="Bold"
            VerticalOptions="Center"
            HorizontalOptions="Center"/>
+
+    <BoxView Grid.Column="0" 
+             Grid.ColumnSpan="3"
+             Grid.Row="1"
+             HeightRequest="1"
+             BackgroundColor="{StaticResource bg_3}"
+             HorizontalOptions="FillAndExpand"
+             VerticalOptions="EndAndExpand"/>
 
 </Grid>

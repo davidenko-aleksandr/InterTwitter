@@ -15,7 +15,8 @@ namespace InterTwitter.ViewModels
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
 
-        public LogInPageViewModel(INavigationService navigationService,
+        public LogInPageViewModel(
+                                  INavigationService navigationService,
                                   IAuthorizationService authorizationService,
                                   IKeyboardService keyboardService,
                                   IUserDialogs userDialogs)

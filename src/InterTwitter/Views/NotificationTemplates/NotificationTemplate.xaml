@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataTemplate xmlns="http://xamarin.com/schemas/2014/forms" 
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+              x:Class="InterTwitter.Views.NotificationTemplates.NotificationTemplate">
+
+    <Grid ColumnSpacing="0"
+          RowSpacing="0"
+          Padding="5">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0"
+               Grid.Row="0"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Source="{Binding ActionIcon}"/>
+
+        <StackLayout Grid.Row ="1"
+                     Grid.Column="0"
+                     Orientation="Horizontal">
+
+            <ffimageloading:CachedImage Source="{Binding NotificationUser.Picture}"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="20"
+                                    HeightRequest="20"
+                                    Aspect="AspectFit"
+                                    DownsampleToViewSize="true">
+
+                <ffimageloading:CachedImage.Transformations>
+
+                    <fftransformations:CircleTransformation/>
+
+                </ffimageloading:CachedImage.Transformations>
+
+            </ffimageloading:CachedImage>
+
+            <Label Text="{Binding NotificationUser.Name}"
+                   FontSize="14"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource tx_3}"/>
+
+            <Label Text="{Binding ActionText}"
+                   FontSize="14"
+                   TextColor="{StaticResource tx_3}"/>
+            
+        </StackLayout>
+
+        <Label Text="{Binding OwlText}"
+               FontSize="14"
+               TextColor="{StaticResource tx_5}"/>
+    </Grid>
+
+</DataTemplate>
