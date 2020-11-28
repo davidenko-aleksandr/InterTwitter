@@ -74,7 +74,8 @@
                 <Label Text="{Binding PostDate}"
                        TextColor="{StaticResource tx_5}"/>
 
-                <BoxView Style="{StaticResource boxViewPoint}"/>
+                <BoxView Style="{StaticResource boxViewPoint}"
+                         VerticalOptions="Center"/>
 
                 <!-- TIME LABEL -->
                 <Label Text="{Binding PostTime}"
