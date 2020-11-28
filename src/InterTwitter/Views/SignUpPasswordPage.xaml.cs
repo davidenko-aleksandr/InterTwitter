@@ -7,11 +7,27 @@ namespace InterTwitter.Views
         public SignUpPasswordPage()
         {
             InitializeComponent();
+        }
+
+        #region -- Overrides --
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
             keyboardButton.PropertyChanging += KeyboardButtonPropertyChanging;
             signButtonsBlock.PropertyChanging += SignButtonsBlockPropertyChanging;
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            keyboardButton.PropertyChanging -= KeyboardButtonPropertyChanging;
+            signButtonsBlock.PropertyChanging -= SignButtonsBlockPropertyChanging;
+        }
+
+        #endregion
 
         #region -- Private helpers -- 
 
@@ -21,12 +37,12 @@ namespace InterTwitter.Views
             {
                 if (keyboardButton.IsVisible)
                 {
-                    keyboardButton.FadeTo(300, 1);
+                    keyboardButton.FadeTo(0);
                 }
                 else
                 {
                     keyboardButton.Opacity = 0;
-                    keyboardButton.FadeTo(1, 300);
+                    keyboardButton.FadeTo(1);
                 }
             }
         }
@@ -37,14 +53,19 @@ namespace InterTwitter.Views
             {
                 if (signButtonsBlock.IsVisible)
                 {
-                    signButtonsBlock.FadeTo(300, 1);
+                    signButtonsBlock.FadeTo(0);
                 }
                 else
                 {
                     signButtonsBlock.Opacity = 0;
-                    signButtonsBlock.FadeTo(1, 300);
+                    signButtonsBlock.FadeTo(1);
                 }
             }
+        }
+
+        private void NextButtonClicked(object sender, System.EventArgs e)
+        {
+            confirmPasswordEntry.Entry.Focus();
         }
 
         #endregion

@@ -68,14 +68,14 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isSignButtonsBlockVisible, value);
         }
 
-        public ICommand LogInClickCommand => SingleExecutionCommand.FromFunc(OnLogInClickCommandAsync);
-        public ICommand SignUpClickCommand => SingleExecutionCommand.FromFunc(OnSignUpClickCommandAsync);
+        public ICommand LogInCommand => SingleExecutionCommand.FromFunc(OnLogInCommandAsync);
+        public ICommand SignUpCommand => SingleExecutionCommand.FromFunc(OnSignUpCommandAsync);
 
         #endregion
 
         #region -- Private helpers --
 
-        private async Task OnLogInClickCommandAsync()
+        private async Task OnLogInCommandAsync()
         {
             var current = Connectivity.NetworkAccess;
 
@@ -112,9 +112,9 @@ namespace InterTwitter.ViewModels
 
         }
 
-        private Task OnSignUpClickCommandAsync()
+        private Task OnSignUpCommandAsync()
         {
-           return NavigationService.NavigateAsync(nameof(SignUpMainPage));
+            return NavigationService.NavigateAsync(nameof(SignUpMainPage));
         }
 
         private void KeyboardHidden(object sender, System.EventArgs e)

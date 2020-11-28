@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using InterTwitter.Enums;
 
 namespace InterTwitter.Models
 {
@@ -14,5 +15,9 @@ namespace InterTwitter.Models
         public DateTime Date { get; set; }
 
         public List<string> Media { get; set; }
+
+        public OwlType MediaType { get; set; }
+
+        public int LikesCount { get; set; }
     }
 }

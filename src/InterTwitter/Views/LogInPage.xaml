@@ -7,27 +7,35 @@
                        xmlns:views="clr-namespace:InterTwitter.Views"                         
                        BackgroundColor="{StaticResource bg_1}">
 
-    <controls:KeyboardView HorizontalOptions="Fill"
-                           RowSpacing="0"
-                           VerticalOptions="Fill">       
+    <Grid HorizontalOptions="Fill"
+          RowSpacing="0"
+          VerticalOptions="Fill">
 
         <Grid.RowDefinitions>
-            
+
             <RowDefinition Height="100" />
-            <RowDefinition Height="200" />
+            <RowDefinition Height="150" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
+            <RowDefinition>
+                <RowDefinition.Height>
+                    <OnPlatform x:TypeArguments="GridLength">
+                        <On Platform="Android"
+                            Value="0"/>
+                        <On Platform="iOS"
+                            Value="*"/>
+                    </OnPlatform>
+                </RowDefinition.Height>
+            </RowDefinition>
 
         </Grid.RowDefinitions>
 
         <!--NAVIGATION BAR-->
         <StackLayout Grid.Row="0"
                      HorizontalOptions="Fill"
-                     Orientation="Vertical"
                      VerticalOptions="Fill">
 
             <controls:AuthorizationNavigationBar HorizontalOptions="Fill" 
-                                                 VerticalOptions="Start"/>                                             
+                                                 VerticalOptions="Start"/>
 
             <Label Style="{StaticResource AccountLabelStyle}" 
                    Text="{x:Static resources:AppResource.GetAccountLabel}"/>
@@ -37,50 +45,123 @@
         <!--ENTRY BLOCK-->
         <StackLayout Grid.Row="1">
 
-            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.EmailText}" 
+            <!--EMAIL ENTRY-->
+            <controls:CustomEntry x:Name="emailEntry"
+                                  Placeholder="{x:Static resources:AppResource.EmailText}" 
                                   Style="{StaticResource CustomEntryStyle}"
                                   Keyboard="Email"
                                   ReturnType="Next"
                                   Text="{Binding EmailEntry}"/>
 
-            <controls:CustomEntry Placeholder="{x:Static resources:AppResource.PasswordText}"
+            <!--PASSWORD ENTRY-->
+            <controls:CustomEntry x:Name="passwordEntry"
+                                  Placeholder="{x:Static resources:AppResource.PasswordText}"
                                   Style="{StaticResource CustomEntryStyle}"
                                   ReturnType="Done"
                                   IsPassword="True"
                                   Text="{Binding PasswordEntry}"/>
-            
+
         </StackLayout>
 
-        <!--BUTTON BLOCK-->
-        <StackLayout x:Name="signButtonsBlock" 
-                     Grid.Row="2"
-                     HorizontalOptions="Fill"
-                     VerticalOptions="Fill"
-                     IsVisible="{Binding IsSignButtonsBlockVisible}">
+        <ScrollView Grid.Row="2">
 
-            <Button Style="{StaticResource LoginButtonStyle}" 
-                    Text="{x:Static resources:AppResource.LogInButton}" 
-                    Command="{Binding LogInClickCommand}"/>
+            <StackLayout>
 
-            <controls:ClickableContentView Command="{Binding SignUpClickCommand}"
-                                           Style="{StaticResource ClickableContentViewStyle}">
-                
-                <Label IsVisible="{TemplateBinding BindingContext.LoginLableIsVisible}"
-                       Style="{StaticResource UnderButtonLabelStyle}"
-                       Text="{x:Static resources:AppResource.SignUpButton}"/>
-                
-            </controls:ClickableContentView>
-           
-        </StackLayout>
+                <!--SIGN BUTTONS BLOCK-->
+                <StackLayout x:Name="signButtonsBlock" 
+                             VerticalOptions="StartAndExpand"
+                             IsVisible="{Binding IsSignButtonsBlockVisible}">
 
-        <!--KEYBOARD BUTTON-->
-        <Button x:Name="keyboardButton" 
-                Grid.Row="3"
-                Style="{StaticResource KeyboardButton}"
-                IsVisible="{Binding IsKeyboardButtonVisible}"
-                Text="{x:Static resources:AppResource.LogInButton}" 
-                Command="{Binding LogInClickCommand}"/>
+                    <StackLayout.VerticalOptions>
+                        <OnPlatform x:TypeArguments="LayoutOptions">
+                            <On Platform="Android"
+                                Value="StartAndExpand"/>
+                            <On Platform="iOS"
+                                Value="CenterAndExpand"/>
+                        </OnPlatform>
+                    </StackLayout.VerticalOptions>
 
-    </controls:KeyboardView>
+                    <StackLayout.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android"
+                                Value="0,40,0,0"/>
+                        </OnPlatform>
+                    </StackLayout.Margin>
+
+                    <!--LOG IN BUTTON-->
+                    <Button Style="{StaticResource LoginButtonStyle}" 
+                            Text="{x:Static resources:AppResource.LogInButton}" 
+                            Command="{Binding LogInCommand}"/>
+
+                    <!--SIGN UP BUTTON-->
+                    <controls:ClickableContentView Command="{Binding SignUpCommand}"
+                                                   Style="{StaticResource ClickableContentViewStyle}">
+
+                        <Label Style="{StaticResource UnderButtonLabelStyle}"
+                               Text="{x:Static resources:AppResource.SignUpButton}"/>
+
+                    </controls:ClickableContentView>
+
+                </StackLayout>
+
+                <!--KEYBOARD BUTTONS BLOCK-->
+                <Grid x:Name="keyboardButton"
+                      IsVisible="{Binding IsKeyboardButtonVisible}"
+                      VerticalOptions="EndAndExpand">
+
+                    <Grid.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS"
+                                Value="0,0,0,15"/>
+                        </OnPlatform>
+                    </Grid.Margin>
+
+                    <!--KEYBOARD LOG IN BUTTON-->
+                    <Button Style="{StaticResource KeyboardButton}"
+                            Text="{x:Static resources:AppResource.LogInButton}" 
+                            Command="{Binding LogInCommand}">
+
+                        <Button.Triggers>
+
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference emailEntry}, Path=IsEntryFocused}"
+                                         Value="True">
+
+                                <Setter Property="IsVisible"
+                                        Value="False"/>
+
+                            </DataTrigger>
+
+                        </Button.Triggers>
+
+                    </Button>
+
+                    <!--KEYBOARD NEXT BUTTON-->
+                    <Button Style="{StaticResource KeyboardButton}"
+                            Text="{x:Static resources:AppResource.NextButton}" 
+                            Clicked="NextButtonClicked">
+
+                        <Button.Triggers>
+
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference passwordEntry}, Path=IsEntryFocused}"
+                                         Value="True">
+
+                                <Setter Property="IsVisible"
+                                        Value="False"/>
+
+                            </DataTrigger>
+
+                        </Button.Triggers>
+
+                    </Button>
+
+                </Grid>
+
+            </StackLayout>
+
+        </ScrollView>
+
+    </Grid>
 
 </views:BaseContentPage>
