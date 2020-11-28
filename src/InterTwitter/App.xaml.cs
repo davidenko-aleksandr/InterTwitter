@@ -11,6 +11,7 @@ using Prism.Ioc;
 using Prism.Unity;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using DLToolkit.Forms.Controls;
 
 namespace InterTwitter
 {
@@ -26,6 +27,8 @@ namespace InterTwitter
         protected override async void OnInitialized()
         {
             InitializeComponent();
+
+            FlowListView.Init();
 
             await NavigateAsync();
         }

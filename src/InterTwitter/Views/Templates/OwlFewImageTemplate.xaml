@@ -2,7 +2,8 @@
 <DataTemplate xmlns="http://xamarin.com/schemas/2014/forms" 
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+              xmlns:controls="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
               x:Class="InterTwitter.Views.Templates.OwlFewImageTemplate">
     
     <Grid Margin="10">
@@ -52,17 +53,25 @@
             <Label Text="{Binding Text}"
                    TextColor="{StaticResource tx_3}"/>
 
+            <controls:FlowListView FlowColumnCount="3"
+                                   HasUnevenRows="False"
+                                   ItemsSource="{Binding Media}"
+                                   RowHeight="80"
+                                   SeparatorVisibility="Default">
+                                
+            </controls:FlowListView>
             <!-- PICTURES GRID -->
             <Grid >
 
-                <Grid.ColumnDefinitions>
+                <!--<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>-->
 
                 <!-- FIRST IMAGE -->
-                <ffimageloading:CachedImage Grid.Column="0"
+
+                <!--<ffimageloading:CachedImage Grid.Column="0"
                                             Source="{Binding PostPhotoOne}">
 
                     <ffimageloading:CachedImage.Transformations>
@@ -77,7 +86,7 @@
 
                 </ffimageloading:CachedImage>
 
-                <!-- SECOND IMAGE -->
+                --><!-- SECOND IMAGE --><!--
                 <ffimageloading:CachedImage Grid.Column="1"
                                             Source="{Binding PostPhotoTwo}">
 
@@ -93,7 +102,7 @@
 
                 </ffimageloading:CachedImage>
 
-                <!-- THIRD IMAGE -->
+                --><!-- THIRD IMAGE --><!--
                 <ffimageloading:CachedImage Grid.Column="2"
                                             Source="{Binding PostPhotoThree}">
 
@@ -107,7 +116,7 @@
 
                     </ffimageloading:CachedImage.Transformations>
 
-                </ffimageloading:CachedImage>
+                </ffimageloading:CachedImage>-->
 
             </Grid>
 
