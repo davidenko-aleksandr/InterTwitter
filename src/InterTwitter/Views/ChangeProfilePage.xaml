@@ -78,7 +78,11 @@
                BorderColor="#02060E"
                CornerRadius="24"
                Padding="0">
-            
+
+            <controls:ClickableContentView Command="{Binding SetHeaderImageCommand}">
+
+
+
                 <ffimageloading:CachedImage VerticalOptions="Center"
                                             HorizontalOptions="Center"
                                             DownsampleToViewSize="True"
@@ -87,13 +91,15 @@
                                             BackgroundColor="#02060E"
                                             Source="{x:Static resources:AppResource.AddPhotoIcon}"
                                             Aspect="AspectFit">
-                    
-                    <ffimageloading:CachedImage.Transformations>
-                        <fftransformations:CircleTransformation />
-                    </ffimageloading:CachedImage.Transformations>
-                    
+
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CircleTransformation />
+                </ffimageloading:CachedImage.Transformations>
+
                 </ffimageloading:CachedImage>
-                        
+                
+            </controls:ClickableContentView>
+
         </Frame>
         
         <!--PROFILE DATA BLOCK--> 

@@ -45,8 +45,8 @@
                                     Margin="0"
                                     VerticalOptions="Fill"
                                     DownsampleToViewSize="True"
-                                    ErrorPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
-                                    LoadingPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
+                                    ErrorPlaceholder="pic_logo_small.png"
+                                    LoadingPlaceholder="pic_logo_small.png"
                                     Source="{Binding User.ProfileHeaderImage}"
                                     Aspect="AspectFill"/>
 
@@ -54,7 +54,8 @@
                      Style="{StaticResource OnHeaderImageButtonStyle}"
                      VerticalOptions="Start"
                      HorizontalOptions="Start"                                   
-                     Source="ic_left_round"/>
+                     Source="ic_left_round"
+                     Command="{Binding BackCommand}"/>
 
         <ImageButton Grid.Row="0"
                      Style="{StaticResource OnHeaderImageButtonStyle}"
@@ -64,6 +65,8 @@
 
         <ffimageloading:CachedImage Grid.Row="1"
                                     HeightRequest="52"
+                                    ErrorPlaceholder="pic_logo_small"
+                                    LoadingPlaceholder="pic_logo_small"
                                     WidthRequest="52"      
                                     Margin="15,-32,0,0"
                                     VerticalOptions="Start"
@@ -95,14 +98,15 @@
                 WidthRequest="120"
                 BorderColor="#66696E"
                 BackgroundColor="Transparent"
-                BorderWidth="1"/>
+                BorderWidth="1"
+                Command="{Binding ChangeProfileCommand}"/>
 
         <Label Grid.Row="1"
                VerticalOptions="Start"
                HorizontalOptions="Start"
                TextColor="#02060E"
                Margin="12,32"
-               Text="{Binding User Name}"
+               Text="{Binding User.Name}"
                FontAttributes="Bold"
                FontSize="16"
                FontFamily="Ubuntu"/>

@@ -5,6 +5,7 @@ using InterTwitter.Helpers;
 using System.Threading.Tasks;
 using InterTwitter.Services.UserService;
 using Plugin.Media.Abstractions;
+using InterTwitter.Services.Authorization;
 
 namespace InterTwitter.ViewModels
 {
@@ -12,20 +13,23 @@ namespace InterTwitter.ViewModels
     {
         private readonly IUserService _userServcie;
         private readonly IMedia _mediaPluggin;
+        private readonly IAuthorizationService _authorizationService;
 
         public ChangeProfilePageViewModel(INavigationService navigatonService,
                                           IUserService userService,
-                                          IMedia mediaPlugin) 
+                                          IMedia mediaPlugin,
+                                          IAuthorizationService authorizationService)
                                          : base(navigatonService)
         {
             _userServcie = userService;
             _mediaPluggin = mediaPlugin;
+            _authorizationService = authorizationService;
         }
 
         #region -- Public properties --
 
-        private UserModel _user;
-        public UserModel User
+        private UserViewModel _user;
+        public UserViewModel User
         {
             get => _user;
             set => SetProperty(ref _user, value);
@@ -39,28 +43,30 @@ namespace InterTwitter.ViewModels
         }
 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
-                
+
         public ICommand SaveProfileCommand => SingleExecutionCommand.FromFunc(OnSaveProfileCommandAsync);
 
         public ICommand SetAvatarCommand => SingleExecutionCommand.FromFunc(OnSetAvatarCommand);
 
         public ICommand SetHeaderImageCommand => SingleExecutionCommand.FromFunc(OnSetHeaderImageCommand);
-                
+
         #endregion
 
         #region -- Overrides --
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             // base.OnNavigatedTo(parameters);
-            if (parameters.TryGetValue(Constants.Navigation.User, out UserModel user))
-            {
-                User = user;
-            }
-            else
-            { 
-            //wrong user
-            }
+            //if (parameters.TryGetValue(Constants.Navigation.User, out UserViewModel user))
+            //{
+            //    User = user;
+            //}
+            //else
+            //{
+            //    //wrong user
+            //}
+            var userResult = await _authorizationService.GetAuthorizedUserAsync();
+            User = userResult.Result;
         }
 
         #endregion
@@ -89,12 +95,12 @@ namespace InterTwitter.ViewModels
                 }
                 else
                 {
-                   //"CurrentPinModel == null";
+                    //"CurrentPinModel == null";
                 }
             }
             else
             {
-               //"Pick photo is not supported";
+                //"Pick photo is not supported";
             }
         }
 

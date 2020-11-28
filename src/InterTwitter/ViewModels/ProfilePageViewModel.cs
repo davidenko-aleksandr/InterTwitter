@@ -5,25 +5,31 @@ using InterTwitter.Helpers;
 using Prism.Navigation;
 using System.Threading.Tasks;
 using InterTwitter.Views;
+using InterTwitter.Services.Authorization;
 
 namespace InterTwitter.ViewModels
 {
     public class ProfilePageViewModel : BaseViewModel
     {
-        public ProfilePageViewModel(INavigationService navigationService)
+        private readonly IAuthorizationService _authorizationService;
+
+        public ProfilePageViewModel(INavigationService navigationService,
+                                    IAuthorizationService authorizationService)
                                    : base(navigationService)
         {
+            _authorizationService = authorizationService;
         }
 
         #region -- Public properties --
 
-        private UserModel _user;
-        public UserModel User
+        private UserViewModel _user;
+        public UserViewModel User
         {
             get => _user;
             set => SetProperty(ref _user, value);
         }
 
+        public ICommand BackCommand => SingleExecutionCommand.FromFunc(OnBackCommandAsync);
 
         public ICommand ChangeProfileCommand => SingleExecutionCommand.FromFunc(OnChangeProfileCommand);
                
@@ -31,17 +37,10 @@ namespace InterTwitter.ViewModels
 
         #region -- Overrides --
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            if (parameters.TryGetValue(Constants.Navigation.User, out UserModel user))
-            {
-                User = user;
-            }
-            else
-            { 
-            //Wrong user
-            }
-
+            var result = await _authorizationService.GetAuthorizedUserAsync();
+            User = result.Result;          
         }
 
         #endregion
@@ -56,6 +55,11 @@ namespace InterTwitter.ViewModels
             };
 
            await NavigationService.NavigateAsync(nameof(ChangeProfilePage), parameers);
+        }
+
+        private async Task OnBackCommandAsync()
+        {
+            NavigationService.GoBackAsync();
         }
 
         #endregion

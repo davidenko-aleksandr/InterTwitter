@@ -66,7 +66,7 @@ namespace InterTwitter
 
             var path = isAuthorized ? nameof(MenuPage) : nameof(LogInPage);
 
-            await NavigationService.NavigateAsync(nameof(path));
+            await NavigationService.NavigateAsync(path);
 
             //await NavigationService.NavigateAsync(nameof(ProfilePage));
         }

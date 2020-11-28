@@ -197,7 +197,7 @@ namespace InterTwitter.ViewModels
         private async Task SetUserDataAsync()
         {
             var result = await _authorizationService.GetAuthorizedUserAsync();
-            AuthorizedUser = result.Result;
+            AuthorizedUser = result.Result.ToUserModel();
         }
 
         #endregion

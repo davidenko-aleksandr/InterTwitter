@@ -4,7 +4,9 @@ using System.Threading.Tasks;
 using InterTwitter.Helpers;
 using InterTwitter.Models;
 using InterTwitter.Services.Settings;
+using InterTwitter.Extensions;
 using InterTwitter.Services.UserService;
+using InterTwitter.ViewModels;
 
 namespace InterTwitter.Services.Authorization
 {
@@ -79,7 +81,7 @@ namespace InterTwitter.Services.Authorization
                 {
                     var users = getUsersResult.Result;
 
-                    var user = users.First(x => x.Email.ToUpper() == email.ToUpper());
+                    var user = users.First(x => x.Email.ToUpper() == email.ToUpper()).ToUserModel();
 
                     await Task.Delay(300);
 
@@ -138,9 +140,9 @@ namespace InterTwitter.Services.Authorization
             return result;
         }
 
-        public async Task<AOResult<UserModel>> GetAuthorizedUserAsync()
+        public async Task<AOResult<UserViewModel>> GetAuthorizedUserAsync()
         {
-            var result = new AOResult<UserModel>();
+            var result = new AOResult<UserViewModel>();
 
             try
             {
