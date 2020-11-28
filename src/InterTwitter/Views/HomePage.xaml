@@ -82,6 +82,7 @@
                                     CornerRadius="32"
                                     Margin="20"
                                     Padding="18"
+                                    Command="{Binding AddPostCommand}"
                                     MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"/>
 
     </Grid>

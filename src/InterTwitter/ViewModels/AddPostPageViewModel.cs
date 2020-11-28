@@ -1,16 +1,28 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using InterTwitter.Enums;
 using InterTwitter.Helpers;
+using InterTwitter.Models;
+using InterTwitter.Services.Authorization;
+using InterTwitter.Services.Owl;
 using Prism.Navigation;
 
 namespace InterTwitter.ViewModels
 {
     public class AddPostPageViewModel : BaseViewModel
     {
-        public AddPostPageViewModel(INavigationService navigationService)
+        private readonly IOwlService _owlService;
+        private readonly IAuthorizationService _authorizationService;
+        private OwlType _owlType = OwlType.NoMedia;
+
+        public AddPostPageViewModel(INavigationService navigationService,
+                                    IOwlService owlService,
+                                    IAuthorizationService authorizationService)
                                    : base(navigationService)
         {
+            _owlService = owlService;
+            _authorizationService = authorizationService;
         }
 
         #region -- Public Properties --
@@ -22,7 +34,14 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _owlText, value);
         }
 
-        public ICommand PostCommand => SingleExecutionCommand.FromFunc(OnPostCommandAsync);
+        private string _authorAvatar;
+        public string AuthorAvatar
+        {
+            get => _authorAvatar;
+            set => SetProperty(ref _authorAvatar, value);
+        }
+
+        public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
 
         public ICommand CancelCommand => SingleExecutionCommand.FromFunc(OnCancelCommandAsync);
 
@@ -34,6 +53,18 @@ namespace InterTwitter.ViewModels
 
         #endregion
 
+        #region -- Overrides --
+
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            var result = await _authorizationService.GetAuthorizedUserAsync();
+            var author = result.Result;
+
+            AuthorAvatar = author.Picture;
+        }
+
+        #endregion
+
         #region -- Private Helpers --
 
         private async Task OnCancelCommandAsync()
@@ -41,27 +72,36 @@ namespace InterTwitter.ViewModels
             await NavigationService.GoBackAsync();
         }
 
-        private async Task OnPostCommandAsync()
+        private async Task OnAddPostCommandAsync()
         {
             if (!string.IsNullOrEmpty(_owlText) && _owlText.Length > 0 && _owlText.Length < 280)
             {
-                //owlService.AddOwl();
+                var owl = new OwlModel()
+                {
+                    MediaType = _owlType,
+                    Date = DateTime.Now,
+                    Text = _owlText
+                };
+
+                await _owlService.AddOwlAsync(owl);
+
+                await NavigationService.GoBackAsync();
             }
         }
 
         private Task OnMediaCommandAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(true);
         }
 
         private Task OnGifCommand()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(true);
         }
 
         private Task OnVideoCommand()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(true);
         }
 
         #endregion

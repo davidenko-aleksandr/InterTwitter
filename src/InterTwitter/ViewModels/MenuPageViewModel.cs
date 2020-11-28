@@ -137,16 +137,16 @@ namespace InterTwitter.ViewModels
             IsPresented = false;
         }
 
-        private async Task OnNavigateCommandAsync(MenuItemViewModel arg) //TODO delete
+        private async Task OnNavigateCommandAsync(MenuItemViewModel arg) 
         {
-            await NavigationService.NavigateAsync(nameof(AddPostPage), new NavigationParameters(), useModalNavigation: true, true);
+            //navigate to settings
         }
 
         private void InitMenuItems()
         {
             ICommand selectTabCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnSelectTabCommandAsync);
 
-            ICommand navigateCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnNavigateCommandAsync);//TODO delete
+            ICommand navigateCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnNavigateCommandAsync);
 
             var collection = new ObservableCollection<MenuItemGroup>
             {
@@ -188,7 +188,7 @@ namespace InterTwitter.ViewModels
                         Text = "Settings",
                         PageType = typeof(AddPostPage),
                         Icon = "ic_setting",
-                        NavigationCommand = navigateCommand //TODO delete
+                        NavigationCommand = navigateCommand 
                     },
                 }
             };

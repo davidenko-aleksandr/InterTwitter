@@ -23,6 +23,8 @@ namespace InterTwitter.Services.Owl
         {
             _userService = userService;
             _authorizationService = authorizationService;
+
+            InitMock();
         }
 
         #region -- IOwlService Implementation --
@@ -35,6 +37,12 @@ namespace InterTwitter.Services.Owl
             {
                 if (owlModel is not null)
                 {
+                    var res =  await _authorizationService.GetAuthorizedUserAsync();
+                    var author = res.Result;
+
+                    owlModel.Id = _owlsMock.Count;
+                    owlModel.AuthorId = author.Id;
+
                     _owlsMock.Add(owlModel);
                     result.SetSuccess();
                 }
@@ -57,8 +65,6 @@ namespace InterTwitter.Services.Owl
 
             try
             {
-                InitMock();
-
                 List<OwlViewModel> owls = new List<OwlViewModel>();
 
                 foreach (OwlModel owl in _owlsMock)
@@ -184,7 +190,7 @@ namespace InterTwitter.Services.Owl
             owlModel = new OwlModel
             {
                 Id = _owlsMock.Count,
-                AuthorId = 1,
+                AuthorId = 0,
                 Date = DateTime.Now,
                 Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
                 MediaType = OwlType.Album,
@@ -205,7 +211,7 @@ namespace InterTwitter.Services.Owl
             owlModel = new OwlModel
             {
                 Id = _owlsMock.Count,
-                AuthorId = 1,
+                AuthorId = 2,
                 Date = DateTime.Now,
                 Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
                 MediaType = OwlType.FewImages,

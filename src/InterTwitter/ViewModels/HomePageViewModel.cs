@@ -10,6 +10,8 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System;
+using InterTwitter.Views;
 
 namespace InterTwitter.ViewModels
 {
@@ -50,10 +52,12 @@ namespace InterTwitter.ViewModels
 
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
 
-        #endregion       
+        public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
+
+        #endregion
 
         #region -- Overrides --
-       
+
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             Icon = "ic_home_blue";
@@ -75,6 +79,11 @@ namespace InterTwitter.ViewModels
         private async Task OnOpenMenuCommandAsync()
         {
             MessagingCenter.Send<object>(this, Constants.OpenMenuMessage);
+        }
+
+        private async Task OnAddPostCommandAsync()
+        {
+            await NavigationService.NavigateAsync(nameof(AddPostPage), new NavigationParameters(), useModalNavigation: true, true);
         }
 
         #endregion
