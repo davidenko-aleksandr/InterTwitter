@@ -2,18 +2,88 @@
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:local="clr-namespace:InterTwitter.Enums"
                         xmlns:controls="clr-namespace:InterTwitter.Controls"
+                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates"
                         x:Class="InterTwitter.Views.HomePage"
-                        IconImageSource="{Binding Icon}">
+                        IconImageSource="{Binding Icon}"
+                        BackgroundColor="{StaticResource bg_1}">
+
+    <views:BaseContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <templates:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
+            
+            <templates:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
+            
+            <templates:OwlAlbumTemplate x:Key="OwlAlbumTemplate"/>
+            
+            <templates:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
+            
+            <templates:OwlGifTemplate x:Key="OwlGifTemplate"/>
+            
+            <templates:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
+            
+            <local:OwlTemplateSelector x:Key="OwlTemplateSelector"
+                                       OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
+                                       OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
+                                       OwlAlbumTemplate="{StaticResource OwlAlbumTemplate}"
+                                       OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
+                                       OwlGifTemplate ="{StaticResource OwlGifTemplate}"
+                                       OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>
+        </ResourceDictionary>
+
+    </views:BaseContentPage.Resources>
 
     <Grid>
 
-        <controls:HomePageNavigationBar OpenMenuCommand="{Binding OpenMenuCommand}"/>
+        <!-- CUSTOM COLLECTION VIEW -->
+        <controls:CustomCollectionView x:Name="customCollectionView"
+                                       ItemsSource="{Binding Owls}"
+                                       ItemTemplate="{StaticResource OwlTemplateSelector}"
+                                       ItemsUpdatingScrollMode="KeepItemsInView"
+                                       BackgroundColor="{StaticResource bg_1}"
+                                       SelectionMode="None"
+                                       IsTabStop="True">
 
-        <Label Text="Home Page"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"/>
+            <controls:CustomCollectionView.Header>
+
+                <ContentView>
+
+                    <Grid HeightRequest="61">
+
+                        <BoxView HeightRequest="1"
+                                     BackgroundColor="{StaticResource bg_3}"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="EndAndExpand"/>
+
+                    </Grid>
+
+                </ContentView>
+
+            </controls:CustomCollectionView.Header>
+
+        </controls:CustomCollectionView>
+
+        <!-- HOME PAGE NAVIGATION BAR -->
+        <controls:HomePageNavigationBar  VerticalOptions="Start"
+                                             HorizontalOptions="FillAndExpand"
+                                             MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"
+                                             OpenMenuCommand="{Binding OpenMenuCommand}"/>
+
+        <!-- MOVING IMAGE BUTTON -->
+        <controls:MovingImageButton Source="ic_add_white.png"
+                                    VerticalOptions="End"
+                                    HorizontalOptions="End"
+                                    BackgroundColor="{StaticResource bg_2}"
+                                    WidthRequest="65"
+                                    HeightRequest="65"
+                                    CornerRadius="32"
+                                    Margin="20"
+                                    Padding="18"
+                                    MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"/>
 
     </Grid>
 
-</views:BaseContentPage>
+</views:BaseContentPage>    

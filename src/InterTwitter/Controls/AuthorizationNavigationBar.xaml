@@ -9,7 +9,7 @@
     <Grid VerticalOptions="Start"
           HorizontalOptions="FillAndExpand"
           HeightRequest="48"
-          BackgroundColor="#FCFDFE">
+          BackgroundColor="{StaticResource bg_1}">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
