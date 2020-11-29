@@ -9,8 +9,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
 
@@ -55,9 +55,8 @@
                      Margin="15">
 
             <Label TextColor="Black"
-                   FontFamily="Ubuntu"
-                   FontSize="Large"
-                   FontAttributes="Bold"
+                   FontFamily="Ubuntu-Bold"
+                   FontSize="Title"
                    Text="Popular theme"/>
 
             <BoxView HeightRequest="2"

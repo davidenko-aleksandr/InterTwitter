@@ -88,9 +88,7 @@
             <Setter Property="FontSize"
                     Value="18" />
             <Setter Property="FontFamily" 
-                    Value="Ubuntu" />
-            <Setter Property="FontAttributes"
-                    Value="Bold"/>
+                    Value="Ubuntu-Bold" />
             <Setter Property="HorizontalOptions" 
                     Value="Center" />
             <Setter Property="TextColor"
