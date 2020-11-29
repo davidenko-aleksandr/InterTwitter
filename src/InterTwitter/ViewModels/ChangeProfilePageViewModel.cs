@@ -1,5 +1,4 @@
-﻿using InterTwitter.Models;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 using System.Windows.Input;
 using InterTwitter.Helpers;
 using System.Threading.Tasks;
@@ -29,7 +28,7 @@ namespace InterTwitter.ViewModels
             _userServcie = userService;
             _mediaPluggin = mediaPlugin;
             _authorizationService = authorizationService;
-            _userDialogs = _userDialogs;
+            _userDialogs = userDialogs;
         }
 
         #region -- Public properties --
@@ -73,24 +72,10 @@ namespace InterTwitter.ViewModels
         #region -- Overrides --
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
-        {
-            // base.OnNavigatedTo(parameters);
-            //if (parameters.TryGetValue(Constants.Navigation.User, out UserViewModel user))
-            //{
-            //    User = user;
-            //}
-            //else
-            //{
-            //    //wrong user
-            //}
+        {           
             var userResult = await _authorizationService.GetAuthorizedUserAsync();
             User = userResult.Result;
-        }
-
-        public override void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            
-        }
+        }               
 
         #endregion
 
@@ -98,9 +83,10 @@ namespace InterTwitter.ViewModels
 
         private async Task OnSaveProfileCommandAsync()
         {
-            var userDataIsValid = CheckDataValidity();
+            var userDataIsValid = CheckUserDataValidity();
+            bool newPasswordIsValid = CheckNewPasswordValidity();
 
-            if (string.IsNullOrEmpty(NewPassword) || userDataIsValid)
+            if (userDataIsValid && newPasswordIsValid)
             {
                 if (!string.IsNullOrEmpty(NewPassword))
                 {
@@ -121,12 +107,12 @@ namespace InterTwitter.ViewModels
             }
             else
             {
-                _userDialogs.Toast(AppResource.InvalidUserDataText);
+               //
             }
         }
 
         private async Task OnGoBackCommandAsync()
-        {            
+        {
             NavigationService.GoBackAsync();
         }
 
@@ -172,30 +158,37 @@ namespace InterTwitter.ViewModels
             }
         }
 
-        private bool CheckDataValidity()
+        private bool CheckNewPasswordValidity()
         {
-            var nameIsValid = !User.Name.StartsWith(" ");
+            return string.IsNullOrEmpty(NewPassword) || Validator.IsMatch(NewPassword, Validator.RegexPassword);
+        }                
 
-            return Validator.IsMatch(NewPassword, Validator.RegexPassword) && 
-                   Validator.IsMatch(User.Email, Validator.RegexEmail) && 
-                   nameIsValid;
-        }
-
-        private bool CheckOldPassword()
+        private bool CheckUserDataValidity()
         {
             bool isValid;
-            if (OldPassword == User.Password)
+            if (OldPassword != User.Password)
             {
-                isValid = true;
+                _userDialogs.Toast(AppResource.WrongEmailPasswordText);
+                isValid = false;
+            }
+            else if (!Validator.IsMatch(User.Name, Validator.RegexName))
+            {
+                _userDialogs.Toast(AppResource.WrongNameText);
+                isValid = false;
+            }
+            else if (!Validator.IsMatch(User.Email, Validator.RegexEmail))
+            {
+                _userDialogs.Toast(AppResource.WrongEmailPasswordText);
+                isValid = false;
             }
             else
             {
-                isValid = false;
-                _userDialogs.Toast(AppResource.WrongOldPassword);
+                isValid = true;
             }
 
             return isValid;
         }
+
         #endregion
     }
 }

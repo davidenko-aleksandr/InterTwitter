@@ -65,11 +65,11 @@
     <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1909" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
+
     <Folder Include="Enums\" />
-=======
+
     <Folder Include="Resources\" />
->>>>>>> dce3f729d8e8a2c43254eb940afa7d42d0c24670
+
     <Folder Include="Models\" />
     <Folder Include="Services\Authorization\" />
     <Folder Include="Behaviors\" />

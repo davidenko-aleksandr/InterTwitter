@@ -174,7 +174,6 @@
                               NameText="{x:Static resources:AppResource.OldPasswordText}"
                               Placeholder="{x:Static resources:AppResource.OldPasswordText}"
                               Text="{Binding OldPassword}"
-                              IsEnabled="False"
                               HorizontalOptions="Fill"
                               VerticalOptions="End"
                               IsPassword="True"

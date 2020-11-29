@@ -38,8 +38,7 @@ namespace InterTwitter.ViewModels
         #region -- Overrides --
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
-        {
-            // User = parameters.GetValue<UserViewModel>(Constants.Navigation.User);
+        {            
             if (parameters.TryGetValue(Constants.Navigation.User, out UserViewModel user))
             {
                 User = user;
@@ -50,12 +49,7 @@ namespace InterTwitter.ViewModels
                 User = result.Result;
             }
         }
-
-        public override void OnNavigatedFrom(INavigationParameters parameters)
-        {
-          
-        }
-
+        
         #endregion
 
         #region -- Private helpers --

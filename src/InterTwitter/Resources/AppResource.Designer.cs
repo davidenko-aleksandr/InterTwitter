@@ -358,6 +358,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wron user&apos;s name.
+        /// </summary>
+        public static string WrongNameText {
+            get {
+                return ResourceManager.GetString("WrongNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You entered wrong old password.
         /// </summary>
         public static string WrongOldPassword {

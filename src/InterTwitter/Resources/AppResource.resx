@@ -216,6 +216,9 @@
   <data name="WrongEmailPasswordText" xml:space="preserve">
     <value>Wrong email or password</value>
   </data>
+  <data name="WrongNameText" xml:space="preserve">
+    <value>Wron user's name</value>
+  </data>
   <data name="WrongOldPassword" xml:space="preserve">
     <value>You entered wrong old password</value>
   </data>

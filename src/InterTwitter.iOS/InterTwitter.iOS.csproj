@@ -443,7 +443,6 @@
     <BundleResource Include="Resources\ic_home_blue%403x.png" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <BundleResource Include="Resources\pic_profile_header_photo.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -462,22 +461,17 @@
     <BundleResource Include="Resources\Default-Portrait%402x.png" />
   </ItemGroup>
   <ItemGroup>
-=======
->>>>>>> dce3f729d8e8a2c43254eb940afa7d42d0c24670
     <BundleResource Include="Resources\ic_add_blue%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_add_blue%403x.png" />
   </ItemGroup>
-<<<<<<< HEAD
   <ItemGroup>
     <BundleResource Include="Resources\ic_setting%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_setting%403x.png" />
   </ItemGroup>
-=======
->>>>>>> dce3f729d8e8a2c43254eb940afa7d42d0c24670
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties TriggeredFromHotReload="False" />

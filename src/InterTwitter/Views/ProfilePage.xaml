@@ -2,15 +2,10 @@
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-<<<<<<< HEAD
                         xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                         xmlns:resources="clr-namespace:InterTwitter.Resources" 
                         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-                        x:Class="InterTwitter.Views.ProfilePage">
-=======
-                        x:Class="InterTwitter.Views.ProfilePage"
-                        BackgroundColor="{StaticResource bg_1}">
->>>>>>> dce3f729d8e8a2c43254eb940afa7d42d0c24670
+                        x:Class="InterTwitter.Views.ProfilePage">                      
 
     <views:BaseContentPage.Resources>
         
@@ -88,7 +83,8 @@
             </ffimageloading:CachedImage.Transformations>
 
         </ffimageloading:CachedImage>
-
+        
+        <!--CHANGE CHANGE PROFILE BUTTON-->
         <Button Grid.Row="1"
                 Text="{x:Static resources:AppResource.ChangeProfileLable}"
                 FontSize="12"
@@ -105,7 +101,8 @@
                 BackgroundColor="Transparent"
                 BorderWidth="1"
                 Command="{Binding ChangeProfileCommand}"/>
-
+        
+        <!--NAME LABEL-->
         <Label Grid.Row="1"
                VerticalOptions="Start"
                HorizontalOptions="Start"
@@ -115,7 +112,8 @@
                FontAttributes="Bold"
                FontSize="16"
                FontFamily="Ubuntu"/>
-
+        
+        <!--EMAIL LABEL-->
         <Label Grid.Row="1"
                VerticalOptions="Start"
                HorizontalOptions="Start"
