@@ -159,6 +159,9 @@
   <data name="HomeTitle" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="InvalidUserDataText" xml:space="preserve">
+    <value>Invalid user data</value>
+  </data>
   <data name="LeftImage" xml:space="preserve">
     <value>ic_left.png</value>
   </data>
@@ -212,5 +215,8 @@
   </data>
   <data name="WrongEmailPasswordText" xml:space="preserve">
     <value>Wrong email or password</value>
+  </data>
+  <data name="WrongOldPassword" xml:space="preserve">
+    <value>You entered wrong old password</value>
   </data>
 </root>

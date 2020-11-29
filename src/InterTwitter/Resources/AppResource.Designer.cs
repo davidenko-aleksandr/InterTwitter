@@ -187,6 +187,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid user data.
+        /// </summary>
+        public static string InvalidUserDataText {
+            get {
+                return ResourceManager.GetString("InvalidUserDataText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ic_left.png.
         /// </summary>
         public static string LeftImage {
@@ -345,6 +354,15 @@ namespace InterTwitter.Resources {
         public static string WrongEmailPasswordText {
             get {
                 return ResourceManager.GetString("WrongEmailPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You entered wrong old password.
+        /// </summary>
+        public static string WrongOldPassword {
+            get {
+                return ResourceManager.GetString("WrongOldPassword", resourceCulture);
             }
         }
     }

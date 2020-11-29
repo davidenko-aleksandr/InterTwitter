@@ -39,8 +39,21 @@ namespace InterTwitter.ViewModels
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            var result = await _authorizationService.GetAuthorizedUserAsync();
-            User = result.Result;          
+            // User = parameters.GetValue<UserViewModel>(Constants.Navigation.User);
+            if (parameters.TryGetValue(Constants.Navigation.User, out UserViewModel user))
+            {
+                User = user;
+            }
+            else
+            {
+                var result = await _authorizationService.GetAuthorizedUserAsync();
+                User = result.Result;
+            }
+        }
+
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+          
         }
 
         #endregion
@@ -49,17 +62,21 @@ namespace InterTwitter.ViewModels
 
         private async Task OnChangeProfileCommand()
         {
-            var parameers = new NavigationParameters()
+            var parameters = new NavigationParameters()
             {
                 { Constants.Navigation.User, User}
             };
 
-           await NavigationService.NavigateAsync(nameof(ChangeProfilePage), parameers);
+            await NavigationService.NavigateAsync(nameof(ChangeProfilePage), parameters);
         }
 
         private async Task OnBackCommandAsync()
         {
-            NavigationService.GoBackAsync();
+            var parameters = new NavigationParameters()
+            {
+                { Constants.Navigation.User, User}
+            };
+            NavigationService.GoBackAsync(parameters);
         }
 
         #endregion

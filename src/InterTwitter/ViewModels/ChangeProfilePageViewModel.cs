@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using InterTwitter.Services.UserService;
 using Plugin.Media.Abstractions;
 using InterTwitter.Services.Authorization;
+using InterTwitter.Validators;
+using Acr.UserDialogs;
+using InterTwitter.Resources;
 
 namespace InterTwitter.ViewModels
 {
@@ -14,16 +17,19 @@ namespace InterTwitter.ViewModels
         private readonly IUserService _userServcie;
         private readonly IMedia _mediaPluggin;
         private readonly IAuthorizationService _authorizationService;
+        private readonly IUserDialogs _userDialogs;
 
         public ChangeProfilePageViewModel(INavigationService navigatonService,
                                           IUserService userService,
                                           IMedia mediaPlugin,
-                                          IAuthorizationService authorizationService)
+                                          IAuthorizationService authorizationService,
+                                          IUserDialogs userDialogs)
                                          : base(navigatonService)
         {
             _userServcie = userService;
             _mediaPluggin = mediaPlugin;
             _authorizationService = authorizationService;
+            _userDialogs = _userDialogs;
         }
 
         #region -- Public properties --
@@ -35,11 +41,23 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _user, value);
         }
 
+        private string _oldPassword;
+        public string OldPassword
+        {
+            get => _oldPassword;
+            set => SetProperty(ref _oldPassword, value);
+        }
+
         private string _newPassword;
         public string NewPassword
         {
             get => _newPassword;
             set => SetProperty(ref _newPassword, value);
+        }
+
+        public bool PasswordIsConfirmed
+        {
+            get => OldPassword == User.Password;
         }
 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
@@ -69,17 +87,46 @@ namespace InterTwitter.ViewModels
             User = userResult.Result;
         }
 
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            
+        }
+
         #endregion
 
         #region -- Private helpers --
 
         private async Task OnSaveProfileCommandAsync()
         {
-            await _userServcie.UpdateUserAsync(User);
-            NavigationService.GoBackAsync();
+            var userDataIsValid = CheckDataValidity();
+
+            if (string.IsNullOrEmpty(NewPassword) || userDataIsValid)
+            {
+                if (!string.IsNullOrEmpty(NewPassword))
+                {
+                    User.Password = NewPassword;
+                }
+                else
+                {
+                    //password stay previous
+                }
+                await _userServcie.UpdateUserAsync(User);
+
+                var parameters = new NavigationParameters()
+                                {
+                                    {Constants.Navigation.User, User }
+                                };
+
+                NavigationService.GoBackAsync(parameters);
+            }
+            else
+            {
+                _userDialogs.Toast(AppResource.InvalidUserDataText);
+            }
         }
+
         private async Task OnGoBackCommandAsync()
-        {
+        {            
             NavigationService.GoBackAsync();
         }
 
@@ -95,12 +142,12 @@ namespace InterTwitter.ViewModels
                 }
                 else
                 {
-                    //"CurrentPinModel == null";
+                    //CurrentPinModel == null;
                 }
             }
             else
             {
-                //"Pick photo is not supported";
+                //Pick photo is not supported;
             }
         }
 
@@ -116,15 +163,39 @@ namespace InterTwitter.ViewModels
                 }
                 else
                 {
-                    //"CurrentPinModel == null";
+                    //CurrentPinModel == null;
                 }
             }
             else
             {
-                //"Pick photo is not supported";
+                //Pick photo is not supported;
             }
         }
 
+        private bool CheckDataValidity()
+        {
+            var nameIsValid = !User.Name.StartsWith(" ");
+
+            return Validator.IsMatch(NewPassword, Validator.RegexPassword) && 
+                   Validator.IsMatch(User.Email, Validator.RegexEmail) && 
+                   nameIsValid;
+        }
+
+        private bool CheckOldPassword()
+        {
+            bool isValid;
+            if (OldPassword == User.Password)
+            {
+                isValid = true;
+            }
+            else
+            {
+                isValid = false;
+                _userDialogs.Toast(AppResource.WrongOldPassword);
+            }
+
+            return isValid;
+        }
         #endregion
     }
 }

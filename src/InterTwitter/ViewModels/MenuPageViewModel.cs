@@ -8,13 +8,14 @@ using InterTwitter.Extensions;
 using InterTwitter.Helpers;
 using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
+using InterTwitter.ViewModels.Helpers;
 using InterTwitter.Views;
 using Prism.Navigation;
 using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
 {
-    public class MenuPageViewModel : BaseViewModel
+    public class MenuPageViewModel : BaseViewModel, IAppearingAware
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
@@ -34,8 +35,8 @@ namespace InterTwitter.ViewModels
 
         #region -- Public properties --
 
-        private UserModel _authorizedUser;
-        public UserModel AuthorizedUser
+        private UserViewModel _authorizedUser;
+        public UserViewModel AuthorizedUser
         {
             get => _authorizedUser;
             set => SetProperty(ref _authorizedUser, value);
@@ -98,11 +99,19 @@ namespace InterTwitter.ViewModels
                     }
                 }
             }
+            
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await SetUserDataAsync();
+            //if (parameters.TryGetValue(Constants.Navigation.User, out UserViewModel user))
+            //{
+            //    AuthorizedUser = user;
+            //}
+            //else
+            //{
+            //    await SetUserDataAsync();
+            //}
         }
 
         #endregion
@@ -111,7 +120,11 @@ namespace InterTwitter.ViewModels
 
         private async Task OnGoToProfilePageCommandAsync()
         {
-            await NavigationService.NavigateAsync(nameof(ProfilePage), new NavigationParameters(), useModalNavigation:true, true);
+            var navParameters = new NavigationParameters
+            {
+                { Constants.Navigation.User, AuthorizedUser}
+            };
+            await NavigationService.NavigateAsync(nameof(ProfilePage), navParameters, useModalNavigation: true, true);
         }
 
         private async Task OnLogoutCommandAsync()
@@ -128,7 +141,7 @@ namespace InterTwitter.ViewModels
                 var errorText = Resources.AppResource.LogOutError;
                 _userDialogs.Toast(errorText);
             }
-      
+
         }
 
         private async Task OnNavigationCommandAsync(MenuItemViewModel item)
@@ -197,7 +210,17 @@ namespace InterTwitter.ViewModels
         private async Task SetUserDataAsync()
         {
             var result = await _authorizationService.GetAuthorizedUserAsync();
-            AuthorizedUser = result.Result.ToUserModel();
+            AuthorizedUser = result.Result;
+        }
+
+        public async void OnAppearing()
+        {
+            await SetUserDataAsync();
+        }
+
+        public void OnDissAppearing()
+        {
+           
         }
 
         #endregion

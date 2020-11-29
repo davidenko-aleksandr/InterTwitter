@@ -7,6 +7,7 @@
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
                        xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                        xmlns:views="clr-namespace:InterTwitter.Views">
+    <ScrollView>
 
     <Grid BackgroundColor="#FCFDFE">
         
@@ -172,7 +173,8 @@
         <controls:CustomEntry Grid.Row="4" 
                               NameText="{x:Static resources:AppResource.OldPasswordText}"
                               Placeholder="{x:Static resources:AppResource.OldPasswordText}"
-                              Text="{Binding User.Password}"
+                              Text="{Binding OldPassword}"
+                              IsEnabled="False"
                               HorizontalOptions="Fill"
                               VerticalOptions="End"
                               IsPassword="True"
@@ -190,5 +192,6 @@
         
 
     </Grid>
+    </ScrollView>
 
 </views:BaseContentPage>
