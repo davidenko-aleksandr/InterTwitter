@@ -4,6 +4,7 @@ using InterTwitter.ViewModels;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using InterTwitter.Extensions;
 
@@ -39,6 +40,31 @@ namespace InterTwitter.Services.UserService
             catch (Exception ex)
             {
                 result.SetError($"{nameof(GetUsersAsync)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
+        public async Task<AOResult<UserModel>> GetUserAsync(int id)
+        {
+            var result = new AOResult<UserModel>();
+
+            try
+            {
+                var user = _usersRepositoryMock.First(x => x.Id == id);
+
+                if (user != null)
+                {
+                    result.SetSuccess(user);
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetUserAsync)}: exception", "Something went wrong", ex);
             }
 
             return result;

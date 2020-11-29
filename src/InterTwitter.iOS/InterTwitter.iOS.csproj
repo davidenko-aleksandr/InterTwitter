@@ -125,10 +125,10 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\Controls\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\Controls\ClickableContentViewRenderer.cs" />
+    <Compile Include="Renderers\Controls\CustomCollectionViewRenderer.cs" />
     <Compile Include="Renderers\Controls\UITouchesGestureRecognizer.cs" />
-    <Compile Include="Renderers\Views\KeyboardViewRenderer.cs" />
     <Compile Include="Services\Keyboard\KeyboardService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
@@ -194,9 +194,6 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.1.0.466</Version>
     </PackageReference>
-    <PackageReference Include="Hackiftekhar.IQKeyboardManager.Xamarin">
-      <Version>6.5.6</Version>
-    </PackageReference>
     <PackageReference Include="NGraphics">
       <Version>0.5.0</Version>
     </PackageReference>
@@ -213,6 +210,12 @@
       <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Svg">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
       <Version>2.4.11.982</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Transformations">
@@ -440,6 +443,7 @@
     <BundleResource Include="Resources\ic_home_blue%403x.png" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <BundleResource Include="Resources\pic_profile_header_photo.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -458,17 +462,22 @@
     <BundleResource Include="Resources\Default-Portrait%402x.png" />
   </ItemGroup>
   <ItemGroup>
+=======
+>>>>>>> dce3f729d8e8a2c43254eb940afa7d42d0c24670
     <BundleResource Include="Resources\ic_add_blue%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_add_blue%403x.png" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <BundleResource Include="Resources\ic_setting%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_setting%403x.png" />
   </ItemGroup>
+=======
+>>>>>>> dce3f729d8e8a2c43254eb940afa7d42d0c24670
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties TriggeredFromHotReload="False" />

@@ -1,8 +1,9 @@
-﻿using Acr.UserDialogs;
+using Acr.UserDialogs;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Services.UserService;
 using InterTwitter.Services.Settings;
 using InterTwitter.ViewModels;
+using InterTwitter.Services.Owl;
 using InterTwitter.Views;
 using Plugin.Settings;
 using Prism;
@@ -54,6 +55,7 @@ namespace InterTwitter
             containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
+            containerRegistry.RegisterInstance<IOwlService>(Container.Resolve<OwlService>());
         }
 
         #endregion
