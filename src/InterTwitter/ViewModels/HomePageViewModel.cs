@@ -3,11 +3,7 @@ using System.Threading.Tasks;
 using InterTwitter.Services.Owl;
 using InterTwitter.ViewModels.HomePageItems;
 using InterTwitter.Helpers;
-using InterTwitter.Models;
 using Prism.Navigation;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -39,13 +35,6 @@ namespace InterTwitter.ViewModels
         {
             get => _icon;
             set => SetProperty(ref _icon, value);
-        }
-
-        private List<TestModel> _items;
-        public List<TestModel> Items
-        {
-            get => _items;
-            set => SetProperty(ref _items, value);
         }
 
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);

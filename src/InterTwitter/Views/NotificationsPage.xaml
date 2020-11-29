@@ -17,7 +17,8 @@
 
         <controls:NotificationPageNavigationBar Grid.Row="0"/>
 
-        <CollectionView Grid.Row="1">
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding NotificationList}">
 
             <CollectionView.ItemTemplate>
 

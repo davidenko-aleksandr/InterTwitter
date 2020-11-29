@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InterTwitter.Helpers;
@@ -39,7 +40,7 @@ namespace InterTwitter.Services.Authorization
                 {
                     var users = getUsersResult.Result;
 
-                    var user = users.First(x => x.Email == email && x.Password == password);
+                    var user = users.First(x => x.Email.ToUpper() == email.ToUpper() && x.Password == password);
 
                     await Task.Delay(300);
 
@@ -91,7 +92,8 @@ namespace InterTwitter.Services.Authorization
                             Email = email,
                             Name = name,
                             Password = password,
-                            Picture = Constants.DefaultProfilePicture,
+                            Avatar = Constants.DefaultProfilePicture,
+                            ProfileHeaderImage = ""
                     };
 
                         await _userService.AddUserAsync(user);

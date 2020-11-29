@@ -24,9 +24,9 @@
     <Label Grid.Column="1"
            Grid.Row="0"
            Text="{x:Static resources:AppResource.NotificationPageTitle}"
-           FontSize="18"
-           TextColor="{StaticResource tx_3}"
+           FontSize="24"
            FontAttributes="Bold"
+           TextColor="{StaticResource tx_3}"
            VerticalOptions="Center"
            HorizontalOptions="Center"/>
 

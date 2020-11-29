@@ -11,6 +11,8 @@ using Prism.Ioc;
 using Prism.Unity;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using InterTwitter.Services.PostAction;
+using InterTwitter.Services.Notification;
 
 namespace InterTwitter
 {
@@ -53,6 +55,8 @@ namespace InterTwitter
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
             containerRegistry.RegisterInstance<IOwlService>(Container.Resolve<OwlService>());
+            containerRegistry.RegisterInstance<INotificationService>(Container.Resolve<NotificationService>());
+            containerRegistry.RegisterInstance<IPostActionService>(Container.Resolve<PostActionService>());
         }
 
         #endregion
@@ -64,7 +68,7 @@ namespace InterTwitter
             var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
 
             var path = isAuthorized ? nameof(MenuPage) : nameof(LogInPage);
-            
+
             await NavigationService.NavigateAsync(path);
         }
 

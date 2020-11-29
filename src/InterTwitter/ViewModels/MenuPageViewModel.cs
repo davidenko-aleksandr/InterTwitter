@@ -125,7 +125,7 @@ namespace InterTwitter.ViewModels
             }
             else
             {
-                var errorText = Resources.AppResource.LogOutError;
+                var errorText = Resources.AppResource.RandomError;
                 _userDialogs.Toast(errorText);
             }
       

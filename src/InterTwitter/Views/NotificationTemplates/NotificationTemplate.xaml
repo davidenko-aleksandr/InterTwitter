@@ -5,60 +5,112 @@
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
               x:Class="InterTwitter.Views.NotificationTemplates.NotificationTemplate">
 
-    <Grid ColumnSpacing="0"
-          RowSpacing="0"
-          Padding="5">
-
+    <Grid RowSpacing="0">
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1"/>
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0"
+              ColumnSpacing="0"
+              RowSpacing="5"
+              Padding="10">
 
-        <Image Grid.Column="0"
-               Grid.Row="0"
-               VerticalOptions="Center"
-               HorizontalOptions="Center"
-               Source="{Binding ActionIcon}"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <StackLayout Grid.Row ="1"
-                     Grid.Column="0"
-                     Orientation="Horizontal">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <ffimageloading:CachedImage Source="{Binding NotificationUser.Picture}"
-                                    VerticalOptions="Start"
-                                    HorizontalOptions="Start"
-                                    WidthRequest="20"
-                                    HeightRequest="20"
-                                    Aspect="AspectFit"
-                                    DownsampleToViewSize="true">
+            <Image Grid.Column="0"
+                   Grid.Row="0"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Center"
+                   Source="ic_liked"
+                   Margin="5,2,15,0"
+                   WidthRequest="20"
+                   HeightRequest="20">
 
-                <ffimageloading:CachedImage.Transformations>
+                <Image.Triggers>
 
-                    <fftransformations:CircleTransformation/>
+                    <DataTrigger Binding="{Binding Action}"
+                                 Value="1"
+                                 TargetType="Image">
 
-                </ffimageloading:CachedImage.Transformations>
+                        <Setter Property="Source"
+                                Value="ic_saved"/>
 
-            </ffimageloading:CachedImage>
+                    </DataTrigger>
 
-            <Label Text="{Binding NotificationUser.Name}"
-                   FontSize="14"
-                   FontAttributes="Bold"
-                   TextColor="{StaticResource tx_3}"/>
+                </Image.Triggers>
+                
+            </Image>
 
-            <Label Text="{Binding ActionText}"
-                   FontSize="14"
-                   TextColor="{StaticResource tx_3}"/>
-            
-        </StackLayout>
+            <StackLayout Grid.Row ="0"
+                         Grid.Column="1"
+                         Orientation="Horizontal"
+                         VerticalOptions="Start"
+                         HorizontalOptions="Start">
 
-        <Label Text="{Binding OwlText}"
-               FontSize="14"
-               TextColor="{StaticResource tx_5}"/>
+                <ffimageloading:CachedImage Source="{Binding UserAvatar}"
+                                            WidthRequest="22"
+                                            HeightRequest="22"
+                                            Aspect="AspectFit"
+                                            DownsampleToViewSize="true"
+                                            Margin="0,0,5,0">
+
+                    <ffimageloading:CachedImage.Transformations>
+
+                        <fftransformations:CircleTransformation/>
+
+                    </ffimageloading:CachedImage.Transformations>
+
+                </ffimageloading:CachedImage>
+
+                <Label Text="{Binding UserName}"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource tx_3}"/>
+
+                <Label Text="liked your post"
+                       FontSize="18"
+                       TextColor="{StaticResource tx_3}">
+                    
+                    <Label.Triggers>
+
+                        <DataTrigger Binding="{Binding Action}"
+                                     Value="1"
+                                     TargetType="Label">
+
+                            <Setter Property="Text"
+                                    Value="saved your post"/>
+
+                        </DataTrigger>
+
+                    </Label.Triggers>
+                    
+                </Label>
+
+            </StackLayout>
+
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding OwlText}"
+                   FontSize="18"
+                   TextColor="{StaticResource tx_5}"/>
+          
+        </Grid>
+
+        <BoxView Grid.Row="1"
+                 Style="{StaticResource boxViewSeparator}"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill"/>
+        
     </Grid>
 
 </DataTemplate>

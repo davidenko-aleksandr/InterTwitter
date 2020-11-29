@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Models\" />
     <Folder Include="Resources\" />
     <Folder Include="Extensions\" />
     <Folder Include="Services\Authorization\" />

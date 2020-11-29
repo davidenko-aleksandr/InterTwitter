@@ -1,6 +1,10 @@
 ﻿using Acr.UserDialogs;
+using InterTwitter.Enums;
+using InterTwitter.Models;
+using InterTwitter.Services.Notification;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace InterTwitter.ViewModels
@@ -8,13 +12,16 @@ namespace InterTwitter.ViewModels
     public class NotificationsPageViewModel : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
+        private readonly INotificationService _notificationService;
 
         public NotificationsPageViewModel(
                                           INavigationService navigationService,
-                                          IUserDialogs userDialogs)
+                                          IUserDialogs userDialogs,
+                                          INotificationService notificationService)
                                           : base(navigationService)
         {
             _userDialogs = userDialogs;
+            _notificationService = notificationService;
         }
 
         #region -- Public Properties --
@@ -26,16 +33,22 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _icon, value);
         }
 
-        private ObservableCollection<> _observablecollection;
+        private ObservableCollection<NotificationModel> _notificationList;
+        public ObservableCollection<NotificationModel> NotificationList
+        {
+            get => _notificationList;
+            set => SetProperty(ref _notificationList, value);
+        }
+
         #endregion
 
         #region -- Overrides --
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             Icon = "ic_notifications_blue";
-
-            FillNotificationList();
+           
+            await FillNotificationList();
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -47,13 +60,24 @@ namespace InterTwitter.ViewModels
 
         #region -- Private helpers --
 
-        private void FillNotificationList()
+        private async Task FillNotificationList()
         {
             var current = Connectivity.NetworkAccess;
 
             if (current == NetworkAccess.Internet)
             {
-                
+                var notificationsResult = await _notificationService.GetNotificationCollectionAsync();
+
+                if(notificationsResult.Result != null)
+                {
+                    NotificationList = notificationsResult.Result;
+                }
+                else
+                {
+                    var errorText = Resources.AppResource.RandomError;
+                    _userDialogs.Toast(errorText);
+                }
+
             }
             else
             {

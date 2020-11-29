@@ -29,7 +29,7 @@
 
     <Label Grid.Column="1"
            Text="{x:Static resources:AppResource.HomeTitle}"
-           FontSize="18"
+           FontSize="24"
            TextColor="{StaticResource tx_3}"
            FontAttributes="Bold"
            VerticalOptions="Center"

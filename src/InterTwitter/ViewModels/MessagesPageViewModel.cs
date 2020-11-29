@@ -1,10 +1,10 @@
-﻿using System;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 
 namespace InterTwitter.ViewModels
 {
     public class MessagesPageViewModel : BaseViewModel
     {
+        
         public MessagesPageViewModel(INavigationService navigationService)
                                     : base(navigationService)
         {

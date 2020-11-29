@@ -13,7 +13,7 @@ namespace InterTwitter.Services.UserService
 
         public UserService()
         {
-            _usersRepositoryMock = InitData();
+            InitData();
         }
 
         #region -- IUserService Implementation --
@@ -72,11 +72,11 @@ namespace InterTwitter.Services.UserService
             try
             {
                 _usersRepositoryMock.Add(user);
+                
                 result.SetSuccess(true);
             }
             catch (Exception ex)
             {
-                result.SetFailure(false);
                 result.SetError($"{nameof(AddUserAsync)}: exception", "Something went wrong", ex);
             }
 
@@ -89,15 +89,25 @@ namespace InterTwitter.Services.UserService
 
             try
             {
-                var userIndex = _usersRepositoryMock.IndexOf(user);
-                _usersRepositoryMock.RemoveAt(userIndex);
-                _usersRepositoryMock.Insert(userIndex, user);
+                var changingUser = _usersRepositoryMock.FirstOrDefault(x => x.Id == user.Id);
 
-                result.SetSuccess(true);
+                if (changingUser is not null)
+                {
+                    changingUser.Avatar = user.Avatar;
+                    changingUser.Email = user.Email;
+                    changingUser.ProfileHeaderImage = user.ProfileHeaderImage;
+                    changingUser.Name = user.Name;
+                    changingUser.Password = user.Password;
+
+                    result.SetSuccess(true);
+                }
+                else
+                {
+                    result.SetFailure();
+                }
             }
             catch (Exception ex)
             {
-                result.SetFailure(false);
                 result.SetError($"{nameof(UpdateUserAsync)}: exception", "Something went wrong", ex);
             }
 
@@ -108,37 +118,51 @@ namespace InterTwitter.Services.UserService
 
         #region -- Private Helpers -- 
 
-        private List<UserModel> InitData()
+        private void InitData()
         {
-            return new List<UserModel>()
+            _usersRepositoryMock = new List<UserModel>()
+            {
+                new UserModel()
                 {
-                  new UserModel()
-                  {
-                      Id = 0,
-                      Email = "vasya1984@mail.ru",
-                      Name = "Vasiliy",
-                      Password = "V1984FAT",
-                      Picture = Constants.DefaultProfilePicture,
-                  },
-                  new UserModel()
-                  {
-                      Id = 1,
-                      Email = "petya25@gmail.com",
-                      Name = "Peter Stevenson",
-                      Password = "Qwerty123",
-                      Picture = Constants.DefaultProfilePicture,
-                  },
-                  new UserModel()
-                  {
-                      Id = 2,
-                      Email = "test@i.ua",
-                      Name = "Test UserName",
-                      Password = "Qwerty12",
-                      Picture = Constants.DefaultProfilePicture,
-                  }
-               };
+                    Id = 0,
+                    Email = "trump@mail.ru",
+                    Name = "Donald J. Trump",
+                    Password = "Trump20",
+                    Avatar = "https://pbs.twimg.com/profile_images/874276197357596672/kUuht00m_400x400.jpg",
+                    ProfileHeaderImage = "https://pbs.twimg.com/profile_banners/25073877/1604214583/1500x500",
+                },
+                new UserModel()
+                {
+                    Id = 1,
+                    Email = "shakira@gmail.com",
+                    Name = "Shakira",
+                    Password = "Shakira20",
+                    Avatar = "https://pbs.twimg.com/profile_images/1298649731980238848/29o9j4e__400x400.jpg",
+                    ProfileHeaderImage = "https://pbs.twimg.com/profile_banners/44409004/1600521595/1500x500",
+                },
+                new UserModel()
+                {
+                    Id = 2,
+                    Email = "test@i.ua",
+                    Name = "Test UserName",
+                    Password = "Qwerty12",
+                    Avatar = Constants.DefaultProfilePicture,
+                    ProfileHeaderImage = "",
+                },
+                new UserModel()
+                {
+                    Id = 3,
+                    Email = "xamarin@bugs.net",
+                    Name = "Xamarin",
+                    Password = "Xamarin20",
+                    Avatar = "https://pbs.twimg.com/profile_images/471641515756769282/RDXWoY7W_400x400.png",
+                    ProfileHeaderImage = "https://pbs.twimg.com/profile_banners/299659914/1401283128/1500x500",
+                }
+            };
+
         }
 
         #endregion
+
     }
 }
