@@ -13,6 +13,7 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using Plugin.Media;
 using InterTwitter.Services.Permission;
+using DLToolkit.Forms.Controls;
 
 namespace InterTwitter
 {
@@ -28,6 +29,8 @@ namespace InterTwitter
         protected override async void OnInitialized()
         {
             InitializeComponent();
+
+            FlowListView.Init();
 
             await NavigateAsync();
         }
@@ -46,6 +49,7 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<ChangeProfilePage,ChangeProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<AddPostPage, AddPostPageViewModel>();
 
             //plugins
             containerRegistry.RegisterInstance(UserDialogs.Instance);

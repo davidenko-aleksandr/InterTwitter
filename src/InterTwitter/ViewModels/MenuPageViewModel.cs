@@ -144,15 +144,22 @@ namespace InterTwitter.ViewModels
 
         }
 
-        private async Task OnNavigationCommandAsync(MenuItemViewModel item)
+        private async Task OnSelectTabCommandAsync(MenuItemViewModel item)
         {
             NavigationService.FixedSelectTab(item.PageType);
             IsPresented = false;
         }
 
+        private async Task OnNavigateCommandAsync(MenuItemViewModel arg) 
+        {
+            //navigate to settings
+        }
+
         private void InitMenuItems()
         {
-            ICommand navigationCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnNavigationCommandAsync);
+            ICommand selectTabCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnSelectTabCommandAsync);
+
+            ICommand navigateCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnNavigateCommandAsync);
 
             var collection = new ObservableCollection<MenuItemGroup>
             {
@@ -163,28 +170,28 @@ namespace InterTwitter.ViewModels
                         Text = "Home",
                         PageType = typeof(HomePage),
                         Icon = "ic_home_gray",
-                        NavigationCommand = navigationCommand
+                        NavigationCommand = selectTabCommand
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Search",
                         PageType = typeof(SearchPage),
                         Icon = "ic_search_gray",
-                        NavigationCommand = navigationCommand
+                        NavigationCommand = selectTabCommand
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Notifications",
                         PageType = typeof(NotificationsPage),
                         Icon = "ic_notifications_gray",
-                        NavigationCommand = navigationCommand
+                        NavigationCommand = selectTabCommand
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Direct messages",
                         PageType = typeof(MessagesPage),
                         Icon = "ic_messages_gray",
-                        NavigationCommand = navigationCommand
+                        NavigationCommand = selectTabCommand
                     },
                 },
                 new MenuItemGroup(true)
@@ -192,9 +199,9 @@ namespace InterTwitter.ViewModels
                     new MenuItemViewModel()
                     {
                         Text = "Settings",
-                        PageType = typeof(MessagesPage),
+                        PageType = typeof(AddPostPage),
                         Icon = "ic_setting",
-                        NavigationCommand = navigationCommand
+                        NavigationCommand = navigateCommand 
                     },
                 }
             };

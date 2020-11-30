@@ -1,5 +1,4 @@
-﻿
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
@@ -12,7 +11,11 @@ using FFImageLoading.Forms.Platform;
 using Acr.UserDialogs;
 using InterTwitter.Services.Keyboard;
 using InterTwitter.Droid.Services.Keyboard;
+<<<<<<< HEAD
 using PanCardView.Droid;
+=======
+using Octane.Xamarin.Forms.VideoPlayer.Android;
+>>>>>>> 7ad0afba4bc257a379d7ceae909f6605d5b1a489
 
 namespace InterTwitter.Droid
 {
@@ -28,7 +31,7 @@ namespace InterTwitter.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            
             base.OnCreate(savedInstanceState);
 
             var config = new FFImageLoading.Config.Configuration()
@@ -38,18 +41,27 @@ namespace InterTwitter.Droid
                 VerboseMemoryCacheLogging = false,
                 VerboseLoadingCancelledLogging = false,
             };
+<<<<<<< HEAD
             ImageService.Instance.Initialize(config);
            
+=======
+            ImageService.Instance.Initialize(config);            
+
+>>>>>>> 7ad0afba4bc257a379d7ceae909f6605d5b1a489
             CachedImageRenderer.Init(true);
             CachedImageRenderer.InitImageViewHandler();
 
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             UserDialogs.Init(this);
+<<<<<<< HEAD
 
             CardsViewRenderer.Preserve();
 
 
+=======
+            FormsVideoPlayer.Init();
+>>>>>>> 7ad0afba4bc257a379d7ceae909f6605d5b1a489
             LoadApplication(new App(new AndroidInitializer()));
         }
 
