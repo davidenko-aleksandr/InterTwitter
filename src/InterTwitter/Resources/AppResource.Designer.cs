@@ -61,6 +61,42 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ic_add_photo.png.
+        /// </summary>
+        public static string AddPhotoIcon {
+            get {
+                return ResourceManager.GetString("AddPhotoIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need allow to use camera on your device.
+        /// </summary>
+        public static string CameraPermisionWarning {
+            get {
+                return ResourceManager.GetString("CameraPermisionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelText {
+            get {
+                return ResourceManager.GetString("CancelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change profile.
+        /// </summary>
+        public static string ChangeProfileLable {
+            get {
+                return ResourceManager.GetString("ChangeProfileLable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ic_clear.png.
         /// </summary>
         public static string ClearImage {
@@ -169,6 +205,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid user data.
+        /// </summary>
+        public static string InvalidUserDataText {
+            get {
+                return ResourceManager.GetString("InvalidUserDataText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ic_left.png.
         /// </summary>
         public static string LeftImage {
@@ -241,6 +286,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New password.
+        /// </summary>
+        public static string NewPasswordText {
+            get {
+                return ResourceManager.GetString("NewPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string NextButton {
@@ -255,6 +309,24 @@ namespace InterTwitter.Resources {
         public static string NoInternetText {
             get {
                 return ResourceManager.GetString("NoInternetText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string OkText {
+            get {
+                return ResourceManager.GetString("OkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old password.
+        /// </summary>
+        public static string OldPasswordText {
+            get {
+                return ResourceManager.GetString("OldPasswordText", resourceCulture);
             }
         }
         
@@ -277,6 +349,24 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to pic_profile_header_photo.jpg.
+        /// </summary>
+        public static string PicProfileHeaderImage {
+            get {
+                return ResourceManager.GetString("PicProfileHeaderImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ic_check_blue.png.
+        /// </summary>
+        public static string SaveIcon {
+            get {
+                return ResourceManager.GetString("SaveIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign Up.
         /// </summary>
         public static string SignUpButton {
@@ -286,11 +376,47 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Take picture from camera.
+        /// </summary>
+        public static string TakeCameraPicture {
+            get {
+                return ResourceManager.GetString("TakeCameraPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take picture from gallery.
+        /// </summary>
+        public static string TakeGalleryPicture {
+            get {
+                return ResourceManager.GetString("TakeGalleryPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wrong email or password.
         /// </summary>
         public static string WrongEmailPasswordText {
             get {
                 return ResourceManager.GetString("WrongEmailPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wron user&apos;s name.
+        /// </summary>
+        public static string WrongNameText {
+            get {
+                return ResourceManager.GetString("WrongNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You entered wrong old password.
+        /// </summary>
+        public static string WrongOldPassword {
+            get {
+                return ResourceManager.GetString("WrongOldPassword", resourceCulture);
             }
         }
     }
