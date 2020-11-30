@@ -13778,27 +13778,6 @@ namespace InterTwitter.Droid
 			public const int notification_bg_normal = 2131165331;
 			
 			// aapt resource value: 0x7F070094
-<<<<<<< HEAD
-			public const int pic_profile_header_photo = 2131165332;
-			
-			// aapt resource value: 0x7F070095
-			public const int pic_profile_small = 2131165333;
-			
-			// aapt resource value: 0x7F070096
-			public const int roundedbg = 2131165334;
-			
-			// aapt resource value: 0x7F070097
-			public const int roundedbgdark = 2131165335;
-			
-			// aapt resource value: 0x7F070098
-			public const int splash_screen = 2131165336;
-			
-			// aapt resource value: 0x7F070099
-			public const int tooltip_frame_dark = 2131165337;
-			
-			// aapt resource value: 0x7F07009A
-			public const int tooltip_frame_light = 2131165338;
-=======
 			public const int notification_bg_normal_pressed = 2131165332;
 			
 			// aapt resource value: 0x7F070095
@@ -13826,23 +13805,25 @@ namespace InterTwitter.Droid
 			public const int pic_profile_big = 2131165340;
 			
 			// aapt resource value: 0x7F07009D
-			public const int pic_profile_small = 2131165341;
+			public const int pic_profile_header_photo = 2131165341;
 			
 			// aapt resource value: 0x7F07009E
-			public const int roundedbg = 2131165342;
+			public const int pic_profile_small = 2131165342;
 			
 			// aapt resource value: 0x7F07009F
-			public const int roundedbgdark = 2131165343;
+			public const int roundedbg = 2131165343;
 			
 			// aapt resource value: 0x7F0700A0
-			public const int splash_screen = 2131165344;
+			public const int roundedbgdark = 2131165344;
 			
 			// aapt resource value: 0x7F0700A1
-			public const int tooltip_frame_dark = 2131165345;
+			public const int splash_screen = 2131165345;
 			
 			// aapt resource value: 0x7F0700A2
-			public const int tooltip_frame_light = 2131165346;
->>>>>>> 7ad0afba4bc257a379d7ceae909f6605d5b1a489
+			public const int tooltip_frame_dark = 2131165346;
+			
+			// aapt resource value: 0x7F0700A3
+			public const int tooltip_frame_light = 2131165347;
 			
 			static Drawable()
 			{

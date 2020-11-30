@@ -131,30 +131,9 @@ namespace InterTwitter.ViewModels
             var parameters = new ActionSheetConfig();
             parameters.Add(AppResource.TakeCameraPicture, TakeCameraPicture, null);
             parameters.Add(AppResource.TakeGalleryPicture, TakeGalleryPicture, null);
-            parameters.SetCancel(AppResource.CancelText, null, null);    
-            
+            parameters.SetCancel(AppResource.CancelText, null, null);
+
             _userDialogs.ActionSheet(parameters);
-
-            #region Cut
-            //if (_mediaPluggin.IsPickPhotoSupported)
-            //{
-            //    MediaFile file = await _mediaPluggin.PickPhotoAsync();
-
-            //    if (file != null)
-            //    {
-            //        User.Picture = file.Path;
-            //    }
-            //    else
-            //    {
-            //        //CurrentPinModel == null;
-            //    }
-            //}
-            //else
-            //{
-            //    //Pick photo is not supported;
-            //}
-            #endregion
-
         }
 
         private async Task OnSetHeaderImageCommand()
@@ -202,7 +181,7 @@ namespace InterTwitter.ViewModels
 
         private async void TakeCameraPicture()
         {
-            var cameraStaus =  await _permissionService.CheckPermissionAsync<Camera>();
+            var cameraStaus = await _permissionService.CheckPermissionAsync<Camera>();
 
             if (cameraStaus == PermissionStatus.Granted)
             {
@@ -211,7 +190,7 @@ namespace InterTwitter.ViewModels
                     var options = new StoreCameraMediaOptions();
                     options.SaveToAlbum = true;
                     options.PhotoSize = PhotoSize.Full;
-                    
+
                     MediaFile file = await _mediaPluggin.TakePhotoAsync(options);
 
                     if (file != null)
@@ -222,10 +201,8 @@ namespace InterTwitter.ViewModels
             }
             else
             {
-                await _userDialogs.AlertAsync(AppResource.CameraPermisionWarning, okText: AppResource.OkText);
-                await Task.Delay(3000);
+                await _userDialogs.AlertAsync(AppResource.CameraPermisionWarning, okText: AppResource.OkText);                
                 await _permissionService.RequestPermissionAsync<Camera>();
-
             }
         }
 
@@ -270,7 +247,7 @@ namespace InterTwitter.ViewModels
                     }
             }
         }
-      
+
         #endregion
     }
 }
