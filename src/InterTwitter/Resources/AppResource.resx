@@ -120,6 +120,12 @@
   <data name="AddPhotoIcon" xml:space="preserve">
     <value>ic_add_photo.png</value>
   </data>
+  <data name="CameraPermisionWarning" xml:space="preserve">
+    <value>You need allow to use camera on your device</value>
+  </data>
+  <data name="CancelText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="ChangeProfileLable" xml:space="preserve">
     <value>Change profile</value>
   </data>
@@ -195,6 +201,9 @@
   <data name="NoInternetText" xml:space="preserve">
     <value>No Internet connection</value>
   </data>
+  <data name="OkText" xml:space="preserve">
+    <value>Ok</value>
+  </data>
   <data name="OldPasswordText" xml:space="preserve">
     <value>Old password</value>
   </data>
@@ -212,6 +221,12 @@
   </data>
   <data name="SignUpButton" xml:space="preserve">
     <value>Sign Up</value>
+  </data>
+  <data name="TakeCameraPicture" xml:space="preserve">
+    <value>Take picture from camera</value>
+  </data>
+  <data name="TakeGalleryPicture" xml:space="preserve">
+    <value>Take picture from gallery</value>
   </data>
   <data name="WrongEmailPasswordText" xml:space="preserve">
     <value>Wrong email or password</value>

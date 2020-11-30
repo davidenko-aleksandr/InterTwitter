@@ -13,6 +13,6 @@ namespace InterTwitter.Models
 
         public string Picture { get; set; }
 
-        public string ProfileHeaderImage { get; set; } = "pic_logo_small.png";
+        public string ProfileHeaderImage { get; set; } = "pic_profile_header_photo.jpg";
     }
 }

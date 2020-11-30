@@ -194,6 +194,9 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.1.0.466</Version>
     </PackageReference>
+    <PackageReference Include="CardsView">
+      <Version>2.6.8</Version>
+    </PackageReference>
     <PackageReference Include="NGraphics">
       <Version>0.5.0</Version>
     </PackageReference>

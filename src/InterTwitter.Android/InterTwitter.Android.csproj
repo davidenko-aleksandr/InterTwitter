@@ -90,6 +90,9 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.1.0.466</Version>
     </PackageReference>
+    <PackageReference Include="CardsView">
+      <Version>2.6.8</Version>
+    </PackageReference>
     <PackageReference Include="NGraphics">
       <Version>0.5.0</Version>
     </PackageReference>
@@ -590,6 +593,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\file_paths.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

@@ -6,6 +6,7 @@ using FFImageLoading.Forms.Platform;
 using Foundation;
 using InterTwitter.iOS.Services.Keyboard;
 using InterTwitter.Services.Keyboard;
+using PanCardView.iOS;
 using Prism;
 using Prism.Ioc;
 using UIKit;
@@ -35,6 +36,8 @@ namespace InterTwitter.iOS
                 VerboseLoadingCancelledLogging = false,
             };
             ImageService.Instance.Initialize(config);
+            
+            CardsViewRenderer.Preserve();
 
             LoadApplication(new App(new iOSInitializer()));
 

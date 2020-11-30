@@ -12,6 +12,7 @@ using Prism.Unity;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using Plugin.Media;
+using InterTwitter.Services.Permission;
 
 namespace InterTwitter
 {
@@ -56,6 +57,7 @@ namespace InterTwitter
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
             containerRegistry.RegisterInstance<IOwlService>(Container.Resolve<OwlService>());
+            containerRegistry.RegisterInstance<IPermissionService>(Container.Resolve<PermissionService>());
         }
 
         #endregion

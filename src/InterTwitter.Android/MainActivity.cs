@@ -12,6 +12,7 @@ using FFImageLoading.Forms.Platform;
 using Acr.UserDialogs;
 using InterTwitter.Services.Keyboard;
 using InterTwitter.Droid.Services.Keyboard;
+using PanCardView.Droid;
 
 namespace InterTwitter.Droid
 {
@@ -45,7 +46,10 @@ namespace InterTwitter.Droid
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             UserDialogs.Init(this);
-            
+
+            CardsViewRenderer.Preserve();
+
+
             LoadApplication(new App(new AndroidInitializer()));
         }
 

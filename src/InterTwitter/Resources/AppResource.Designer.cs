@@ -70,6 +70,24 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You need allow to use camera on your device.
+        /// </summary>
+        public static string CameraPermisionWarning {
+            get {
+                return ResourceManager.GetString("CameraPermisionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelText {
+            get {
+                return ResourceManager.GetString("CancelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change profile.
         /// </summary>
         public static string ChangeProfileLable {
@@ -295,6 +313,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string OkText {
+            get {
+                return ResourceManager.GetString("OkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Old password.
         /// </summary>
         public static string OldPasswordText {
@@ -345,6 +372,24 @@ namespace InterTwitter.Resources {
         public static string SignUpButton {
             get {
                 return ResourceManager.GetString("SignUpButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take picture from camera.
+        /// </summary>
+        public static string TakeCameraPicture {
+            get {
+                return ResourceManager.GetString("TakeCameraPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take picture from gallery.
+        /// </summary>
+        public static string TakeGalleryPicture {
+            get {
+                return ResourceManager.GetString("TakeGalleryPicture", resourceCulture);
             }
         }
         

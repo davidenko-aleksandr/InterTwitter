@@ -6,18 +6,23 @@ using Prism.Navigation;
 using System.Threading.Tasks;
 using InterTwitter.Views;
 using InterTwitter.Services.Authorization;
+using System.Collections.ObjectModel;
+using InterTwitter.Services.Owl;
 
 namespace InterTwitter.ViewModels
 {
     public class ProfilePageViewModel : BaseViewModel
     {
         private readonly IAuthorizationService _authorizationService;
+        private readonly IOwlService _owlService;
 
         public ProfilePageViewModel(INavigationService navigationService,
-                                    IAuthorizationService authorizationService)
+                                    IAuthorizationService authorizationService,
+                                    IOwlService owlService)
                                    : base(navigationService)
         {
             _authorizationService = authorizationService;
+            _owlService = owlService;
         }
 
         #region -- Public properties --
@@ -29,16 +34,23 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _user, value);
         }
 
+        private ObservableCollection<OwlModel> _owls;
+        public ObservableCollection<OwlModel> Owls
+        {
+            get => _owls;
+            set => SetProperty(ref _owls, value);
+        }
+
         public ICommand BackCommand => SingleExecutionCommand.FromFunc(OnBackCommandAsync);
 
         public ICommand ChangeProfileCommand => SingleExecutionCommand.FromFunc(OnChangeProfileCommand);
-               
+
         #endregion
 
         #region -- Overrides --
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
-        {            
+        {
             if (parameters.TryGetValue(Constants.Navigation.User, out UserViewModel user))
             {
                 User = user;
@@ -49,7 +61,7 @@ namespace InterTwitter.ViewModels
                 User = result.Result;
             }
         }
-        
+
         #endregion
 
         #region -- Private helpers --
@@ -71,7 +83,7 @@ namespace InterTwitter.ViewModels
                 { Constants.Navigation.User, User}
             };
             NavigationService.GoBackAsync(parameters);
-        }
+        }       
 
         #endregion
 

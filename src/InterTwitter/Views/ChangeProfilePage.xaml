@@ -7,9 +7,10 @@
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
                        xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                        xmlns:views="clr-namespace:InterTwitter.Views">
-    <ScrollView>
 
-    <Grid BackgroundColor="#FCFDFE">
+    <ScrollView >
+
+        <Grid BackgroundColor="#FCFDFE">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -54,48 +55,50 @@
             
             <Image Source="{x:Static resources:AppResource.SaveIcon}"
                    VerticalOptions="Center"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center"/>            
             
         </controls:ClickableContentView>
 
-
         <!--BACKGROUND PICTURE BLOCK-->        
         <ffimageloading:CachedImage Grid.Row="1"
-                                    VerticalOptions="Fill"
-                                    HorizontalOptions="Fill"                                    
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"                                    
                                     Margin="0"
+                                    Opacity="0.5"
+                                    HeightRequest="160"
                                     DownsampleToViewSize="True"
                                     ErrorPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
                                     LoadingPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
                                     Source="{Binding User.ProfileHeaderImage}"
-                                    Aspect="AspectFit"/>
+                                    Aspect="AspectFill"/>
 
-        <Frame Grid.Row="1" 
-               WidthRequest="48"
-               HeightRequest="48"
-               VerticalOptions="Center"
-               HorizontalOptions="Center"
-               BackgroundColor="#02060E"
-               BorderColor="#02060E"
-               CornerRadius="24"
-               Padding="0">
+            <BoxView Grid.Row="1"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     BackgroundColor="#8002060E"
+                />
+
+            <Frame Grid.Row="1" 
+                   WidthRequest="48"
+                   HeightRequest="48"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   BackgroundColor="#02060E"
+                   BorderColor="#02060E"
+                   CornerRadius="24"
+                   Padding="0">
 
             <controls:ClickableContentView Command="{Binding SetHeaderImageCommand}">
-
-
 
                 <ffimageloading:CachedImage VerticalOptions="Center"
                                             HorizontalOptions="Center"
                                             DownsampleToViewSize="True"
+                                            Margin="10"
                                             WidthRequest="24"
                                             HeightRequest="24"            
                                             BackgroundColor="#02060E"
                                             Source="{x:Static resources:AppResource.AddPhotoIcon}"
-                                            Aspect="AspectFit">
-
-                <ffimageloading:CachedImage.Transformations>
-                    <fftransformations:CircleTransformation />
-                </ffimageloading:CachedImage.Transformations>
+                                            Aspect="AspectFit">                
 
                 </ffimageloading:CachedImage>
                 
@@ -134,6 +137,13 @@
                       </ffimageloading:CachedImage.Transformations> 
 
                   </ffimageloading:CachedImage>
+                
+                    <BoxView VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             HeightRequest="48"
+                             WidthRequest="48"
+                             CornerRadius="24"
+                             BackgroundColor="#8002060E"/>
 
                     <ffimageloading:CachedImage HorizontalOptions="Center"
                                                 VerticalOptions="Center"
@@ -187,10 +197,10 @@
                               HorizontalOptions="Fill"
                               VerticalOptions="End"
                               IsPassword="True"
-                              Margin="20,0"/>
-        
+                              Margin="20,0"/>        
 
     </Grid>
+        
     </ScrollView>
 
 </views:BaseContentPage>
