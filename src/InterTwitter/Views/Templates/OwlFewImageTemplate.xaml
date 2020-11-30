@@ -53,87 +53,98 @@
             <Label Text="{Binding Text}"
                    TextColor="{StaticResource tx_3}"/>
 
+            <!-- COLLECTION OF IMAGES -->
             <controls:FlowListView FlowColumnCount="3"
                                    HasUnevenRows="False"
-                                   ItemsSource="{Binding Media}"
-                                   RowHeight="80"
-                                   SeparatorVisibility="Default">
-                                
-            </controls:FlowListView>
-            <!-- PICTURES GRID -->
-            <Grid >
+                                   FlowItemsSource="{Binding Media}"
+                                   RowHeight="110"                                   
+                                   SeparatorVisibility="Default" FlowIsLoadingInfinite="True">
+                
+                <controls:FlowListView.FlowColumnTemplate>
+                    
+                    <DataTemplate>
+                    
+                        <ffimageloading:CachedImage Margin="3" 
+                                                    HorizontalOptions="Fill" 
+                                                    VerticalOptions="Fill"  
+                                                    Source="{Binding .}"
+                                                    Aspect="AspectFit">
 
-                <!--<Grid.ColumnDefinitions>
+                            <ffimageloading:CachedImage.Transformations>
+
+                                <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                         BottomLeftCornerSize="5"
+                                                                         TopLeftCornerSize="5"
+                                                                         BottomRightCornerSize="5"
+                                                                         TopRightCornerSize="5"/>
+
+                            </ffimageloading:CachedImage.Transformations>
+
+                        </ffimageloading:CachedImage>
+                        
+                    </DataTemplate>
+                    
+                </controls:FlowListView.FlowColumnTemplate>
+                
+            </controls:FlowListView>            
+           
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="3"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>-->
-
-                <!-- FIRST IMAGE -->
-
-                <!--<ffimageloading:CachedImage Grid.Column="0"
-                                            Source="{Binding PostPhotoOne}">
-
-                    <ffimageloading:CachedImage.Transformations>
-
-                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                 BottomLeftCornerSize="5"
-                                                                 TopLeftCornerSize="5"
-                                                                 BottomRightCornerSize="5"
-                                                                 TopRightCornerSize="5"/>
-
-                    </ffimageloading:CachedImage.Transformations>
-
-                </ffimageloading:CachedImage>
-
-                --><!-- SECOND IMAGE --><!--
-                <ffimageloading:CachedImage Grid.Column="1"
-                                            Source="{Binding PostPhotoTwo}">
-
-                    <ffimageloading:CachedImage.Transformations>
-
-                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                 BottomLeftCornerSize="5"
-                                                                 TopLeftCornerSize="5"
-                                                                 BottomRightCornerSize="5"
-                                                                 TopRightCornerSize="5"/>
-
-                    </ffimageloading:CachedImage.Transformations>
-
-                </ffimageloading:CachedImage>
-
-                --><!-- THIRD IMAGE --><!--
-                <ffimageloading:CachedImage Grid.Column="2"
-                                            Source="{Binding PostPhotoThree}">
-
-                    <ffimageloading:CachedImage.Transformations>
-
-                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                 BottomLeftCornerSize="5"
-                                                                 TopLeftCornerSize="5"
-                                                                 BottomRightCornerSize="5"
-                                                                 TopRightCornerSize="5"/>
-
-                    </ffimageloading:CachedImage.Transformations>
-
-                </ffimageloading:CachedImage>-->
-
-            </Grid>
-
-            <StackLayout Orientation="Horizontal">
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
 
                 <!-- DATE LABEL -->
-                <Label Text="{Binding PostDate}"
-                       TextColor="{StaticResource tx_5}"/>
+                <Label Grid.Column="0"
+                       Text="{Binding PostDate}"
+                       TextColor="{StaticResource tx_5}"
+                       VerticalOptions="Center"/>
 
-                <BoxView Style="{StaticResource boxViewPoint}"
+                <BoxView Grid.Column="1"
+                         Style="{StaticResource boxViewPoint}"
                          VerticalOptions="Center"/>
 
                 <!-- TIME LABEL -->
-                <Label Text="{Binding PostTime}"
-                       TextColor="{StaticResource tx_5}"/>
+                <Label Grid.Column="2"
+                       Text="{Binding PostTime}"
+                       TextColor="{StaticResource tx_5}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"/>
 
-            </StackLayout>
+                <!-- LIKE BUTTON -->
+                <Button Grid.Column="3"
+                        x:Name="likeButton"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        ImageSource="ic_like_gray.png"
+                        BackgroundColor="#10FFFFFF"
+                        WidthRequest="20">
+                    
+                </Button>
+
+                <!-- LIKE COUNT LABEL -->
+                <Label Grid.Column="4"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       Text="{Binding LikesCount}"/>
+
+                <!-- BOOKMARK BUTTON -->
+                <Button Grid.Column="5"
+                        x:Name="bookmarkButton"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        ImageSource="ic_bookmarks_gray.png"
+                        BackgroundColor="#10FFFFFF"
+                        WidthRequest="20">
+
+                </Button>
+               
+            </Grid>
 
         </StackLayout>
 
