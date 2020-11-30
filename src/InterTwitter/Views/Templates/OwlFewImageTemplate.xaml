@@ -2,7 +2,8 @@
 <DataTemplate xmlns="http://xamarin.com/schemas/2014/forms" 
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+              xmlns:controls="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
               x:Class="InterTwitter.Views.Templates.OwlFewImageTemplate">
     
     <Grid Margin="10">
@@ -18,6 +19,7 @@
             <RowDefinition Height="1"/>
         </Grid.RowDefinitions>
 
+        <!-- AUTHOR AVATAR IMAGE -->
         <ffimageloading:CachedImage Grid.Row ="0"
                                     Grid.Column="0"
                                     Grid.RowSpan="2"
@@ -39,87 +41,118 @@
         </ffimageloading:CachedImage>
 
         <StackLayout Grid.Row="0"
-                                 Grid.Column="1">
+                     Grid.Column="1"
+                     Margin="0, 10, 10, 0">
 
+            <!-- AUTHOR NAME LABEL -->
             <Label Text="{Binding AuthorNickName}"
-                               TextColor="{StaticResource tx_3}"
-                               FontSize="Large"/>
+                   TextColor="{StaticResource tx_3}"
+                   FontSize="Large"/>
 
+            <!-- POST DESCRIPTION LABEL -->
             <Label Text="{Binding Text}"
-                               TextColor="{StaticResource tx_3}"/>
+                   TextColor="{StaticResource tx_3}"/>
 
-            <StackLayout Orientation="Horizontal">
+            <!-- COLLECTION OF IMAGES -->
+            <controls:FlowListView FlowColumnCount="3"
+                                   HasUnevenRows="False"
+                                   FlowItemsSource="{Binding Media}"
+                                   RowHeight="110"                                   
+                                   SeparatorVisibility="Default" FlowIsLoadingInfinite="True">
+                
+                <controls:FlowListView.FlowColumnTemplate>
+                    
+                    <DataTemplate>
+                    
+                        <ffimageloading:CachedImage Margin="3" 
+                                                    HorizontalOptions="Fill" 
+                                                    VerticalOptions="Fill"  
+                                                    Source="{Binding .}"
+                                                    Aspect="AspectFit">
 
-                <ffimageloading:CachedImage Source="{Binding PostPhotoOne}"
-                                                        HeightRequest="80"
-                                                        WidthRequest="80">
+                            <ffimageloading:CachedImage.Transformations>
 
-                    <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                         BottomLeftCornerSize="5"
+                                                                         TopLeftCornerSize="5"
+                                                                         BottomRightCornerSize="5"
+                                                                         TopRightCornerSize="5"/>
 
-                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                             BottomLeftCornerSize="5"
-                                                                             TopLeftCornerSize="5"
-                                                                             BottomRightCornerSize="5"
-                                                                             TopRightCornerSize="5"/>
+                            </ffimageloading:CachedImage.Transformations>
 
-                    </ffimageloading:CachedImage.Transformations>
+                        </ffimageloading:CachedImage>
+                        
+                    </DataTemplate>
+                    
+                </controls:FlowListView.FlowColumnTemplate>
+                
+            </controls:FlowListView>            
+           
+            <Grid>
 
-                </ffimageloading:CachedImage>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
 
-                <ffimageloading:CachedImage Source="{Binding PostPhotoTwo}"
-                                                        HeightRequest="80"
-                                                        WidthRequest="80">
+                <!-- DATE LABEL -->
+                <Label Grid.Column="0"
+                       Text="{Binding PostDate}"
+                       TextColor="{StaticResource tx_5}"
+                       VerticalOptions="Center"/>
 
-                    <ffimageloading:CachedImage.Transformations>
+                <BoxView Grid.Column="1"
+                         Style="{StaticResource boxViewPoint}"
+                         VerticalOptions="Center"/>
 
-                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                             BottomLeftCornerSize="5"
-                                                                             TopLeftCornerSize="5"
-                                                                             BottomRightCornerSize="5"
-                                                                             TopRightCornerSize="5"/>
+                <!-- TIME LABEL -->
+                <Label Grid.Column="2"
+                       Text="{Binding PostTime}"
+                       TextColor="{StaticResource tx_5}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"/>
 
-                    </ffimageloading:CachedImage.Transformations>
+                <!-- LIKE BUTTON -->
+                <Button Grid.Column="3"
+                        x:Name="likeButton"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        ImageSource="ic_like_gray.png"
+                        BackgroundColor="#10FFFFFF"
+                        WidthRequest="20">
+                    
+                </Button>
 
-                </ffimageloading:CachedImage>
+                <!-- LIKE COUNT LABEL -->
+                <Label Grid.Column="4"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       Text="{Binding LikesCount}"/>
 
-                <ffimageloading:CachedImage Source="{Binding PostPhotoThree}"
-                                                        HeightRequest="80"
-                                                        WidthRequest="80">
+                <!-- BOOKMARK BUTTON -->
+                <Button Grid.Column="5"
+                        x:Name="bookmarkButton"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        ImageSource="ic_bookmarks_gray.png"
+                        BackgroundColor="#10FFFFFF"
+                        WidthRequest="20">
 
-                    <ffimageloading:CachedImage.Transformations>
-
-                        <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                             BottomLeftCornerSize="5"
-                                                                             TopLeftCornerSize="5"
-                                                                             BottomRightCornerSize="5"
-                                                                             TopRightCornerSize="5"/>
-
-                    </ffimageloading:CachedImage.Transformations>
-
-                </ffimageloading:CachedImage>
-
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal">
-
-                <Label Text="{Binding PostDate}"
-                                   TextColor="{StaticResource tx_5}"/>
-
-                <BoxView Style="{StaticResource boxViewPoint}"
-                                     VerticalOptions="Center"/>
-
-                <Label Text="{Binding PostTime}"
-                                   TextColor="{StaticResource tx_5}"/>
-
-            </StackLayout>
+                </Button>
+               
+            </Grid>
 
         </StackLayout>
 
         <BoxView Grid.Row="2"
-                             Grid.ColumnSpan="2"
-                             Style="{StaticResource boxViewSeparator}"
-                             HorizontalOptions="Fill"
-                             VerticalOptions="Fill"/>
+                 Grid.ColumnSpan="2"
+                 Style="{StaticResource boxViewSeparator}"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill"/>
 
     </Grid>
     
