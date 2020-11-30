@@ -111,32 +111,32 @@ namespace InterTwitter.Services.UserService
         private List<UserModel> InitData()
         {
             return new List<UserModel>()
+            {
+                new UserModel()
                 {
-                  new UserModel()
-                  {
-                      Id = 0,
-                      Email = "vasya1984@mail.ru",
-                      Name = "Vasiliy",
-                      Password = "V1984FAT",
-                      Picture = Constants.DefaultProfilePicture,
-                  },
-                  new UserModel()
-                  {
-                      Id = 1,
-                      Email = "petya25@gmail.com",
-                      Name = "Peter Stevenson",
-                      Password = "Qwerty123",
-                      Picture = Constants.DefaultProfilePicture,
-                  },
-                  new UserModel()
-                  {
-                      Id = 2,
-                      Email = "test@i.ua",
-                      Name = "Test UserName",
-                      Password = "Qwerty12",
-                      Picture = Constants.DefaultProfilePicture,
-                  }
-               };
+                    Id = 0,
+                    Email = "vasya1984@mail.ru",
+                    Name = "Vasiliy",
+                    Password = "V1984FAT",
+                    Picture = Constants.DefaultProfilePicture,
+                },
+                new UserModel()
+                {
+                    Id = 1,
+                    Email = "petya25@gmail.com",
+                    Name = "Peter Stevenson",
+                    Password = "Qwerty123",
+                    Picture = Constants.DefaultProfilePicture,
+                },
+                new UserModel()
+                {
+                    Id = 2,
+                    Email = "test@i.ua",
+                    Name = "Test UserName",
+                    Password = "Qwerty12",
+                    Picture = Constants.DefaultProfilePicture,
+                }
+            };
         }
 
         #endregion

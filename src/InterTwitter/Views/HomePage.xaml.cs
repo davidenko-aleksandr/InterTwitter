@@ -4,8 +4,7 @@
     {
         public HomePage()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
         }
     }
 }
