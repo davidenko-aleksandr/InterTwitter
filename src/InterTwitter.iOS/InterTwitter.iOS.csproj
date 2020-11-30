@@ -490,6 +490,15 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_like_blue.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_video.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_video%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_video%403x.png" />
+  </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties TriggeredFromHotReload="False" />

@@ -23,7 +23,6 @@ namespace InterTwitter.Services.Notification
 
         public NotificationService(
                                    ISettingsService settingsService,
-                                   IUserService userService,
                                    IAuthorizationService authorizationService)
         {
             _settingsService = settingsService;
@@ -58,7 +57,9 @@ namespace InterTwitter.Services.Notification
                             UserId = user.Id,
                             UserName = user.Name,
                             Action = action,
-                            OwlText = actionOwl.Text
+                            MediaType = actionOwl.MediaType,
+                            OwlText = actionOwl.Text,
+                            MediaList = actionOwl.Media
                         };
 
                         _notificationMock.Push(newNotification);
@@ -135,7 +136,12 @@ namespace InterTwitter.Services.Notification
                         UserAvatar = "https://pbs.twimg.com/profile_images/874276197357596672/kUuht00m_400x400.jpg",
                         UserName = "Donald J. Trump",
                         Action = OwlAction.Liked,
-                        OwlText = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild"
+                        MediaType = OwlType.Video,
+                        OwlText = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild",
+                        MediaList = new List<string>
+                        {
+                            "https://twitter.com/i/status/1262782634335383554"
+                        }
                     },
                     new NotificationModel
                     {
@@ -146,7 +152,12 @@ namespace InterTwitter.Services.Notification
                         UserAvatar = "https://pbs.twimg.com/profile_images/874276197357596672/kUuht00m_400x400.jpg",
                         UserName = "Donald J. Trump",
                         Action = OwlAction.Saved,
-                        OwlText = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild"
+                        MediaType = OwlType.Video,
+                        OwlText = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild",
+                        MediaList = new List<string>
+                        {
+                            "https://twitter.com/i/status/1262782634335383554"
+                        }
                     },
                     new NotificationModel
                     {
@@ -157,7 +168,12 @@ namespace InterTwitter.Services.Notification
                         UserAvatar = "https://pbs.twimg.com/profile_images/1298649731980238848/29o9j4e__400x400.jpg",
                         UserName = "Shakira",
                         Action = OwlAction.Liked,
-                        OwlText = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet"
+                        MediaType = OwlType.Gif ,
+                        OwlText = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
+                        MediaList = new List<string>
+                        {
+                            "https://uc.uxpin.com/files/614612/609600/www.GIFCreator.me_W6dTbP.gif"
+                        },
                     },
                     new NotificationModel
                     {
@@ -168,7 +184,12 @@ namespace InterTwitter.Services.Notification
                         UserAvatar = "https://pbs.twimg.com/profile_images/874276197357596672/kUuht00m_400x400.jpg",
                         UserName = "Donald J. Trump",
                         Action = OwlAction.Liked,
-                        OwlText = $"Go beyond Hello World. In today's guest post, #MSMVP Tim_Lariviere discusses importants part of writing real world apps and how to leverage functional programming with the Model-View-Update architecture to build mobile and desktop apps with #Fabulous"
+                        MediaType = OwlType.OneImage,
+                        OwlText = $"Go beyond Hello World. In today's guest post, #MSMVP Tim_Lariviere discusses importants part of writing real world apps and how to leverage functional programming with the Model-View-Update architecture to build mobile and desktop apps with #Fabulous",
+                        MediaList = new List<string>
+                        {
+                            "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
+                        },
                     },
                     new NotificationModel
                     {
@@ -179,7 +200,12 @@ namespace InterTwitter.Services.Notification
                         UserAvatar = "https://pbs.twimg.com/profile_images/1298649731980238848/29o9j4e__400x400.jpg",
                         UserName = "Shakira",
                         Action = OwlAction.Liked,
-                        OwlText = $"Go beyond Hello World. In today's guest post, #MSMVP Tim_Lariviere discusses importants part of writing real world apps and how to leverage functional programming with the Model-View-Update architecture to build mobile and desktop apps with #Fabulous"
+                        MediaType = OwlType.OneImage,
+                        OwlText = $"Go beyond Hello World. In today's guest post, #MSMVP Tim_Lariviere discusses importants part of writing real world apps and how to leverage functional programming with the Model-View-Update architecture to build mobile and desktop apps with #Fabulous",
+                        MediaList = new List<string>
+                        {
+                            "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
+                        },
                     },
                     new NotificationModel
                     {
@@ -190,7 +216,12 @@ namespace InterTwitter.Services.Notification
                         UserAvatar = "https://pbs.twimg.com/profile_images/1298649731980238848/29o9j4e__400x400.jpg",
                         UserName = "Shakira",
                         Action = OwlAction.Saved,
-                        OwlText = $"Go beyond Hello World. In today's guest post, #MSMVP Tim_Lariviere discusses importants part of writing real world apps and how to leverage functional programming with the Model-View-Update architecture to build mobile and desktop apps with #Fabulous"
+                        MediaType = OwlType.OneImage,
+                        OwlText = $"Go beyond Hello World. In today's guest post, #MSMVP Tim_Lariviere discusses importants part of writing real world apps and how to leverage functional programming with the Model-View-Update architecture to build mobile and desktop apps with #Fabulous",
+                        MediaList = new List<string>
+                        {
+                            "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
+                        },
                     },
                     new NotificationModel
                     {
@@ -201,7 +232,30 @@ namespace InterTwitter.Services.Notification
                         UserAvatar = "https://pbs.twimg.com/profile_images/471641515756769282/RDXWoY7W_400x400.png",
                         UserName = "Xamarin",
                         Action = OwlAction.Liked,
-                        OwlText = $"FoxNews daytime is virtually unwatchable, especially during the weekends. Watch OANN, newsmax, or almost anything else.You won’t have to suffer through endless interviews with Democrats, and even worse!"
+                        MediaType = OwlType.NoMedia,
+                        OwlText = $"FoxNews daytime is virtually unwatchable, especially during the weekends. Watch OANN, newsmax, or almost anything else.You won’t have to suffer through endless interviews with Democrats, and even worse!",
+                        MediaList = new List<string>()
+                    },
+                    new NotificationModel
+                    {
+                        Id = 7,
+                        AuthorId = 3,
+                        UserId = 1,
+                        OwlId = 10,
+                        UserAvatar = "https://pbs.twimg.com/profile_images/1298649731980238848/29o9j4e__400x400.jpg",
+                        UserName = "Shakira",
+                        Action = OwlAction.Liked,
+                        MediaType = OwlType.FewImages,
+                        OwlText = $"In the latest Xamarin Community Standup, join the Xamarin team as they discuss the latest and greatest for Xamarin. This week we sit down with Eilon Lipton to discuss the latest in the Mobile #Blazor Bindings. #XamarinForms #Blazor",
+                        MediaList = new List<string>
+                        {
+                            "https://pbs.twimg.com/media/Emuf9aiXEAcjdXw?format=jpg&name=small",
+                            "https://pbs.twimg.com/media/Empy-qvWEAIz7CT?format=jpg&name=small",
+                            "https://pbs.twimg.com/media/EmplPyCW8AAL9g7?format=jpg&name=small",
+                            "https://pbs.twimg.com/media/EmoZtwnW8AIbaO2?format=jpg&name=small",
+                            "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
+                            "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
+                        }
                     }
                 };
 

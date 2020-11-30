@@ -6,9 +6,6 @@ using Prism.Navigation;
 using System.Windows.Input;
 using Xamarin.Forms;
 using InterTwitter.ViewModels.OwlItems;
-using System.Collections.Generic;
-using System.Windows.Input;
-using Xamarin.Forms;
 using Xamarin.Essentials;
 using Acr.UserDialogs;
 

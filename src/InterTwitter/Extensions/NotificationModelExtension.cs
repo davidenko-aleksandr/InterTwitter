@@ -14,9 +14,12 @@ namespace InterTwitter.Extensions
                 OwlId = notification.OwlId,
                 OwlText = notification.OwlText,
                 Action = notification.Action,
+                MediaType = notification.MediaType,
                 UserAvatar = notification.UserAvatar,
                 UserId = notification.UserId,
-                UserName = notification.UserName
+                UserName = notification.UserName,
+                MediaList = notification.MediaList
+                
             };
 
             return viewModel;

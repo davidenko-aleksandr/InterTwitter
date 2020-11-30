@@ -4,7 +4,7 @@
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
               xmlns:videoplayer="clr-namespace:Octane.Xamarin.Forms.VideoPlayer;assembly=Octane.Xamarin.Forms.VideoPlayer"
-              x:Class="InterTwitter.Views.Templates.OwlVideoTemplate">
+              x:Class="InterTwitter.Views.OwlTemplates.OwlVideoTemplate">
     
     <Grid Margin="10">
 

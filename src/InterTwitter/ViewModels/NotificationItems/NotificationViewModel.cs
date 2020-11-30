@@ -1,5 +1,6 @@
 ﻿using InterTwitter.Enums;
 using Prism.Mvvm;
+using System.Collections.Generic;
 
 namespace InterTwitter.ViewModels.NotificationItems
 {
@@ -61,11 +62,25 @@ namespace InterTwitter.ViewModels.NotificationItems
             set => SetProperty(ref _action, value);
         }
 
+        private OwlType _mediaType;
+        public OwlType MediaType 
+        {
+            get => _mediaType;
+            set => SetProperty(ref _mediaType, value);
+        }
+
         private string _owlText;
         public string OwlText
         {
             get => _owlText;
             set => SetProperty(ref _owlText, value);
+        }
+
+        private List<string> _mediaList;
+        public List<string> MediaList
+        {
+            get => _mediaList;
+            set => SetProperty(ref _mediaList, value);
         }
 
         #endregion

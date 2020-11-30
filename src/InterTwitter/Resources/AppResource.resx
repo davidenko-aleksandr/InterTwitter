@@ -156,6 +156,9 @@
   <data name="LeftImage" xml:space="preserve">
     <value>ic_left.png</value>
   </data>
+  <data name="LikedPostText" xml:space="preserve">
+    <value>liked your post</value>
+  </data>
   <data name="LogInButton" xml:space="preserve">
     <value>Log In</value>
   </data>
@@ -192,8 +195,14 @@
   <data name="RandomError" xml:space="preserve">
     <value>Oops, something went wrong</value>
   </data>
+  <data name="SavedPostText" xml:space="preserve">
+    <value>saved your post</value>
+  </data>
   <data name="SignUpButton" xml:space="preserve">
     <value>Sign Up</value>
+  </data>
+  <data name="VideoText" xml:space="preserve">
+    <value>Video</value>
   </data>
   <data name="WrongEmailPasswordText" xml:space="preserve">
     <value>Wrong email or password</value>

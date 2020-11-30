@@ -14,7 +14,6 @@ namespace InterTwitter.ViewModels.OwlItems
             Text = model.Text;
             PostDate = model.Date.ToString("dd.MM.yyyy");
             PostTime = model.Date.ToString("HH:mm");
-            IsFavorite = model.IsFavorite;
             LikesCount = 142;
         }
 

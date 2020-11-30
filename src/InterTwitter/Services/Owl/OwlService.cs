@@ -324,6 +324,25 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.NoMedia,
                     likesList = new List<int>(),
                     savesList = new List<int>()
+                },
+                new OwlModel
+                {
+                    Id = 10,
+                    AuthorId = 3,
+                    Date = new DateTime(2012, 3, 4, 18, 30, 25),
+                    Text = $"In the latest Xamarin Community Standup, join the Xamarin team as they discuss the latest and greatest for Xamarin. This week we sit down with Eilon Lipton to discuss the latest in the Mobile #Blazor Bindings. #XamarinForms #Blazor",
+                    MediaType = OwlType.FewImages,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/Emuf9aiXEAcjdXw?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/Empy-qvWEAIz7CT?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmplPyCW8AAL9g7?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmoZtwnW8AIbaO2?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>()
                 }
             };
 

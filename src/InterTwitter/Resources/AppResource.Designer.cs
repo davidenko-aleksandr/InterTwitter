@@ -178,6 +178,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to liked your post.
+        /// </summary>
+        public static string LikedPostText {
+            get {
+                return ResourceManager.GetString("LikedPostText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log In.
         /// </summary>
         public static string LogInButton {
@@ -286,11 +295,29 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to saved your post.
+        /// </summary>
+        public static string SavedPostText {
+            get {
+                return ResourceManager.GetString("SavedPostText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign Up.
         /// </summary>
         public static string SignUpButton {
             get {
                 return ResourceManager.GetString("SignUpButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Video.
+        /// </summary>
+        public static string VideoText {
+            get {
+                return ResourceManager.GetString("VideoText", resourceCulture);
             }
         }
         

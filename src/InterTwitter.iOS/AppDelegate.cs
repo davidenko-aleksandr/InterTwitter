@@ -39,8 +39,6 @@ namespace InterTwitter.iOS
             };
             ImageService.Instance.Initialize(config);
 
-            
-
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

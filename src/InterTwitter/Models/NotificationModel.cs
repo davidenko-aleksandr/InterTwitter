@@ -1,4 +1,5 @@
 ﻿using InterTwitter.Enums;
+using System.Collections.Generic;
 
 namespace InterTwitter.Models
 {
@@ -18,6 +19,11 @@ namespace InterTwitter.Models
 
         public OwlAction Action { get; set; }
 
+        public OwlType MediaType { get; set; }
+
         public string OwlText { get; set; }
+
+        public List<string> MediaList { get; set; }
+
     }
 }
