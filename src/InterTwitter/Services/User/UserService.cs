@@ -94,15 +94,15 @@ namespace InterTwitter.Services.UserService
 
             try
             {
-                var changingUser = _usersRepositoryMock.FirstOrDefault(x => x.Id == user.Id);
+                var changingUser = _usersRepositoryMock.FirstOrDefault(x => x.Id == userViewModel.Id);
 
                 if (changingUser is not null)
                 {
-                    changingUser.Avatar = user.Avatar;
-                    changingUser.Email = user.Email;
-                    changingUser.ProfileHeaderImage = user.ProfileHeaderImage;
-                    changingUser.Name = user.Name;
-                    changingUser.Password = user.Password;
+                    changingUser.Avatar = userViewModel.Avatar;
+                    changingUser.Email = userViewModel.Email;
+                    changingUser.ProfileHeaderImage = userViewModel.ProfileHeaderImage;
+                    changingUser.Name = userViewModel.Name;
+                    changingUser.Password = userViewModel.Password;
 
                     result.SetSuccess(true);
                 }
@@ -152,7 +152,7 @@ namespace InterTwitter.Services.UserService
                     Name = "Test UserName",
                     Password = "Qwerty12",
                     Avatar = Constants.DefaultProfilePicture,
-                    ProfileHeaderImage = "",
+                    ProfileHeaderImage = "pic_profile_header_photo.jpg"
                 },
                 new UserModel()
                 {

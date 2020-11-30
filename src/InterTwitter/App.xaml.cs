@@ -63,12 +63,10 @@ namespace InterTwitter
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
             containerRegistry.RegisterInstance<IOwlService>(Container.Resolve<OwlService>());
-<<<<<<< HEAD
             containerRegistry.RegisterInstance<INotificationService>(Container.Resolve<NotificationService>());
             containerRegistry.RegisterInstance<IPostActionService>(Container.Resolve<PostActionService>());
-=======
             containerRegistry.RegisterInstance<IPermissionService>(Container.Resolve<PermissionService>());
->>>>>>> a5af28b1ab6135d0074cb498c09b98de278dc4ca
+
         }
 
         #endregion

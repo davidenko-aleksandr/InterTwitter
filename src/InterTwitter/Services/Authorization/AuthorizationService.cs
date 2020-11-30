@@ -94,7 +94,7 @@ namespace InterTwitter.Services.Authorization
                             Name = name,
                             Password = password,
                             Avatar = Constants.DefaultProfilePicture,
-                            ProfileHeaderImage = ""
+                            ProfileHeaderImage = "pic_profile_header_photo.jpg"
                     };
 
                         await _userService.AddUserAsync(user);

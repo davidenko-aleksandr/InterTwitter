@@ -16,7 +16,7 @@ namespace InterTwitter.Extensions
                        Name = userViewModel.Name,
                        Email = userViewModel.Email,
                        Password = userViewModel.Password,
-                       Picture = userViewModel.Picture,
+                       Avatar = userViewModel.Avatar,
                        ProfileHeaderImage = userViewModel.ProfileHeaderImage
                    };
         }

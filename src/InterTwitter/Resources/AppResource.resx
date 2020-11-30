@@ -203,8 +203,6 @@
   </data>
   <data name="NotificationPageTitle" xml:space="preserve">
     <value>Notification</value>
-  <data name="OkText" xml:space="preserve">
-    <value>Ok</value>
   </data>
   <data name="OldPasswordText" xml:space="preserve">
     <value>Old password</value>
@@ -220,6 +218,7 @@
   </data>
   <data name="SavedPostText" xml:space="preserve">
     <value>saved your post</value>
+  </data>
   <data name="PicProfileHeaderImage" xml:space="preserve">
     <value>pic_profile_header_photo.jpg</value>
   </data>
@@ -231,6 +230,7 @@
   </data>
   <data name="VideoText" xml:space="preserve">
     <value>Video</value>
+  </data>
   <data name="TakeCameraPicture" xml:space="preserve">
     <value>Take picture from camera</value>
   </data>
@@ -245,5 +245,8 @@
   </data>
   <data name="WrongOldPassword" xml:space="preserve">
     <value>You entered wrong old password</value>
+  </data>
+  <data name="OkText" xml:space="preserve">
+    <value>OK</value>
   </data>
 </root>

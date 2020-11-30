@@ -318,7 +318,11 @@ namespace InterTwitter.Resources {
         public static string NotificationPageTitle {
             get {
                 return ResourceManager.GetString("NotificationPageTitle", resourceCulture);
-        ///   Looks up a localized string similar to Ok.
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string OkText {
             get {
@@ -354,11 +358,6 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oops, something went wrong.
-        /// </summary>
-        public static string RandomError {
-            get {
-                return ResourceManager.GetString("RandomError", resourceCulture);
         ///   Looks up a localized string similar to pic_profile_header_photo.jpg.
         /// </summary>
         public static string PicProfileHeaderImage {
@@ -368,11 +367,24 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oops, something went wrong.
+        /// </summary>
+        public static string RandomError {
+            get {
+                return ResourceManager.GetString("RandomError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to saved your post.
         /// </summary>
         public static string SavedPostText {
             get {
                 return ResourceManager.GetString("SavedPostText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ic_check_blue.png.
         /// </summary>
         public static string SaveIcon {
@@ -391,11 +403,6 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Video.
-        /// </summary>
-        public static string VideoText {
-            get {
-                return ResourceManager.GetString("VideoText", resourceCulture);
         ///   Looks up a localized string similar to Take picture from camera.
         /// </summary>
         public static string TakeCameraPicture {
@@ -410,6 +417,15 @@ namespace InterTwitter.Resources {
         public static string TakeGalleryPicture {
             get {
                 return ResourceManager.GetString("TakeGalleryPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Video.
+        /// </summary>
+        public static string VideoText {
+            get {
+                return ResourceManager.GetString("VideoText", resourceCulture);
             }
         }
         

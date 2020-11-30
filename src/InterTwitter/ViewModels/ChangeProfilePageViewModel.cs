@@ -126,7 +126,7 @@ namespace InterTwitter.ViewModels
 
         private async Task OnSetAvatarCommand()
         {
-            CallerPropertyName = nameof(User.Picture);
+            CallerPropertyName = nameof(User.Avatar);
 
             var parameters = new ActionSheetConfig();
             parameters.Add(AppResource.TakeCameraPicture, TakeCameraPicture, null);
@@ -236,9 +236,9 @@ namespace InterTwitter.ViewModels
                         User.ProfileHeaderImage = path;
                         break;
                     }
-                case nameof(User.Picture):
+                case nameof(User.Avatar):
                     {
-                        User.Picture = path;
+                        User.Avatar = path;
                         break;
                     }
                 default:

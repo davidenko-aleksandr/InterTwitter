@@ -1,24 +1,23 @@
 ﻿using InterTwitter.Models;
 using Prism.Mvvm;
 
-    namespace InterTwitter.ViewModels.HomePageItems
+namespace InterTwitter.ViewModels.HomePageItems
+{
+    public class OwlViewModel : BindableBase
     {
-        public class OwlViewModel : BindableBase
+        public OwlViewModel(OwlModel model, UserModel author)
         {
-            public OwlViewModel(OwlModel model, UserModel author)
-            {
-                Id = model.Id;
-                AuthorId = author.Id;
-                AuthorAvatar = author.Picture;
-                AuthorNickName = author.Name;
-                Text = model.Text;
-                PostDate = model.Date.ToString("dd.MM.yyyy");
-                PostTime = model.Date.ToString("HH:mm");
-                IsFavorite = model.IsFavorite;
-                LikesCount = 142;
-            }
+            Id = model.Id;
+            AuthorId = author.Id;
+            AuthorAvatar = author.Avatar;
+            AuthorNickName = author.Name;
+            Text = model.Text;
+            PostDate = model.Date.ToString("dd.MM.yyyy");
+            PostTime = model.Date.ToString("HH:mm");
+            LikesCount = 142;
+        }
 
-            #region -- Public properties --
+        #region -- Public properties --
 
             private int _Id;
             public int Id
@@ -84,6 +83,5 @@ using Prism.Mvvm;
             }
 
             #endregion
-        }
     }
 }

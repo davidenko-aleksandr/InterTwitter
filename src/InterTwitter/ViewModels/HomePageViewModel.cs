@@ -10,6 +10,7 @@ using System;
 using InterTwitter.Views;
 using Xamarin.Essentials;
 using Acr.UserDialogs;
+using InterTwitter.ViewModels.HomePageItems;
 
 namespace InterTwitter.ViewModels
 {
