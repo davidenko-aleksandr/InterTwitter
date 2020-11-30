@@ -18,8 +18,6 @@
             
             <templates:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
             
-            <templates:OwlAlbumTemplate x:Key="OwlAlbumTemplate"/>
-            
             <templates:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
             
             <templates:OwlGifTemplate x:Key="OwlGifTemplate"/>
@@ -29,7 +27,6 @@
             <local:OwlTemplateSelector x:Key="OwlTemplateSelector"
                                        OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
                                        OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
-                                       OwlAlbumTemplate="{StaticResource OwlAlbumTemplate}"
                                        OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
                                        OwlGifTemplate ="{StaticResource OwlGifTemplate}"
                                        OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>
@@ -40,7 +37,7 @@
     <Grid>
 
         <!-- CUSTOM COLLECTION VIEW -->
-        <controls:CustomCollectionView x:Name="customCollectionView"
+        <controls:CustomCollectionView x:Name="customCollectionView" 
                                        ItemsSource="{Binding Owls}"
                                        ItemTemplate="{StaticResource OwlTemplateSelector}"
                                        ItemsUpdatingScrollMode="KeepItemsInView"

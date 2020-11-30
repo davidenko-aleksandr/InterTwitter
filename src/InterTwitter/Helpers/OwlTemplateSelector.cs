@@ -11,8 +11,6 @@ namespace InterTwitter.Enums
 
         public DataTemplate OwlFewImageTemplate { get; set; }
 
-        public DataTemplate OwlAlbumTemplate { get; set; }
-
         public DataTemplate OwlNoMediaTemplate { get; set; }
 
         public DataTemplate OwlGifTemplate { get; set; }
@@ -34,10 +32,6 @@ namespace InterTwitter.Enums
             else if (item is OwlFewImagesViewModel)
             {
                 dataTemplate = OwlFewImageTemplate;
-            }
-            else if (item is OwlAlbumViewModel)
-            {
-                dataTemplate = OwlAlbumTemplate;
             }
             else if (item is OwlNoMediaViewModel)
             {

@@ -3,7 +3,8 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-              x:Class="InterTwitter.Views.OwlTemplates.OwlVideoTemplate">
+              xmlns:videoplayer="clr-namespace:Octane.Xamarin.Forms.VideoPlayer;assembly=Octane.Xamarin.Forms.VideoPlayer"
+              x:Class="InterTwitter.Views.Templates.OwlVideoTemplate">
     
     <Grid Margin="10">
 
@@ -18,6 +19,7 @@
             <RowDefinition Height="1" />
         </Grid.RowDefinitions>
 
+        <!-- AUTHOR AVATAR IMAGE -->
         <ffimageloading:CachedImage Grid.Row ="0"
                                     Grid.Column="0"
                                     Grid.RowSpan="2"
@@ -39,53 +41,89 @@
         </ffimageloading:CachedImage>
 
         <StackLayout Grid.Row="0"
-                                 Grid.Column="1"
-                                 Margin="0, 10, 0, 0">
+                     Grid.Column="1"
+                     Margin="0, 10, 10, 0">
 
+            <!-- AUTHOR NAME LABEL -->
             <Label Text="{Binding AuthorNickName}"
-                               TextColor="{StaticResource tx_3}"
-                               FontSize="Large"/>
+                   TextColor="{StaticResource tx_3}"
+                   FontSize="Large"/>
 
+            <!-- POST DESCRIPTION LABEL -->
             <Label Text="{Binding Text}"
-                               TextColor="{StaticResource tx_3}"/>
+                   TextColor="{StaticResource tx_3}"/>
 
-            <ffimageloading:CachedImage Source="{Binding Video}"
-                                                    HeightRequest="250"
-                                                    Margin="0, 0, 10, 0"
-                                                    IsEnabled="True"
-                                                    DownsampleToViewSize="True">
+            <!-- VIDEO FILE -->
+            <videoplayer:VideoPlayer Source="{Binding Video}"
+                                     HeightRequest="250"
+                                     AutoPlay="False"
+                                     DisplayControls="True"/>
 
-                <ffimageloading:CachedImage.Transformations>
+            <Grid>
 
-                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                         BottomLeftCornerSize="5"
-                                                                         TopLeftCornerSize="5"
-                                                                         BottomRightCornerSize="5"
-                                                                         TopRightCornerSize="5"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
 
-                </ffimageloading:CachedImage.Transformations>
-            </ffimageloading:CachedImage>
+                <!-- DATE LABEL -->
+                <Label Grid.Column="0"
+                       Text="{Binding PostDate}"
+                       TextColor="{StaticResource tx_5}"
+                       VerticalOptions="Center"/>
 
-            <StackLayout Orientation="Horizontal">
+                <BoxView Grid.Column="1"
+                         Style="{StaticResource boxViewPoint}"
+                         VerticalOptions="Center"/>
 
-                <Label Text="{Binding PostDate}"
-                                   TextColor="{StaticResource tx_5}"/>
+                <!-- TIME LABEL -->
+                <Label Grid.Column="2"
+                       Text="{Binding PostTime}"
+                       TextColor="{StaticResource tx_5}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"/>
 
-                <BoxView Style="{StaticResource boxViewPoint}"
-                                     VerticalOptions="Center"/>
+                <!-- LIKE BUTTON -->
+                <Button Grid.Column="3"
+                        x:Name="likeButton"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        ImageSource="ic_like_gray.png"
+                        BackgroundColor="#10FFFFFF"
+                        WidthRequest="20">
 
-                <Label Text="{Binding PostTime}"
-                                   TextColor="{StaticResource tx_5}"/>
+                </Button>
 
-            </StackLayout>
+                <!-- LIKE COUNT LABEL -->
+                <Label Grid.Column="4"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       Text="{Binding LikesCount}"/>
+
+                <!-- BOOKMARK BUTTON -->
+                <Button Grid.Column="5"
+                        x:Name="bookmarkButton"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        ImageSource="ic_bookmarks_gray.png"
+                        BackgroundColor="#10FFFFFF"
+                        WidthRequest="20">
+
+                </Button>
+
+            </Grid>
 
         </StackLayout>
 
         <BoxView Grid.Row="2"
-                             Grid.ColumnSpan="2"
-                             Style="{StaticResource boxViewSeparator}"
-                             HorizontalOptions="Fill"
-                             VerticalOptions="Fill"/>
+                 Grid.ColumnSpan="2"
+                 Style="{StaticResource boxViewSeparator}"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill"/>
 
     </Grid>
 

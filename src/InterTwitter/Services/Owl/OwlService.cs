@@ -83,12 +83,6 @@ namespace InterTwitter.Services.Owl
                                 break;
                             }
 
-                        case OwlType.Album:
-                            {
-                                owls.Add(owlVM = new OwlAlbumViewModel(owl, author));
-                                break;
-                            }
-
                         case OwlType.Gif:
                             {
                                 owls.Add(owlVM = new OwlGifViewModel(owl, author));
@@ -318,6 +312,16 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://twitter.com/i/status/1262782634335383554"
                     },
+                    likesList = new List<int>(),
+                    savesList = new List<int>()
+                },
+                new OwlModel
+                {
+                    Id = 9,
+                    AuthorId = 2,
+                    Date = new DateTime(2019, 11, 6, 18, 30, 25),
+                    Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone.",
+                    MediaType = OwlType.NoMedia,
                     likesList = new List<int>(),
                     savesList = new List<int>()
                 }

@@ -13,6 +13,7 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using InterTwitter.Services.PostAction;
 using InterTwitter.Services.Notification;
+using DLToolkit.Forms.Controls;
 
 namespace InterTwitter
 {
@@ -28,6 +29,8 @@ namespace InterTwitter
         protected override async void OnInitialized()
         {
             InitializeComponent();
+
+            FlowListView.Init();
 
             await NavigateAsync();
         }
