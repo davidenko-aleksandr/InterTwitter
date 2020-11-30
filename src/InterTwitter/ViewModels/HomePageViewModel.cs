@@ -8,6 +8,8 @@ using Prism.Navigation;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System;
+using InterTwitter.Views;
 using Xamarin.Essentials;
 using Acr.UserDialogs;
 
@@ -53,10 +55,12 @@ namespace InterTwitter.ViewModels
 
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
 
-        #endregion       
+        public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
+
+        #endregion
 
         #region -- Overrides --
-       
+
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             var isConnected = Connectivity.NetworkAccess;
@@ -87,6 +91,11 @@ namespace InterTwitter.ViewModels
         private async Task OnOpenMenuCommandAsync()
         {
             MessagingCenter.Send<object>(this, Constants.OpenMenuMessage);
+        }
+
+        private async Task OnAddPostCommandAsync()
+        {
+            await NavigationService.NavigateAsync(nameof(AddPostPage), new NavigationParameters(), useModalNavigation: true, true);
         }
 
         #endregion

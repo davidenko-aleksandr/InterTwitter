@@ -136,6 +136,18 @@
     <BundleResource Include="stylecop.json" />
     <BundleResource Include="Resources\ic_setting%402x.png" />
     <BundleResource Include="Resources\ic_setting%403x.png" />
+    <BundleResource Include="Resources\ic_cansell.png" />
+    <BundleResource Include="Resources\ic_cansell%402x.png" />
+    <BundleResource Include="Resources\ic_cansell%403x.png" />
+    <BundleResource Include="Resources\ic_gif.png" />
+    <BundleResource Include="Resources\ic_gif%402x.png" />
+    <BundleResource Include="Resources\ic_gif%403x.png" />
+    <BundleResource Include="Resources\ic_media.png" />
+    <BundleResource Include="Resources\ic_media%402x.png" />
+    <BundleResource Include="Resources\ic_media%403x.png" />
+    <BundleResource Include="Resources\ic_video.png" />
+    <BundleResource Include="Resources\ic_video%402x.png" />
+    <BundleResource Include="Resources\ic_video%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
