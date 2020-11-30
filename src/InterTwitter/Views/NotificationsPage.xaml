@@ -3,6 +3,7 @@
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                         xmlns:controls="clr-namespace:InterTwitter.Controls" 
+                        xmlns:resources="clr-namespace:InterTwitter.Resources"
                         xmlns:notificationtemplate="clr-namespace:InterTwitter.Views.NotificationTemplates"
                         x:Class="InterTwitter.Views.NotificationsPage"
                         IconImageSource="{Binding Icon}"
@@ -15,7 +16,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <controls:NotificationPageNavigationBar Grid.Row="0"/>
+        <!-- TABBED PAGE NAVIGATION BAR -->
+        <controls:TabbedPageNavigationBar  Grid.Row="0"
+                                           IsLeftIconVisible="False"
+                                           TitleText="{x:Static resources:AppResource.NotificationPageTitle}"
+                                           IsBottomLineVisible="True"/>
 
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding NotificationList}">

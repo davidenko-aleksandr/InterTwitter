@@ -5,7 +5,6 @@
         public HomePage()
         {
             InitializeComponent();
-            
         }
     }
 }

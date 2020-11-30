@@ -30,7 +30,7 @@ namespace InterTwitter.Services.PostAction
         public async Task<AOResult<bool>> SaveActionAsync(OwlModel actionOwl, OwlAction action)
         {
             var result = new AOResult<bool>();
-
+            
             try
             {
                 var authorizedUserId = _settingsService.AuthorizedUserId;

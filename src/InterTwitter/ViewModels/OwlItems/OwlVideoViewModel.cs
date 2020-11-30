@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using InterTwitter.Models;
 
-namespace InterTwitter.ViewModels.HomePageItems
+namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlVideoViewModel : OwlViewModel
     {

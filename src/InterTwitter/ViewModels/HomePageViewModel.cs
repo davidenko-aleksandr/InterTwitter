@@ -1,11 +1,11 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using InterTwitter.Services.Owl;
-using InterTwitter.ViewModels.HomePageItems;
 using InterTwitter.Helpers;
 using Prism.Navigation;
 using System.Windows.Input;
 using Xamarin.Forms;
+using InterTwitter.ViewModels.OwlItems;
 
 namespace InterTwitter.ViewModels
 {
@@ -19,6 +19,8 @@ namespace InterTwitter.ViewModels
                                 : base(navigationService)
         {
             _owlService = owlService;
+
+            //ProfileAvatar = "pic_profile_small.png";
         }
 
         #region -- Public properties --
@@ -35,6 +37,13 @@ namespace InterTwitter.ViewModels
         {
             get => _icon;
             set => SetProperty(ref _icon, value);
+        }
+
+        private string _profileAvatar;
+        public string ProfileAvatar
+        {
+            get => _profileAvatar;
+            set => SetProperty(ref _profileAvatar, value);
         }
 
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);

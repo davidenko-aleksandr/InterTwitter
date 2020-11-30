@@ -1,7 +1,7 @@
 ﻿using InterTwitter.Models;
 using Prism.Mvvm;
 
-namespace InterTwitter.ViewModels.HomePageItems
+namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlViewModel : BindableBase
     {

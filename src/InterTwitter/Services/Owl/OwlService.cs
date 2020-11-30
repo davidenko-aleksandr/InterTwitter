@@ -3,7 +3,7 @@ using InterTwitter.Helpers;
 using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Services.UserService;
-using InterTwitter.ViewModels.HomePageItems;
+using InterTwitter.ViewModels.OwlItems;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,7 +1,6 @@
 ﻿using Acr.UserDialogs;
-using InterTwitter.Enums;
-using InterTwitter.Models;
 using InterTwitter.Services.Notification;
+using InterTwitter.ViewModels.NotificationItems;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -33,8 +32,8 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _icon, value);
         }
 
-        private ObservableCollection<NotificationModel> _notificationList;
-        public ObservableCollection<NotificationModel> NotificationList
+        private ObservableCollection<NotificationViewModel> _notificationList;
+        public ObservableCollection<NotificationViewModel> NotificationList
         {
             get => _notificationList;
             set => SetProperty(ref _notificationList, value);
