@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
+                        xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:controls="clr-namespace:InterTwitter.Controls"
+                        xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                        xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                        xmlns:converters="clr-namespace:InterTwitter.Converters"
+                        x:Class="InterTwitter.Views.AddPostPage">
+
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <converters:StringToBoolConverter x:Key="stringToBool" />
+
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <Grid HorizontalOptions="Fill"
+          VerticalOptions="Fill">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--CANCEL BUTTON-->
+        <controls:ClickableContentView Grid.Row="0"
+                                       Grid.Column="0"
+                                       Margin="10"
+                                       Command="{Binding CancelCommand}">
+
+            <Image Source="ic_cansell"
+                   Aspect="AspectFill"/>
+
+        </controls:ClickableContentView>
+
+        <!--ADD POST BUTTON-->
+        <Button Grid.Row="0"
+                Grid.Column="1"
+                HeightRequest="34"
+                WidthRequest="104"
+                CornerRadius="17"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Text="Post"
+                TextColor="White"
+                Margin="10"
+                BackgroundColor="#66696E"
+                Command="{Binding AddPostCommand}">
+
+            <Button.Triggers>
+
+                <DataTrigger TargetType="Button"
+                             Binding="{Binding OwlText, Converter={StaticResource stringToBool}}"
+                             Value="true">
+
+                    <Setter Property="BackgroundColor" Value="#2356C5"/>
+
+                </DataTrigger>
+
+            </Button.Triggers>
+
+        </Button>
+
+        <!--AUTHOR AVATAR-->
+        <ffimageloading:CachedImage Source="{Binding AuthorAvatar}"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    HeightRequest="35"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Center">
+
+            <ffimageloading:CachedImage.Transformations>
+                <fftransformations:CircleTransformation/>
+            </ffimageloading:CachedImage.Transformations>
+
+        </ffimageloading:CachedImage>
+
+        <!--POST EDITOR-->
+        <Editor Grid.Row="1"
+                Grid.Column="1"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Placeholder="Start writing"
+                PlaceholderColor="#66696E"
+                Text="{Binding OwlText, Mode=TwoWay}"
+                x:Name="editor"/>
+
+        <ScrollView Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="2"
+                    VerticalOptions="EndAndExpand">
+
+            <!--BOTTOM BAR-->
+            <StackLayout VerticalOptions="EndAndExpand">
+
+                <BoxView HeightRequest="1"
+                     Color="#DEDFE1"
+                     VerticalOptions="StartAndExpand"/>
+
+                <StackLayout Orientation="Horizontal">
+
+                    <!--ADD MEDIA BUTTON-->
+                    <controls:ClickableContentView Margin="10"
+                                               Command="{Binding MediaCommand}">
+
+                        <Image Source="ic_media"
+                               Aspect="AspectFill"/>
+
+                    </controls:ClickableContentView>
+
+                    <!--ADD GIF BUTTON-->
+                    <controls:ClickableContentView Margin="10"
+                                               Command="{Binding GifCommand}">
+
+                        <Image Source="ic_gif"/>
+
+                    </controls:ClickableContentView>
+
+                    <!--ADD VIDEO BUTTON-->
+                    <controls:ClickableContentView Margin="10"
+                                               Command="{Binding VideoCommand}">
+
+                        <Image Source="ic_video"/>
+
+                    </controls:ClickableContentView>
+
+                </StackLayout>
+
+            </StackLayout>
+
+        </ScrollView>
+
+    </Grid>
+
+</views:BaseContentPage>

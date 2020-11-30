@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using InterTwitter.Models;
 
-namespace InterTwitter.ViewModels.OwlItems
+namespace InterTwitter.ViewModels.HomePageItems
 {
     public class OwlGifViewModel : OwlViewModel
     {

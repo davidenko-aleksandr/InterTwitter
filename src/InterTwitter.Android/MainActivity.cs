@@ -11,6 +11,7 @@ using FFImageLoading.Forms.Platform;
 using Acr.UserDialogs;
 using InterTwitter.Services.Keyboard;
 using InterTwitter.Droid.Services.Keyboard;
+using PanCardView.Droid;
 using Octane.Xamarin.Forms.VideoPlayer.Android;
 
 namespace InterTwitter.Droid
@@ -37,7 +38,9 @@ namespace InterTwitter.Droid
                 VerboseMemoryCacheLogging = false,
                 VerboseLoadingCancelledLogging = false,
             };
-            ImageService.Instance.Initialize(config);            
+
+            ImageService.Instance.Initialize(config);           
+
 
             CachedImageRenderer.Init(true);
             CachedImageRenderer.InitImageViewHandler();
@@ -45,7 +48,11 @@ namespace InterTwitter.Droid
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             UserDialogs.Init(this);
+
+            CardsViewRenderer.Preserve();
+
             FormsVideoPlayer.Init();
+
             LoadApplication(new App(new AndroidInitializer()));
         }
 

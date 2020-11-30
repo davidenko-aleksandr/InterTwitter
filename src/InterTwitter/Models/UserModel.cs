@@ -12,6 +12,6 @@
 
         public string Avatar { get; set; }
 
-        public string ProfileHeaderImage { get; set; }
+        public string ProfileHeaderImage { get; set; } = "pic_profile_header_photo.jpg";
     }
 }

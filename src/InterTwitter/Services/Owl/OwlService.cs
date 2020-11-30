@@ -37,6 +37,12 @@ namespace InterTwitter.Services.Owl
             {
                 if (owlModel is not null)
                 {
+                    var res =  await _authorizationService.GetAuthorizedUserAsync();
+                    var author = res.Result;
+
+                    owlModel.Id = _owlsMock.Count;
+                    owlModel.AuthorId = author.Id;
+
                     _owlsMock.Add(owlModel);
                     
                     result.SetSuccess(true);
@@ -59,7 +65,7 @@ namespace InterTwitter.Services.Owl
             var result = new AOResult<IEnumerable<OwlViewModel>>();
 
             try
-            { 
+            {
                 List<OwlViewModel> owls = new List<OwlViewModel>();
 
                 foreach (OwlModel owl in _owlsMock)

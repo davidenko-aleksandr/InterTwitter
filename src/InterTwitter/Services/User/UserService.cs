@@ -1,9 +1,12 @@
 ﻿using InterTwitter.Helpers;
 using InterTwitter.Models;
+using InterTwitter.ViewModels;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InterTwitter.Extensions;
 
 namespace InterTwitter.Services.UserService
 {
@@ -18,15 +21,16 @@ namespace InterTwitter.Services.UserService
 
         #region -- IUserService Implementation --
 
-        public async Task<AOResult<List<UserModel>>> GetUsersAsync()
+        public async Task<AOResult<List<UserViewModel>>> GetUsersAsync()
         {
-            var result = new AOResult<List<UserModel>>();
+            var result = new AOResult<List<UserViewModel>>();
 
             try
             {
                 if (_usersRepositoryMock != null)
                 {
-                    result.SetSuccess(_usersRepositoryMock);
+                    var list = _usersRepositoryMock.Select(x => new UserViewModel(x)).ToList();
+                    result.SetSuccess(list);
                 }
                 else
                 {
@@ -83,8 +87,9 @@ namespace InterTwitter.Services.UserService
             return result;
         }
 
-        public async Task<AOResult<bool>> UpdateUserAsync(UserModel user)
+        public async Task<AOResult<bool>> UpdateUserAsync(UserViewModel userViewModel)
         {
+             
             var result = new AOResult<bool>();
 
             try
