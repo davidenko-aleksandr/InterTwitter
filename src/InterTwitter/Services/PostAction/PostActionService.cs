@@ -41,30 +41,30 @@ namespace InterTwitter.Services.PostAction
                     {
                         case OwlAction.Liked:
                             {
-                                var isExist = actionOwl.likesList.Contains(authorizedUserId);
+                                var isExist = actionOwl.LikesList.Contains(authorizedUserId);
 
                                 if (isExist)
                                 {
-                                    actionOwl.likesList.Remove(authorizedUserId);
+                                    actionOwl.LikesList.Remove(authorizedUserId);
                                 }
                                 else
                                 {
-                                    actionOwl.likesList.Insert(0, authorizedUserId);
+                                    actionOwl.LikesList.Insert(0, authorizedUserId);
                                 }
 
                                 break;
                             }
                         case OwlAction.Saved:
                             {
-                                var isExist = actionOwl.savesList.Contains(authorizedUserId);
+                                var isExist = actionOwl.SavesList.Contains(authorizedUserId);
 
                                 if (isExist)
                                 {
-                                    actionOwl.savesList.Remove(authorizedUserId);
+                                    actionOwl.SavesList.Remove(authorizedUserId);
                                 }
                                 else
                                 {
-                                    actionOwl.savesList.Insert(0, authorizedUserId);
+                                    actionOwl.SavesList.Insert(0, authorizedUserId);
                                 }
 
                                 break;
