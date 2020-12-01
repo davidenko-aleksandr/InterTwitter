@@ -10,7 +10,6 @@ using Prism;
 using Prism.Ioc;
 using Prism.Unity;
 using Xamarin.Forms;
-using System.Threading.Tasks;
 using InterTwitter.Services.PostAction;
 using InterTwitter.Services.Notification;
 using Plugin.Media;
@@ -46,7 +45,7 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<SignUpPasswordPage, SignUpPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
-            containerRegistry.RegisterForNavigation<MessagesPage, MessagesPageViewModel>();
+            containerRegistry.RegisterForNavigation<BookmarksPage, BookmarksPageViewModel>();
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();

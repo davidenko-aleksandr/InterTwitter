@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
+                        xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:InterTwitter.Controls"
+                        x:Class="InterTwitter.Views.BookmarksPage"
+                        IconImageSource="{Binding Icon}"
+                        BackgroundColor="{StaticResource bg_1}">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- TABBED PAGE NAVIGATION BAR -->
+        <controls:TabbedPageNavigationBar  Grid.Row="0"
+                                           IsLeftIconVisible="False"
+                                           Isr
+                                           TitleText="{x:Static resources:AppResource.NotificationPageTitle}"
+                                           IsBottomLineVisible="True"/>
+
+        <!-- COLLECTION VIEW -->
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding NotificationList}">
+
+            <CollectionView.ItemTemplate>
+
+                <notificationtemplate:NotificationTemplate/>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</views:BaseContentPage>

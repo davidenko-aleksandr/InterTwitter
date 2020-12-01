@@ -2,17 +2,17 @@
 
 namespace InterTwitter.ViewModels
 {
-    public class MessagesPageViewModel : BaseViewModel
+    public class BookmarksPageViewModel : BaseViewModel
     {
         
-        public MessagesPageViewModel(INavigationService navigationService)
+        public BookmarksPageViewModel(INavigationService navigationService)
                                     : base(navigationService)
         {
         }
 
         #region -- Public Properties --
 
-        private string _icon = "ic_messages_gray";
+        private string _icon = "ic_bookmarks_gray";
         public string Icon
         {
             get => _icon;
@@ -25,12 +25,12 @@ namespace InterTwitter.ViewModels
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            Icon = "ic_messages_blue";
+            Icon = "ic_bookmarks_blue";
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
-            Icon = "ic_messages_gray";
+            Icon = "ic_bookmarks_gray";
         }
 
         #endregion

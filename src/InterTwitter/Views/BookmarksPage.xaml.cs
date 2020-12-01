@@ -2,9 +2,9 @@
 
 namespace InterTwitter.Views
 {
-    public partial class MessagesPage : BaseContentPage
+    public partial class BookmarksPage : BaseContentPage
     {
-        public MessagesPage()
+        public BookmarksPage()
         {
             InitializeComponent();
         }

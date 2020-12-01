@@ -92,9 +92,9 @@ namespace InterTwitter.ViewModels
                     {
                         item.Icon = item.IsSelected ? "ic_notifications_blue" : "ic_notifications_gray";
                     }
-                    else if (item.PageType == typeof(MessagesPage))
+                    else if (item.PageType == typeof(BookmarksPage))
                     {
-                        item.Icon = item.IsSelected ? "ic_messages_blue" : "ic_messages_gray";
+                        item.Icon = item.IsSelected ? "ic_bookmarks_blue" : "ic_bookmarks_gray";
                     }
                 }
             }
@@ -176,7 +176,7 @@ namespace InterTwitter.ViewModels
                     new MenuItemViewModel()
                     {
                         Text = "Direct messages",
-                        PageType = typeof(MessagesPage),
+                        PageType = typeof(BookmarksPage),
                         Icon = "ic_messages_gray",
                         NavigationCommand = selectTabCommand
                     },
