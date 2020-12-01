@@ -1,7 +1,7 @@
 ﻿using InterTwitter.ViewModels.HomePageItems;
 using Xamarin.Forms;
 
-namespace InterTwitter.Enums
+namespace InterTwitter.Helpers
 {
     public class OwlTemplateSelector : DataTemplateSelector
     {

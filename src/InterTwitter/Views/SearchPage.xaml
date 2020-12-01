@@ -2,68 +2,239 @@
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-                        xmlns:controls="clr-namespace:InterTwitter.Controls" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                        xmlns:controls="clr-namespace:InterTwitter.Controls" 
+                        xmlns:resources="clr-namespace:InterTwitter.Resources"
+                        xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+                        xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+                        xmlns:prism="http://prismlibrary.com"
                         x:Class="InterTwitter.Views.SearchPage"
+                        x:Name="searchPage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
 
-    <Grid>
+    <Grid RowSpacing="0">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="400*"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Frame Grid.Row="0"
+               HasShadow="False"
                Padding="0">
 
-            <StackLayout Orientation="Horizontal">
+            <StackLayout>
 
-                <controls:ClickableContentView Margin="15">
+                <Grid>
 
-                    <ffimageloading:CachedImage Source="{Binding AuthorizedUser.Picture}"
-                                                HorizontalOptions="CenterAndExpand"
-                                                VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.15*"/>
+                        <ColumnDefinition Width="0.85*"/>
+                    </Grid.ColumnDefinitions>
 
-                        <ffimageloading:CachedImage.Transformations>
-                            <fftransformations:CircleTransformation/>
-                        </ffimageloading:CachedImage.Transformations>
+                    <Grid Margin="15">
 
-                    </ffimageloading:CachedImage>
+                        <controls:ClickableContentView Grid.Column="0">
 
-                </controls:ClickableContentView>
+                            <ffimageloading:CachedImage Source="{Binding AuthorizedUser.Picture}"
+                                                        IsVisible="{Binding IsUserPictureVisible}">
 
-                <Frame CornerRadius="20"
-                       Margin="0,11,11,11"
-                       HasShadow="False"
-                       HorizontalOptions="FillAndExpand"
-                       Padding="15,0"
-                       
-                       BackgroundColor="#DEDFE1">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CircleTransformation/>
+                                </ffimageloading:CachedImage.Transformations>
 
-                    <controls:BorderlessEntry Placeholder="Search"
-                                              FontSize="Body"
-                                              FontFamily="Ubuntu"/>
+                            </ffimageloading:CachedImage>
 
-                </Frame>
+                        </controls:ClickableContentView>
+
+                        <controls:ClickableContentView Grid.Column="0"
+                                                       Command="{Binding ClearCommand}">
+
+                            <Image Source="{x:Static resources:AppResource.LeftGreyImage}"
+                                   IsVisible="{Binding IsClearButtonVisible}"/>
+
+                        </controls:ClickableContentView>
+
+                    </Grid>
+
+                    <Frame Grid.Column="1"
+                           CornerRadius="20"
+                           HasShadow="False"
+                           HorizontalOptions="FillAndExpand"
+                           Padding="15,0"
+                           Margin="0,12,15,12"
+                           BackgroundColor="#DEDFE1">
+
+                        <controls:BorderlessEntry Placeholder="Search"
+                                                  FontSize="Body"
+                                                  FontFamily="Ubuntu"
+                                                  Text="{Binding SearchQuery}">
+
+
+                            <controls:BorderlessEntry.Behaviors>
+
+                                <prism:EventToCommandBehavior EventName="TextChanged"
+                                                              Command="{Binding SearchCommand}"/>
+
+                            </controls:BorderlessEntry.Behaviors>
+
+                        </controls:BorderlessEntry>
+
+                    </Frame>
+
+                </Grid>
 
             </StackLayout>
 
         </Frame>
 
-        <StackLayout Grid.Row="1"
-                     Margin="15">
+        <BoxView Grid.Row="1"
+                 Style="{StaticResource boxViewSeparator}"/>
 
-            <Label TextColor="Black"
-                   FontFamily="Ubuntu-Bold"
-                   FontSize="Title"
-                   Text="Popular theme"/>
+        <Grid x:Name="popularThemes"
+              Grid.Row="2"
+              RowSpacing="0">
 
-            <BoxView HeightRequest="2"
-                     Margin="0,5"
-                     BackgroundColor="#DEDFE1"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-        </StackLayout>
+            <StackLayout Grid.Row="0"
+                         Margin="15">
+
+                <Label TextColor="Black"
+                       FontFamily="Ubuntu-Bold"
+                       FontSize="Title"
+                       Text="Popular themes"/>
+
+            </StackLayout>
+
+
+            <BoxView Grid.Row="1" 
+                     Margin="15,0"
+                     Style="{StaticResource boxViewSeparator}"/>
+
+            <CollectionView Grid.Row="2" 
+                            ItemsSource="{Binding PopularThemes}"
+                            IsVisible="{Binding IsPopularThemesVisible}"
+                            IsGrouped="True"
+                            ItemsUpdatingScrollMode="KeepItemsInView"
+                            BackgroundColor="{StaticResource bg_1}"
+                            ItemTemplate="{StaticResource EmptyTemplate}"
+                            SelectionMode="None"
+                            IsTabStop="True">
+
+                <CollectionView.GroupHeaderTemplate>
+
+                    <DataTemplate>
+
+                        <ContentView>
+
+                            <Grid HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="FillAndExpand"
+                                  RowSpacing="0"
+                                  Margin="15,0" >
+
+                                <Grid.RowDefinitions>
+
+                                    <RowDefinition Height="*"/>
+
+                                    <RowDefinition Height="*"/>
+
+                                    <RowDefinition Height="*"/>
+
+                                    <RowDefinition Height="1"/>
+
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="0.8*"/>
+
+                                    <ColumnDefinition Width="0.2*"/>
+
+                                </Grid.ColumnDefinitions>
+
+                                <!-- GROUP HEADER -->
+                                <controls:ClickableContentView Grid.Column="0"
+                                                               Grid.Row="1"
+                                                               IsAnimated="True"
+                                                               Margin="0"
+                                                               Style="{StaticResource ClickableContentViewStyle}">
+
+                                    <Label Text="{Binding Header}"
+                                           Grid.Column="0"
+                                           Grid.Row="1"
+                                           FontSize="Large"
+                                           TextColor="Black"
+                                           FontFamily="Ubuntu-Bold"
+                                           VerticalOptions="Center"/>
+
+                                </controls:ClickableContentView>
+
+                                <!-- POSTS AMOUNT -->
+                                <Label Grid.Column="0"
+                                       Grid.Row="2"
+                                       Margin="0,0,0,5"
+                                       FontFamily="Ubuntu"
+                                       VerticalOptions="End">
+
+                                    <Label.FormattedText>
+
+                                        <FormattedString>
+
+                                            <Span Text="Posts: "/>
+
+                                            <Span Text="{Binding Amount}"/>
+
+                                        </FormattedString>
+
+                                    </Label.FormattedText>
+
+                                </Label>
+
+                                <!-- SHOW BUTTON -->
+                                <controls:ClickableContentView Grid.Column="1"
+                                                               Grid.Row="1"
+                                                               IsAnimated="True"
+                                                               Margin="0"
+                                                               Command="{Binding Source={x:Reference searchPage}, Path=BindingContext.HashtagClickCommand}"
+                                                               CommandParameter="{Binding .}"
+                                                               Style="{StaticResource ClickableContentViewStyle}">
+
+                                    <Image Scale="1.5"
+                                           Source="{x:Static resources:AppResource.RightImage}"/>
+
+                                </controls:ClickableContentView>
+
+                                <BoxView Grid.Row="3"
+                                         Grid.ColumnSpan="2"
+                                         Style="{StaticResource boxViewSeparator}"
+                                         HorizontalOptions="Fill"/>
+
+                            </Grid>
+
+                        </ContentView>
+
+                    </DataTemplate>
+
+                </CollectionView.GroupHeaderTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+        <CollectionView Grid.Row="2" 
+                        IsVisible="{Binding IsFoundPostsVisible}"
+                        ItemsSource="{Binding FoundPosts}"
+                        ItemTemplate="{StaticResource OwlTemplateSelector}"
+                        ItemsUpdatingScrollMode="KeepItemsInView"
+                        BackgroundColor="{StaticResource bg_1}"
+                        SelectionMode="None"
+                        IsTabStop="True"/>
 
     </Grid>
 

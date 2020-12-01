@@ -153,6 +153,9 @@
   <data name="HomeTitle" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="LeftGreyImage" xml:space="preserve">
+    <value>ic_left_grey.png</value>
+  </data>
   <data name="LeftImage" xml:space="preserve">
     <value>ic_left.png</value>
   </data>
@@ -188,6 +191,9 @@
   </data>
   <data name="PasswordText" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="RightImage" xml:space="preserve">
+    <value>ic_right.png</value>
   </data>
   <data name="SignUpButton" xml:space="preserve">
     <value>Sign Up</value>

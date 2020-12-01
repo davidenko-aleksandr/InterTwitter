@@ -3,9 +3,9 @@
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
-                        xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-                        xmlns:controls="clr-namespace:InterTwitter.Controls"
-                        android:Application.WindowSoftInputModeAdjust="Resize">
+                        xmlns:controls="clr-namespace:InterTwitter.Controls" 
+                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates" 
+                        xmlns:helpers="clr-namespace:InterTwitter.Helpers">
 
     <Application.Resources>
        
@@ -23,6 +23,31 @@
         <Color x:Key="tx_3">#02060E</Color> <!-- System Black -->
         <Color x:Key="tx_4">#F44336</Color> <!-- Error -->
         <Color x:Key="tx_5">#66696E</Color> <!-- Dark Grey -->
+
+        <ResourceDictionary>
+
+            <templates:EmptyTemplate x:Key="EmptyTemplate"/>
+
+            <templates:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
+
+            <templates:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
+
+            <templates:OwlAlbumTemplate x:Key="OwlAlbumTemplate"/>
+
+            <templates:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
+
+            <templates:OwlGifTemplate x:Key="OwlGifTemplate"/>
+
+            <templates:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
+
+            <helpers:OwlTemplateSelector x:Key="OwlTemplateSelector"
+                                         OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
+                                         OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
+                                         OwlAlbumTemplate="{StaticResource OwlAlbumTemplate}"
+                                         OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
+                                         OwlGifTemplate ="{StaticResource OwlGifTemplate}"
+                                         OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>
+        </ResourceDictionary>
 
         <Style x:Key="boxViewPoint"
                TargetType="BoxView">
@@ -132,8 +157,8 @@
             <Setter Property="Margin" 
                     Value="0,12,0,0"/>
             
-        </Style> 
-
+        </Style>
+        
     </Application.Resources>
 
 </prism:PrismApplication>

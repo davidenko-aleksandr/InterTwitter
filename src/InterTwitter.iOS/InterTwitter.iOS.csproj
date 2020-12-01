@@ -350,9 +350,6 @@
     <BundleResource Include="Resources\ic_left_blue.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_left_gray.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\ic_left_round.png" />
   </ItemGroup>
   <ItemGroup>
@@ -444,6 +441,24 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_add_blue%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_right%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_right%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_left_grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_left_grey%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_left_grey%403x.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

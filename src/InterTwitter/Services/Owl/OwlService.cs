@@ -51,7 +51,7 @@ namespace InterTwitter.Services.Owl
             return result;
         }
 
-        public async Task<AOResult<IEnumerable<OwlViewModel>>> GetAllOwlsAsync()
+        public async Task<AOResult<IEnumerable<OwlViewModel>>> GetAllOwlsAsync(string searchQuery = null)
         {
             var result = new AOResult<IEnumerable<OwlViewModel>>();
 
@@ -109,6 +109,13 @@ namespace InterTwitter.Services.Owl
                         default:
                             break;
                     }
+                }
+
+                if (!string.IsNullOrEmpty(searchQuery))
+                {
+                    owls = new List<OwlViewModel>(owls.Where(x =>
+                    x.AuthorNickName.ToUpper().Contains(searchQuery?.ToUpper()) ||
+                    x.Text.ToUpper().Contains(searchQuery?.ToUpper())));
                 }
 
                 await Task.Delay(300);
@@ -171,7 +178,7 @@ namespace InterTwitter.Services.Owl
                 Id = _owlsMock.Count,
                 AuthorId = 1,
                 Date = DateTime.Now,
-                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #hello #war",
                 MediaType = OwlType.OneImage,
                 Media = new List<string>()
                 {
@@ -186,7 +193,267 @@ namespace InterTwitter.Services.Owl
                 Id = _owlsMock.Count,
                 AuthorId = 1,
                 Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #hi #GIRLSLIKEIT",
+                MediaType = OwlType.Album,
+                Media = new List<string>()
+                {
+                    "https://icdn.lenta.ru/images/2020/01/28/17/20200128170822958/square_320_9146846fb3b1bfae5672755bc1896214.jpg",
+                    "https://s0.rbk.ru/v6_top_pics/media/img/7/06/755581025099067.jpeg",
+                    "https://static.toiimg.com/thumb/msid-67586673,width-800,height-600,resizemode-75,imgsize-3918697,pt-32,y_pad-40/67586673.jpg",
+                    "https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4BQSpilYy5KuAptMxbOAxm4uKjFYDG6_wg&usqp=CAU",
+                    "https://img.huffingtonpost.com/asset/5e848c4825000056010586d9.jpeg?ops=1778_1000",
+
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #hello #hi #50cent",
+                MediaType = OwlType.FewImages,
+                Media = new List<string>()
+                {
+                    "https://kor.ill.in.ua/m/610x385/2457536.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TyjVGHZ5enIB5v4ixtwheiBzB_seknSyWQ&usqp=CAU",
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #nothello #50cent",
+                MediaType = OwlType.Gif,
+                Media = new List<string>()
+                {
+                    "https://i.gifer.com/Ar.gif",
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #nothi #50cent",
+                MediaType = OwlType.Album,
+                Media = new List<string>()
+                {
+                    "https://icdn.lenta.ru/images/2020/01/28/17/20200128170822958/square_320_9146846fb3b1bfae5672755bc1896214.jpg",
+                    "https://s0.rbk.ru/v6_top_pics/media/img/7/06/755581025099067.jpeg",
+                    "https://static.toiimg.com/thumb/msid-67586673,width-800,height-600,resizemode-75,imgsize-3918697,pt-32,y_pad-40/67586673.jpg",
+                    "https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4BQSpilYy5KuAptMxbOAxm4uKjFYDG6_wg&usqp=CAU",
+                    "https://img.huffingtonpost.com/asset/5e848c4825000056010586d9.jpeg?ops=1778_1000",
+
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #nothello #nothi #bye #50cent",
+                MediaType = OwlType.FewImages,
+                Media = new List<string>()
+                {
+                    "https://kor.ill.in.ua/m/610x385/2457536.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TyjVGHZ5enIB5v4ixtwheiBzB_seknSyWQ&usqp=CAU",
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #alone #50cent",
+                MediaType = OwlType.Gif,
+                Media = new List<string>()
+                {
+                    "https://i.gifer.com/Ar.gif",
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
                 Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                MediaType = OwlType.Album,
+                Media = new List<string>()
+                {
+                    "https://icdn.lenta.ru/images/2020/01/28/17/20200128170822958/square_320_9146846fb3b1bfae5672755bc1896214.jpg",
+                    "https://s0.rbk.ru/v6_top_pics/media/img/7/06/755581025099067.jpeg",
+                    "https://static.toiimg.com/thumb/msid-67586673,width-800,height-600,resizemode-75,imgsize-3918697,pt-32,y_pad-40/67586673.jpg",
+                    "https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4BQSpilYy5KuAptMxbOAxm4uKjFYDG6_wg&usqp=CAU",
+                    "https://img.huffingtonpost.com/asset/5e848c4825000056010586d9.jpeg?ops=1778_1000",
+
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                MediaType = OwlType.FewImages,
+                Media = new List<string>()
+                {
+                    "https://kor.ill.in.ua/m/610x385/2457536.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TyjVGHZ5enIB5v4ixtwheiBzB_seknSyWQ&usqp=CAU",
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #hashtag #peace #50cent",
+                MediaType = OwlType.Gif,
+                Media = new List<string>()
+                {
+                    "https://i.gifer.com/Ar.gif",
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #hello #50cent",
+                MediaType = OwlType.Album,
+                Media = new List<string>()
+                {
+                    "https://icdn.lenta.ru/images/2020/01/28/17/20200128170822958/square_320_9146846fb3b1bfae5672755bc1896214.jpg",
+                    "https://s0.rbk.ru/v6_top_pics/media/img/7/06/755581025099067.jpeg",
+                    "https://static.toiimg.com/thumb/msid-67586673,width-800,height-600,resizemode-75,imgsize-3918697,pt-32,y_pad-40/67586673.jpg",
+                    "https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4BQSpilYy5KuAptMxbOAxm4uKjFYDG6_wg&usqp=CAU",
+                    "https://img.huffingtonpost.com/asset/5e848c4825000056010586d9.jpeg?ops=1778_1000",
+
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #hi #50cent #war",
+                MediaType = OwlType.FewImages,
+                Media = new List<string>()
+                {
+                    "https://kor.ill.in.ua/m/610x385/2457536.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TyjVGHZ5enIB5v4ixtwheiBzB_seknSyWQ&usqp=CAU",
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #bye #50cent #Amsterdam",
+                MediaType = OwlType.Gif,
+                Media = new List<string>()
+                {
+                    "https://i.gifer.com/Ar.gif",
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #peace #hello #Moscow",
+                MediaType = OwlType.Album,
+                Media = new List<string>()
+                {
+                    "https://icdn.lenta.ru/images/2020/01/28/17/20200128170822958/square_320_9146846fb3b1bfae5672755bc1896214.jpg",
+                    "https://s0.rbk.ru/v6_top_pics/media/img/7/06/755581025099067.jpeg",
+                    "https://static.toiimg.com/thumb/msid-67586673,width-800,height-600,resizemode-75,imgsize-3918697,pt-32,y_pad-40/67586673.jpg",
+                    "https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4BQSpilYy5KuAptMxbOAxm4uKjFYDG6_wg&usqp=CAU",
+                    "https://img.huffingtonpost.com/asset/5e848c4825000056010586d9.jpeg?ops=1778_1000",
+
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #nothello #peace",
+                MediaType = OwlType.FewImages,
+                Media = new List<string>()
+                {
+                    "https://kor.ill.in.ua/m/610x385/2457536.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TyjVGHZ5enIB5v4ixtwheiBzB_seknSyWQ&usqp=CAU",
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #bye #hello",
+                MediaType = OwlType.Gif,
+                Media = new List<string>()
+                {
+                    "https://i.gifer.com/Ar.gif",
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #nothello #hello",
                 MediaType = OwlType.Album,
                 Media = new List<string>()
                 {
