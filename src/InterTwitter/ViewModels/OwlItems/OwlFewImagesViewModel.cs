@@ -1,5 +1,4 @@
 ﻿using InterTwitter.Models;
-using InterTwitter.ViewModels.HomePageItems;
 using System.Collections.Generic;
 
 namespace InterTwitter.ViewModels.OwlItems

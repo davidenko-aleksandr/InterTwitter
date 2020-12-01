@@ -10,13 +10,20 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
         <!-- HOME PAGE NAVIGATION BAR -->
-        <controls:TabbedPageNavigationBar />
-
+        <controls:TabbedPageNavigationBar Grid.Row="0"
+                                          IsBottomLineVisible="True"
+                                          IsLeftIconVisible="True"
+                                          IsRightIconVisible="True"
+                                          LeftIconSource="ic_left.png"
+                                          TitleText="{Binding AuthorNickName}"
+                                          RightIconSource="{Binding AuthorAvatar}"
+                                          LeftIconClickCommand="{Binding GoBackCommand}"/>
+        
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding Owls}"
                         ItemTemplate="{StaticResource PostTemplateSelector}" >

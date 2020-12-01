@@ -3,10 +3,10 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-              xmlns:controls="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+              xmlns:controls="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView" 
               x:Class="InterTwitter.Views.Templates.PostFewImageTemplate">
 
-    <Grid Padding="20">
+    <Grid Padding="20, 30, 20, 5">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -14,23 +14,18 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- AUTHOR NAME LABEL -->
-        <!--
-            <Label Text="{Binding AuthorNickName}"
-                   TextColor="{StaticResource tx_3}"
-                   FontSize="Large"/>-->
-
         <!-- POST DESCRIPTION LABEL -->
         <Label Grid.Row="0"
-                   Text="{Binding Text}"
-                   TextColor="{StaticResource tx_3}"/>
+               Text="{Binding Text}"
+               TextColor="{StaticResource tx_3}"
+               MaxLines="10"/>
 
         <!-- COLLECTION OF IMAGES -->
         <controls:FlowListView Grid.Row="1"
                                FlowColumnCount="3"
                                HasUnevenRows="False"
                                FlowItemsSource="{Binding Media}"
-                               RowHeight="110"                                   
+                               RowHeight="120"                        
                                SeparatorVisibility="Default" FlowIsLoadingInfinite="True">
 
             <controls:FlowListView.FlowColumnTemplate>
@@ -95,7 +90,7 @@
                     VerticalOptions="Center"
                     HorizontalOptions="End"
                     ImageSource="ic_like_gray.png"
-                    BackgroundColor="#10FFFFFF"
+                    BackgroundColor="Transparent"
                     WidthRequest="20">
 
             </Button>
@@ -112,7 +107,7 @@
                     VerticalOptions="Center"
                     HorizontalOptions="End"
                     ImageSource="ic_bookmarks_gray.png"
-                    BackgroundColor="#10FFFFFF"
+                    BackgroundColor="Transparent"
                     WidthRequest="20">
 
             </Button>

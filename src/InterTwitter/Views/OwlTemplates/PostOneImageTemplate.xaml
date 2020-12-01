@@ -12,12 +12,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-            <!-- AUTHOR NAME LABEL --><!--
-            <Label Text="{Binding AuthorNickName}"
-                   TextColor="{StaticResource tx_3}"
-                   FontSize="Large"/>-->
-
+            
             <!-- POST DESCRIPTION LABEL -->
             <Label Grid.Row="0"
                    Text="{Binding Text}"
@@ -26,8 +21,7 @@
             <!-- POST MEDIA FILE -->
         <ffimageloading:CachedImage Grid.Row="1"
                                     Source="{Binding PostPhoto}"
-                                    HeightRequest="320"
-                                    Aspect="AspectFit">
+                                    HeightRequest="340">
 
                 <ffimageloading:CachedImage.Transformations>
 
@@ -75,7 +69,7 @@
                         VerticalOptions="Center"
                         HorizontalOptions="End"
                         ImageSource="ic_like_gray.png"
-                        BackgroundColor="#10FFFFFF"
+                        BackgroundColor="Transparent"
                         WidthRequest="20">
 
                 </Button>
@@ -92,7 +86,7 @@
                         VerticalOptions="Center"
                         HorizontalOptions="End"
                         ImageSource="ic_bookmarks_gray.png"
-                        BackgroundColor="#10FFFFFF"
+                        BackgroundColor="Transparent"
                         WidthRequest="20">
 
                 </Button>
