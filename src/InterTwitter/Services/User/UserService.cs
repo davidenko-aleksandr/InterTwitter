@@ -1,9 +1,12 @@
 ﻿using InterTwitter.Helpers;
 using InterTwitter.Models;
+using InterTwitter.ViewModels;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InterTwitter.Extensions;
 
 namespace InterTwitter.Services.UserService
 {
@@ -13,20 +16,21 @@ namespace InterTwitter.Services.UserService
 
         public UserService()
         {
-            _usersRepositoryMock = InitData();
+            InitMock();
         }
 
         #region -- IUserService Implementation --
 
-        public async Task<AOResult<List<UserModel>>> GetUsersAsync()
+        public async Task<AOResult<List<UserViewModel>>> GetUsersAsync()
         {
-            var result = new AOResult<List<UserModel>>();
+            var result = new AOResult<List<UserViewModel>>();
 
             try
             {
                 if (_usersRepositoryMock != null)
                 {
-                    result.SetSuccess(_usersRepositoryMock);
+                    var list = _usersRepositoryMock.Select(x => new UserViewModel(x)).ToList();
+                    result.SetSuccess(list);
                 }
                 else
                 {
@@ -83,15 +87,19 @@ namespace InterTwitter.Services.UserService
             return result;
         }
 
-        public async Task<AOResult<bool>> UpdateUserAsync(UserModel user)
+        public async Task<AOResult<bool>> UpdateUserAsync(UserViewModel userViewModel)
         {
+             
             var result = new AOResult<bool>();
 
             try
             {
-                var userIndex = _usersRepositoryMock.IndexOf(user);
+                var userMock = _usersRepositoryMock.Where(x => x.Id == userViewModel.Id).First();
+                //userMock = userViewModel.ToUserModel(); 
+
+                var userIndex = _usersRepositoryMock.IndexOf(userMock);
                 _usersRepositoryMock.RemoveAt(userIndex);
-                _usersRepositoryMock.Insert(userIndex, user);
+                _usersRepositoryMock.Insert(userIndex, userViewModel.ToUserModel());
 
                 result.SetSuccess(true);
             }
@@ -108,35 +116,42 @@ namespace InterTwitter.Services.UserService
 
         #region -- Private Helpers -- 
 
-        private List<UserModel> InitData()
+        private void InitMock()
         {
-            return new List<UserModel>()
+            _usersRepositoryMock = new List<UserModel>();
+
+            var user = new UserModel()
             {
-                new UserModel()
-                {
-                    Id = 0,
-                    Email = "vasya1984@mail.ru",
-                    Name = "Vasiliy",
-                    Password = "V1984FAT",
-                    Picture = Constants.DefaultProfilePicture,
-                },
-                new UserModel()
-                {
-                    Id = 1,
-                    Email = "petya25@gmail.com",
-                    Name = "Peter Stevenson",
-                    Password = "Qwerty123",
-                    Picture = Constants.DefaultProfilePicture,
-                },
-                new UserModel()
-                {
-                    Id = 2,
-                    Email = "test@i.ua",
-                    Name = "Test UserName",
-                    Password = "Qwerty12",
-                    Picture = Constants.DefaultProfilePicture,
-                }
+                Id = 0,
+                Email = "vasya1984@mail.ru",
+                Name = "Vasiliy",
+                Password = "V1984FAT",
+                Picture = "https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop",
             };
+
+            _usersRepositoryMock.Add(user);
+
+            user = new UserModel()
+            {
+                Id = 1,
+                Email = "petya25@gmail.com",
+                Name = "Peter Stevenson",
+                Password = "Qwerty123",
+                Picture = "https://s0.rbk.ru/v6_top_pics/media/img/7/06/755581025099067.jpeg",
+            };
+
+            _usersRepositoryMock.Add(user);
+
+            user = new UserModel()
+            {
+                Id = 2,
+                Email = "test@i.ua",
+                Name = "Test UserName",
+                Password = "Qwerty12",
+                Picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTztRLQ_Wq4fE2jBk97nbACnuE2FEaBWKAUtg&usqp=CAU",
+            };
+
+            _usersRepositoryMock.Add(user);
         }
 
         #endregion

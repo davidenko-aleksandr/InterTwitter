@@ -8,6 +8,8 @@ using Prism.Navigation;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System;
+using InterTwitter.Views;
 using Xamarin.Essentials;
 using Acr.UserDialogs;
 using System;
@@ -67,6 +69,7 @@ namespace InterTwitter.ViewModels
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
 
         public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc(OnOpenPostCommandAsync);
+        public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
 
         #endregion
 
@@ -110,6 +113,11 @@ namespace InterTwitter.ViewModels
             NavigationParameters parameters = new NavigationParameters { {"OwlViewModel", SelectedItem } };
 
             await NavigationService.NavigateAsync($"{nameof(PostPage)}", parameters);
+        }
+        
+        private async Task OnAddPostCommandAsync()
+        {
+            await NavigationService.NavigateAsync(nameof(AddPostPage), new NavigationParameters(), useModalNavigation: true, true);
         }
 
         #endregion

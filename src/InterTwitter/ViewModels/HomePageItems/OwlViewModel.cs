@@ -1,5 +1,4 @@
-﻿using InterTwitter.Enums;
-using InterTwitter.Models;
+﻿using InterTwitter.Models;
 using Prism.Mvvm;
 
 namespace InterTwitter.ViewModels.HomePageItems
@@ -15,8 +14,6 @@ namespace InterTwitter.ViewModels.HomePageItems
             Text = model.Text;
             PostDate = model.Date.ToString("dd.MM.yyyy");
             PostTime = model.Date.ToString("HH:mm");
-            IsFavorite = model.IsFavorite;
-            MediaType = model.MediaType;
             LikesCount = 142;
         }
 
@@ -27,13 +24,6 @@ namespace InterTwitter.ViewModels.HomePageItems
         {
             get => _Id;
             set => SetProperty(ref _Id, value);
-        }
-
-        private OwlType _mediaType;
-        public OwlType MediaType
-        {
-            get => _mediaType;
-            set => SetProperty(ref _mediaType, value);
         }
 
         private int _authorId;

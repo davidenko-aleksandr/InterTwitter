@@ -16,8 +16,6 @@ namespace InterTwitter.Helpers
 
         public DataTemplate PostNoMediaTemplate { get; set; }
 
-        public DataTemplate PostGifTemplate { get; set; }
-
         public DataTemplate PostVideoTemplate { get; set; }
 
         #endregion
@@ -32,9 +30,21 @@ namespace InterTwitter.Helpers
             {
                 dataTemplate = PostOneImageTemplate;
             }
+            else if (item is OwlFewImagesViewModel)
+            {
+                dataTemplate = PostFewImageTemplate;
+            }
+            else if (item is OwlNoMediaViewModel)
+            {
+                dataTemplate = PostNoMediaTemplate;
+            }
+            else if (item is OwlVideoViewModel)
+            {
+                dataTemplate = PostVideoTemplate;
+            }
             else
             {
-                //
+                // 
             }
 
             return dataTemplate;

@@ -5,20 +5,29 @@
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
               x:Class="InterTwitter.Views.Templates.PostOneImageTemplate">
     
-        <StackLayout Padding="20">
+        <Grid Padding="20">
 
-            <!-- AUTHOR NAME LABEL -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+            <!-- AUTHOR NAME LABEL --><!--
             <Label Text="{Binding AuthorNickName}"
                    TextColor="{StaticResource tx_3}"
-                   FontSize="Large"/>
+                   FontSize="Large"/>-->
 
             <!-- POST DESCRIPTION LABEL -->
-            <Label Text="{Binding Text}"
+            <Label Grid.Row="0"
+                   Text="{Binding Text}"
                    TextColor="{StaticResource tx_3}"/>
 
-            <!-- POST IMAGE -->
-            <ffimageloading:CachedImage Source="{Binding PostPhoto}"
-                                        HeightRequest="250">
+            <!-- POST MEDIA FILE -->
+        <ffimageloading:CachedImage Grid.Row="1"
+                                    Source="{Binding PostPhoto}"
+                                    HeightRequest="320"
+                                    Aspect="AspectFit">
 
                 <ffimageloading:CachedImage.Transformations>
 
@@ -32,7 +41,7 @@
 
             </ffimageloading:CachedImage>
 
-            <Grid>
+        <Grid Grid.Row="2">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
@@ -90,6 +99,6 @@
 
             </Grid>
 
-        </StackLayout>
+        </Grid>
     
 </DataTemplate>

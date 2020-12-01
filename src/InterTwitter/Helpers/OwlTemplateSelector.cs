@@ -13,8 +13,6 @@ namespace InterTwitter.Enums
 
         public DataTemplate OwlNoMediaTemplate { get; set; }
 
-        public DataTemplate OwlGifTemplate { get; set; }
-
         public DataTemplate OwlVideoTemplate { get; set; }
 
         #endregion
@@ -36,10 +34,6 @@ namespace InterTwitter.Enums
             else if (item is OwlNoMediaViewModel)
             {
                 dataTemplate = OwlNoMediaTemplate;
-            }
-            else if (item is OwlGifViewModel)
-            {
-                dataTemplate = OwlGifTemplate;
             }
             else if (item is OwlVideoViewModel)
             {
