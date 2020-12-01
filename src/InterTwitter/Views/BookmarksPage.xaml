@@ -1,11 +1,39 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:InterTwitter.Controls"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:resources="clr-namespace:InterTwitter.Resources"
+                        xmlns:controls="clr-namespace:InterTwitter.Controls" 
+                        xmlns:templates="clr-namespace:InterTwitter.Views.OwlTemplates" 
+                        xmlns:local="clr-namespace:InterTwitter.Enums"
                         x:Class="InterTwitter.Views.BookmarksPage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
 
+    <views:BaseContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <templates:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
+
+            <templates:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
+
+            <templates:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
+
+            <templates:OwlGifTemplate x:Key="OwlGifTemplate"/>
+
+            <templates:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
+
+            <local:OwlTemplateSelector x:Key="OwlTemplateSelector"
+                                       OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
+                                       OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
+                                       OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
+                                       OwlGifTemplate ="{StaticResource OwlGifTemplate}"
+                                       OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>
+        </ResourceDictionary>
+
+    </views:BaseContentPage.Resources>
+    
     <Grid>
 
         <Grid.RowDefinitions>
@@ -14,23 +42,22 @@
         </Grid.RowDefinitions>
 
         <!-- TABBED PAGE NAVIGATION BAR -->
-        <controls:TabbedPageNavigationBar  Grid.Row="0"
-                                           IsLeftIconVisible="False"
-                                           Isr
-                                           TitleText="{x:Static resources:AppResource.NotificationPageTitle}"
-                                           IsBottomLineVisible="True"/>
+        <controls:TabbedPageNavigationBar Grid.Row="0"
+                                          IsRightIconVisible="True"
+                                          RightIconSource="ic_hidden_menu_gray.png"
+                                          RightIconClickCommand="{Binding MenuClickCommand}"
+                                          TitleText="{x:Static resources:AppResource.BookmarksTitle}"
+                                          IsBottomLineVisible="True"/>
 
         <!-- COLLECTION VIEW -->
-        <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding NotificationList}">
-
-            <CollectionView.ItemTemplate>
-
-                <notificationtemplate:NotificationTemplate/>
-
-            </CollectionView.ItemTemplate>
-
-        </CollectionView>
+        <controls:CustomCollectionView Grid.Row="1"
+                                       x:Name="customCollectionView" 
+                                       ItemsSource="{Binding Owls}"
+                                       ItemTemplate="{StaticResource OwlTemplateSelector}"
+                                       ItemsUpdatingScrollMode="KeepItemsInView"
+                                       BackgroundColor="{StaticResource bg_1}"
+                                       SelectionMode="None"
+                                       IsTabStop="True"/>
 
     </Grid>
 

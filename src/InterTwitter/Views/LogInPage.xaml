@@ -47,6 +47,7 @@
 
             <!-- EMAIL ENTRY -->
             <controls:CustomEntry x:Name="emailEntry"
+                                  NameText="{x:Static resources:AppResource.EmailText}"
                                   Placeholder="{x:Static resources:AppResource.EmailText}" 
                                   Style="{StaticResource CustomEntryStyle}"
                                   Keyboard="Email"
@@ -56,6 +57,7 @@
 
             <!-- PASSWORD ENTRY -->
             <controls:CustomEntry x:Name="passwordEntry"
+                                  NameText="{x:Static resources:AppResource.PasswordText}"
                                   Placeholder="{x:Static resources:AppResource.PasswordText}"
                                   Style="{StaticResource CustomEntryStyle}"
                                   ReturnType="Done"

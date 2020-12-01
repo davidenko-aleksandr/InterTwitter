@@ -49,6 +49,7 @@
 
             <!--NAME ENTRY-->
             <controls:CustomEntry x:Name="nameEntry"
+                                  NameText="{x:Static resources:AppResource.NameText}" 
                                   Placeholder="{x:Static resources:AppResource.NameText}" 
                                   Style="{StaticResource CustomEntryStyle}" 
                                   ReturnType="Next"
@@ -67,6 +68,7 @@
 
             <!--EMAIL ENTRY-->
             <controls:CustomEntry x:Name="emailEntry"
+                                  NameText="{x:Static resources:AppResource.EmailText}" 
                                   Placeholder="{x:Static resources:AppResource.EmailText}" 
                                   Style="{StaticResource CustomEntryStyle}"
                                   ReturnType="Done"

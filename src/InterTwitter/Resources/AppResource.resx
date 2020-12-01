@@ -252,4 +252,7 @@
   <data name="ExistEmailError" xml:space="preserve">
     <value>Email is already exist!</value>
   </data>
+  <data name="BookmarksTitle" xml:space="preserve">
+    <value>Bookmarks</value>
+  </data>
 </root>

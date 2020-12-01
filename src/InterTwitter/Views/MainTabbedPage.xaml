@@ -24,7 +24,7 @@
 
         <local:NotificationsPage/>
 
-        <local:MessagesPage/>
+        <local:BookmarksPage/>
 
     </TabbedPage.Children>
 

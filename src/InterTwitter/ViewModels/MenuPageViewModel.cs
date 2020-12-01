@@ -175,7 +175,7 @@ namespace InterTwitter.ViewModels
                     },
                     new MenuItemViewModel()
                     {
-                        Text = "Direct messages",
+                        Text = "Bookmarks",
                         PageType = typeof(BookmarksPage),
                         Icon = "ic_messages_gray",
                         NavigationCommand = selectTabCommand

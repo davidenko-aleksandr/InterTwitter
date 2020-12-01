@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using InterTwitter.Enums;
@@ -80,7 +81,9 @@ namespace InterTwitter.ViewModels
                 {
                     MediaType = _owlType,
                     Date = DateTime.Now,
-                    Text = _owlText
+                    Text = _owlText,
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>()
                 };
 
                 await _owlService.AddOwlAsync(owl);

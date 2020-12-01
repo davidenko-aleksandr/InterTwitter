@@ -71,13 +71,6 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _postTime, value);
         }
 
-        private int _likesCount;
-        public int LikesCount
-        {
-            get => _likesCount;
-            set => SetProperty(ref _likesCount, value);
-        }
-
         private List<int> _likestList;
         public List<int> LikesList
         {
@@ -90,6 +83,13 @@ namespace InterTwitter.ViewModels.OwlItems
         {
             get => _savesList;
             set => SetProperty(ref _savesList, value);
+        }
+
+        private int _likesCount;
+        public int LikesCount
+        {
+            get => _likesCount;
+            set => SetProperty(ref _likesCount, value);
         }
 
         #endregion

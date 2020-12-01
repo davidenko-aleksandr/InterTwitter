@@ -38,15 +38,23 @@ namespace InterTwitter.Services.Owl
             {
                 if (owlModel is not null)
                 {
-                    var res =  await _authorizationService.GetAuthorizedUserAsync();
-                    var author = res.Result;
+                    var userResult =  await _authorizationService.GetAuthorizedUserAsync();
+                    if (userResult.IsSuccess)
+                    {
+                        var author = userResult.Result;
 
-                    owlModel.Id = _owlsMock.Count;
-                    owlModel.AuthorId = author.Id;
+                        owlModel.Id = _owlsMock.Count;
+                        owlModel.AuthorId = author.Id;
 
-                    _owlsMock.Add(owlModel);
-                    
-                    result.SetSuccess(true);
+                        _owlsMock.Add(owlModel);
+
+                        result.SetSuccess(true);
+                    }
+                    else
+                    {
+                        result.SetFailure();
+                    }
+
                 }
                 else
                 {
@@ -73,8 +81,8 @@ namespace InterTwitter.Services.Owl
                 {
                     OwlViewModel owlVM = null;
 
-                    var res = await _userService.GetUserAsync(owl.AuthorId);
-                    var author = res.Result;
+                    var usersResult = await _userService.GetUserAsync(owl.AuthorId);
+                    var author = usersResult.Result;
 
                     switch (owl.MediaType)
                     {
@@ -132,20 +140,48 @@ namespace InterTwitter.Services.Owl
             return result;
         }
 
+        public async Task<AOResult<IEnumerable<OwlViewModel>>> GetSavedOwlsAsync()
+        {
+            var result = new AOResult<IEnumerable<OwlViewModel>>();
+
+            try
+            {
+                var owlResult = await GetAllOwlsAsync();
+                var userResult = await _authorizationService.GetAuthorizedUserAsync();
+
+                if (userResult.IsSuccess && owlResult.IsSuccess)
+                {
+                    var authorizedUser = userResult.Result;
+
+                    var savedOwls = owlResult.Result.Where(x => x.SavesList.Contains(authorizedUser.Id));
+
+                    result.SetSuccess(savedOwls);
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetAllOwlsAsync)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
         public async Task<AOResult<IEnumerable<OwlViewModel>>> GetAuthorOwlsAsync(int authorId)
         {
             var result = new AOResult<IEnumerable<OwlViewModel>>();
 
             try
             {
-                var res = await GetAllOwlsAsync();
-                var userRes = await _authorizationService.GetAuthorizedUserAsync();
-
-                var authorizedUser = userRes.Result;
-                var owls = res.Result.Where(x => x.AuthorId == authorizedUser.Id);
-
-                if (owls is not null)
+                var owlsResult = await GetAllOwlsAsync();
+                if (owlsResult.IsSuccess)
                 {
+                    var owls = owlsResult.Result.Where(x => x.AuthorId == authorId);
+
                     result.SetSuccess(owls);
                 }
                 else

@@ -64,22 +64,21 @@ namespace InterTwitter.ViewModels
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
+            Icon = "ic_home_blue";
+
             var isConnected = Connectivity.NetworkAccess;
 
             if (isConnected == NetworkAccess.Internet)
             {
-                Icon = "ic_home_blue";
-
-                var owls = await _owlService.GetAllOwlsAsync();
-
-                Owls = new ObservableCollection<OwlViewModel>(owls.Result);
+                await FillCollectionAsync();
+                await SetUserDataAsync();
             }
             else
             {
-                _userDialogs.Toast("No internet connection");
+                var errorText = Resources.AppResource.NoInternetText;
+                _userDialogs.Toast(errorText);
             }
 
-            await SetUserDataAsync();
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -90,6 +89,21 @@ namespace InterTwitter.ViewModels
         #endregion
 
         #region -- Private helpers --
+
+        private async Task FillCollectionAsync()
+        {
+            var owlsResult = await _owlService.GetAllOwlsAsync();
+            if (owlsResult.IsSuccess)
+            {
+                Owls = new ObservableCollection<OwlViewModel>(owlsResult.Result);
+            }
+            else
+            {
+                var errorText = Resources.AppResource.RandomError;
+                _userDialogs.Toast(errorText);
+            }
+
+        }
 
         private async Task OnOpenMenuCommandAsync()
         {
