@@ -21,26 +21,30 @@
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0"
+                      ColumnSpacing="8">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="0.2*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <controls:ClickableContentView Grid.Row="0"
+                                                   Padding="6"
                                                    Command="{Binding GoToProfilePageCommand}">
 
-                        <ffimageloading:CachedImage Source="{Binding AuthorizedUser.Picture}"
-                                                    HorizontalOptions="CenterAndExpand"
-                                                    VerticalOptions="CenterAndExpand">
+                        <ffimageloading:CachedImage Source="{Binding AuthorizedUser.Avatar}"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center">
 
                             <ffimageloading:CachedImage.Transformations>
+                                
                                 <fftransformations:CircleTransformation/>
+                                
                             </ffimageloading:CachedImage.Transformations>
 
                         </ffimageloading:CachedImage>
@@ -50,20 +54,20 @@
                     <StackLayout Grid.Column="1"
                                  VerticalOptions="Center">
 
-                        <controls:ClickableContentView Command="{Binding GoToProfilePageCommand}">
+                        <controls:ClickableContentView Command="{Binding GoToProfilePageCommand}"
+                                                       Margin="0">
 
+                            <StackLayout>
+                                
                             <Label Text="{Binding AuthorizedUser.Name}"
                                    FontAttributes="Bold"
                                    TextColor="{StaticResource tx_3}"
-                                   FontSize="20"
-                                   FontFamily="Ubuntu"/>
-
-                        </controls:ClickableContentView>
-
-                        <controls:ClickableContentView Command="{Binding GoToProfilePageCommand}">
+                                   FontSize="20"/>
 
                             <Label Text="{Binding AuthorizedUser.Email}"
                                    TextColor="{StaticResource Key=tx_5}"/>
+                                
+                            </StackLayout>
 
                         </controls:ClickableContentView>
 

@@ -2,10 +2,9 @@
 <DataTemplate xmlns="http://xamarin.com/schemas/2014/forms" 
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
-              xmlns:controls="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
-              x:Class="InterTwitter.Views.Templates.OwlFewImageTemplate">
-    
+              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+              x:Class="InterTwitter.Views.OwlTemplates.OwlOneImageTemplate">
+
     <Grid Margin="10">
 
         <Grid.ColumnDefinitions>
@@ -53,41 +52,22 @@
             <Label Text="{Binding Text}"
                    TextColor="{StaticResource tx_3}"/>
 
-            <!-- COLLECTION OF IMAGES -->
-            <controls:FlowListView FlowColumnCount="3"
-                                   HasUnevenRows="False"
-                                   FlowItemsSource="{Binding Media}"
-                                   RowHeight="110"                                   
-                                   SeparatorVisibility="Default" FlowIsLoadingInfinite="True">
+            <!-- POST IMAGE -->
+            <ffimageloading:CachedImage Source="{Binding PostPhoto}"
+                                        HeightRequest="250">
                 
-                <controls:FlowListView.FlowColumnTemplate>
-                    
-                    <DataTemplate>
-                    
-                        <ffimageloading:CachedImage Margin="3" 
-                                                    HorizontalOptions="Fill" 
-                                                    VerticalOptions="Fill"  
-                                                    Source="{Binding .}"
-                                                    Aspect="AspectFit">
+                <ffimageloading:CachedImage.Transformations>
 
-                            <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                             BottomLeftCornerSize="5"
+                                                             TopLeftCornerSize="5"
+                                                             BottomRightCornerSize="5"
+                                                             TopRightCornerSize="5"/>
 
-                                <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                         BottomLeftCornerSize="5"
-                                                                         TopLeftCornerSize="5"
-                                                                         BottomRightCornerSize="5"
-                                                                         TopRightCornerSize="5"/>
+                </ffimageloading:CachedImage.Transformations>
 
-                            </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
 
-                        </ffimageloading:CachedImage>
-                        
-                    </DataTemplate>
-                    
-                </controls:FlowListView.FlowColumnTemplate>
-                
-            </controls:FlowListView>            
-           
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -124,7 +104,7 @@
                         ImageSource="ic_like_gray.png"
                         BackgroundColor="#10FFFFFF"
                         WidthRequest="20">
-                    
+
                 </Button>
 
                 <!-- LIKE COUNT LABEL -->
@@ -143,7 +123,7 @@
                         WidthRequest="20">
 
                 </Button>
-               
+
             </Grid>
 
         </StackLayout>

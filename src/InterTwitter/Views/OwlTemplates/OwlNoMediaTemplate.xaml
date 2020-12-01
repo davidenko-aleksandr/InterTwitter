@@ -3,7 +3,7 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-              x:Class="InterTwitter.Views.Templates.OwlGifTemplate">
+              x:Class="InterTwitter.Views.OwlTemplates.OwlNoMediaTemplate">
     
     <Grid Margin="10">
 
@@ -51,26 +51,6 @@
             <!-- POST DESCRIPTION LABEL -->
             <Label Text="{Binding Text}"
                    TextColor="{StaticResource tx_3}"/>
-
-            <!-- GIF FILE -->
-            <ffimageloading:CachedImage Source="{Binding Gif}"
-                                        HeightRequest="250"
-                                        Margin="0, 0, 10, 0"
-                                        IsEnabled="True"
-                                        DownsampleToViewSize="True"
-                                        LoadingPlaceholder="loading.png">
-
-                <ffimageloading:CachedImage.Transformations>
-
-                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                             BottomLeftCornerSize="5"
-                                                             TopLeftCornerSize="5"
-                                                             BottomRightCornerSize="5"
-                                                             TopRightCornerSize="5"/>
-
-                </ffimageloading:CachedImage.Transformations>
-
-            </ffimageloading:CachedImage>
 
             <Grid>
 

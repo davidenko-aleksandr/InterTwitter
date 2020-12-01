@@ -4,7 +4,8 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:local="clr-namespace:InterTwitter.Enums"
                         xmlns:controls="clr-namespace:InterTwitter.Controls"
-                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates"
+                        xmlns:templates="clr-namespace:InterTwitter.Views.OwlTemplates"
+                        xmlns:resources="clr-namespace:InterTwitter.Resources"
                         x:Class="InterTwitter.Views.HomePage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
@@ -39,11 +40,15 @@
 
         </controls:CustomCollectionView>
 
-        <!-- HOME PAGE NAVIGATION BAR -->
-        <controls:HomePageNavigationBar  VerticalOptions="Start"
-                                         HorizontalOptions="FillAndExpand"
-                                         MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"
-                                         OpenMenuCommand="{Binding OpenMenuCommand}"/>
+        <!-- TABBED PAGE NAVIGATION BAR -->
+        <controls:TabbedPageNavigationBar  VerticalOptions="Start"
+                                           HorizontalOptions="FillAndExpand"
+                                           IsBottomLineVisible="False"
+                                           MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"
+                                           LeftIconClickCommand="{Binding OpenMenuCommand}"
+                                           IsLeftIconVisible="True"
+                                           LeftIconSource="{Binding AuthorizedUser.Avatar}"
+                                           TitleText="{x:Static resources:AppResource.HomeTitle}"/>
 
         <!-- MOVING IMAGE BUTTON -->
         <controls:MovingImageButton Source="ic_add_white.png"

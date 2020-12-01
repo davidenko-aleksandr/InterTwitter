@@ -3,7 +3,8 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-              x:Class="InterTwitter.Views.Templates.OwlNoMediaTemplate">
+              xmlns:videoplayer="clr-namespace:Octane.Xamarin.Forms.VideoPlayer;assembly=Octane.Xamarin.Forms.VideoPlayer"
+              x:Class="InterTwitter.Views.OwlTemplates.OwlVideoTemplate">
     
     <Grid Margin="10">
 
@@ -51,6 +52,12 @@
             <!-- POST DESCRIPTION LABEL -->
             <Label Text="{Binding Text}"
                    TextColor="{StaticResource tx_3}"/>
+
+            <!-- VIDEO FILE -->
+            <videoplayer:VideoPlayer Source="{Binding Video}"
+                                     HeightRequest="250"
+                                     AutoPlay="False"
+                                     DisplayControls="True"/>
 
             <Grid>
 
@@ -119,5 +126,5 @@
                  VerticalOptions="Fill"/>
 
     </Grid>
-    
+
 </DataTemplate>

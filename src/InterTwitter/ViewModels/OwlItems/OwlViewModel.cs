@@ -13,7 +13,7 @@ namespace InterTwitter.ViewModels.HomePageItems
         {
             Id = model.Id;
             AuthorId = author.Id;
-            AuthorAvatar = author.Picture;
+            AuthorAvatar = author.Avatar;
             AuthorNickName = author.Name;
             Text = model.Text;
             PostDate = model.Date.ToString("dd.MM.yyyy");
@@ -81,6 +81,13 @@ namespace InterTwitter.ViewModels.HomePageItems
         {
             get => _postTime;
             set => SetProperty(ref _postTime, value);
+        }
+
+        private int _likesCount;
+        public int LikesCount
+        {
+            get => _likesCount;
+            set => SetProperty(ref _likesCount, value);
         }
 
         private List<string> _allHashtags;

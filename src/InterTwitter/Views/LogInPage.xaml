@@ -44,24 +44,26 @@
 
         </StackLayout>
 
-        <!--ENTRY BLOCK-->
+        <!-- ENTRY BLOCK -->
         <StackLayout Grid.Row="1">
 
-            <!--EMAIL ENTRY-->
+            <!-- EMAIL ENTRY -->
             <controls:CustomEntry x:Name="emailEntry"
                                   Placeholder="{x:Static resources:AppResource.EmailText}" 
                                   Style="{StaticResource CustomEntryStyle}"
                                   Keyboard="Email"
                                   ReturnType="Next"
-                                  Text="{Binding EmailEntry}"/>
+                                  Text="{Binding EmailEntry}"
+                                  IsClearButtonVisible="True"/>
 
-            <!--PASSWORD ENTRY-->
+            <!-- PASSWORD ENTRY -->
             <controls:CustomEntry x:Name="passwordEntry"
                                   Placeholder="{x:Static resources:AppResource.PasswordText}"
                                   Style="{StaticResource CustomEntryStyle}"
                                   ReturnType="Done"
                                   IsPassword="True"
-                                  Text="{Binding PasswordEntry}"/>
+                                  Text="{Binding PasswordEntry}"
+                                  IsClearButtonVisible="True"/>
 
         </StackLayout>
 
@@ -69,7 +71,7 @@
 
             <StackLayout>
 
-                <!--SIGN BUTTONS BLOCK-->
+                <!-- SIGN BUTTONS BLOCK -->
                 <StackLayout x:Name="signButtonsBlock" 
                              IsVisible="{Binding IsSignButtonsBlockVisible}">
 
@@ -89,12 +91,12 @@
                         </OnPlatform>
                     </StackLayout.Margin>
 
-                    <!--LOG IN BUTTON-->
+                    <!-- LOG IN BUTTON -->
                     <Button Style="{StaticResource LoginButtonStyle}" 
                             Text="{x:Static resources:AppResource.LogInButton}" 
                             Command="{Binding LogInCommand}"/>
 
-                    <!--SIGN UP BUTTON-->
+                    <!-- SIGN UP BUTTON -->
                     <controls:ClickableContentView Command="{Binding SignUpCommand}"
                                                    Style="{StaticResource ClickableContentViewStyle}">
 
@@ -105,7 +107,7 @@
 
                 </StackLayout>
 
-                <!--KEYBOARD BUTTONS BLOCK-->
+                <!-- KEYBOARD BUTTONS BLOCK -->
                 <Grid x:Name="keyboardButton"
                       IsVisible="{Binding IsKeyboardButtonVisible}"
                       VerticalOptions="EndAndExpand">
@@ -117,7 +119,7 @@
                         </OnPlatform>
                     </Grid.Margin>
 
-                    <!--KEYBOARD LOG IN BUTTON-->
+                    <!-- KEYBOARD LOG IN BUTTON -->
                     <Button Style="{StaticResource KeyboardButton}"
                             Text="{x:Static resources:AppResource.LogInButton}" 
                             Command="{Binding LogInCommand}">
@@ -137,7 +139,7 @@
 
                     </Button>
 
-                    <!--KEYBOARD NEXT BUTTON-->
+                    <!-- KEYBOARD NEXT BUTTON -->
                     <Button Style="{StaticResource KeyboardButton}"
                             Text="{x:Static resources:AppResource.NextButton}" 
                             Clicked="NextButtonClicked">
