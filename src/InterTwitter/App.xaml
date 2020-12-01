@@ -4,7 +4,9 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
                         xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-                        xmlns:controls="clr-namespace:InterTwitter.Controls" xmlns:templates="clr-namespace:InterTwitter.Views.Templates" xmlns:local="clr-namespace:InterTwitter.Enums" xmlns:templates1="clr-namespace:InterTwitter.Helpers" xmlns:templates2="clr-namespace:InterTwitter.Views.OwlTemplates"
+                        xmlns:controls="clr-namespace:InterTwitter.Controls" xmlns:templates="clr-namespace:InterTwitter.Views.Templates" 
+                        xmlns:local="clr-namespace:InterTwitter.Enums" xmlns:templates1="clr-namespace:InterTwitter.Helpers" 
+                        xmlns:templates2="clr-namespace:InterTwitter.Views.OwlTemplates"
                         android:Application.WindowSoftInputModeAdjust="Resize">
 
     <Application.Resources>

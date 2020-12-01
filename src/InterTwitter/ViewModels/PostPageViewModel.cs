@@ -39,11 +39,11 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _authorNickName, value);
         }
 
-        private string _aAuthorAvatar = "ic_home_gray";
+        private string _AuthorAvatar = "ic_home_gray";
         public string AuthorAvatar
         {
-            get => _aAuthorAvatar;
-            set => SetProperty(ref _aAuthorAvatar, value);
+            get => _AuthorAvatar;
+            set => SetProperty(ref _AuthorAvatar, value);
         }
 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);

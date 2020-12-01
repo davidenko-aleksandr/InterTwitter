@@ -41,7 +41,7 @@ namespace InterTwitter.Helpers
             }
             else
             {
-                // 
+                // DataTemplate item isn't OwlViewModel
             }
 
             return dataTemplate;

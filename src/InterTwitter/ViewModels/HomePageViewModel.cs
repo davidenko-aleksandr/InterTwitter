@@ -58,10 +58,7 @@ namespace InterTwitter.ViewModels
         public OwlViewModel SelectedItem
         {
             get => selectedItem;
-            set
-            {
-                SetProperty(ref selectedItem, value);
-            }
+            set => SetProperty(ref selectedItem, value);            
         }
 
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
@@ -110,7 +107,12 @@ namespace InterTwitter.ViewModels
 
         private async Task OnOpenPostCommandAsync()
         {             
-            NavigationParameters parameters = new NavigationParameters { {"OwlViewModel", SelectedItem } };
+            NavigationParameters parameters = new NavigationParameters 
+            { 
+                {
+                    "OwlViewModel", SelectedItem 
+                }
+            };
 
             await NavigationService.NavigateAsync(nameof(PostPage), parameters, useModalNavigation: true, true);
         }

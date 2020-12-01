@@ -41,7 +41,7 @@ namespace InterTwitter.Enums
             }
             else
             {
-                //
+                // DataTemplate item isn't OwlViewModel
             }
 
             return dataTemplate;
