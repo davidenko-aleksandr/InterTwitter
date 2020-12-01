@@ -41,7 +41,7 @@ namespace InterTwitter.Services.Authorization
                 {
                     var users = getUsersResult.Result;
 
-                    var user = users.First(x => x.Email == email && x.Password == password);
+                    var user = users.First(x => x.Email.ToUpper() == email.ToUpper() && x.Password == password);
 
                     await Task.Delay(300);
 
@@ -53,12 +53,13 @@ namespace InterTwitter.Services.Authorization
                     }
                     else
                     {
-                        result.SetFailure(false);
+                        result.SetFailure();
                     }
+
                 }
                 else
                 {
-                    result.SetFailure(false);
+                    result.SetFailure();
                 }
             }
             catch (Exception ex)
@@ -81,36 +82,29 @@ namespace InterTwitter.Services.Authorization
                 {
                     var users = getUsersResult.Result;
 
-                    var user = users.First(x => x.Email.ToUpper() == email.ToUpper()).ToUserModel();
+                    var user = new UserModel()
+                    {
+                        Id = users.Count,
+                        Email = email,
+                        Name = name,
+                        Password = password,
+                        Avatar = Constants.DefaultProfilePicture,
+                        ProfileHeaderImage = "pic_profile_header_photo.jpg"
+                    };
+
+                    await _userService.AddUserAsync(user);
+
+                    _settingsService.AuthorizedUserId = user.Id;
 
                     await Task.Delay(300);
 
-                    if (user == null)
-                    {
-                        user = new UserModel()
-                        {
-                            Id = users.Count,
-                            Email = email,
-                            Name = name,
-                            Password = password,
-                            Picture = Constants.DefaultProfilePicture,
-                    };
-
-                        await _userService.AddUserAsync(user);
-
-                        _settingsService.AuthorizedUserId = user.Id;
-
-                        result.SetSuccess(true);
-                    }
-                    else
-                    {
-                        result.SetFailure(false);
-                    }
+                    result.SetSuccess(true);
                 }
                 else
                 {
-                    result.SetFailure(false);
+                    result.SetFailure();
                 }
+
             }
             catch (Exception ex)
             {
@@ -120,6 +114,43 @@ namespace InterTwitter.Services.Authorization
             return result;
         }
 
+        public async Task<AOResult<bool>> CheckUserEmail(string email)
+        {
+            var result = new AOResult<bool>();
+
+            try
+            {
+                var getUsersResult = await _userService.GetUsersAsync();
+
+                if (getUsersResult.IsSuccess)
+                {
+                    var users = getUsersResult.Result;
+
+                    var userViewModel = users.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper());
+
+                    await Task.Delay(300);
+
+                    if (userViewModel is null)
+                    {
+                        result.SetSuccess(true);
+                    }
+                    else
+                    {
+                        result.SetFailure();
+                    }
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(LogOutAsync)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
         public async Task<AOResult<bool>> LogOutAsync()
         {
             var result = new AOResult<bool>();
@@ -152,7 +183,7 @@ namespace InterTwitter.Services.Authorization
                 {
                     var users = getUsersResult.Result;
 
-                    var user = users.First(x => x.Id == _settingsService.AuthorizedUserId);
+                    var user = users.FirstOrDefault(x => x.Id == _settingsService.AuthorizedUserId);
 
                     await Task.Delay(300);
 

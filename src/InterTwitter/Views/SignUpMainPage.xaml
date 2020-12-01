@@ -53,7 +53,8 @@
                                   Style="{StaticResource CustomEntryStyle}" 
                                   ReturnType="Next"
                                   Keyboard="Email"
-                                  Text="{Binding Name}">
+                                  Text="{Binding Name}"
+                                  IsClearButtonVisible="True">
 
                 <controls:CustomEntry.Behaviors>
 
@@ -70,7 +71,8 @@
                                   Style="{StaticResource CustomEntryStyle}"
                                   ReturnType="Done"
                                   Keyboard="Email"
-                                  Text="{Binding Email}">               
+                                  Text="{Binding Email}"
+                                  IsClearButtonVisible="True">               
 
                 <controls:CustomEntry.Behaviors>
 

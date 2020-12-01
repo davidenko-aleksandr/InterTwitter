@@ -1,24 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using InterTwitter.Models;
+﻿using InterTwitter.Models;
 using InterTwitter.ViewModels;
 
 namespace InterTwitter.Extensions
 {
     static class UserViewModelExtension 
     {
-        public static UserModel ToUserModel(this UserViewModel userViewModel)
+        public static UserModel ToUserModel(this UserViewModel viewModel)
         {
-            return new UserModel
-                   {
-                       Id = userViewModel.Id,
-                       Name = userViewModel.Name,
-                       Email = userViewModel.Email,
-                       Password = userViewModel.Password,
-                       Picture = userViewModel.Picture,
-                       ProfileHeaderImage = userViewModel.ProfileHeaderImage
-                   };
+            UserModel user = null;
+            if(viewModel is not null)
+            {
+                user = new UserModel
+                {
+                    Id = viewModel.Id,
+                    Name = viewModel.Name,
+                    Email = viewModel.Email,
+                    Password = viewModel.Password,
+                    Avatar = viewModel.Avatar,
+                    ProfileHeaderImage = viewModel.ProfileHeaderImage
+                };
+            }
+            else
+            {
+                //viewmodel is null
+            }
+
+            return user;
         }
     }
 }

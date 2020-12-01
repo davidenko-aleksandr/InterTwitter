@@ -1,13 +1,39 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:controls="clr-namespace:InterTwitter.Controls" 
+                        xmlns:resources="clr-namespace:InterTwitter.Resources"
+                        xmlns:notificationtemplate="clr-namespace:InterTwitter.Views.NotificationTemplates"
                         x:Class="InterTwitter.Views.NotificationsPage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
 
-    <Label Text="Notifications Page"
-           HorizontalOptions="Center"
-           VerticalOptions="Center"/>
+    <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- TABBED PAGE NAVIGATION BAR -->
+        <controls:TabbedPageNavigationBar  Grid.Row="0"
+                                           IsLeftIconVisible="False"
+                                           TitleText="{x:Static resources:AppResource.NotificationPageTitle}"
+                                           IsBottomLineVisible="True"/>
+
+        <!-- COLLECTION VIEW -->
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding NotificationList}">
+
+            <CollectionView.ItemTemplate>
+
+                <notificationtemplate:NotificationTemplate/>
+
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+        
+    </Grid>
+    
 </views:BaseContentPage>
