@@ -58,6 +58,30 @@
            BindingContext="{x:Reference tabbedPageNavigationBar}"
            Text="{Binding TitleText}"/>
 
+    <controls:ClickableContentView Grid.Column="2"
+                                   Grid.Row="0"
+                                   Padding="8"
+                                   BindingContext="{x:Reference tabbedPageNavigationBar}"
+                                   Command="{Binding RightIconClickCommand}"
+                                   IsVisible="{Binding IsRightIconVisible}">
+
+        <ffimageloading:CachedImage BindingContext="{x:Reference tabbedPageNavigationBar}"
+                                    Source="{Binding RightIconSource}"
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center"
+                                    Aspect="AspectFit">
+
+            <ffimageloading:CachedImage.Transformations>
+
+                <fftransformations:CircleTransformation/>
+
+            </ffimageloading:CachedImage.Transformations>
+
+        </ffimageloading:CachedImage>
+
+
+    </controls:ClickableContentView>
+    
     <BoxView Grid.Column="0" 
              Grid.ColumnSpan="3"
              Grid.Row="1"
