@@ -71,7 +71,7 @@
                                            MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"
                                            LeftIconClickCommand="{Binding OpenMenuCommand}"
                                            IsLeftIconVisible="True"
-                                           LeftIconSource="pic_profile_small.png"
+                                           LeftIconSource="{Binding AuthorizedUser.Avatar}"
                                            TitleText="{x:Static resources:AppResource.HomeTitle}"/>
 
         <!-- MOVING IMAGE BUTTON -->

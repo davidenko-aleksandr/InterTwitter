@@ -34,7 +34,7 @@ namespace InterTwitter
 
             FlowListView.Init();
 
-            await NavigateAsync();
+            await NavigationService.NavigateAsync(nameof(LogInPage));
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -71,19 +71,5 @@ namespace InterTwitter
 
         #endregion
 
-        #region -- Private Helpers --
-
-        private async Task NavigateAsync()
-        {
-            var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
-
-            var path = isAuthorized ? nameof(MenuPage) : nameof(LogInPage);
-
-            await NavigationService.NavigateAsync(path);
-
-            //await NavigationService.NavigateAsync(nameof(ProfilePage));
-        }
-
-        #endregion
     }
 }

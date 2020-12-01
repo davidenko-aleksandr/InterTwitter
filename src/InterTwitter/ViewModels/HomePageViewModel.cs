@@ -11,6 +11,7 @@ using InterTwitter.Views;
 using Xamarin.Essentials;
 using Acr.UserDialogs;
 using InterTwitter.ViewModels.HomePageItems;
+using InterTwitter.Services.Authorization;
 
 namespace InterTwitter.ViewModels
 {
@@ -18,15 +19,18 @@ namespace InterTwitter.ViewModels
     {
         private readonly IOwlService _owlService;
         private readonly IUserDialogs _userDialogs;
+        private readonly IAuthorizationService _authorizationService;
 
         public HomePageViewModel(
                                 INavigationService navigationService,
                                 IOwlService owlService,
-                                IUserDialogs userDialogs)
+                                IUserDialogs userDialogs,
+                                IAuthorizationService authorizationService)
                                 : base(navigationService)
         {
             _owlService = owlService;
             _userDialogs = userDialogs;
+            _authorizationService = authorizationService;
         }
 
         #region -- Public properties --
@@ -45,11 +49,11 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _icon, value);
         }
 
-        private string _profileAvatar;
-        public string ProfileAvatar
+        private UserViewModel _authorizedUser;
+        public UserViewModel AuthorizedUser
         {
-            get => _profileAvatar;
-            set => SetProperty(ref _profileAvatar, value);
+            get => _authorizedUser;
+            set => SetProperty(ref _authorizedUser, value);
         }
 
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
@@ -76,6 +80,8 @@ namespace InterTwitter.ViewModels
             {
                 _userDialogs.Toast("No internet connection");
             }
+
+            await SetUserDataAsync();
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -95,6 +101,30 @@ namespace InterTwitter.ViewModels
         private async Task OnAddPostCommandAsync()
         {
             await NavigationService.NavigateAsync(nameof(AddPostPage), new NavigationParameters(), useModalNavigation: true, true);
+        }
+
+        private async Task SetUserDataAsync()
+        {
+            var result = await _authorizationService.GetAuthorizedUserAsync();
+
+            if (result.IsSuccess)
+            {
+                var userResult = result.Result;
+
+                if (userResult is not null)
+                {
+                    AuthorizedUser = userResult;
+                }
+                else
+                {
+                    //userResult was null
+                }
+
+            }
+            else
+            {
+                //result is failed
+            }
         }
 
         #endregion

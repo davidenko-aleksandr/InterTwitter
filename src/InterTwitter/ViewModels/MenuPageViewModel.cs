@@ -6,7 +6,6 @@ using System.Windows.Input;
 using Acr.UserDialogs;
 using InterTwitter.Extensions;
 using InterTwitter.Helpers;
-using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.ViewModels.Helpers;
 using InterTwitter.Views;
@@ -100,18 +99,6 @@ namespace InterTwitter.ViewModels
                 }
             }
             
-        }
-
-        public override async void OnNavigatedTo(INavigationParameters parameters)
-        {
-            //if (parameters.TryGetValue(Constants.Navigation.User, out UserViewModel user))
-            //{
-            //    AuthorizedUser = user;
-            //}
-            //else
-            //{
-            //    await SetUserDataAsync();
-            //}
         }
 
         #endregion
@@ -217,7 +204,25 @@ namespace InterTwitter.ViewModels
         private async Task SetUserDataAsync()
         {
             var result = await _authorizationService.GetAuthorizedUserAsync();
-            AuthorizedUser = result.Result;
+
+            if (result.IsSuccess)
+            {
+                var userResult = result.Result;
+
+                if (userResult is not null)
+                {
+                    AuthorizedUser = userResult;
+                }
+                else
+                {
+                    //userResult was null
+                }
+
+            }
+            else
+            {
+                //result is failed
+            }
         }
 
         public async void OnAppearing()

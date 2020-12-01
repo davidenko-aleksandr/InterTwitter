@@ -249,4 +249,7 @@
   <data name="OkText" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="ExistEmailError" xml:space="preserve">
+    <value>Email is already exist!</value>
+  </data>
 </root>

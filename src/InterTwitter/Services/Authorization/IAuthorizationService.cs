@@ -13,5 +13,6 @@ namespace InterTwitter.Services.Authorization
         Task<AOResult<bool>> SignUpAsync(string email, string name, string password);
         Task<AOResult<bool>> LogOutAsync();
         Task<AOResult<UserViewModel>> GetAuthorizedUserAsync();
+        Task<AOResult<bool>> CheckUserEmail(string email);
     }
 }

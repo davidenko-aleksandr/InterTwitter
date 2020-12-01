@@ -169,6 +169,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email is already exist!.
+        /// </summary>
+        public static string ExistEmailError {
+            get {
+                return ResourceManager.GetString("ExistEmailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ic_eye_off.png.
         /// </summary>
         public static string EyeOffImage {

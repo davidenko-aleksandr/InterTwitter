@@ -23,7 +23,7 @@ namespace InterTwitter.Controls
         public BorderlessEntry Entry { get; set; }
 
         private static readonly BindableProperty IsValidProperty = 
-            BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay);
+            BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(CustomEntry), false, BindingMode.OneWay);
         public bool IsValid
         {
             get => (bool)GetValue(IsValidProperty);

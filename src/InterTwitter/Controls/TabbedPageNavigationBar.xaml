@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Grid xmlns="http://xamarin.com/schemas/2014/forms" 
       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-      xmlns:controls="clr-namespace:InterTwitter.Controls"
+      xmlns:controls="clr-namespace:InterTwitter.Controls" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
       x:Class="InterTwitter.Controls.TabbedPageNavigationBar"
       x:Name="tabbedPageNavigationBar"
       VerticalOptions="Start"
@@ -24,14 +24,26 @@
 
     <controls:ClickableContentView Grid.Column="0"
                                    Grid.Row="0"
-                                   Padding="10"
+                                   Padding="8"
                                    BindingContext="{x:Reference tabbedPageNavigationBar}"
                                    Command="{Binding LeftIconClickCommand}"
                                    IsVisible="{Binding IsLeftIconVisible}">
 
-        <Image  BindingContext="{x:Reference tabbedPageNavigationBar}"
-                Source="{Binding LeftIconSource}"/>
-    
+        <ffimageloading:CachedImage BindingContext="{x:Reference tabbedPageNavigationBar}"
+                                    Source="{Binding LeftIconSource}"
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center"
+                                    Aspect="AspectFit">
+
+            <ffimageloading:CachedImage.Transformations>
+                
+                <fftransformations:CircleTransformation/>
+                
+            </ffimageloading:CachedImage.Transformations>
+
+        </ffimageloading:CachedImage>
+
+
     </controls:ClickableContentView>
 
     <Label Grid.Column="1"
