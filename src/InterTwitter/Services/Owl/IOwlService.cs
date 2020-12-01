@@ -1,6 +1,5 @@
 ﻿using InterTwitter.Helpers;
 using InterTwitter.Models;
-using InterTwitter.ViewModels.HomePageItems;
 using InterTwitter.ViewModels.OwlItems;
 using System.Collections.Generic;
 using System.Threading.Tasks;

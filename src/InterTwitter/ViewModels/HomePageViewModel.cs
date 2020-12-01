@@ -6,11 +6,9 @@ using Prism.Navigation;
 using System.Windows.Input;
 using Xamarin.Forms;
 using InterTwitter.ViewModels.OwlItems;
-using System;
 using InterTwitter.Views;
 using Xamarin.Essentials;
 using Acr.UserDialogs;
-using InterTwitter.ViewModels.HomePageItems;
 using InterTwitter.Services.Authorization;
 
 namespace InterTwitter.ViewModels
