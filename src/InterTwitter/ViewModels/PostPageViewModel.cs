@@ -38,13 +38,6 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _icon, value);
         }
 
-        private List<TestModel> _items;
-        public List<TestModel> Items
-        {
-            get => _items;
-            set => SetProperty(ref _items, value);
-        }
-
         #endregion
 
         public override async void OnNavigatedTo(INavigationParameters parameters)

@@ -1,7 +1,4 @@
-﻿using InterTwitter.ViewModels.HomePageItems;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using InterTwitter.ViewModels.OwlItems;
 using Xamarin.Forms;
 
 namespace InterTwitter.Helpers

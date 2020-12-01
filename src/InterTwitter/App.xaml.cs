@@ -11,6 +11,8 @@ using Prism.Ioc;
 using Prism.Unity;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using InterTwitter.Services.PostAction;
+using InterTwitter.Services.Notification;
 using Plugin.Media;
 using InterTwitter.Services.Permission;
 using DLToolkit.Forms.Controls;
@@ -32,7 +34,7 @@ namespace InterTwitter
 
             FlowListView.Init();
 
-            await NavigateAsync();
+            await NavigationService.NavigateAsync(nameof(LogInPage));
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -62,24 +64,13 @@ namespace InterTwitter
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
             containerRegistry.RegisterInstance<IOwlService>(Container.Resolve<OwlService>());
+            containerRegistry.RegisterInstance<INotificationService>(Container.Resolve<NotificationService>());
+            containerRegistry.RegisterInstance<IPostActionService>(Container.Resolve<PostActionService>());
             containerRegistry.RegisterInstance<IPermissionService>(Container.Resolve<PermissionService>());
+
         }
 
         #endregion
 
-        #region -- Private Helpers --
-
-        private async Task NavigateAsync()
-        {
-            var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
-
-            var path = isAuthorized ? nameof(MenuPage) : nameof(LogInPage);
-
-            await NavigationService.NavigateAsync(path);
-
-            //await NavigationService.NavigateAsync(nameof(ProfilePage));
-        }
-
-        #endregion
     }
 }

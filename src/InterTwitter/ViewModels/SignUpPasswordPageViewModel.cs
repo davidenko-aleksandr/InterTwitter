@@ -91,27 +91,29 @@ namespace InterTwitter.ViewModels
 
         private Task OnGoBackCommandAsync()
         {
-          return  NavigationService.GoBackAsync();            
+          return NavigationService.GoBackAsync();            
         }
 
         private async Task OnConfirmCommandAsync()
         {
             var isValid = ValidatePassword();
-
             if (isValid)
             {
-                await _authorizationService.SignUpAsync(_email, _name, Password);
-
-                var parameters = new NavigationParameters
-                                {
-                                    { Constants.Navigation.Email, _email }
-                                };
-
-                await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+                var signUpResult = await _authorizationService.SignUpAsync(_email, _name, Password);
+                if (signUpResult.IsSuccess)
+                {
+                    await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+                }
+                else
+                {
+                    var errorText = Resources.AppResource.RandomError;
+                    _userDialogs.Toast(errorText);
+                }
+                
             }
             else
             {
-                _userDialogs.Toast("Passwords should match");
+                //entry not valid
             }
         }
 

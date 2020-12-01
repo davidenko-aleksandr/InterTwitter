@@ -84,12 +84,15 @@
     <EmbeddedResource Update="Controls\AuthorizationNavigationBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Controls\HomePageNavigationBar.xaml">
+    <EmbeddedResource Update="Controls\TabbedPageNavigationBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\AppResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OwlTemplates\PostFewImageTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PostPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -97,13 +100,16 @@
     <EmbeddedResource Update="Views\Templates\OwlFewImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlNoMediaTemplate.xaml">
+    <EmbeddedResource Update="Views\OwlTemplates\OwlFewImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlOneImageTemplate.xaml">
+    <EmbeddedResource Update="Views\OwlTemplates\OwlNoMediaTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlVideoTemplate.xaml">
+    <EmbeddedResource Update="Views\OwlTemplates\OwlOneImageTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OwlTemplates\OwlVideoTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\PostFewImageTemplate.xaml">
@@ -125,6 +131,9 @@
   <ItemGroup>
     <Compile Update="Controls\AuthorizationNavigationBar.xaml.cs">
       <DependentUpon>AuthorizationNavigationBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\TabbedPageNavigationBar.xaml.cs">
+      <DependentUpon>TabbedPageNavigationBar.xaml</DependentUpon>
     </Compile>
     <Compile Update="Resources\AppResource.Designer.cs">
       <DependentUpon>AppResource.resx</DependentUpon>

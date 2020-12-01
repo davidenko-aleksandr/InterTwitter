@@ -22,149 +22,106 @@ namespace InterTwitter.Controls
 
         public BorderlessEntry Entry { get; set; }
 
-        private static readonly BindableProperty IsValidProperty = BindableProperty.Create(
-                                                        
-                                                        propertyName: nameof(IsValid),
-                                                        returnType: typeof(bool),
-                                                        declaringType: typeof(CustomEntry),
-                                                        defaultValue: false,
-                                                        defaultBindingMode: BindingMode.TwoWay);
+        private static readonly BindableProperty IsValidProperty = 
+            BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(CustomEntry), false, BindingMode.OneWay);
         public bool IsValid
         {
             get => (bool)GetValue(IsValidProperty);
             set => SetValue(IsValidProperty, value);
         }
 
-        private static readonly BindableProperty IsEntryFocusedProperty = BindableProperty.Create(
-                                                        propertyName: nameof(IsEntryFocused),
-                                                        returnType: typeof(bool),
-                                                        declaringType: typeof(CustomEntry),
-                                                        defaultValue: false,
-                                                        defaultBindingMode: BindingMode.TwoWay);
+        private static readonly BindableProperty IsEntryFocusedProperty = 
+            BindableProperty.Create(nameof(IsEntryFocused), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay);
         public bool IsEntryFocused
         {
             get => (bool)GetValue(IsEntryFocusedProperty);
             set => SetValue(IsEntryFocusedProperty, value);
         }
 
-        private static readonly BindableProperty IsPasswordLocalProperty = BindableProperty.Create(
-                                                         propertyName: nameof(IsPasswordLocal),
-                                                         returnType: typeof(bool),
-                                                         declaringType: typeof(CustomEntry),
-                                                         defaultValue: false,
-                                                         defaultBindingMode: BindingMode.TwoWay);
+        private static readonly BindableProperty IsPasswordLocalProperty = 
+            BindableProperty.Create(nameof(IsPasswordLocal), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay);
         public bool IsPasswordLocal
         {
             get => (bool)GetValue(IsPasswordLocalProperty);
             set => SetValue(IsPasswordLocalProperty, value);
         }
 
-        public static readonly BindableProperty NameTextProperty = BindableProperty.Create(
-                                                          propertyName: nameof(NameText),
-                                                          returnType: typeof(string),
-                                                          declaringType: typeof(CustomEntry),
-                                                          defaultValue: string.Empty,
-                                                          defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty NameTextProperty = 
+            BindableProperty.Create(nameof(NameText), typeof(string), typeof(CustomEntry), string.Empty, BindingMode.TwoWay);
         public string NameText
         {
             get => (string)GetValue(NameTextProperty);
             set => SetValue(NameTextProperty, value);
         }
 
-        public static readonly BindableProperty ErrorTextProperty = BindableProperty.Create(
-                                                          propertyName: nameof(ErrorText),
-                                                          returnType: typeof(string),
-                                                          declaringType: typeof(CustomEntry),
-                                                          defaultValue: string.Empty,
-                                                          defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty ErrorTextProperty = 
+            BindableProperty.Create(nameof(ErrorText), typeof(string), typeof(CustomEntry), string.Empty, BindingMode.TwoWay);
         public string ErrorText
         {
             get => (string)GetValue(ErrorTextProperty);
             set => SetValue(ErrorTextProperty, value);
         }
 
-        public static readonly BindableProperty IsErrorVisibleProperty = BindableProperty.Create(
-                                                         propertyName: nameof(IsErrorVisible),
-                                                         returnType: typeof(bool),
-                                                         declaringType: typeof(CustomEntry),
-                                                         defaultValue: false,
-                                                         defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty IsErrorVisibleProperty = 
+            BindableProperty.Create(nameof(IsErrorVisible), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay);
         public bool IsErrorVisible
         {
             get => (bool)GetValue(IsErrorVisibleProperty);
             set => SetValue(IsErrorVisibleProperty, value);
         }
 
-        public static readonly BindableProperty LineColorProperty = BindableProperty.Create(
-                                                propertyName: nameof(LineColor),
-                                                returnType: typeof(Color),
-                                                declaringType: typeof(CustomEntry),
-                                                defaultValue: Color.FromHex("#DEDFE1"),
-                                                defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty LineColorProperty = 
+            BindableProperty.Create(nameof(LineColor),typeof(Color), typeof(CustomEntry), Color.FromHex("#DEDFE1"), BindingMode.TwoWay);
         public Color LineColor
         {
             get => (Color)GetValue(LineColorProperty);
             set => SetValue(LineColorProperty, value);
         }
 
-        public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(
-                                                         propertyName: nameof(IsPassword),
-                                                         returnType: typeof(bool),
-                                                         declaringType: typeof(CustomEntry),
-                                                         defaultValue: false,
-                                                         defaultBindingMode: BindingMode.TwoWay,
-                                                         propertyChanged: OnIsPasswordPropertyChanged);
-
+        public static readonly BindableProperty IsPasswordProperty = 
+            BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay, 
+                propertyChanged: OnIsPasswordPropertyChanged);
         public bool IsPassword
         {
             get => (bool)GetValue(IsPasswordProperty);
             set => SetValue(IsPasswordProperty, value);
         }
 
-        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(
-                                                         propertyName: nameof(Placeholder),
-                                                         returnType: typeof(string),
-                                                         declaringType: typeof(CustomEntry),
-                                                         defaultValue: null,
-                                                         defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty IsClearButtonVisibleProperty = 
+            BindableProperty.Create(nameof(IsClearButtonVisible), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay);
+        public bool IsClearButtonVisible
+        {
+            get => (bool)GetValue(IsClearButtonVisibleProperty);
+            set => SetValue(IsClearButtonVisibleProperty, value);
+        }
+
+        public static readonly BindableProperty PlaceholderProperty = 
+            BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(CustomEntry), null, BindingMode.TwoWay);
         public string Placeholder
         {
             get => (string)GetValue(PlaceholderProperty);
             set => SetValue(PlaceholderProperty, value);
         }
 
-        public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(
-                                                         propertyName: nameof(Keyboard),
-                                                         returnType: typeof(Keyboard),
-                                                         declaringType: typeof(CustomEntry),
-                                                         defaultValue: null,
-                                                         defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty KeyboardProperty = 
+            BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(CustomEntry), null, BindingMode.TwoWay);
         public Keyboard Keyboard
         {
             get => (Keyboard)GetValue(KeyboardProperty);
             set => SetValue(KeyboardProperty, value);
         }
 
-        public static readonly BindableProperty ReturnTypeProperty = BindableProperty.Create(
-                                                         propertyName: nameof(ReturnType),
-                                                         returnType: typeof(ReturnType),
-                                                         declaringType: typeof(CustomEntry),
-                                                         defaultValue: null,
-                                                         defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty ReturnTypeProperty = 
+            BindableProperty.Create(nameof(ReturnType), typeof(ReturnType), typeof(CustomEntry), null, BindingMode.TwoWay);
         public ReturnType ReturnType
         {
             get => (ReturnType)GetValue(ReturnTypeProperty);
             set => SetValue(ReturnTypeProperty, value);
         }
 
-        public static readonly BindableProperty TextProperty = BindableProperty.Create(
-                                                         propertyName: nameof(Text),
-                                                         returnType: typeof(string),
-                                                         declaringType: typeof(CustomEntry),
-                                                         defaultValue: string.Empty,
-                                                         defaultBindingMode: BindingMode.TwoWay,
-                                                         propertyChanged: (bindable, oldValue, newValue) => ((CustomEntry)bindable).OnTextChanged((string)oldValue, (string)newValue));
-
+        public static readonly BindableProperty TextProperty = 
+            BindableProperty.Create(nameof(Text), typeof(string), typeof(CustomEntry), string.Empty, BindingMode.TwoWay, 
+                propertyChanged: (bindable, oldValue, newValue) => ((CustomEntry)bindable).OnTextChanged((string)oldValue, (string)newValue));
         public string Text
         {
             get => (string)GetValue(TextProperty);
@@ -197,13 +154,13 @@ namespace InterTwitter.Controls
         {
             var entry = bindable as CustomEntry;
 
-            if (entry != null)
+            if (entry is not null)
             {
                 entry.IsPasswordLocal = (bool)newValue;
             }
             else
             {
-                //Debug.WriteLine("entry is null");
+                //entry is null
             }
         }
 
@@ -214,19 +171,9 @@ namespace InterTwitter.Controls
                 ClearButton.IsVisible = false;
                 NameLabel.IsVisible = false;
                 EyeButton.IsVisible = false;
-
-                if (IsPassword)
-                {
-                    EyeButton.IsVisible = false;
-                }
-                else
-                {
-                    //Debug.WriteLine("IsPassword is false");
-                }
             }
             else
             {
-                ClearButton.IsVisible = true;
                 NameLabel.IsVisible = true;
 
                 if (IsPassword)
@@ -235,7 +182,16 @@ namespace InterTwitter.Controls
                 }
                 else
                 {
-                    //Debug.WriteLine("IsPassword is false");
+                    //IsPassword is false
+                }
+
+                if (IsClearButtonVisible)
+                {
+                    ClearButton.IsVisible = true;
+                }
+                else
+                {
+                    //IsClearButtonVisible is false
                 }
             }
 
@@ -244,9 +200,17 @@ namespace InterTwitter.Controls
 
         private void OnEntryFocusChanged(object sender, FocusEventArgs e)
         {
-            IsEntryFocused = e.IsFocused;
+            if (e is not null)
+            {
+                IsEntryFocused = e.IsFocused;
+            }
+            else
+            {
+                // e is null
+            }
         }
 
         #endregion
+
     }
 }

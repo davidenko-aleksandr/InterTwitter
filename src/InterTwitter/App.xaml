@@ -4,7 +4,7 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
                         xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-                        xmlns:controls="clr-namespace:InterTwitter.Controls" xmlns:templates="clr-namespace:InterTwitter.Views.Templates" xmlns:local="clr-namespace:InterTwitter.Enums" xmlns:templates1="clr-namespace:InterTwitter.Helpers"
+                        xmlns:controls="clr-namespace:InterTwitter.Controls" xmlns:templates="clr-namespace:InterTwitter.Views.Templates" xmlns:local="clr-namespace:InterTwitter.Enums" xmlns:templates1="clr-namespace:InterTwitter.Helpers" xmlns:templates2="clr-namespace:InterTwitter.Views.OwlTemplates"
                         android:Application.WindowSoftInputModeAdjust="Resize">
 
     <Application.Resources>
@@ -138,13 +138,13 @@
 
         <ResourceDictionary>
 
-            <templates:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
+            <templates2:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
 
-            <templates:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
+            <templates2:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
 
-            <templates:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
+            <templates2:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
 
-            <templates:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
+            <templates2:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
 
             <local:OwlTemplateSelector x:Key="OwlTemplateSelector"
                                        OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"

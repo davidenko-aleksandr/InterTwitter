@@ -24,7 +24,8 @@ namespace InterTwitter.ViewModels
 
         public string CallerPropertyName { get; private set; }
 
-        public ChangeProfilePageViewModel(INavigationService navigatonService,
+        public ChangeProfilePageViewModel(
+                                          INavigationService navigatonService,
                                           IUserService userService,
                                           IMedia mediaPlugin,
                                           IAuthorizationService authorizationService,
@@ -71,9 +72,9 @@ namespace InterTwitter.ViewModels
 
         public ICommand SaveProfileCommand => SingleExecutionCommand.FromFunc(OnSaveProfileCommandAsync);
 
-        public ICommand SetAvatarCommand => SingleExecutionCommand.FromFunc(OnSetAvatarCommand);
+        public ICommand SetAvatarCommand => SingleExecutionCommand.FromFunc(OnSetAvatarCommandAsync);
 
-        public ICommand SetHeaderImageCommand => SingleExecutionCommand.FromFunc(OnSetHeaderImageCommand);
+        public ICommand SetHeaderImageCommand => SingleExecutionCommand.FromFunc(OnSetHeaderImageCommandAsync);
 
         #endregion
 
@@ -102,41 +103,41 @@ namespace InterTwitter.ViewModels
                 }
                 else
                 {
-                    //password stay previous
+                    //NewPassword is null
                 }
                 await _userServcie.UpdateUserAsync(User);
 
                 var parameters = new NavigationParameters()
-                                {
-                                    {Constants.Navigation.User, User }
-                                };
+                {
+                    { Constants.Navigation.User, User }
+                };
 
-                NavigationService.GoBackAsync(parameters);
+                await NavigationService.GoBackAsync(parameters);
             }
             else
             {
-                //
+                //userDataIsValid and newPasswordIsValid are false
             }
         }
 
         private async Task OnGoBackCommandAsync()
         {
-            NavigationService.GoBackAsync();
+            await NavigationService.GoBackAsync();
         }
 
-        private async Task OnSetAvatarCommand()
+        private async Task OnSetAvatarCommandAsync()
         {
-            CallerPropertyName = nameof(User.Picture);
+            CallerPropertyName = nameof(User.Avatar);
 
             var parameters = new ActionSheetConfig();
             parameters.Add(AppResource.TakeCameraPicture, TakeCameraPicture, null);
             parameters.Add(AppResource.TakeGalleryPicture, TakeGalleryPicture, null);
             parameters.SetCancel(AppResource.CancelText, null, null);
 
-            _userDialogs.ActionSheet(parameters);
+            _userDialogs.ActionSheet(parameters);  //await 
         }
 
-        private async Task OnSetHeaderImageCommand()
+        private async Task OnSetHeaderImageCommandAsync()
         {
             CallerPropertyName = nameof(User.ProfileHeaderImage);
 
@@ -145,7 +146,7 @@ namespace InterTwitter.ViewModels
             parameters.Add(AppResource.TakeGalleryPicture, TakeGalleryPicture, null);
             parameters.SetCancel(AppResource.CancelText, null, null);
 
-            _userDialogs.ActionSheet(parameters);
+            _userDialogs.ActionSheet(parameters); //await
         }
 
         private bool CheckNewPasswordValidity()
@@ -179,7 +180,7 @@ namespace InterTwitter.ViewModels
             return isValid;
         }
 
-        private async void TakeCameraPicture()
+        private async void TakeCameraPicture() //async task
         {
             var cameraStaus = await _permissionService.CheckPermissionAsync<Camera>();
 
@@ -193,10 +194,18 @@ namespace InterTwitter.ViewModels
 
                     MediaFile file = await _mediaPluggin.TakePhotoAsync(options);
 
-                    if (file != null)
+                    if (file is not null)
                     {
                         SetPicture(CallerPropertyName, file.Path);
                     }
+                    else
+                    {
+                        //file is null
+                    }
+                }
+                else
+                {
+                    // IsTakePhotoSupported and IsCameraAvailable are false
                 }
             }
             else
@@ -206,7 +215,7 @@ namespace InterTwitter.ViewModels
             }
         }
 
-        private async void TakeGalleryPicture()
+        private async void TakeGalleryPicture() //async task
         {
             if (_mediaPluggin.IsPickPhotoSupported)
             {
@@ -236,9 +245,9 @@ namespace InterTwitter.ViewModels
                         User.ProfileHeaderImage = path;
                         break;
                     }
-                case nameof(User.Picture):
+                case nameof(User.Avatar):
                     {
-                        User.Picture = path;
+                        User.Avatar = path;
                         break;
                     }
                 default:

@@ -15,10 +15,7 @@
         </Grid.RowDefinitions>
         
         <!-- HOME PAGE NAVIGATION BAR -->
-        <controls:HomePageNavigationBar  Grid.Row="0"
-                                         VerticalOptions="Center"
-                                         HorizontalOptions="FillAndExpand"
-                                         OpenMenuCommand="{Binding OpenMenuCommand}"/>
+        <controls:TabbedPageNavigationBar />
 
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding Owls}"

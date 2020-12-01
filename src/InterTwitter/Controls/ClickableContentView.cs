@@ -109,7 +109,7 @@ namespace InterTwitter.Controls
                     {
                         this.ScaleTo(1.0f);
                     }
-                }
+                }  
             }
         }
 

@@ -15,7 +15,8 @@ namespace InterTwitter.ViewModels
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
 
-        public LogInPageViewModel(INavigationService navigationService,
+        public LogInPageViewModel(
+                                  INavigationService navigationService,
                                   IAuthorizationService authorizationService,
                                   IKeyboardService keyboardService,
                                   IUserDialogs userDialogs)
@@ -72,6 +73,15 @@ namespace InterTwitter.ViewModels
 
         #endregion
 
+        #region -- Overrides --
+
+        public async override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            await CheckAuthorizedUserAsync();
+        }
+
+        #endregion
+
         #region -- Private helpers --
 
         private async Task OnLogInCommandAsync()
@@ -111,6 +121,19 @@ namespace InterTwitter.ViewModels
 
         }
 
+        private async Task CheckAuthorizedUserAsync()
+        {
+            var authorizedResult = await _authorizationService.GetAuthorizedUserAsync();
+            if(authorizedResult.IsSuccess)
+            {
+                await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+            }
+            else
+            {
+                //user not authorized
+            }
+
+        }
         private Task OnSignUpCommandAsync()
         {
             return NavigationService.NavigateAsync(nameof(SignUpMainPage));
