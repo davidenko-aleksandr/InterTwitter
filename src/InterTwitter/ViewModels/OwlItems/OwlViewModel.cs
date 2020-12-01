@@ -1,7 +1,7 @@
 ﻿using InterTwitter.Models;
 using Prism.Mvvm;
 
-namespace InterTwitter.ViewModels.HomePageItems
+namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlViewModel : BindableBase
     {
@@ -9,7 +9,7 @@ namespace InterTwitter.ViewModels.HomePageItems
         {
             Id = model.Id;
             AuthorId = author.Id;
-            AuthorAvatar = author.Picture;
+            AuthorAvatar = author.Avatar;
             AuthorNickName = author.Name;
             Text = model.Text;
             PostDate = model.Date.ToString("dd.MM.yyyy");

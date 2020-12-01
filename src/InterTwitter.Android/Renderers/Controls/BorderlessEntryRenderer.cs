@@ -1,4 +1,5 @@
-﻿using InterTwitter.Controls;
+﻿using Android.Content;
+using InterTwitter.Controls;
 using InterTwitter.Droid.Renderers.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -8,6 +9,10 @@ namespace InterTwitter.Droid.Renderers.Controls
 {
     public class BorderlessEntryRenderer : EntryRenderer
     {
+
+        public BorderlessEntryRenderer(Context context) : base(context)
+        {
+        }
 
         #region -- Overrides --
 

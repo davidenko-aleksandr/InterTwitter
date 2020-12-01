@@ -23,15 +23,15 @@
                                    VerticalOptions="FillAndExpand"
                                    IsVisible="{Binding IsBackButtonVisible}"
                                    Command="{Binding GoBackCommand}">
-        
-        <Image Source="{x:Static resources:AppResource.LeftImage}"
+
+        <Image Source="ic_left.png"
                VerticalOptions="Center"
                HorizontalOptions="Center"/>
 
     </controls:ClickableContentView>
 
     <Image Grid.Column="1"
-           Source="{x:Static resources:AppResource.LogoImage}"
+           Source="pic_logo_small.png"
            VerticalOptions="Center"
            HorizontalOptions="Center"/>
         

@@ -1,7 +1,7 @@
 ﻿using InterTwitter.Models;
 using System.Collections.Generic;
 
-namespace InterTwitter.ViewModels.HomePageItems
+namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlFewImagesViewModel : OwlViewModel
     {

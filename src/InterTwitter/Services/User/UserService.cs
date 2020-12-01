@@ -16,7 +16,7 @@ namespace InterTwitter.Services.UserService
 
         public UserService()
         {
-            InitMock();
+            InitData();
         }
 
         #region -- IUserService Implementation --
@@ -76,11 +76,11 @@ namespace InterTwitter.Services.UserService
             try
             {
                 _usersRepositoryMock.Add(user);
+                
                 result.SetSuccess(true);
             }
             catch (Exception ex)
             {
-                result.SetFailure(false);
                 result.SetError($"{nameof(AddUserAsync)}: exception", "Something went wrong", ex);
             }
 
@@ -94,18 +94,25 @@ namespace InterTwitter.Services.UserService
 
             try
             {
-                var userMock = _usersRepositoryMock.Where(x => x.Id == userViewModel.Id).First();
-                //userMock = userViewModel.ToUserModel(); 
+                var changingUser = _usersRepositoryMock.FirstOrDefault(x => x.Id == userViewModel.Id);
 
-                var userIndex = _usersRepositoryMock.IndexOf(userMock);
-                _usersRepositoryMock.RemoveAt(userIndex);
-                _usersRepositoryMock.Insert(userIndex, userViewModel.ToUserModel());
+                if (changingUser is not null)
+                {
+                    changingUser.Avatar = userViewModel.Avatar;
+                    changingUser.Email = userViewModel.Email;
+                    changingUser.ProfileHeaderImage = userViewModel.ProfileHeaderImage;
+                    changingUser.Name = userViewModel.Name;
+                    changingUser.Password = userViewModel.Password;
 
-                result.SetSuccess(true);
+                    result.SetSuccess(true);
+                }
+                else
+                {
+                    result.SetFailure();
+                }
             }
             catch (Exception ex)
             {
-                result.SetFailure(false);
                 result.SetError($"{nameof(UpdateUserAsync)}: exception", "Something went wrong", ex);
             }
 
@@ -116,44 +123,51 @@ namespace InterTwitter.Services.UserService
 
         #region -- Private Helpers -- 
 
-        private void InitMock()
+        private void InitData()
         {
-            _usersRepositoryMock = new List<UserModel>();
-
-            var user = new UserModel()
+            _usersRepositoryMock = new List<UserModel>()
             {
-                Id = 0,
-                Email = "vasya1984@mail.ru",
-                Name = "Vasiliy",
-                Password = "V1984FAT",
-                Picture = "https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop",
+                new UserModel()
+                {
+                    Id = 0,
+                    Email = "trump@mail.ru",
+                    Name = "Donald J. Trump",
+                    Password = "Trump20",
+                    Avatar = "https://pbs.twimg.com/profile_images/874276197357596672/kUuht00m_400x400.jpg",
+                    ProfileHeaderImage = "https://pbs.twimg.com/profile_banners/25073877/1604214583/1500x500",
+                },
+                new UserModel()
+                {
+                    Id = 1,
+                    Email = "shakira@gmail.com",
+                    Name = "Shakira",
+                    Password = "Shakira20",
+                    Avatar = "https://pbs.twimg.com/profile_images/1298649731980238848/29o9j4e__400x400.jpg",
+                    ProfileHeaderImage = "https://pbs.twimg.com/profile_banners/44409004/1600521595/1500x500",
+                },
+                new UserModel()
+                {
+                    Id = 2,
+                    Email = "test@i.ua",
+                    Name = "Test UserName",
+                    Password = "Qwerty12",
+                    Avatar = Constants.DefaultProfilePicture,
+                    ProfileHeaderImage = "pic_profile_header_photo.jpg"
+                },
+                new UserModel()
+                {
+                    Id = 3,
+                    Email = "xamarin@bugs.net",
+                    Name = "Xamarin",
+                    Password = "Xamarin20",
+                    Avatar = "https://pbs.twimg.com/profile_images/471641515756769282/RDXWoY7W_400x400.png",
+                    ProfileHeaderImage = "https://pbs.twimg.com/profile_banners/299659914/1401283128/1500x500",
+                }
             };
 
-            _usersRepositoryMock.Add(user);
-
-            user = new UserModel()
-            {
-                Id = 1,
-                Email = "petya25@gmail.com",
-                Name = "Peter Stevenson",
-                Password = "Qwerty123",
-                Picture = "https://s0.rbk.ru/v6_top_pics/media/img/7/06/755581025099067.jpeg",
-            };
-
-            _usersRepositoryMock.Add(user);
-
-            user = new UserModel()
-            {
-                Id = 2,
-                Email = "test@i.ua",
-                Name = "Test UserName",
-                Password = "Qwerty12",
-                Picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTztRLQ_Wq4fE2jBk97nbACnuE2FEaBWKAUtg&usqp=CAU",
-            };
-
-            _usersRepositoryMock.Add(user);
         }
 
         #endregion
+
     }
 }

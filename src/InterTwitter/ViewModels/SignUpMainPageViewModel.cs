@@ -75,25 +75,36 @@ namespace InterTwitter.ViewModels
             if (isConnected == NetworkAccess.Internet)
             {
                 var isValid = ValidateData();
-
                 if (isValid)
                 {
-                    var parameters = new NavigationParameters
+                    var checkResult = await _authorizationService.CheckUserEmail(Email);
+                    if (checkResult.IsSuccess)
                     {
-                        { Constants.Navigation.Name, Name },
-                        { Constants.Navigation.Email, Email }
-                    };
+                        var parameters = new NavigationParameters
+                        {
+                            { Constants.Navigation.Name, Name },
+                            { Constants.Navigation.Email, Email }
+                        };
 
-                    await NavigationService.NavigateAsync(nameof(SignUpPasswordPage), parameters);
+                        await NavigationService.NavigateAsync(nameof(SignUpPasswordPage), parameters);
+                    }
+                    else
+                    {
+                        var errorText = Resources.AppResource.ExistEmailError;
+                        _userDialogs.Toast(errorText);
+                    }
+
                 }
                 else
                 {
-                    _userDialogs.Toast("Registration data error");
+                    //isValid is false
                 }
+
             }
             else 
             {
-                _userDialogs.Toast("No internet connection");
+                var errorText = Resources.AppResource.NoInternetText;
+                _userDialogs.Toast(errorText);
             }
         }
 

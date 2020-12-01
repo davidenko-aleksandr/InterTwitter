@@ -16,7 +16,8 @@ namespace InterTwitter.ViewModels
         private readonly IAuthorizationService _authorizationService;
         private readonly IOwlService _owlService;
 
-        public ProfilePageViewModel(INavigationService navigationService,
+        public ProfilePageViewModel(
+                                    INavigationService navigationService,
                                     IAuthorizationService authorizationService,
                                     IOwlService owlService)
                                    : base(navigationService)
@@ -43,7 +44,7 @@ namespace InterTwitter.ViewModels
 
         public ICommand BackCommand => SingleExecutionCommand.FromFunc(OnBackCommandAsync);
 
-        public ICommand ChangeProfileCommand => SingleExecutionCommand.FromFunc(OnChangeProfileCommand);
+        public ICommand ChangeProfileCommand => SingleExecutionCommand.FromFunc(OnChangeProfileCommandAsync);
 
         #endregion
 
@@ -57,8 +58,7 @@ namespace InterTwitter.ViewModels
             }
             else
             {
-                var result = await _authorizationService.GetAuthorizedUserAsync();
-                User = result.Result;
+                await SetAuthorizedUserAsync();
             }
         }
 
@@ -66,7 +66,32 @@ namespace InterTwitter.ViewModels
 
         #region -- Private helpers --
 
-        private async Task OnChangeProfileCommand()
+        private async Task SetAuthorizedUserAsync()
+        {
+            var result = await _authorizationService.GetAuthorizedUserAsync();
+
+            if (result.IsSuccess)
+            {
+                var userResult = result.Result;
+
+                if(userResult is not null)
+                {
+                    User = userResult;
+                }
+                else
+                {
+                    //userResult was null
+                }
+
+            }
+            else
+            {
+                //result is failed
+            }
+
+        }
+
+        private async Task OnChangeProfileCommandAsync()
         {
             var parameters = new NavigationParameters()
             {
@@ -82,7 +107,8 @@ namespace InterTwitter.ViewModels
             {
                 { Constants.Navigation.User, User}
             };
-            NavigationService.GoBackAsync(parameters);
+
+           await NavigationService.GoBackAsync(parameters);
         }       
 
         #endregion

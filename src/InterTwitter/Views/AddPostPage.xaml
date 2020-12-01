@@ -90,7 +90,8 @@
                 Grid.Column="1"
                 Placeholder="Start writing"
                 PlaceholderColor="#66696E"
-                Text="{Binding OwlText, Mode=TwoWay}"/>
+                Text="{Binding OwlText, Mode=TwoWay}"
+                x:Name="editor"/>
 
         <ScrollView Grid.Column="0"
                     Grid.ColumnSpan="2"

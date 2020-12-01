@@ -1,7 +1,6 @@
-﻿using InterTwitter.Enums;
-using InterTwitter.Helpers;
+﻿using InterTwitter.Helpers;
 using InterTwitter.Models;
-using InterTwitter.ViewModels.HomePageItems;
+using InterTwitter.ViewModels.OwlItems;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,6 +10,7 @@ namespace InterTwitter.Services.Owl
     {
         Task<AOResult<IEnumerable<OwlViewModel>>> GetAllOwlsAsync();
         Task<AOResult<IEnumerable<OwlViewModel>>> GetAuthorOwlsAsync(int authorId);
-        Task<AOResult> AddOwlAsync(OwlModel owlModel);
+        Task<AOResult<bool>> AddOwlAsync(OwlModel owlModel);
+        Task<AOResult<bool>> UpdateOwlAsync(OwlModel owl);
     }
 }

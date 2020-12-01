@@ -3,8 +3,8 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-              x:Class="InterTwitter.Views.Templates.OwlOneImageTemplate">
-
+              x:Class="InterTwitter.Views.OwlTemplates.OwlGifTemplate">
+    
     <Grid Margin="10">
 
         <Grid.ColumnDefinitions>
@@ -15,7 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="1"/>
+            <RowDefinition Height="1" />
         </Grid.RowDefinitions>
 
         <!-- AUTHOR AVATAR IMAGE -->
@@ -52,10 +52,14 @@
             <Label Text="{Binding Text}"
                    TextColor="{StaticResource tx_3}"/>
 
-            <!-- POST IMAGE -->
-            <ffimageloading:CachedImage Source="{Binding PostPhoto}"
-                                        HeightRequest="250">
-                
+            <!-- GIF FILE -->
+            <ffimageloading:CachedImage Source="{Binding Gif}"
+                                        HeightRequest="250"
+                                        Margin="0, 0, 10, 0"
+                                        IsEnabled="True"
+                                        DownsampleToViewSize="True"
+                                        LoadingPlaceholder="loading.png">
+
                 <ffimageloading:CachedImage.Transformations>
 
                     <fftransformations:CornersTransformation CornersTransformType="AllRounded"

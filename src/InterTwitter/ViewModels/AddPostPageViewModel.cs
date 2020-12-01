@@ -60,7 +60,7 @@ namespace InterTwitter.ViewModels
             var result = await _authorizationService.GetAuthorizedUserAsync();
             var author = result.Result;
 
-            AuthorAvatar = author.Picture;
+            AuthorAvatar = author.Avatar;
         }
 
         #endregion
