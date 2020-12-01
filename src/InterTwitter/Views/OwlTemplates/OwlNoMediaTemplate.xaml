@@ -86,7 +86,7 @@
                         VerticalOptions="Center"
                         HorizontalOptions="End"
                         ImageSource="ic_like_gray.png"
-                        BackgroundColor="#10FFFFFF"
+                        BackgroundColor="Transparent"
                         WidthRequest="20">
 
                 </Button>
@@ -103,7 +103,7 @@
                         VerticalOptions="Center"
                         HorizontalOptions="End"
                         ImageSource="ic_bookmarks_gray.png"
-                        BackgroundColor="#10FFFFFF"
+                        BackgroundColor="Transparent"
                         WidthRequest="20">
 
                 </Button>

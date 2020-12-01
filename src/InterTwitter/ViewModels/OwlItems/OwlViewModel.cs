@@ -14,6 +14,7 @@ namespace InterTwitter.ViewModels.OwlItems
             Text = model.Text;
             PostDate = model.Date.ToString("dd.MM.yyyy");
             PostTime = model.Date.ToString("HH:mm");
+            LikesCount = model.LikesCount;
         }
 
         #region -- Public properties --
@@ -65,6 +66,13 @@ namespace InterTwitter.ViewModels.OwlItems
         {
             get => _postTime;
             set => SetProperty(ref _postTime, value);
+        }
+
+        private int _likesCount;
+        public int LikesCount
+        {
+            get => _likesCount;
+            set => SetProperty(ref _likesCount, value);
         }
 
         #endregion

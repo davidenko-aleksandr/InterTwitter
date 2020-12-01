@@ -168,7 +168,7 @@ namespace InterTwitter.Services.Notification
                         UserAvatar = "https://pbs.twimg.com/profile_images/1298649731980238848/29o9j4e__400x400.jpg",
                         UserName = "Shakira",
                         Action = OwlAction.Liked,
-                        MediaType = OwlType.Gif ,
+                        MediaType = OwlType.OneImage ,
                         OwlText = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
                         MediaList = new List<string>
                         {

@@ -89,12 +89,6 @@ namespace InterTwitter.Services.Owl
                                 break;
                             }
 
-                        case OwlType.Gif:
-                            {
-                                owls.Add(owlVM = new OwlGifViewModel(owl, author));
-                                break;
-                            }
-
                         case OwlType.Video:
                             {
                                 owls.Add(owlVM = new OwlVideoViewModel(owl, author));
@@ -210,7 +204,8 @@ namespace InterTwitter.Services.Owl
                     Text = $"FoxNews daytime is virtually unwatchable, especially during the weekends. Watch OANN, newsmax, or almost anything else.You won’t have to suffer through endless interviews with Democrats, and even worse!",
                     MediaType = OwlType.NoMedia,
                     likesList = new List<int>(),
-                    savesList = new List<int>()
+                    savesList = new List<int>(),
+                    LikesCount = 2100
                 },
                 new OwlModel
                 {
@@ -224,7 +219,8 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large"
                     },
                     likesList = new List<int>(),
-                    savesList = new List<int>()
+                    savesList = new List<int>(),
+                    LikesCount = 1190
                 },
                 new OwlModel
                 {
@@ -235,10 +231,11 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.Video,
                     Media = new List<string>()
                     {
-                        "https://twitter.com/i/status/1329535287735816194"
+                        "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
                     },
                     likesList = new List<int>(),
-                    savesList = new List<int>()
+                    savesList = new List<int>(),
+                    LikesCount = 2109
                 },
                 new OwlModel
                 {
@@ -246,13 +243,14 @@ namespace InterTwitter.Services.Owl
                     AuthorId = 2,
                     Date = DateTime.Now,
                     Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
-                    MediaType = OwlType.Gif,
+                    MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
                         "https://i.gifer.com/Ar.gif"
                     },
                     likesList = new List<int>(),
-                    savesList = new List<int>()
+                    savesList = new List<int>(),
+                    LikesCount = 2100
                 },
                 new OwlModel
                 {
@@ -266,7 +264,8 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
                     },
                     likesList = new List<int>(),
-                    savesList = new List<int>()
+                    savesList = new List<int>(),
+                    LikesCount = 100
                 },
                 new OwlModel
                 {
@@ -281,7 +280,8 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small"
                     },
                     likesList = new List<int>(),
-                    savesList = new List<int>()
+                    savesList = new List<int>(),
+                    LikesCount = 2100
                 },
                 new OwlModel
                 {
@@ -289,13 +289,14 @@ namespace InterTwitter.Services.Owl
                     AuthorId = 3,
                     Date = new DateTime(2020, 8, 5, 18, 30, 25),
                     Text = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
-                    MediaType = OwlType.Gif,
+                    MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
                         "https://uc.uxpin.com/files/614612/609600/www.GIFCreator.me_W6dTbP.gif"
                     },
                     likesList = new List<int>(),
-                    savesList = new List<int>()
+                    savesList = new List<int>(),
+                    LikesCount = 3199
                 },
                 new OwlModel
                 {
@@ -305,7 +306,8 @@ namespace InterTwitter.Services.Owl
                     Text = $"This guest post by Charlin Agramonte elaborates on how multilingual support is one of the most common requirements for mobile apps and the simplicity of building mobile apps with #Xamarin that handle multiple languages.",
                     MediaType = OwlType.NoMedia,
                     likesList = new List<int>(),
-                    savesList = new List<int>()
+                    savesList = new List<int>(),
+                    LikesCount = 210
                 },
                 new OwlModel
                 {
@@ -316,10 +318,11 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.Video,
                     Media = new List<string>()
                     {
-                        "https://twitter.com/i/status/1262782634335383554"
+                        "http://vjs.zencdn.net/v/oceans.mp4"
                     },
                     likesList = new List<int>(),
-                    savesList = new List<int>()
+                    savesList = new List<int>(),
+                    LikesCount = 200
                 },
                 new OwlModel
                 {
@@ -329,7 +332,8 @@ namespace InterTwitter.Services.Owl
                     Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone.",
                     MediaType = OwlType.NoMedia,
                     likesList = new List<int>(),
-                    savesList = new List<int>()
+                    savesList = new List<int>(),
+                    LikesCount = 280
                 },
                 new OwlModel
                 {
@@ -348,7 +352,8 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
                     },
                     likesList = new List<int>(),
-                    savesList = new List<int>()
+                    savesList = new List<int>(),
+                    LikesCount = 10000
                 }
             };
 

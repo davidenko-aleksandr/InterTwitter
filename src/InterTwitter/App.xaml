@@ -4,7 +4,9 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
                         xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-                        xmlns:controls="clr-namespace:InterTwitter.Controls"
+                        xmlns:controls="clr-namespace:InterTwitter.Controls" xmlns:templates="clr-namespace:InterTwitter.Views.Templates" 
+                        xmlns:local="clr-namespace:InterTwitter.Enums" xmlns:templates1="clr-namespace:InterTwitter.Helpers" 
+                        xmlns:templates2="clr-namespace:InterTwitter.Views.OwlTemplates"
                         android:Application.WindowSoftInputModeAdjust="Resize">
 
     <Application.Resources>
@@ -134,8 +136,39 @@
             <Setter Property="Margin" 
                     Value="0,12,0,0"/>
             
-        </Style> 
+        </Style>
 
+        <ResourceDictionary>
+
+            <templates2:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
+
+            <templates2:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
+
+            <templates2:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
+
+            <templates2:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
+
+            <local:OwlTemplateSelector x:Key="OwlTemplateSelector"
+                                       OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
+                                       OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
+                                       OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
+                                       OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>
+
+            <templates:PostOneImageTemplate x:Key="PostOneImageTemplate"/>
+
+            <templates:PostFewImageTemplate x:Key="PostFewImageTemplate"/>
+
+            <templates:PostNoMediaTemplate x:Key="PostNoMediaTemplate"/>
+
+            <templates:PostVideoTemplate x:Key="PostVideoTemplate"/>
+
+            <templates1:PostTemplateSelector x:Key="PostTemplateSelector"
+                                             PostOneImageTemplate="{StaticResource PostOneImageTemplate}"
+                                             PostFewImageTemplate="{StaticResource PostFewImageTemplate}"
+                                             PostNoMediaTemplate="{StaticResource PostNoMediaTemplate}"
+                                             PostVideoTemplate="{StaticResource PostVideoTemplate}"/>
+        </ResourceDictionary>
+        
     </Application.Resources>
 
 </prism:PrismApplication>

@@ -135,6 +135,5 @@ namespace InterTwitter.ViewModels
         }
 
         #endregion
-
     }
 }

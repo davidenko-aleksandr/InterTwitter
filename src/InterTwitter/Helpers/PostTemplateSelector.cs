@@ -1,19 +1,19 @@
 ﻿using InterTwitter.ViewModels.OwlItems;
 using Xamarin.Forms;
 
-namespace InterTwitter.Enums
+namespace InterTwitter.Helpers
 {
-    public class OwlTemplateSelector : DataTemplateSelector
+    public class PostTemplateSelector : DataTemplateSelector
     {
         #region -- Public properties --
 
-        public DataTemplate OwlOneImageTemplate { get; set; }
+        public DataTemplate PostOneImageTemplate { get; set; }
 
-        public DataTemplate OwlFewImageTemplate { get; set; }
+        public DataTemplate PostFewImageTemplate { get; set; }
 
-        public DataTemplate OwlNoMediaTemplate { get; set; }
+        public DataTemplate PostNoMediaTemplate { get; set; }
 
-        public DataTemplate OwlVideoTemplate { get; set; }
+        public DataTemplate PostVideoTemplate { get; set; }
 
         #endregion
 
@@ -25,19 +25,19 @@ namespace InterTwitter.Enums
 
             if (item is OwlOneImageViewModel)
             {
-                dataTemplate = OwlOneImageTemplate;
+                dataTemplate = PostOneImageTemplate;
             }
             else if (item is OwlFewImagesViewModel)
             {
-                dataTemplate = OwlFewImageTemplate;
+                dataTemplate = PostFewImageTemplate;
             }
             else if (item is OwlNoMediaViewModel)
             {
-                dataTemplate = OwlNoMediaTemplate;
+                dataTemplate = PostNoMediaTemplate;
             }
             else if (item is OwlVideoViewModel)
             {
-                dataTemplate = OwlVideoTemplate;
+                dataTemplate = PostVideoTemplate;
             }
             else
             {
