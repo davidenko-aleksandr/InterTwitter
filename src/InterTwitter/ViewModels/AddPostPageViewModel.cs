@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using InterTwitter.Enums;
@@ -6,6 +8,8 @@ using InterTwitter.Helpers;
 using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Services.Owl;
+using InterTwitter.Services.Permission;
+using Plugin.Media.Abstractions;
 using Prism.Navigation;
 
 namespace InterTwitter.ViewModels
@@ -14,18 +18,40 @@ namespace InterTwitter.ViewModels
     {
         private readonly IOwlService _owlService;
         private readonly IAuthorizationService _authorizationService;
-        private OwlType _owlType = OwlType.NoMedia;
+        private readonly IMedia _mediaPlugin;
+        private readonly IPermissionService _permissionService;
 
         public AddPostPageViewModel(INavigationService navigationService,
                                     IOwlService owlService,
+                                    IMedia mediaPlugin,
+                                    IPermissionService permissionService,
                                     IAuthorizationService authorizationService)
                                    : base(navigationService)
         {
             _owlService = owlService;
             _authorizationService = authorizationService;
+            _mediaPlugin = mediaPlugin;
+            _permissionService = permissionService;
+
+            OwlType = OwlType.NoMedia;
+            OwlMedia = new ObservableCollection<string>();
         }
 
         #region -- Public Properties --
+
+        private OwlType _owlType;
+        public OwlType OwlType
+        {
+            get => _owlType;
+            set => SetProperty(ref _owlType, value);
+        }
+
+        private ObservableCollection<string> _owlMedia;
+        public ObservableCollection<string> OwlMedia
+        {
+            get => _owlMedia;
+            set => SetProperty(ref _owlMedia, value);
+        }
 
         private string _owlText;
         public string OwlText
@@ -40,6 +66,7 @@ namespace InterTwitter.ViewModels
             get => _authorAvatar;
             set => SetProperty(ref _authorAvatar, value);
         }
+
 
         public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
 
@@ -78,9 +105,10 @@ namespace InterTwitter.ViewModels
             {
                 var owl = new OwlModel()
                 {
-                    MediaType = _owlType,
+                    MediaType = OwlType,
                     Date = DateTime.Now,
-                    Text = _owlText
+                    Text = OwlText,
+                    Media = new List<string>(OwlMedia)
                 };
 
                 await _owlService.AddOwlAsync(owl);
@@ -89,9 +117,43 @@ namespace InterTwitter.ViewModels
             }
         }
 
-        private Task OnMediaCommandAsync()
+        private async Task OnMediaCommandAsync()
         {
-            return Task.FromResult(true);
+            if (_mediaPlugin.IsPickPhotoSupported)
+            {
+                if (_owlType == OwlType.Video || _owlType == OwlType.Gif)
+                {
+                    _owlMedia.Clear();
+                }
+                else
+                {
+                    //_owlType is compatible with adding images
+                }
+
+                if (_owlMedia.Count < 6)
+                {
+                    MediaFile file = await _mediaPlugin.PickPhotoAsync();
+
+                    if (file != null)
+                    {
+                        OwlMedia.Add(file.Path);
+                        OwlMedia = new ObservableCollection<string>(OwlMedia);
+                        OwlType = _owlMedia.Count == 1 ? OwlType.OneImage : OwlType.FewImages;
+                    }
+                    else
+                    {
+                        //Currentfile == null;
+                    }
+                }
+                else
+                {
+                    //TODO toast max 6 photos
+                }
+            }
+            else
+            {
+                //Pick photo is not supported;
+            }
         }
 
         private Task OnGifCommand()
@@ -99,9 +161,43 @@ namespace InterTwitter.ViewModels
             return Task.FromResult(true);
         }
 
-        private Task OnVideoCommand()
+        private async Task OnVideoCommand()
         {
-            return Task.FromResult(true);
+            if (_mediaPlugin.IsPickVideoSupported)
+            {
+                if (_owlType == OwlType.OneImage || _owlType == OwlType.FewImages || _owlType == OwlType.Gif)
+                {
+                    _owlMedia.Clear();
+                }
+                else
+                {
+                    //_owlType is compatible with adding video
+                }
+
+                if (_owlMedia.Count == 0)
+                {
+                    MediaFile file = await _mediaPlugin.PickVideoAsync();
+
+                    if (file != null)
+                    {
+                        _owlMedia.Add(file.Path);
+                        OwlMedia = new ObservableCollection<string>(OwlMedia);
+                        OwlType = OwlType.Video;
+                    }
+                    else
+                    {
+                        //Currentfile == null;
+                    }
+                }
+                else
+                {
+                    //TODO toast max 1 video
+                }
+            }
+            else
+            {
+                //Pick video is not supported;
+            }
         }
 
         #endregion
