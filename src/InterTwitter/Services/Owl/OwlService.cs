@@ -23,6 +23,8 @@ namespace InterTwitter.Services.Owl
         {
             _userService = userService;
             _authorizationService = authorizationService;
+
+            InitMock();
         }
 
         #region -- IOwlService Implementation --
@@ -35,6 +37,12 @@ namespace InterTwitter.Services.Owl
             {
                 if (owlModel is not null)
                 {
+                    var res =  await _authorizationService.GetAuthorizedUserAsync();
+                    var author = res.Result;
+
+                    owlModel.Id = _owlsMock.Count;
+                    owlModel.AuthorId = author.Id;
+
                     _owlsMock.Add(owlModel);
                     result.SetSuccess();
                 }
@@ -57,8 +65,6 @@ namespace InterTwitter.Services.Owl
 
             try
             {
-                InitMock();
-
                 List<OwlViewModel> owls = new List<OwlViewModel>();
 
                 foreach (OwlModel owl in _owlsMock)
@@ -79,12 +85,6 @@ namespace InterTwitter.Services.Owl
                         case OwlType.FewImages:
                             {
                                 owls.Add(owlVM = new OwlFewImagesViewModel(owl, author));
-                                break;
-                            }
-
-                        case OwlType.Album:
-                            {
-                                owls.Add(owlVM = new OwlAlbumViewModel(owl, author));
                                 break;
                             }
 
@@ -191,7 +191,7 @@ namespace InterTwitter.Services.Owl
             owlModel = new OwlModel
             {
                 Id = _owlsMock.Count,
-                AuthorId = 1,
+                AuthorId = 0,
                 Date = DateTime.Now,
                 Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e #hi #GIRLSLIKEIT",
                 MediaType = OwlType.Album,
@@ -298,7 +298,7 @@ namespace InterTwitter.Services.Owl
                 AuthorId = 1,
                 Date = DateTime.Now,
                 Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
-                MediaType = OwlType.Album,
+                MediaType = OwlType.FewImages,
                 Media = new List<string>()
                 {
                     "https://icdn.lenta.ru/images/2020/01/28/17/20200128170822958/square_320_9146846fb3b1bfae5672755bc1896214.jpg",
@@ -316,14 +316,15 @@ namespace InterTwitter.Services.Owl
             owlModel = new OwlModel
             {
                 Id = _owlsMock.Count,
-                AuthorId = 1,
+                AuthorId = 2,
                 Date = DateTime.Now,
                 Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
                 MediaType = OwlType.FewImages,
                 Media = new List<string>()
                 {
                     "https://kor.ill.in.ua/m/610x385/2457536.jpg",
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TyjVGHZ5enIB5v4ixtwheiBzB_seknSyWQ&usqp=CAU",
+                    "https://data.whicdn.com/images/50617398/original.jpg",
+
                 }
             };
 
@@ -500,41 +501,33 @@ namespace InterTwitter.Services.Owl
 
             _owlsMock.Add(owlModel);
 
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                MediaType = OwlType.Video,
+                Media = new List<string>()
+                {
+                    "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+                }
+            };
+
+            _owlsMock.Add(owlModel);
+
+            owlModel = new OwlModel
+            {
+                Id = _owlsMock.Count,
+                AuthorId = 1,
+                Date = DateTime.Now,
+                Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone.",
+                MediaType = OwlType.NoMedia,
+            };
+
+            _owlsMock.Add(owlModel);
+
             _owlsMock.OrderBy(x => x.Date);
-
-
-            //_owlsMock.Add(new OwlNoMediaViewModel()
-            //{
-            //    Id = 1,
-            //    AuthorId = 1,
-            //    AuthorAvatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTztRLQ_Wq4fE2jBk97nbACnuE2FEaBWKAUtg&usqp=CAU",
-            //    PostDate = DateTime.Now.ToString("dd.MM.yyyy"),
-            //    PostTime = DateTime.Now.ToString("HH:mm"),
-            //    AuthorNickName = "Rocky Balboa",
-            //    Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone.",
-            //});
-            //_owlsMock.Add(new OwlGifViewModel()
-            //{
-            //    Id = 1,
-            //    AuthorId = 1,
-            //    AuthorAvatar = "https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop",
-            //    PostDate = DateTime.Now.ToString("dd.MM.yyyy"),
-            //    PostTime = DateTime.Now.ToString("HH:mm"),
-            //    AuthorNickName = "cute cats",
-            //    Text = "There may be some funny text here",
-            //    Gif = "https://i.gifer.com/Ar.gif",
-            //});
-            //_owlsMock.Add(new OwlVideoViewModel()
-            //{
-            //    Id = 1,
-            //    AuthorId = 1,
-            //    AuthorAvatar = "https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop",
-            //    PostDate = DateTime.Now.ToString("dd.MM.yyyy"),
-            //    PostTime = DateTime.Now.ToString("HH:mm"),
-            //    AuthorNickName = "cute cats",
-            //    Text = "There may be some funny text here",
-            //    Video = "https://youtu.be/aIwTGjLmfVM",
-            //});
         }
 
         #endregion

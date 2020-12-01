@@ -8,13 +8,14 @@ using InterTwitter.Extensions;
 using InterTwitter.Helpers;
 using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
+using InterTwitter.ViewModels.Helpers;
 using InterTwitter.Views;
 using Prism.Navigation;
 using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
 {
-    public class MenuPageViewModel : BaseViewModel
+    public class MenuPageViewModel : BaseViewModel, IAppearingAware
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
@@ -34,8 +35,8 @@ namespace InterTwitter.ViewModels
 
         #region -- Public properties --
 
-        private UserModel _authorizedUser;
-        public UserModel AuthorizedUser
+        private UserViewModel _authorizedUser;
+        public UserViewModel AuthorizedUser
         {
             get => _authorizedUser;
             set => SetProperty(ref _authorizedUser, value);
@@ -98,11 +99,19 @@ namespace InterTwitter.ViewModels
                     }
                 }
             }
+            
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await SetUserDataAsync();
+            //if (parameters.TryGetValue(Constants.Navigation.User, out UserViewModel user))
+            //{
+            //    AuthorizedUser = user;
+            //}
+            //else
+            //{
+            //    await SetUserDataAsync();
+            //}
         }
 
         #endregion
@@ -111,7 +120,11 @@ namespace InterTwitter.ViewModels
 
         private async Task OnGoToProfilePageCommandAsync()
         {
-            await NavigationService.NavigateAsync(nameof(ProfilePage), new NavigationParameters(), useModalNavigation:true, true);
+            var navParameters = new NavigationParameters
+            {
+                { Constants.Navigation.User, AuthorizedUser}
+            };
+            await NavigationService.NavigateAsync(nameof(ProfilePage), navParameters, useModalNavigation: true, true);
         }
 
         private async Task OnLogoutCommandAsync()
@@ -128,18 +141,25 @@ namespace InterTwitter.ViewModels
                 var errorText = Resources.AppResource.LogOutError;
                 _userDialogs.Toast(errorText);
             }
-      
+
         }
 
-        private async Task OnNavigationCommandAsync(MenuItemViewModel item)
+        private async Task OnSelectTabCommandAsync(MenuItemViewModel item)
         {
             NavigationService.FixedSelectTab(item.PageType);
             IsPresented = false;
         }
 
+        private async Task OnNavigateCommandAsync(MenuItemViewModel arg) 
+        {
+            //navigate to settings
+        }
+
         private void InitMenuItems()
         {
-            ICommand navigationCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnNavigationCommandAsync);
+            ICommand selectTabCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnSelectTabCommandAsync);
+
+            ICommand navigateCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnNavigateCommandAsync);
 
             var collection = new ObservableCollection<MenuItemGroup>
             {
@@ -150,28 +170,28 @@ namespace InterTwitter.ViewModels
                         Text = "Home",
                         PageType = typeof(HomePage),
                         Icon = "ic_home_gray",
-                        NavigationCommand = navigationCommand
+                        NavigationCommand = selectTabCommand
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Search",
                         PageType = typeof(SearchPage),
                         Icon = "ic_search_gray",
-                        NavigationCommand = navigationCommand
+                        NavigationCommand = selectTabCommand
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Notifications",
                         PageType = typeof(NotificationsPage),
                         Icon = "ic_notifications_gray",
-                        NavigationCommand = navigationCommand
+                        NavigationCommand = selectTabCommand
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Direct messages",
                         PageType = typeof(MessagesPage),
                         Icon = "ic_messages_gray",
-                        NavigationCommand = navigationCommand
+                        NavigationCommand = selectTabCommand
                     },
                 },
                 new MenuItemGroup(true)
@@ -179,9 +199,9 @@ namespace InterTwitter.ViewModels
                     new MenuItemViewModel()
                     {
                         Text = "Settings",
-                        PageType = typeof(MessagesPage),
+                        PageType = typeof(AddPostPage),
                         Icon = "ic_setting",
-                        NavigationCommand = navigationCommand
+                        NavigationCommand = navigateCommand 
                     },
                 }
             };
@@ -198,6 +218,16 @@ namespace InterTwitter.ViewModels
         {
             var result = await _authorizationService.GetAuthorizedUserAsync();
             AuthorizedUser = result.Result;
+        }
+
+        public async void OnAppearing()
+        {
+            await SetUserDataAsync();
+        }
+
+        public void OnDissAppearing()
+        {
+           
         }
 
         #endregion

@@ -11,6 +11,9 @@ using Prism.Ioc;
 using Prism.Unity;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using Plugin.Media;
+using InterTwitter.Services.Permission;
+using DLToolkit.Forms.Controls;
 
 namespace InterTwitter
 {
@@ -26,6 +29,8 @@ namespace InterTwitter
         protected override async void OnInitialized()
         {
             InitializeComponent();
+
+            FlowListView.Init();
 
             await NavigateAsync();
         }
@@ -43,16 +48,20 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<ChangeProfilePage,ChangeProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<AddPostPage, AddPostPageViewModel>();
 
             //plugins
             containerRegistry.RegisterInstance(UserDialogs.Instance);
             containerRegistry.RegisterInstance(CrossSettings.Current);
+            containerRegistry.RegisterInstance(CrossMedia.Current);
 
             //services
             containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
             containerRegistry.RegisterInstance<IOwlService>(Container.Resolve<OwlService>());
+            containerRegistry.RegisterInstance<IPermissionService>(Container.Resolve<PermissionService>());
         }
 
         #endregion
@@ -64,8 +73,10 @@ namespace InterTwitter
             var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
 
             var path = isAuthorized ? nameof(MenuPage) : nameof(LogInPage);
-            
+
             await NavigationService.NavigateAsync(path);
+
+            //await NavigationService.NavigateAsync(nameof(ProfilePage));
         }
 
         #endregion

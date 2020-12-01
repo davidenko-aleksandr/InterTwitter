@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
@@ -50,17 +49,16 @@
     <None Remove="Views\Authorization\**" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Resources\Fonts\Ubuntu-Bold.ttf" />
-    <None Remove="Resources\Fonts\Ubuntu-Regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Fonts\Ubuntu-Bold.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\Ubuntu-Regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.466" />
+
+    <PackageReference Include="CardsView" Version="2.6.8" />
+
+    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
+
     <PackageReference Include="NGraphics" Version="0.5.0" />
+    <PackageReference Include="Octane.Xam.VideoPlayer" Version="3.1.0" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
@@ -72,10 +70,15 @@
     <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1909" />
   </ItemGroup>
   <ItemGroup>
+
+    <Folder Include="Enums\" />
+
+    <Folder Include="Resources\" />
+
     <Folder Include="Models\" />
-    <Folder Include="Extensions\" />
     <Folder Include="Services\Authorization\" />
     <Folder Include="Behaviors\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Controls\AuthorizationNavigationBar.xaml">
@@ -87,12 +90,6 @@
     <EmbeddedResource Update="Resources\AppResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\EmptyTemplate.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlAlbumTemplate.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\OwlFewImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -107,6 +104,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\OwlVideoTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ProfilePageLikesTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ProfilPagePostsTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

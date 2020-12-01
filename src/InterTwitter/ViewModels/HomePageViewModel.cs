@@ -5,24 +5,29 @@ using InterTwitter.ViewModels.HomePageItems;
 using InterTwitter.Helpers;
 using InterTwitter.Models;
 using Prism.Navigation;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System;
+using InterTwitter.Views;
+using Xamarin.Essentials;
+using Acr.UserDialogs;
 
 namespace InterTwitter.ViewModels
 {
     public class HomePageViewModel : BaseViewModel
     {
         private readonly IOwlService _owlService;
+        private readonly IUserDialogs _userDialogs;
 
         public HomePageViewModel(
                                 INavigationService navigationService,
-                                IOwlService owlService)
+                                IOwlService owlService,
+                                IUserDialogs userDialogs)
                                 : base(navigationService)
         {
             _owlService = owlService;
+            _userDialogs = userDialogs;
         }
 
         #region -- Public properties --
@@ -50,17 +55,28 @@ namespace InterTwitter.ViewModels
 
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
 
-        #endregion       
+        public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
+
+        #endregion
 
         #region -- Overrides --
-       
+
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            Icon = "ic_home_blue";
+            var isConnected = Connectivity.NetworkAccess;
 
-            var owls = await _owlService.GetAllOwlsAsync();
+            if (isConnected == NetworkAccess.Internet)
+            {
+                Icon = "ic_home_blue";
 
-            Owls = new ObservableCollection<OwlViewModel>(owls.Result);
+                var owls = await _owlService.GetAllOwlsAsync();
+
+                Owls = new ObservableCollection<OwlViewModel>(owls.Result);
+            }
+            else
+            {
+                _userDialogs.Toast("No internet connection");
+            }
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -75,6 +91,11 @@ namespace InterTwitter.ViewModels
         private async Task OnOpenMenuCommandAsync()
         {
             MessagingCenter.Send<object>(this, Constants.OpenMenuMessage);
+        }
+
+        private async Task OnAddPostCommandAsync()
+        {
+            await NavigationService.NavigateAsync(nameof(AddPostPage), new NavigationParameters(), useModalNavigation: true, true);
         }
 
         #endregion

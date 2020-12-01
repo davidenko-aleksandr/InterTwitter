@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       x:Class="InterTwitter.Views.ChangeProfilePage"
+                       xmlns:controls="clr-namespace:InterTwitter.Controls"
+                       xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                       xmlns:resources="clr-namespace:InterTwitter.Resources"
+                       xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                       xmlns:views="clr-namespace:InterTwitter.Views">
+
+    <ScrollView >
+
+        <Grid BackgroundColor="#FCFDFE">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.24*"/>
+            <RowDefinition Height="0.17*"/>
+            <RowDefinition Height="0.17*"/>
+            <RowDefinition Height="0.17*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <!--NAVIGATION BAR BLOCK-->
+        <controls:ClickableContentView Grid.Row="0" 
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="End"
+                                       Margin="10,0,0,5"
+                                       IsVisible="{Binding IsBackButtonVisible}"
+                                       Command="{Binding GoBackCommand}">
+
+            <Image Source="{x:Static resources:AppResource.LeftImage}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+
+        </controls:ClickableContentView>
+
+        <Label Grid.Row="0"
+               Text="{x:Static resources:AppResource.ChangeProfileLable}"
+               TextColor="#02060E"
+               FontSize="18"
+               FontAttributes="Bold"
+               FontFamily="Ubuntu"
+               Margin="0,0,0,5"
+               VerticalOptions="End"
+               HorizontalOptions="Center"/>
+
+        <!--SAVE BUTTON-->
+        <controls:ClickableContentView Grid.Row="0"
+                                       VerticalOptions="End"
+                                       HorizontalOptions="End"
+                                       Margin="0,0,10,5"
+                                       Command="{Binding SaveProfileCommand}">
+            
+            <Image Source="{x:Static resources:AppResource.SaveIcon}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>            
+            
+        </controls:ClickableContentView>
+
+        <!--BACKGROUND PICTURE BLOCK-->        
+        <ffimageloading:CachedImage Grid.Row="1"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand"                                    
+                                    Margin="0"
+                                    Opacity="0.5"
+                                    HeightRequest="160"
+                                    DownsampleToViewSize="True"
+                                    ErrorPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
+                                    LoadingPlaceholder="{x:Static resources:AppResource.PicProfileHeaderImage}"
+                                    Source="{Binding User.ProfileHeaderImage}"
+                                    Aspect="AspectFill"/>
+
+            <BoxView Grid.Row="1"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     BackgroundColor="#8002060E"
+                />
+
+            <Frame Grid.Row="1" 
+                   WidthRequest="48"
+                   HeightRequest="48"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   BackgroundColor="#02060E"
+                   BorderColor="#02060E"
+                   CornerRadius="24"
+                   Padding="0">
+
+            <controls:ClickableContentView Command="{Binding SetHeaderImageCommand}">
+
+                <ffimageloading:CachedImage VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            DownsampleToViewSize="True"
+                                            Margin="10"
+                                            WidthRequest="24"
+                                            HeightRequest="24"            
+                                            BackgroundColor="#02060E"
+                                            Source="{x:Static resources:AppResource.AddPhotoIcon}"
+                                            Aspect="AspectFit">                
+
+                </ffimageloading:CachedImage>
+                
+            </controls:ClickableContentView>
+
+        </Frame>
+        
+        <!--PROFILE DATA BLOCK--> 
+        <controls:ClickableContentView Grid.Row="2"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="Start"
+                                       WidthRequest="60"
+                                       HeightRequest="60"
+                                       Padding="0"
+                                       Margin="10,-36,0,0"
+                                       Command="{Binding SetAvatarCommand}">
+           
+            <Grid VerticalOptions="CenterAndExpand"
+                  HorizontalOptions="CenterAndExpand"
+                  BackgroundColor="Transparent">
+                
+                  <ffimageloading:CachedImage HeightRequest="52"
+                                              WidthRequest="52"                                    
+                                              VerticalOptions="Start"
+                                              HorizontalOptions="Start"
+                                              Margin="0"
+                                              DownsampleToViewSize="True"
+                                              Aspect="AspectFit"                                              
+                                              Source="{Binding User.Picture}">
+                      
+                      <ffimageloading:CachedImage.Transformations>
+                          
+                          <fftransformations:CircleTransformation BorderSize="8"
+                                                                  BorderHexColor="#FCFDFE"/>
+                          
+                      </ffimageloading:CachedImage.Transformations> 
+
+                  </ffimageloading:CachedImage>
+                
+                    <BoxView VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             HeightRequest="48"
+                             WidthRequest="48"
+                             CornerRadius="24"
+                             BackgroundColor="#8002060E"/>
+
+                    <ffimageloading:CachedImage HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                HeightRequest="24"
+                                                WidthRequest="24"
+                                                Source="{x:Static resources:AppResource.AddPhotoIcon}">
+
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CornersTransformation CornersTransformType="AllRounded"/>
+                        </ffimageloading:CachedImage.Transformations>
+
+                    </ffimageloading:CachedImage>
+
+                </Grid>
+
+        </controls:ClickableContentView>
+
+        <!--NAME ENTRY-->
+        <controls:CustomEntry Grid.Row="2" 
+                              NameText="{x:Static resources:AppResource.NameText}"
+                              HorizontalOptions="Fill"
+                              Placeholder="{x:Static resources:AppResource.NameText}"
+                              VerticalOptions="End"
+                              Text="{Binding User.Name}"
+                              Margin="20,0"/>
+        
+        <!--EMEIL ENTRY-->
+         <controls:CustomEntry Grid.Row="3" 
+                               NameText="{x:Static resources:AppResource.EmailText}"
+                               Placeholder="{x:Static resources:AppResource.EmailText}"
+                               Text="{Binding User.Email}"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="End"
+                               Margin="20,0"/>
+        
+        <!--OLD PASSWORD ENTRY-->
+        <controls:CustomEntry Grid.Row="4" 
+                              NameText="{x:Static resources:AppResource.OldPasswordText}"
+                              Placeholder="{x:Static resources:AppResource.OldPasswordText}"
+                              Text="{Binding OldPassword}"
+                              HorizontalOptions="Fill"
+                              VerticalOptions="End"
+                              IsPassword="True"
+                              Margin="20,0"/>
+         
+        <!--NEW PASSWORD ENTRY-->
+        <controls:CustomEntry Grid.Row="5" 
+                              NameText="{x:Static resources:AppResource.NewPasswordText}"
+                              Placeholder="{x:Static resources:AppResource.NewPasswordText}"
+                              Text="{Binding NewPassword}"
+                              HorizontalOptions="Fill"
+                              VerticalOptions="End"
+                              IsPassword="True"
+                              Margin="20,0"/>        
+
+    </Grid>
+        
+    </ScrollView>
+
+</views:BaseContentPage>
