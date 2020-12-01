@@ -47,7 +47,7 @@ namespace InterTwitter.ViewModels
         {
             Icon = "ic_notifications_blue";
            
-            await FillNotificationList();
+            await FillNotificationListAsync();
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -59,7 +59,7 @@ namespace InterTwitter.ViewModels
 
         #region -- Private helpers --
 
-        private async Task FillNotificationList()
+        private async Task FillNotificationListAsync()
         {
             var current = Connectivity.NetworkAccess;
 
@@ -67,7 +67,7 @@ namespace InterTwitter.ViewModels
             {
                 var notificationsResult = await _notificationService.GetNotificationCollectionAsync();
 
-                if(notificationsResult.Result != null)
+                if(notificationsResult.Result is not null)
                 {
                     NotificationList = notificationsResult.Result;
                 }

@@ -5,21 +5,29 @@ namespace InterTwitter.Extensions
 {
     public static class NotificationViewModelExtension
     {
-        public static NotificationModel ConvertToModel(this NotificationViewModel viewModel)
+        public static NotificationModel ToModel(this NotificationViewModel viewModel)
         {
-            var notification = new NotificationModel
+            NotificationModel notification = null;
+            if (viewModel is not null)
             {
-                Id = viewModel.Id,
-                AuthorId = viewModel.AuthorId,
-                OwlId = viewModel.OwlId,
-                OwlText = viewModel.OwlText,
-                Action = viewModel.Action,
-                MediaType = viewModel.MediaType,
-                UserAvatar = viewModel.UserAvatar,
-                UserId = viewModel.UserId,
-                UserName = viewModel.UserName,
-                MediaList =viewModel.MediaList
-            };
+                notification = new NotificationModel
+                {
+                    Id = viewModel.Id,
+                    AuthorId = viewModel.AuthorId,
+                    OwlId = viewModel.OwlId,
+                    OwlText = viewModel.OwlText,
+                    Action = viewModel.Action,
+                    MediaType = viewModel.MediaType,
+                    UserAvatar = viewModel.UserAvatar,
+                    UserId = viewModel.UserId,
+                    UserName = viewModel.UserName,
+                    MediaList = viewModel.MediaList
+                };
+            }
+            else
+            {
+                //viewmodel is null
+            }
 
             return notification;
         }

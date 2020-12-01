@@ -99,7 +99,7 @@ namespace InterTwitter.Services.Notification
 
                     foreach (var item in currentUserCollection)
                     {
-                        var viewModel = item.ConvertToViewModel();
+                        var viewModel = item.ToViewModel();
                         finalCollection.Add(viewModel);
                     }
 

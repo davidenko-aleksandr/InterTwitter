@@ -5,17 +5,25 @@ namespace InterTwitter.Extensions
 {
     static class UserViewModelExtension 
     {
-        public static UserModel ConvertToUserModel(this UserViewModel userViewModel)
+        public static UserModel ToUserModel(this UserViewModel viewModel)
         {
-            var user = new UserModel
+            UserModel user = null;
+            if(viewModel is not null)
             {
-                Id = userViewModel.Id,
-                Name = userViewModel.Name,
-                Email = userViewModel.Email,
-                Password = userViewModel.Password,
-                Avatar = userViewModel.Avatar,
-                ProfileHeaderImage = userViewModel.ProfileHeaderImage
-            };
+                user = new UserModel
+                {
+                    Id = viewModel.Id,
+                    Name = viewModel.Name,
+                    Email = viewModel.Email,
+                    Password = viewModel.Password,
+                    Avatar = viewModel.Avatar,
+                    ProfileHeaderImage = viewModel.ProfileHeaderImage
+                };
+            }
+            else
+            {
+                //viewmodel is null
+            }
 
             return user;
         }
