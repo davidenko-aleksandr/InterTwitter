@@ -88,8 +88,6 @@
         <!--POST EDITOR-->
         <Editor Grid.Row="1"
                 Grid.Column="1"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"
                 Placeholder="Start writing"
                 PlaceholderColor="#66696E"
                 Text="{Binding OwlText, Mode=TwoWay}"
@@ -101,17 +99,19 @@
                     VerticalOptions="EndAndExpand">
 
             <!--BOTTOM BAR-->
-            <StackLayout VerticalOptions="EndAndExpand">
+            <StackLayout VerticalOptions="EndAndExpand"
+                         x:Name="mediaBar"
+                         Margin="0">
 
                 <BoxView HeightRequest="1"
-                     Color="#DEDFE1"
-                     VerticalOptions="StartAndExpand"/>
+                         Color="#DEDFE1"
+                         VerticalOptions="StartAndExpand"/>
 
                 <StackLayout Orientation="Horizontal">
 
                     <!--ADD MEDIA BUTTON-->
                     <controls:ClickableContentView Margin="10"
-                                               Command="{Binding MediaCommand}">
+                                                   Command="{Binding MediaCommand}">
 
                         <Image Source="ic_media"
                                Aspect="AspectFill"/>
@@ -120,7 +120,7 @@
 
                     <!--ADD GIF BUTTON-->
                     <controls:ClickableContentView Margin="10"
-                                               Command="{Binding GifCommand}">
+                                                   Command="{Binding GifCommand}">
 
                         <Image Source="ic_gif"/>
 
@@ -128,7 +128,7 @@
 
                     <!--ADD VIDEO BUTTON-->
                     <controls:ClickableContentView Margin="10"
-                                               Command="{Binding VideoCommand}">
+                                                   Command="{Binding VideoCommand}">
 
                         <Image Source="ic_video"/>
 
