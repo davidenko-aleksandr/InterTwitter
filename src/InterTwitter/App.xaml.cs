@@ -46,6 +46,7 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<PostPage, PostPageViewModel>();
 
             //plugins
             containerRegistry.RegisterInstance(UserDialogs.Instance);

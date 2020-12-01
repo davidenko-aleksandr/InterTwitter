@@ -8,31 +8,7 @@
                         x:Class="InterTwitter.Views.HomePage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
-
-    <views:BaseContentPage.Resources>
-
-        <ResourceDictionary>
-
-            <templates:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
-            
-            <templates:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
-            
-            <templates:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
-            
-            <templates:OwlGifTemplate x:Key="OwlGifTemplate"/>
-            
-            <templates:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
-            
-            <local:OwlTemplateSelector x:Key="OwlTemplateSelector"
-                                       OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
-                                       OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
-                                       OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
-                                       OwlGifTemplate ="{StaticResource OwlGifTemplate}"
-                                       OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>
-        </ResourceDictionary>
-
-    </views:BaseContentPage.Resources>
-
+    
     <Grid>
 
         <!-- CUSTOM COLLECTION VIEW -->
@@ -41,8 +17,10 @@
                                        ItemTemplate="{StaticResource OwlTemplateSelector}"
                                        ItemsUpdatingScrollMode="KeepItemsInView"
                                        BackgroundColor="{StaticResource bg_1}"
-                                       SelectionMode="None"
-                                       IsTabStop="True">
+                                       SelectionMode="Single"
+                                       IsTabStop="True"
+                                       SelectedItem="{Binding SelectedItem}"
+                                       SelectionChangedCommand="{Binding OpenPostCommand}">
 
             <controls:CustomCollectionView.Header>
 

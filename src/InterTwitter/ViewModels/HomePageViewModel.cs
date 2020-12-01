@@ -10,6 +10,9 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using Acr.UserDialogs;
+using System;
+using InterTwitter.Views;
+using InterTwitter.Enums;
 
 namespace InterTwitter.ViewModels
 {
@@ -51,12 +54,24 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _items, value);
         }
 
+        private OwlViewModel selectedItem;
+        public OwlViewModel SelectedItem
+        {
+            get => selectedItem;
+            set
+            {
+                SetProperty(ref selectedItem, value);
+            }
+        }
+
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
 
-        #endregion       
+        public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc(OnOpenPostCommandAsync);
+
+        #endregion
 
         #region -- Overrides --
-       
+
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             var isConnected = Connectivity.NetworkAccess;
@@ -87,6 +102,14 @@ namespace InterTwitter.ViewModels
         private async Task OnOpenMenuCommandAsync()
         {
             MessagingCenter.Send<object>(this, Constants.OpenMenuMessage);
+        }
+
+        private async Task OnOpenPostCommandAsync()
+        {
+             
+            NavigationParameters parameters = new NavigationParameters { {"OwlViewModel", SelectedItem } };
+
+            await NavigationService.NavigateAsync($"{nameof(PostPage)}", parameters);
         }
 
         #endregion
