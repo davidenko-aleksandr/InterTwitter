@@ -21,6 +21,14 @@ namespace InterTwitter.Controls
             set => SetValue(LeftIconClickCommandProperty, value);
         }
 
+        public static BindableProperty RightIconClickCommandProperty =
+    BindableProperty.Create(nameof(RightIconClickCommand), typeof(ICommand), typeof(TabbedPageNavigationBar));
+        public ICommand RightIconClickCommand
+        {
+            get => (ICommand)GetValue(RightIconClickCommandProperty);
+            set => SetValue(RightIconClickCommandProperty, value);
+        }
+
         public static BindableProperty MovingStateProperty =
            BindableProperty.Create(nameof(MovingState), typeof(MovingStates), typeof(TabbedPageNavigationBar), propertyChanged: OnMovingStatePropertyChanged);
         public MovingStates MovingState
@@ -51,6 +59,22 @@ namespace InterTwitter.Controls
         {
             get => (bool)GetValue(IsLeftIconVisibleProperty);
             set => SetValue(IsLeftIconVisibleProperty, value);
+        }
+
+        public static BindableProperty RightIconSourceProperty =
+            BindableProperty.Create(nameof(RightIconSource), typeof(string), typeof(TabbedPageNavigationBar));
+        public string RightIconSource
+        {
+            get => (string)GetValue(RightIconSourceProperty);
+            set => SetValue(RightIconSourceProperty, value);
+        }
+
+        public static BindableProperty IsRightIconVisibleProperty =
+            BindableProperty.Create(nameof(IsRightIconVisible), typeof(bool), typeof(TabbedPageNavigationBar));
+        public bool IsRightIconVisible
+        {
+            get => (bool)GetValue(IsRightIconVisibleProperty);
+            set => SetValue(IsRightIconVisibleProperty, value);
         }
 
         public static BindableProperty IsBottomLineVisibleProperty =
