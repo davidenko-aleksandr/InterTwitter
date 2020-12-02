@@ -112,6 +112,10 @@ namespace InterTwitter.Services.Owl
                     x.AuthorNickName.ToUpper().Contains(searchQuery?.ToUpper()) ||
                     x.Text.ToUpper().Contains(searchQuery?.ToUpper())));
                 }
+                else
+                {
+                    //searchQuery is not given
+                }
 
                 await Task.Delay(300);
 
