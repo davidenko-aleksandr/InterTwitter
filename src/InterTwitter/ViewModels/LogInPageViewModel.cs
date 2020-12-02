@@ -14,21 +14,21 @@ namespace InterTwitter.ViewModels
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
+        private readonly IKeyboardService _keyboardService;
 
         public LogInPageViewModel(
-                                  INavigationService navigationService,
-                                  IAuthorizationService authorizationService,
-                                  IKeyboardService keyboardService,
-                                  IUserDialogs userDialogs)
-                                 : base(navigationService)
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IKeyboardService keyboardService,
+            IUserDialogs userDialogs)
+            : base(navigationService)
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
+            _keyboardService = keyboardService;
 
-            keyboardService.KeyboardShown += KeyboardShown;
-            keyboardService.KeyboardHidden += KeyboardHidden;
-
-            IsButtonEnabled = false;
+            _keyboardService.KeyboardShown += KeyboardShown;
+            _keyboardService.KeyboardHidden += KeyboardHidden;
         }
 
         #region -- Public properties --
@@ -47,13 +47,6 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _passwordEntry, value);
         }
 
-        private bool _isButtonEnabled;
-        public bool IsButtonEnabled
-        {
-            get => _isButtonEnabled;
-            set => SetProperty(ref _isButtonEnabled, value);
-        }
-
         private bool _isKeyboardButtonVisible;
         public bool IsKeyboardButtonVisible
         {
@@ -68,17 +61,15 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isSignButtonsBlockVisible, value);
         }
 
+        private double _keyboardButtonTranslationY;
+        public double KeyboardButtonTranslationY
+        {
+            get => _keyboardButtonTranslationY;
+            set => SetProperty(ref _keyboardButtonTranslationY, value);
+        }
+
         public ICommand LogInCommand => SingleExecutionCommand.FromFunc(OnLogInCommandAsync);
         public ICommand SignUpCommand => SingleExecutionCommand.FromFunc(OnSignUpCommandAsync);
-
-        #endregion
-
-        #region -- Overrides --
-
-        public async override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            await CheckAuthorizedUserAsync();
-        }
 
         #endregion
 
@@ -121,19 +112,6 @@ namespace InterTwitter.ViewModels
 
         }
 
-        private async Task CheckAuthorizedUserAsync()
-        {
-            var authorizedResult = await _authorizationService.GetAuthorizedUserAsync();
-            if(authorizedResult.IsSuccess)
-            {
-                await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
-            }
-            else
-            {
-                //user not authorized
-            }
-
-        }
         private Task OnSignUpCommandAsync()
         {
             return NavigationService.NavigateAsync(nameof(SignUpMainPage));
@@ -141,14 +119,21 @@ namespace InterTwitter.ViewModels
 
         private void KeyboardHidden(object sender, System.EventArgs e)
         {
-            IsSignButtonsBlockVisible = true;
             IsKeyboardButtonVisible = false;
+            IsSignButtonsBlockVisible = true;
+
+            KeyboardButtonTranslationY = 0.0d;
         }
 
         private void KeyboardShown(object sender, System.EventArgs e)
         {
             IsSignButtonsBlockVisible = false;
             IsKeyboardButtonVisible = true;
+
+            var keyboardHeight = _keyboardService.FrameHeight;
+
+            KeyboardButtonTranslationY = keyboardHeight != 0.0f ? -keyboardHeight : KeyboardButtonTranslationY;
+
         }
 
         #endregion

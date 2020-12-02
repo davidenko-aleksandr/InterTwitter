@@ -19,10 +19,10 @@ namespace InterTwitter.ViewModels
         private OwlViewModel _owlViewModel;
 
         public PostPageViewModel(
-                                INavigationService navigationService,
-                                IUserDialogs userDialogs,
-                                IPostActionService postActionService)
-                                : base(navigationService)
+            INavigationService navigationService,
+            IUserDialogs userDialogs,
+            IPostActionService postActionService)
+            : base(navigationService)
         {
             _userDialogs = userDialogs;
             _postActionService = postActionService;

@@ -22,8 +22,8 @@ namespace InterTwitter.Services.Notification
         private Stack<NotificationModel> _notificationMock;
 
         public NotificationService(
-                                   ISettingsService settingsService,
-                                   IAuthorizationService authorizationService)
+            ISettingsService settingsService,
+            IAuthorizationService authorizationService)
         {
             _settingsService = settingsService;
             _authorizationService = authorizationService;

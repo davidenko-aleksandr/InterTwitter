@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
+                        xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:resources="clr-namespace:InterTwitter.Resources"
+                        xmlns:controls="clr-namespace:InterTwitter.Controls"
+                        xmlns:sh="http://sharpnado.com"
+                        x:Class="InterTwitter.Views.BookmarksPage"
+                        IconImageSource="{Binding Icon}"
+                        BackgroundColor="{StaticResource bg_1}">
+
+    <Grid>
+        
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- TABBED PAGE NAVIGATION BAR -->
+            <controls:TabbedPageNavigationBar Grid.Row="0"
+                                              IsRightIconVisible="True"
+                                              RightIconSource="ic_hidden_menu_gray.png"
+                                              RightIconClickCommand="{Binding MenuClickCommand}"
+                                              TitleText="{x:Static resources:AppResource.BookmarksTitle}"
+                                              IsBottomLineVisible="True"/>
+            <!-- CLICKABLE FRAME -->
+
+
+            <!-- COLLECTION VIEW -->
+            <controls:CustomCollectionView Grid.Row="1"
+                                           x:Name="customCollectionView" 
+                                           ItemsSource="{Binding BookmarksOwls}"
+                                           ItemTemplate="{StaticResource OwlTemplateSelector}"
+                                           ItemsUpdatingScrollMode="KeepItemsInView"
+                                           BackgroundColor="{StaticResource bg_1}"
+                                           SelectionMode="None"
+                                           IsTabStop="True"/>
+
+        </Grid>
+
+        <!-- DROP DOWN MENU -->
+        <BoxView BackgroundColor="Transparent"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand"
+                 IsVisible="{Binding IsMenuVisible}">
+
+
+            <BoxView.GestureRecognizers>
+
+                <TapGestureRecognizer Command="{Binding MenuClickCommand}"/>
+
+            </BoxView.GestureRecognizers>
+
+        </BoxView>
+
+        <sh:Shadows CornerRadius="25"
+                    Shades="{sh:SingleShade Offset='-5, 5', Opacity=0.2, Color=Black}"
+                    IsVisible="{Binding IsMenuVisible}">
+
+            <sh:Shadows.GestureRecognizers>
+
+                <TapGestureRecognizer Command="{Binding MenuClickCommand}"/>
+
+            </sh:Shadows.GestureRecognizers>   
+
+            <Frame BackgroundColor="{StaticResource bg_1}"
+                   CornerRadius="5"
+                   HasShadow="False"
+                   VerticalOptions="Start"
+                   HorizontalOptions="End"
+                   Margin="0,10,10,0"
+                   Padding="0">
+
+                <controls:ClickableContentView Padding="10"
+                                               VerticalOptions="Fill"
+                                               HorizontalOptions="Fill"
+                                               Command="{Binding ClearBookmarksCommand}">
+
+                    <Label Text="{x:Static resources:AppResource.DeleteBookmarksText}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+
+                </controls:ClickableContentView>
+
+            </Frame>
+            
+        </sh:Shadows>
+
+
+    </Grid>
+
+</views:BaseContentPage>

@@ -2,12 +2,18 @@
 using InterTwitter.Models;
 using Prism.Mvvm;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlViewModel : BindableBase
     {
-        public OwlViewModel(OwlModel model, UserModel author, int authorizedUserId)
+        public OwlViewModel() { }
+
+        public OwlViewModel(
+            OwlModel model,
+            UserModel author,
+            int authorizedUserId)
         {
             Id = model.Id;
             AuthorId = author.Id;
@@ -23,6 +29,17 @@ namespace InterTwitter.ViewModels.OwlItems
             SavesList = model.SavesList;
             Media = model.Media;
             MediaType = model.MediaType;
+            AllHashtags = new List<string>();
+
+            foreach (var word in Text.Split(' '))
+            {
+                var match = Regex.Match(word, Constants.RegexHashtag);
+
+                if (match.Success)
+                {
+                    AllHashtags.Add(match.Value);
+                }
+            }
         }
 
         #region -- Public properties --
@@ -124,6 +141,21 @@ namespace InterTwitter.ViewModels.OwlItems
             get => _owlType;
             set => SetProperty(ref _owlType, value);
         }
+
+        private List<string> _allHashtags;
+        public List<string> AllHashtags
+        {
+            get => _allHashtags;
+            set => SetProperty(ref _allHashtags, value);
+        }
+
+        private string _currentHashtag;
+        public string CurrentHashtag
+        {
+            get => _currentHashtag;
+            set => SetProperty(ref _currentHashtag, value);
+        }
+
         #endregion
     }
 }

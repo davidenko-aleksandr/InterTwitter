@@ -17,9 +17,9 @@ namespace InterTwitter.Services.PostAction
         private readonly IOwlService _owlService;
 
         public PostActionService(
-                                 ISettingsService settingsService,
-                                 INotificationService notificationService,
-                                 IOwlService owlService)
+            ISettingsService settingsService,
+            INotificationService notificationService,
+            IOwlService owlService)
         {
             _settingsService = settingsService;
             _owlService = owlService;
