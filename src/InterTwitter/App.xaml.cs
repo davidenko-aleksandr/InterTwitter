@@ -10,7 +10,6 @@ using Prism;
 using Prism.Ioc;
 using Prism.Unity;
 using Xamarin.Forms;
-using System.Threading.Tasks;
 using InterTwitter.Services.PostAction;
 using InterTwitter.Services.Notification;
 using Plugin.Media;
@@ -22,16 +21,17 @@ namespace InterTwitter
     public partial class App : PrismApplication
     {
         public App(IPlatformInitializer initializer = null)
-            : base(initializer)
+                   : base(initializer)
         {
         }
 
         #region -- Overrides --
 
-        protected override async void OnInitialized()
+        protected override void OnInitialized()
         {
             InitializeComponent();
 
+            Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
             FlowListView.Init();
 
             MainPage = new LogInPage();
@@ -46,7 +46,7 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<SignUpPasswordPage, SignUpPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
-            containerRegistry.RegisterForNavigation<MessagesPage, MessagesPageViewModel>();
+            containerRegistry.RegisterForNavigation<BookmarksPage, BookmarksPageViewModel>();
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();

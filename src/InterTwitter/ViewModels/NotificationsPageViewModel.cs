@@ -14,10 +14,10 @@ namespace InterTwitter.ViewModels
         private readonly INotificationService _notificationService;
 
         public NotificationsPageViewModel(
-                                          INavigationService navigationService,
-                                          IUserDialogs userDialogs,
-                                          INotificationService notificationService)
-                                          : base(navigationService)
+            INavigationService navigationService,
+            IUserDialogs userDialogs,
+            INotificationService notificationService)
+            : base(navigationService)
         {
             _userDialogs = userDialogs;
             _notificationService = notificationService;

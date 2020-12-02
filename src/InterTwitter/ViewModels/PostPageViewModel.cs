@@ -16,9 +16,9 @@ namespace InterTwitter.ViewModels
         private OwlViewModel _owlViewModel;
 
         public PostPageViewModel(
-                                INavigationService navigationService,
-                                IUserDialogs userDialogs)
-                                : base(navigationService)
+            INavigationService navigationService,
+            IUserDialogs userDialogs)
+            : base(navigationService)
         {
             _userDialogs = userDialogs;
         }

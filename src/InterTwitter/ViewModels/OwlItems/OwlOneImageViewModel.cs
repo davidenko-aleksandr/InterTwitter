@@ -5,7 +5,10 @@ namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlOneImageViewModel : OwlViewModel
     {
-        public OwlOneImageViewModel(OwlModel model, UserModel author) : base(model, author)
+        public OwlOneImageViewModel(
+            OwlModel model, 
+            UserModel author) 
+            : base(model, author)
         {
             PostPhoto = model.Media.First();
         }

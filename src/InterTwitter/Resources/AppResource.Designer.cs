@@ -70,6 +70,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bookmarks.
+        /// </summary>
+        public static string BookmarksTitle {
+            get {
+                return ResourceManager.GetString("BookmarksTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You need allow to use camera on your device.
         /// </summary>
         public static string CameraPermisionWarning {
@@ -138,6 +147,15 @@ namespace InterTwitter.Resources {
         public static string CreateAccountLabel {
             get {
                 return ResourceManager.GetString("CreateAccountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete all bookmarks.
+        /// </summary>
+        public static string DeleteBookmarksText {
+            get {
+                return ResourceManager.GetString("DeleteBookmarksText", resourceCulture);
             }
         }
         
