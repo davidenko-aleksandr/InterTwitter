@@ -31,6 +31,7 @@ namespace InterTwitter
         {
             InitializeComponent();
 
+            Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
             FlowListView.Init();
 
             await NavigationService.NavigateAsync(nameof(LogInPage));
