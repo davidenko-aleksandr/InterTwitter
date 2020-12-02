@@ -63,7 +63,7 @@ namespace InterTwitter.Services.Owl
             }
             catch (Exception ex)
             {
-                result.SetError($"{nameof(GetAllOwlsAsync)}: exception", "Something went wrong", ex);
+                result.SetError($"{nameof(AddOwlAsync)}: exception", "Something went wrong", ex);
             }
 
             return result;
@@ -145,42 +145,6 @@ namespace InterTwitter.Services.Owl
             return result;
         }
 
-        public async Task<AOResult<bool>> ClearUserBookmarks()
-        {
-            var result = new AOResult<bool>();
-
-            try
-            {
-                var owlResult = await GetSavedOwlsAsync();
-                var userResult = await _authorizationService.GetAuthorizedUserAsync();
-
-                if (userResult.IsSuccess && owlResult.IsSuccess)
-                {
-                    var authorizedUser = userResult.Result;
-
-                    var owls = owlResult.Result;
-
-                    foreach(var item in owls)
-                    {
-                        item.SavesList.Remove(authorizedUser.Id);
-                    }
-
-                    result.SetSuccess();
-                }
-                else
-                {
-                    result.SetFailure();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                result.SetError($"{nameof(GetAllOwlsAsync)}: exception", "Something went wrong", ex);
-            }
-
-            return result;
-        }
-
         public async Task<AOResult<IEnumerable<OwlViewModel>>> GetSavedOwlsAsync()
         {
             var result = new AOResult<IEnumerable<OwlViewModel>>();
@@ -212,6 +176,40 @@ namespace InterTwitter.Services.Owl
             return result;
         }
 
+        public async Task<AOResult<OwlViewModel>> GetOwlById(int owlId)
+        {
+            var result = new AOResult<OwlViewModel>();
+
+            try
+            {
+                var owlsResult = await GetAllOwlsAsync();
+                if (owlsResult.IsSuccess)
+                {
+                    var owl = owlsResult.Result.FirstOrDefault(x => x.Id == owlId);
+
+                    if (owl is not null)
+                    {
+                        result.SetSuccess(owl);
+                    }
+                    else
+                    {
+                        result.SetFailure();
+                    }
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetOwlById)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
         public async Task<AOResult<IEnumerable<OwlViewModel>>> GetAuthorOwlsAsync(int authorId)
         {
             var result = new AOResult<IEnumerable<OwlViewModel>>();
@@ -233,13 +231,13 @@ namespace InterTwitter.Services.Owl
             }
             catch (Exception ex)
             {
-                result.SetError($"{nameof(GetAllOwlsAsync)}: exception", "Something went wrong", ex);
+                result.SetError($"{nameof(GetAuthorOwlsAsync)}: exception", "Something went wrong", ex);
             }
 
             return result;
         }
 
-        public async Task<AOResult<bool>> UpdateOwlAsync(OwlModel owl)
+        public async Task<AOResult<bool>> UpdateOwlAsync(OwlViewModel owl)
         {
             var result = new AOResult<bool>();
 
@@ -249,13 +247,8 @@ namespace InterTwitter.Services.Owl
 
                 if (changingOwl is not null)
                 {
-                    changingOwl.AuthorId = owl.AuthorId;
-                    changingOwl.Date = owl.Date;
                     changingOwl.LikesList = owl.LikesList;
-                    changingOwl.Media = owl.Media;
-                    changingOwl.MediaType = owl.MediaType;
                     changingOwl.SavesList = owl.SavesList;
-                    changingOwl.Text = owl.Text;
 
                     result.SetSuccess(true);
                 }

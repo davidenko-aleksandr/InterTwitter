@@ -54,11 +54,11 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _authorizedUser, value);
         }
 
-        private OwlViewModel selectedItem;
+        private OwlViewModel _selectedItem;
         public OwlViewModel SelectedItem
         {
-            get => selectedItem;
-            set => SetProperty(ref selectedItem, value);            
+            get => _selectedItem;
+            set => SetProperty(ref _selectedItem, value);            
         }
 
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);

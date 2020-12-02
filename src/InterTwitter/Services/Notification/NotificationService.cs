@@ -6,6 +6,7 @@ using InterTwitter.Services.Authorization;
 using InterTwitter.Services.Settings;
 using InterTwitter.Services.UserService;
 using InterTwitter.ViewModels.NotificationItems;
+using InterTwitter.ViewModels.OwlItems;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,7 +34,7 @@ namespace InterTwitter.Services.Notification
 
         #region -- INotificationService implementation --
 
-        public async Task<AOResult<bool>> AddNotificationAsync(OwlModel actionOwl, OwlAction action)
+        public async Task<AOResult<bool>> AddNotificationAsync(OwlViewModel actionOwl, OwlAction action)
         {
             var result = new AOResult<bool>();
 

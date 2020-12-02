@@ -24,7 +24,10 @@
 
         <!-- COLLECTION VIEW -->
         <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding NotificationList}">
+                        ItemsSource="{Binding NotificationList}"
+                        SelectedItem="{Binding SelectedItem}"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding OpenPostCommand}">
 
             <CollectionView.ItemTemplate>
 

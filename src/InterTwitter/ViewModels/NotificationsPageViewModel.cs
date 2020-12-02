@@ -1,9 +1,13 @@
 ﻿using Acr.UserDialogs;
+using InterTwitter.Helpers;
 using InterTwitter.Services.Notification;
+using InterTwitter.Services.Owl;
 using InterTwitter.ViewModels.NotificationItems;
+using InterTwitter.ViewModels.OwlItems;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Essentials;
 
 namespace InterTwitter.ViewModels
@@ -12,8 +16,10 @@ namespace InterTwitter.ViewModels
     {
         private readonly IUserDialogs _userDialogs;
         private readonly INotificationService _notificationService;
+        private readonly IOwlService _owlService;
 
         public NotificationsPageViewModel(
+            IOwlService owlService,
             INavigationService navigationService,
             IUserDialogs userDialogs,
             INotificationService notificationService)
@@ -21,6 +27,7 @@ namespace InterTwitter.ViewModels
         {
             _userDialogs = userDialogs;
             _notificationService = notificationService;
+            _owlService = owlService;
         }
 
         #region -- Public Properties --
@@ -38,6 +45,15 @@ namespace InterTwitter.ViewModels
             get => _notificationList;
             set => SetProperty(ref _notificationList, value);
         }
+
+        private NotificationViewModel _selectedItem;
+        public NotificationViewModel SelectedItem
+        {
+            get => _selectedItem;
+            set => SetProperty(ref _selectedItem, value);
+        }
+
+        public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc(OnOpenPostCommandAsync);
 
         #endregion
 
@@ -58,6 +74,19 @@ namespace InterTwitter.ViewModels
         #endregion
 
         #region -- Private helpers --
+
+        private async Task OnOpenPostCommandAsync()
+        {
+            await _owlService.get
+            NavigationParameters parameters = new NavigationParameters
+            {
+                {
+                    "OwlViewModel", SelectedItem
+                }
+            };
+
+            await NavigationService.NavigateAsync(nameof(PostPage), parameters, useModalNavigation: true, true);
+        }
 
         private async Task FillNotificationListAsync()
         {

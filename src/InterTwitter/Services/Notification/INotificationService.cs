@@ -9,7 +9,7 @@ namespace InterTwitter.Services.Notification
 {
     public interface INotificationService
     {
-        Task<AOResult<bool>> AddNotificationAsync(OwlModel actionOwl, OwlAction action);
+        Task<AOResult<bool>> AddNotificationAsync(OwlViewModel actionOwl, OwlAction action);
 
         Task<AOResult<ObservableCollection<NotificationViewModel>>> GetNotificationCollectionAsync();
     }

@@ -159,7 +159,7 @@ namespace InterTwitter.Services.UserService
                     Email = "xamarin@bugs.net",
                     Name = "Xamarin",
                     Password = "Xamarin20",
-                    Avatar = "https://pbs.twimg.com/profile_images/471641515756769282/RDXWoY7W_400x400.png",
+                    Avatar = "https://camo.githubusercontent.com/c44a0cd002d743f55c5cace3716bd2dc87055d796fd681af90d564d669d5b27c/68747470733a2f2f672e7265646469746d656469612e636f6d2f46326d53715263654e5162596457684161546f307879347552345178516c424d524659416e3178724b4b342e6769663f773d33323026733d6232643165353665383237333333373130343861376532623664363162376638",
                     ProfileHeaderImage = "https://pbs.twimg.com/profile_banners/299659914/1401283128/1500x500",
                 }
             };
