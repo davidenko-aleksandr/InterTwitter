@@ -2,24 +2,34 @@
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                        xmlns:local="clr-namespace:InterTwitter.Enums"
                         xmlns:controls="clr-namespace:InterTwitter.Controls"
-                        xmlns:templates="clr-namespace:InterTwitter.Views.OwlTemplates"
                         xmlns:resources="clr-namespace:InterTwitter.Resources"
                         x:Class="InterTwitter.Views.HomePage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
-
+                        
     <Grid>
 
+        <!-- TABBED PAGE NAVIGATION BAR -->
+        <controls:TabbedPageNavigationBar  VerticalOptions="Start"
+                                           HorizontalOptions="FillAndExpand"
+                                           IsBottomLineVisible="False"
+                                           MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"
+                                           LeftIconClickCommand="{Binding OpenMenuCommand}"
+                                           IsLeftIconVisible="True"
+                                           LeftIconSource="{Binding AuthorizedUser.Avatar}"
+                                           TitleText="{x:Static resources:AppResource.HomeTitle}"/>
+        
         <!-- CUSTOM COLLECTION VIEW -->
         <controls:CustomCollectionView x:Name="customCollectionView" 
                                        ItemsSource="{Binding Owls}"
                                        ItemTemplate="{StaticResource OwlTemplateSelector}"
                                        ItemsUpdatingScrollMode="KeepItemsInView"
                                        BackgroundColor="{StaticResource bg_1}"
-                                       SelectionMode="None"
-                                       IsTabStop="True">
+                                       SelectionMode="Single"
+                                       IsTabStop="True"
+                                       SelectedItem="{Binding SelectedItem}"
+                                       SelectionChangedCommand="{Binding OpenPostCommand}">
 
             <controls:CustomCollectionView.Header>
 
@@ -40,16 +50,6 @@
 
         </controls:CustomCollectionView>
 
-        <!-- TABBED PAGE NAVIGATION BAR -->
-        <controls:TabbedPageNavigationBar  VerticalOptions="Start"
-                                           HorizontalOptions="FillAndExpand"
-                                           IsBottomLineVisible="False"
-                                           MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"
-                                           LeftIconClickCommand="{Binding OpenMenuCommand}"
-                                           IsLeftIconVisible="True"
-                                           LeftIconSource="{Binding AuthorizedUser.Avatar}"
-                                           TitleText="{x:Static resources:AppResource.HomeTitle}"/>
-
         <!-- MOVING IMAGE BUTTON -->
         <controls:MovingImageButton Source="ic_add_white.png"
                                     VerticalOptions="End"
@@ -62,7 +62,7 @@
                                     Padding="18"
                                     Command="{Binding AddPostCommand}"
                                     MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"/>
-
+        
     </Grid>
 
 </views:BaseContentPage>    

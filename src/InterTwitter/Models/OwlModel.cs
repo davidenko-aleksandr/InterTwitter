@@ -21,5 +21,8 @@ namespace InterTwitter.Models
         public List<int> likesList { get; set; }
 
         public List<int> savesList { get; set; }
+
+        public int LikesCount { get; set; }
+
     }
 }

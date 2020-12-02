@@ -3,7 +3,7 @@ using Prism.Mvvm;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace InterTwitter.ViewModels.HomePageItems
+namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlViewModel : BindableBase
     {
@@ -18,7 +18,7 @@ namespace InterTwitter.ViewModels.HomePageItems
             Text = model.Text;
             PostDate = model.Date.ToString("dd.MM.yyyy");
             PostTime = model.Date.ToString("HH:mm");
-            LikesCount = 142;
+            LikesCount = model.LikesCount;
             AllHashtags = new List<string>();
 
             foreach (var word in Text.Split(' '))
