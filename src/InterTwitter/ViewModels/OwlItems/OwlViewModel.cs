@@ -9,7 +9,9 @@ namespace InterTwitter.ViewModels.OwlItems
     {
         public OwlViewModel() { }
 
-        public OwlViewModel(OwlModel model, UserModel author)
+        public OwlViewModel(
+            OwlModel model, 
+            UserModel author)
         {
             Id = model.Id;
             AuthorId = author.Id;
@@ -18,7 +20,9 @@ namespace InterTwitter.ViewModels.OwlItems
             Text = model.Text;
             PostDate = model.Date.ToString("dd.MM.yyyy");
             PostTime = model.Date.ToString("HH:mm");
-            LikesCount = model.LikesCount;
+            LikesCount = model.LikesList.Count;
+            LikesList = model.LikesList;
+            SavesList = model.SavesList;
             AllHashtags = new List<string>();
 
             foreach (var word in Text.Split(' '))
@@ -83,6 +87,20 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _postTime, value);
         }
 
+        private List<int> _likestList;
+        public List<int> LikesList
+        {
+            get => _likestList;
+            set => SetProperty(ref _likestList, value);
+        }
+
+        private List<int> _savesList;
+        public List<int> SavesList
+        {
+            get => _savesList;
+            set => SetProperty(ref _savesList, value);
+        }
+        
         private int _likesCount;
         public int LikesCount
         {

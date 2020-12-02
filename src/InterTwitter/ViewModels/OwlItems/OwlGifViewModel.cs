@@ -5,7 +5,10 @@ namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlGifViewModel : OwlViewModel
     {
-        public OwlGifViewModel(OwlModel model, UserModel author) : base(model, author)
+        public OwlGifViewModel(
+            OwlModel model, 
+            UserModel author) 
+            : base(model, author)
         {
             Gif = model.Media.First();
         }

@@ -19,11 +19,12 @@ namespace InterTwitter.ViewModels
         private readonly IUserDialogs _userDialogs;
         private readonly IKeyboardService _keyboardService;
 
-        public SignUpMainPageViewModel(INavigationService navigationService,
-                                       IAuthorizationService authorizationService,
-                                       IKeyboardService keyboardService,
-                                       IUserDialogs userDialogs)
-                                       : base(navigationService)
+        public SignUpMainPageViewModel(
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IKeyboardService keyboardService,
+            IUserDialogs userDialogs)
+            : base(navigationService)
         {
             _userDialogs = userDialogs;
             _authorizationService = authorizationService;

@@ -19,11 +19,12 @@ namespace InterTwitter.ViewModels
         private string _email;
         private string _name;
 
-        public SignUpPasswordPageViewModel(INavigationService navigationService,
-                                           IAuthorizationService authorizationService,
-                                           IUserDialogs userDialogs,
-                                           IKeyboardService keyboardService)
-                                           : base(navigationService)
+        public SignUpPasswordPageViewModel(
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IUserDialogs userDialogs,
+            IKeyboardService keyboardService)
+            : base(navigationService)
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
@@ -70,7 +71,7 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _keyboardButtonTranslationY, value);
         }
 
-        public ICommand ConfirmCommand => SingleExecutionCommand.FromFunc(OnConfirmCommandAsync);
+        public ICommand ConfirmPasswordCommand => SingleExecutionCommand.FromFunc(OnConfirmCommandAsync);
                 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
                

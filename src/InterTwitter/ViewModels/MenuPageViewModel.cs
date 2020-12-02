@@ -19,10 +19,11 @@ namespace InterTwitter.ViewModels
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
 
-        public MenuPageViewModel(INavigationService navigationService,
-                                 IAuthorizationService authorizationService,
-                                 IUserDialogs userDialogs)
-                                 : base(navigationService)
+        public MenuPageViewModel(
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IUserDialogs userDialogs)
+            : base(navigationService)
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
@@ -92,9 +93,13 @@ namespace InterTwitter.ViewModels
                     {
                         item.Icon = item.IsSelected ? "ic_notifications_blue" : "ic_notifications_gray";
                     }
-                    else if (item.PageType == typeof(MessagesPage))
+                    else if (item.PageType == typeof(BookmarksPage))
                     {
-                        item.Icon = item.IsSelected ? "ic_messages_blue" : "ic_messages_gray";
+                        item.Icon = item.IsSelected ? "ic_bookmarks_blue" : "ic_bookmarks_gray";
+                    }
+                    else
+                    {
+                        //page type is not set
                     }
                 }
             }
@@ -175,8 +180,8 @@ namespace InterTwitter.ViewModels
                     },
                     new MenuItemViewModel()
                     {
-                        Text = "Direct messages",
-                        PageType = typeof(MessagesPage),
+                        Text = "Bookmarks",
+                        PageType = typeof(BookmarksPage),
                         Icon = "ic_messages_gray",
                         NavigationCommand = selectTabCommand
                     },

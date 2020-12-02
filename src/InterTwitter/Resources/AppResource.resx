@@ -249,6 +249,9 @@
   <data name="ExistEmailError" xml:space="preserve">
     <value>Email is already exist!</value>
   </data>
+  <data name="BookmarksTitle" xml:space="preserve">
+    <value>Bookmarks</value>
+  </data>
   <data name="LeftGreyImage" xml:space="preserve">
     <value>ic_left_grey.png</value>
   </data>
@@ -257,5 +260,8 @@
   </data>
   <data name="RightImage" xml:space="preserve">
     <value>ic_right.png</value>
+  </data>
+  <data name="DeleteBookmarksText" xml:space="preserve">
+    <value>Delete all bookmarks</value>
   </data>
 </root>
