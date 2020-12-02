@@ -12,6 +12,24 @@
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
 
+    <views:BaseContentPage.Resources>
+
+        <Style x:Key="EmptyStateStyle"
+               TargetType="Label">
+
+            <Setter Property="FontSize"
+                    Value="Large"/>
+            <Setter Property="HorizontalTextAlignment"
+                    Value="Center"/>
+            <Setter Property="LineBreakMode"
+                    Value="WordWrap"/>
+            <Setter Property="TextColor"
+                    Value="Black"/>
+
+        </Style>
+        
+    </views:BaseContentPage.Resources>
+
     <Grid RowSpacing="0">
 
         <Grid.RowDefinitions>
@@ -25,7 +43,7 @@
                Padding="0"
                HasShadow="False">
 
-        <StackLayout>
+            <StackLayout>
 
                 <Grid>
 
@@ -108,7 +126,6 @@
                        Text="Popular themes"/>
 
             </StackLayout>
-
 
             <BoxView Grid.Row="1" 
                      Margin="15,0"
@@ -231,6 +248,34 @@
                         BackgroundColor="{StaticResource bg_1}"
                         SelectionMode="None"
                         IsTabStop="True"/>
+
+        <StackLayout Grid.Row="0"
+                     Grid.RowSpan="3"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center"
+                     WidthRequest="200"
+                     Spacing="20"
+                     IsVisible="{Binding IsEmptyStateVisible}">
+
+            <Image Source="{x:Static resources:AppResource.EmptyState}"/>
+
+            <Label Style="{StaticResource EmptyStateStyle}">
+
+                <Label.FormattedText>
+
+                    <FormattedString>
+
+                        <Span Text="{x:Static resources:AppResource.NoResultsText}"/>
+
+                        <Span Text="{Binding EmptyStateText}"/>
+
+                    </FormattedString>
+                    
+                </Label.FormattedText>
+                
+            </Label>
+
+        </StackLayout>
 
     </Grid>
 

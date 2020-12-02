@@ -187,6 +187,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ic_empty_state.png.
+        /// </summary>
+        public static string EmptyState {
+            get {
+                return ResourceManager.GetString("EmptyState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email is already exist!.
         /// </summary>
         public static string ExistEmailError {
@@ -345,6 +354,15 @@ namespace InterTwitter.Resources {
         public static string NoInternetText {
             get {
                 return ResourceManager.GetString("NoInternetText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No results for .
+        /// </summary>
+        public static string NoResultsText {
+            get {
+                return ResourceManager.GetString("NoResultsText", resourceCulture);
             }
         }
         

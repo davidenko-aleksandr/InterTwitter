@@ -39,6 +39,13 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _searchQuery, value);
         }
 
+        private string _emptyStateText;
+        public string EmptyStateText
+        {
+            get => _emptyStateText;
+            set => SetProperty(ref _emptyStateText, value);
+        }
+
         private string _icon = "ic_search_gray";
         public string Icon
         {
@@ -93,6 +100,13 @@ namespace InterTwitter.ViewModels
         {
             get => _isFoundPostsVisible;
             set => SetProperty(ref _isFoundPostsVisible, value);
+        }        
+        
+        private bool _isEmptyStateVisible;
+        public bool IsEmptyStateVisible
+        {
+            get => _isEmptyStateVisible;
+            set => SetProperty(ref _isEmptyStateVisible, value);
         }
 
         private ObservableCollection<Grouping<string, OwlViewModel>> _popularThemes;
@@ -152,6 +166,7 @@ namespace InterTwitter.ViewModels
                 IsPopularThemesVisible = true;
                 SearchBarIconSource = AuthorizedUser.Avatar;
                 IsFoundPostsVisible = false;
+                IsEmptyStateVisible = false;
             }
         }
 
@@ -220,6 +235,9 @@ namespace InterTwitter.ViewModels
         {
             var answer = await _owlService.GetAllOwlsAsync(searchQuery);
             FoundPosts = new ObservableCollection<OwlViewModel>(answer.Result);
+            EmptyStateText = $"\"{SearchQuery}\"";
+            IsEmptyStateVisible = FoundPosts.Count == 0;
+
         }
 
         #endregion

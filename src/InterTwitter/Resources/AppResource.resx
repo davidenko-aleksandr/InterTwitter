@@ -264,4 +264,10 @@
   <data name="DeleteBookmarksText" xml:space="preserve">
     <value>Delete all bookmarks</value>
   </data>
+  <data name="EmptyState" xml:space="preserve">
+    <value>ic_empty_state.png</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>No results for </value>
+  </data>
 </root>
