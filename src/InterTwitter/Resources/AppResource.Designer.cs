@@ -232,6 +232,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ic_left_grey.png.
+        /// </summary>
+        public static string LeftGreyImage {
+            get {
+                return ResourceManager.GetString("LeftGreyImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ic_left.png.
         /// </summary>
         public static string LeftImage {
@@ -390,6 +399,15 @@ namespace InterTwitter.Resources {
         public static string RandomError {
             get {
                 return ResourceManager.GetString("RandomError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ic_right.png.
+        /// </summary>
+        public static string RightImage {
+            get {
+                return ResourceManager.GetString("RightImage", resourceCulture);
             }
         }
         

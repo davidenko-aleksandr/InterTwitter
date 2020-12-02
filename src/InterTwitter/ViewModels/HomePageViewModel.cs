@@ -54,7 +54,16 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _authorizedUser, value);
         }
 
+        private OwlViewModel selectedItem;
+        public OwlViewModel SelectedItem
+        {
+            get => selectedItem;
+            set => SetProperty(ref selectedItem, value);            
+        }
+
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
+
+        public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc(OnOpenPostCommandAsync);
 
         public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
 
@@ -110,6 +119,18 @@ namespace InterTwitter.ViewModels
             MessagingCenter.Send<object>(this, Constants.OpenMenuMessage);
         }
 
+        private async Task OnOpenPostCommandAsync()
+        {             
+            NavigationParameters parameters = new NavigationParameters 
+            { 
+                {
+                    "OwlViewModel", SelectedItem 
+                }
+            };
+
+            await NavigationService.NavigateAsync(nameof(PostPage), parameters, useModalNavigation: true, true);
+        }
+        
         private async Task OnAddPostCommandAsync()
         {
             await NavigationService.NavigateAsync(nameof(AddPostPage), new NavigationParameters(), useModalNavigation: true, true);

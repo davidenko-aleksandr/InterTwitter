@@ -4,8 +4,19 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                        xmlns:resources="clr-namespace:InterTwitter.Resources"
-                       xmlns:views="clr-namespace:InterTwitter.Views"                         
+                       xmlns:views="clr-namespace:InterTwitter.Views"
+                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                       ios:Page.UseSafeArea="False"
                        BackgroundColor="{StaticResource bg_1}">
+
+    <views:BaseContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS"
+                Value="0,45,0,0"/>
+            <On Platform="Android"
+                Value="0,20,0,0"/>
+        </OnPlatform>
+    </views:BaseContentPage.Padding>
 
     <Grid HorizontalOptions="Fill"
           RowSpacing="0"
@@ -16,16 +27,6 @@
             <RowDefinition Height="100" />
             <RowDefinition Height="150" />
             <RowDefinition Height="*" />
-            <RowDefinition>
-                <RowDefinition.Height>
-                    <OnPlatform x:TypeArguments="GridLength">
-                        <On Platform="Android"
-                            Value="0"/>
-                        <On Platform="iOS"
-                            Value="*"/>
-                    </OnPlatform>
-                </RowDefinition.Height>
-            </RowDefinition>
 
         </Grid.RowDefinitions>
 
@@ -67,104 +68,77 @@
 
         </StackLayout>
 
-        <ScrollView Grid.Row="2">
+        <!--SIGN BUTTONS BLOCK-->
+        <StackLayout Grid.Row="2"
+                     x:Name="signButtonsBlock" 
+                     IsVisible="{Binding IsSignButtonsBlockVisible}"
+                     Margin="0,40,0,0">
 
-            <StackLayout>
 
-                <!-- SIGN BUTTONS BLOCK -->
-                <StackLayout x:Name="signButtonsBlock" 
-                             VerticalOptions="StartAndExpand"
-                             IsVisible="{Binding IsSignButtonsBlockVisible}">
+            <!--LOG IN BUTTON-->
+            <Button Style="{StaticResource LoginButtonStyle}" 
+                    Text="{x:Static resources:AppResource.LogInButton}" 
+                    Command="{Binding LogInCommand}"/>
 
-                    <StackLayout.VerticalOptions>
-                        <OnPlatform x:TypeArguments="LayoutOptions">
-                            <On Platform="Android"
-                                Value="StartAndExpand"/>
-                            <On Platform="iOS"
-                                Value="CenterAndExpand"/>
-                        </OnPlatform>
-                    </StackLayout.VerticalOptions>
+            <!--SIGN UP BUTTON-->
+            <controls:ClickableContentView Command="{Binding SignUpCommand}"
+                                           Style="{StaticResource ClickableContentViewStyle}">
 
-                    <StackLayout.Margin>
-                        <OnPlatform x:TypeArguments="Thickness">
-                            <On Platform="Android"
-                                Value="0,40,0,0"/>
-                        </OnPlatform>
-                    </StackLayout.Margin>
+                <Label Style="{StaticResource UnderButtonLabelStyle}"
+                       Text="{x:Static resources:AppResource.SignUpButton}"/>
 
-                    <!-- LOG IN BUTTON -->
-                    <Button Style="{StaticResource LoginButtonStyle}" 
-                            Text="{x:Static resources:AppResource.LogInButton}" 
-                            Command="{Binding LogInCommand}"/>
+            </controls:ClickableContentView>
 
-                    <!-- SIGN UP BUTTON -->
-                    <controls:ClickableContentView Command="{Binding SignUpCommand}"
-                                                   Style="{StaticResource ClickableContentViewStyle}">
+        </StackLayout>
 
-                        <Label Style="{StaticResource UnderButtonLabelStyle}"
-                               Text="{x:Static resources:AppResource.SignUpButton}"/>
+        <!--KEYBOARD BUTTONS BLOCK-->
+        <Grid Grid.Row="2"
+              x:Name="keyboardButton"
+              TranslationY="{Binding KeyboardButtonTranslationY}"
+              IsVisible="{Binding IsKeyboardButtonVisible}"
+              VerticalOptions="EndAndExpand">
 
-                    </controls:ClickableContentView>
+            <!--KEYBOARD LOG IN BUTTON-->
+            <Button Style="{StaticResource KeyboardButton}"
+                    Text="{x:Static resources:AppResource.LogInButton}" 
+                    Command="{Binding LogInCommand}">
 
-                </StackLayout>
+                <Button.Triggers>
 
-                <!-- KEYBOARD BUTTONS BLOCK -->
-                <Grid x:Name="keyboardButton"
-                      IsVisible="{Binding IsKeyboardButtonVisible}"
-                      VerticalOptions="EndAndExpand">
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding Source={x:Reference emailEntry}, Path=IsEntryFocused}"
+                                 Value="True">
 
-                    <Grid.Margin>
-                        <OnPlatform x:TypeArguments="Thickness">
-                            <On Platform="iOS"
-                                Value="0,0,0,15"/>
-                        </OnPlatform>
-                    </Grid.Margin>
+                        <Setter Property="IsVisible"
+                                Value="False"/>
 
-                    <!-- KEYBOARD LOG IN BUTTON -->
-                    <Button Style="{StaticResource KeyboardButton}"
-                            Text="{x:Static resources:AppResource.LogInButton}" 
-                            Command="{Binding LogInCommand}">
+                    </DataTrigger>
 
-                        <Button.Triggers>
+                </Button.Triggers>
 
-                            <DataTrigger TargetType="Button"
-                                         Binding="{Binding Source={x:Reference emailEntry}, Path=IsEntryFocused}"
-                                         Value="True">
+            </Button>
 
-                                <Setter Property="IsVisible"
-                                        Value="False"/>
+            <!--KEYBOARD NEXT BUTTON-->
+            <Button Style="{StaticResource KeyboardButton}"
+                    Text="{x:Static resources:AppResource.NextButton}" 
+                    Clicked="NextButtonClicked">
 
-                            </DataTrigger>
+                <Button.Triggers>
 
-                        </Button.Triggers>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding Source={x:Reference passwordEntry}, Path=IsEntryFocused}"
+                                 Value="True">
 
-                    </Button>
+                        <Setter Property="IsVisible"
+                                Value="False"/>
 
-                    <!-- KEYBOARD NEXT BUTTON -->
-                    <Button Style="{StaticResource KeyboardButton}"
-                            Text="{x:Static resources:AppResource.NextButton}" 
-                            Clicked="NextButtonClicked">
+                    </DataTrigger>
 
-                        <Button.Triggers>
+                </Button.Triggers>
 
-                            <DataTrigger TargetType="Button"
-                                         Binding="{Binding Source={x:Reference passwordEntry}, Path=IsEntryFocused}"
-                                         Value="True">
+            </Button>
 
-                                <Setter Property="IsVisible"
-                                        Value="False"/>
-
-                            </DataTrigger>
-
-                        </Button.Triggers>
-
-                    </Button>
-
-                </Grid>
-
-            </StackLayout>
-
-        </ScrollView>
+        </Grid>
 
     </Grid>
 

@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataTemplate xmlns="http://xamarin.com/schemas/2014/forms" 
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+              xmlns:flowview="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+              xmlns:resources="clr-namespace:InterTwitter.Resources"
+              x:Class="InterTwitter.Views.Templates.NotificationTemplates.NotificationTemplate">
+
+    <Grid RowSpacing="0">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Padding="10"
+                     Orientation="Horizontal">
+
+            <ffimageloading:CachedImage Grid.Column="0"
+                                        Grid.Row="0"
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="Center"
+                                        Aspect="AspectFit"
+                                        Source="ic_like_blue.png"
+                                        Margin="5,0,15,0"
+                                        WidthRequest="23">
+
+                <ffimageloading:CachedImage.Triggers>
+
+                    <DataTrigger Binding="{Binding Action}"
+                                 Value="1"
+                                 TargetType="ffimageloading:CachedImage">
+
+                        <Setter Property="Source"
+                                Value="ic_bookmarks_blue.png"/>
+
+                    </DataTrigger>
+
+                </ffimageloading:CachedImage.Triggers>
+                
+            </ffimageloading:CachedImage>
+            
+            <!-- AVATAR AND LABELS BLOCK -->
+            <StackLayout>
+
+                <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Start"
+                             HorizontalOptions="Start">
+            
+                    <!-- AVATAR IMAGE -->
+                    <ffimageloading:CachedImage Source="{Binding UserAvatar}"
+                                                WidthRequest="22"
+                                                HeightRequest="22"
+                                                Aspect="AspectFit"
+                                                DownsampleToViewSize="true"
+                                                Margin="0,0,5,0">
+
+                        <ffimageloading:CachedImage.Transformations>
+
+                            <fftransformations:CircleTransformation/>
+
+                        </ffimageloading:CachedImage.Transformations>
+
+                    </ffimageloading:CachedImage>
+
+                    <!-- NAME LABEL -->
+
+                    <Label Text="{Binding UserName}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource tx_3}"
+                           LineBreakMode="TailTruncation"/>
+
+                    <!-- ACTION LABEL -->
+                    <Label Text="{x:Static resources:AppResource.LikedPostText}"
+                           FontSize="18"
+                           TextColor="{StaticResource tx_3}"
+                           LineBreakMode="TailTruncation">
+
+                        <Label.Triggers>
+
+                            <DataTrigger Binding="{Binding Action}"
+                                         Value="1"
+                                         TargetType="Label">
+
+                                <Setter Property="Text"
+                                        Value="{x:Static resources:AppResource.SavedPostText}"/>
+
+                            </DataTrigger>
+
+                        </Label.Triggers>
+
+                    </Label>
+
+                </StackLayout>
+
+                <!-- POST TEXT LABEL -->
+                <Label LineBreakMode ="TailTruncation"
+                       Text="{Binding OwlText}"
+                       FontSize="18"
+                       TextColor="{StaticResource tx_5}"/>
+
+                <!-- FLOW LIST VIEW -->
+                <flowview:FlowListView FlowColumnCount="6"
+                                       HasUnevenRows="False"
+                                       FlowItemsSource="{Binding MediaList}"
+                                       RowHeight="50"
+                                       VerticalScrollBarVisibility="Never"
+                                       HorizontalScrollBarVisibility="Never"
+                                       IsVisible="True">
+
+                    <flowview:FlowListView.FlowColumnTemplate>
+
+                        <DataTemplate>
+
+                            <ffimageloading:CachedImage Margin="2" 
+                                                        HorizontalOptions="Fill" 
+                                                        VerticalOptions="Fill"  
+                                                        Source="{Binding .}"
+                                                        Aspect="AspectFit">
+
+                                <ffimageloading:CachedImage.Transformations>
+
+                                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                             BottomLeftCornerSize="10"
+                                                                             TopLeftCornerSize="10"
+                                                                             BottomRightCornerSize="10"
+                                                                             TopRightCornerSize="10"/>
+
+                                </ffimageloading:CachedImage.Transformations>
+
+                            </ffimageloading:CachedImage>
+
+                        </DataTemplate>
+
+                    </flowview:FlowListView.FlowColumnTemplate>
+
+
+                    <flowview:FlowListView.Triggers>
+
+                        <DataTrigger Binding="{Binding MediaType}"
+                                     Value="2"
+                                     TargetType="flowview:FlowListView">
+
+                            <Setter Property="IsVisible"
+                                    Value="False"/>
+                            
+                        </DataTrigger>
+
+                    </flowview:FlowListView.Triggers>
+
+                </flowview:FlowListView>
+
+                <!-- VIDEO IMAGE AND LABEL-->
+                <StackLayout Orientation="Horizontal"
+                             IsVisible="False">
+                    
+                    <ffimageloading:CachedImage Source="ic_video.png"
+                                                Aspect="AspectFit"/>
+
+                    <Label Text="{x:Static resources:AppResource.VideoText}"
+                           FontSize="18"
+                           TextColor="{StaticResource tx_2}"/>
+
+                    <StackLayout.Triggers>
+
+                        <DataTrigger Binding="{Binding MediaType}"
+                                     Value="2"
+                                     TargetType="StackLayout">
+
+                            <Setter Property="IsVisible"
+                                    Value="True"/>
+
+                        </DataTrigger>
+
+                    </StackLayout.Triggers>
+
+                </StackLayout>
+                
+            </StackLayout>
+
+        </StackLayout>
+
+        <BoxView Grid.Row="1"
+                 Style="{StaticResource boxViewSeparator}"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill"/>
+        
+    </Grid>
+
+</DataTemplate>

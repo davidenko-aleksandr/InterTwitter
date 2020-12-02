@@ -34,7 +34,7 @@ namespace InterTwitter
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
             FlowListView.Init();
 
-            await NavigationService.NavigateAsync(nameof(LogInPage));
+            MainPage = new LogInPage();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -50,6 +50,7 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<PostPage, PostPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangeProfilePage,ChangeProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<AddPostPage, AddPostPageViewModel>();
 

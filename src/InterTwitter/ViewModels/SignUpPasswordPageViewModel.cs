@@ -15,6 +15,7 @@ namespace InterTwitter.ViewModels
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
+        private readonly IKeyboardService _keyboardService;
         private string _email;
         private string _name;
 
@@ -26,9 +27,10 @@ namespace InterTwitter.ViewModels
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
+            _keyboardService = keyboardService;
 
-            keyboardService.KeyboardShown += KeyboardShown;
-            keyboardService.KeyboardHidden += KeyboardHidden;
+            _keyboardService.KeyboardShown += KeyboardShown;
+            _keyboardService.KeyboardHidden += KeyboardHidden;
         }
 
         #region -- Public Properties --
@@ -59,6 +61,13 @@ namespace InterTwitter.ViewModels
         {
             get => _isSignButtonsBlockVisible;
             set => SetProperty(ref _isSignButtonsBlockVisible, value);
+        }
+
+        private double _keyboardButtonTranslationY;
+        public double KeyboardButtonTranslationY
+        {
+            get => _keyboardButtonTranslationY;
+            set => SetProperty(ref _keyboardButtonTranslationY, value);
         }
 
         public ICommand ConfirmCommand => SingleExecutionCommand.FromFunc(OnConfirmCommandAsync);
@@ -124,17 +133,23 @@ namespace InterTwitter.ViewModels
 
         private void KeyboardHidden(object sender, System.EventArgs e)
         {
-            IsSignButtonsBlockVisible = true;
             IsKeyboardButtonVisible = false;
+            IsSignButtonsBlockVisible = true;
+
+            KeyboardButtonTranslationY = 0.0d;
         }
 
         private void KeyboardShown(object sender, System.EventArgs e)
         {
             IsSignButtonsBlockVisible = false;
             IsKeyboardButtonVisible = true;
+
+            var keyboardHeight = _keyboardService.FrameHeight;
+
+            KeyboardButtonTranslationY = keyboardHeight != 0.0f ? -keyboardHeight : KeyboardButtonTranslationY;
+
         }
 
         #endregion
-
     }
 }
