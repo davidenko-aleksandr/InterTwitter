@@ -17,10 +17,11 @@ namespace InterTwitter.ViewModels
         private readonly IAuthorizationService _authorizationService;
         private OwlType _owlType = OwlType.NoMedia;
 
-        public AddPostPageViewModel(INavigationService navigationService,
-                                    IOwlService owlService,
-                                    IAuthorizationService authorizationService)
-                                   : base(navigationService)
+        public AddPostPageViewModel(
+            INavigationService navigationService,
+            IOwlService owlService,
+            IAuthorizationService authorizationService)
+            : base(navigationService)
         {
             _owlService = owlService;
             _authorizationService = authorizationService;

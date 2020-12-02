@@ -9,7 +9,9 @@ namespace InterTwitter.ViewModels.OwlItems
     {
         public OwlViewModel() { }
 
-        public OwlViewModel(OwlModel model, UserModel author)
+        public OwlViewModel(
+            OwlModel model, 
+            UserModel author)
         {
             Id = model.Id;
             AuthorId = author.Id;

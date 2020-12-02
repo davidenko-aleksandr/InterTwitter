@@ -19,10 +19,11 @@ namespace InterTwitter.ViewModels
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
 
-        public MenuPageViewModel(INavigationService navigationService,
-                                 IAuthorizationService authorizationService,
-                                 IUserDialogs userDialogs)
-                                 : base(navigationService)
+        public MenuPageViewModel(
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IUserDialogs userDialogs)
+            : base(navigationService)
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
@@ -95,6 +96,10 @@ namespace InterTwitter.ViewModels
                     else if (item.PageType == typeof(BookmarksPage))
                     {
                         item.Icon = item.IsSelected ? "ic_bookmarks_blue" : "ic_bookmarks_gray";
+                    }
+                    else
+                    {
+                        //page type is not set
                     }
                 }
             }

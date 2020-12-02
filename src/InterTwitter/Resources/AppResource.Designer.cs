@@ -151,6 +151,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete all bookmarks.
+        /// </summary>
+        public static string DeleteBookmarksText {
+            get {
+                return ResourceManager.GetString("DeleteBookmarksText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wrong Email.
         /// </summary>
         public static string EmailErrorMessage {

@@ -25,13 +25,13 @@ namespace InterTwitter.ViewModels
         public string CallerPropertyName { get; private set; }
 
         public ChangeProfilePageViewModel(
-                                          INavigationService navigatonService,
-                                          IUserService userService,
-                                          IMedia mediaPlugin,
-                                          IAuthorizationService authorizationService,
-                                          IUserDialogs userDialogs,
-                                          IPermissionService permissionService)
-                                         : base(navigatonService)
+            INavigationService navigatonService,
+            IUserService userService,
+            IMedia mediaPlugin,
+            IAuthorizationService authorizationService,
+            IUserDialogs userDialogs,
+            IPermissionService permissionService)
+            : base(navigatonService)
         {
             _userServcie = userService;
             _mediaPluggin = mediaPlugin;

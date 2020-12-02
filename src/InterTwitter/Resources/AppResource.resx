@@ -261,4 +261,7 @@
   <data name="RightImage" xml:space="preserve">
     <value>ic_right.png</value>
   </data>
+  <data name="DeleteBookmarksText" xml:space="preserve">
+    <value>Delete all bookmarks</value>
+  </data>
 </root>

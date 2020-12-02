@@ -19,11 +19,12 @@ namespace InterTwitter.ViewModels
         private string _email;
         private string _name;
 
-        public SignUpPasswordPageViewModel(INavigationService navigationService,
-                                           IAuthorizationService authorizationService,
-                                           IUserDialogs userDialogs,
-                                           IKeyboardService keyboardService)
-                                           : base(navigationService)
+        public SignUpPasswordPageViewModel(
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IUserDialogs userDialogs,
+            IKeyboardService keyboardService)
+            : base(navigationService)
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;

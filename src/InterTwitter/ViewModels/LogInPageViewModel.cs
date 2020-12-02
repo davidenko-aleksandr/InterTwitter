@@ -17,11 +17,11 @@ namespace InterTwitter.ViewModels
         private readonly IKeyboardService _keyboardService;
 
         public LogInPageViewModel(
-                                  INavigationService navigationService,
-                                  IAuthorizationService authorizationService,
-                                  IKeyboardService keyboardService,
-                                  IUserDialogs userDialogs)
-                                 : base(navigationService)
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IKeyboardService keyboardService,
+            IUserDialogs userDialogs)
+            : base(navigationService)
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;

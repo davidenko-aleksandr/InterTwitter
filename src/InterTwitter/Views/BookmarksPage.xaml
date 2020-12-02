@@ -3,36 +3,14 @@
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                         xmlns:resources="clr-namespace:InterTwitter.Resources"
-                        xmlns:controls="clr-namespace:InterTwitter.Controls" 
-                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates.OwlTemplates" 
-                        xmlns:local="clr-namespace:InterTwitter.Helpers" 
+                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                         xmlns:sh="http://sharpnado.com"
                         x:Class="InterTwitter.Views.BookmarksPage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
 
-    <views:BaseContentPage.Resources>
-
-        <ResourceDictionary>
-
-            <templates:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
-
-            <templates:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
-
-            <templates:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
-
-            <templates:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
-
-            <local:OwlTemplateSelector x:Key="OwlTemplateSelector"
-                                       OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
-                                       OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
-                                       OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
-                                       OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>
-        </ResourceDictionary>
-
-    </views:BaseContentPage.Resources>
-
     <Grid>
+        
         <Grid>
 
             <Grid.RowDefinitions>
@@ -100,7 +78,7 @@
                                                HorizontalOptions="Fill"
                                                Command="{Binding ClearBookmarksCommand}">
 
-                    <Label Text="Delete all bookmarks"
+                    <Label Text="{x:Static resources:AppResource.DeleteBookmarksText}"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"/>
 

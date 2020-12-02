@@ -19,8 +19,8 @@ namespace InterTwitter.Services.Owl
         private List<OwlModel> _owlsMock;
 
         public OwlService(
-                          IUserService userService,
-                          IAuthorizationService authorizationService)
+            IUserService userService,
+            IAuthorizationService authorizationService)
         {
             _userService = userService;
             _authorizationService = authorizationService;

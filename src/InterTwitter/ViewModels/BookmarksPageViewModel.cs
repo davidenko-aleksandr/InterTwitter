@@ -17,10 +17,10 @@ namespace InterTwitter.ViewModels
         private readonly IUserDialogs _userDialogs;
 
         public BookmarksPageViewModel(
-                                      INavigationService navigationService,
-                                      IOwlService owlService,
-                                      IUserDialogs userDialogs)
-                                      : base(navigationService)
+            INavigationService navigationService,
+            IOwlService owlService,
+            IUserDialogs userDialogs)
+            : base(navigationService)
         {
             _owlService = owlService;
             _userDialogs = userDialogs;

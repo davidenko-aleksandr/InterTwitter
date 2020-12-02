@@ -20,11 +20,11 @@ namespace InterTwitter.ViewModels
         private readonly IAuthorizationService _authorizationService;
 
         public HomePageViewModel(
-                                INavigationService navigationService,
-                                IOwlService owlService,
-                                IUserDialogs userDialogs,
-                                IAuthorizationService authorizationService)
-                                : base(navigationService)
+            INavigationService navigationService,
+            IOwlService owlService,
+            IUserDialogs userDialogs,
+            IAuthorizationService authorizationService)
+            : base(navigationService)
         {
             _owlService = owlService;
             _userDialogs = userDialogs;
