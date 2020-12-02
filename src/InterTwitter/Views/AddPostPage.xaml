@@ -21,8 +21,6 @@
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS"
                 Value="0,45,0,0"/>
-            <On Platform="Android"
-                Value="0,20,0,0"/>
         </OnPlatform>
     </views:BaseContentPage.Padding>
 
@@ -95,19 +93,19 @@
         </ffimageloading:CachedImage>
 
         <!--POST EDITOR-->
-        <Editor Grid.Row="1"
-                Grid.Column="1"
-                Placeholder="Start writing"
-                PlaceholderColor="#66696E"
-                HorizontalOptions="FillAndExpand"
-                Text="{Binding OwlText, Mode=TwoWay}"
-                x:Name="editor"/>
+        <controls:BorderlessEditor Grid.Row="1"
+                                   Grid.Column="1"
+                                   Placeholder="Start writing"
+                                   PlaceholderColor="#66696E"
+                                   HorizontalOptions="FillAndExpand"
+                                   Text="{Binding OwlText, Mode=TwoWay}"
+                                   x:Name="editor"/>
 
         <StackLayout Grid.Row="2"
                      Grid.Column="1">
 
-        <!-- FLOW LIST VIEW -->
-        <flowview:FlowListView 
+            <!-- FLOW LIST VIEW -->
+            <flowview:FlowListView 
                                FlowColumnCount="6"
                                HasUnevenRows="False"
                                FlowItemsSource="{Binding MediaItems}"
@@ -116,87 +114,97 @@
                                HorizontalScrollBarVisibility="Never"
                                IsVisible="True">
 
-            <flowview:FlowListView.FlowColumnTemplate>
+                <flowview:FlowListView.FlowColumnTemplate>
 
-                <DataTemplate>
+                    <DataTemplate>
 
-                    <Grid>
+                        <Grid>
 
-                        <ffimageloading:CachedImage Margin="10" 
+                            <ffimageloading:CachedImage Margin="10" 
                                                     HorizontalOptions="Fill" 
                                                     VerticalOptions="Fill"  
                                                     Source="{Binding MediaPath}"
                                                     Aspect="AspectFit">
 
-                            <ffimageloading:CachedImage.Transformations>
+                                <ffimageloading:CachedImage.Transformations>
 
-                                <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
                                                                          BottomLeftCornerSize="10"
                                                                          TopLeftCornerSize="10"
                                                                          BottomRightCornerSize="10"
                                                                          TopRightCornerSize="10"/>
 
-                            </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage.Transformations>
 
-                        </ffimageloading:CachedImage>
+                            </ffimageloading:CachedImage>
 
-                        <controls:ClickableContentView HeightRequest="30"
+                            <controls:ClickableContentView HeightRequest="30"
                                                        WidthRequest="30"
                                                        HorizontalOptions="End"
                                                        VerticalOptions="Start"
                                                        Command="{Binding RemoveItemCommand}"
                                                        CommandParameter="{Binding .}">
 
-                            <Image Source="ic_clear_filled"/>
+                                <Image Source="ic_clear_filled"/>
 
-                        </controls:ClickableContentView>
+                            </controls:ClickableContentView>
 
-                    </Grid>
+                        </Grid>
 
-                </DataTemplate>
+                    </DataTemplate>
 
-            </flowview:FlowListView.FlowColumnTemplate>
+                </flowview:FlowListView.FlowColumnTemplate>
 
-            <flowview:FlowListView.Triggers>
+                <flowview:FlowListView.Triggers>
 
-                <DataTrigger Binding="{Binding OwlType}"
-                             Value="2"
-                             TargetType="flowview:FlowListView">
+                    <DataTrigger Binding="{Binding OwlType}"
+                                 Value="2"
+                                 TargetType="flowview:FlowListView">
 
-                    <Setter Property="IsVisible"
-                            Value="False"/>
-                    
-                </DataTrigger>
+                        <Setter Property="IsVisible"
+                                Value="False"/>
 
-            </flowview:FlowListView.Triggers>
+                    </DataTrigger>
 
-        </flowview:FlowListView>
+                </flowview:FlowListView.Triggers>
 
-        <!-- VIDEO IMAGE AND LABEL-->
-        <StackLayout Orientation="Horizontal"
-                     IsVisible="False">
-            
-            <ffimageloading:CachedImage Source="ic_video.png"
-                                        Aspect="AspectFit"/>
+            </flowview:FlowListView>
 
-            <Label Text="Video"
-                   FontSize="18"
-                   TextColor="{StaticResource tx_2}"/>
+            <!-- VIDEO IMAGE AND LABEL-->
+            <StackLayout Orientation="Horizontal"
+                         IsVisible="False">
 
-            <StackLayout.Triggers>
+                <ffimageloading:CachedImage Source="ic_video.png"
+                                            Aspect="AspectFit"/>
 
-                <DataTrigger Binding="{Binding OwlType}"
-                             Value="2"
-                             TargetType="StackLayout">
+                <Label Text="Video"
+                       FontSize="18"
+                       TextColor="{StaticResource tx_2}"/>
 
-                    <Setter Property="IsVisible"
-                            Value="True"/>
+                <controls:ClickableContentView HeightRequest="30"
+                                               WidthRequest="30"
+                                               HorizontalOptions="End"
+                                               VerticalOptions="Start"
+                                               Command="{Binding RemoveVideoCommand}">
 
-                </DataTrigger>
+                    <Image Source="ic_clear_filled"/>
 
-            </StackLayout.Triggers>
+                </controls:ClickableContentView>
 
-        </StackLayout>
+                <StackLayout.Triggers>
+
+                    <DataTrigger Binding="{Binding OwlType}"
+                                 Value="2"
+                                 TargetType="StackLayout">
+
+                        <Setter Property="IsVisible"
+                                Value="True"/>
+
+                    </DataTrigger>
+
+                </StackLayout.Triggers>
+
+            </StackLayout>
 
 
         </StackLayout>

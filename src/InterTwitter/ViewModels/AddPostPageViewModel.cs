@@ -109,6 +109,8 @@ namespace InterTwitter.ViewModels
 
         public ICommand VideoCommand => SingleExecutionCommand.FromFunc(OnVideoCommand);
 
+        public ICommand RemoveVideoCommand => SingleExecutionCommand.FromFunc(OnRemoveVideoCommandAsync);
+
         #endregion
 
         #region -- Overrides --
@@ -129,6 +131,14 @@ namespace InterTwitter.ViewModels
         {
             MediaItems.Remove(arg);
 
+            RefreshCollection();
+
+            return Task.CompletedTask;
+        }
+
+        private Task OnRemoveVideoCommandAsync()
+        {
+            MediaItems.Clear();
             RefreshCollection();
 
             return Task.CompletedTask;
@@ -175,19 +185,26 @@ namespace InterTwitter.ViewModels
 
                     if (file != null)
                     {
-                        MediaItems.Add(new MediaItemViewModel(file.Path, _removeItemCommand));
-
-                        if (OwlType == OwlType.NoMedia)
+                        if (OwlType == OwlType.NoMedia || !CheckMediaIsGif(file.Path))
                         {
-                            MediaButtonEnabled = !CheckMediaIsGif(file.Path);
-                            OwlType = OwlType.OneImage;
+                            MediaItems.Add(new MediaItemViewModel(file.Path, _removeItemCommand));
+
+                            if (OwlType == OwlType.NoMedia)
+                            {
+                                MediaButtonEnabled = !CheckMediaIsGif(file.Path);
+                                OwlType = OwlType.OneImage;
+                            }
+                            else
+                            {
+                                OwlType = OwlType.FewImages;
+                            }
+
+                            RefreshCollection();
                         }
                         else
                         {
-                            OwlType = OwlType.FewImages;
+                            //you cannot add gif after photo
                         }
-
-                        RefreshCollection();
                     }
                     else
                     {
@@ -231,7 +248,11 @@ namespace InterTwitter.ViewModels
         {
             MediaItems = new ObservableCollection<MediaItemViewModel>(MediaItems);
 
-            if (MediaItems.Count == 0)
+            if (MediaItems.Count < 6 && OwlType == OwlType.FewImages)
+            {
+                MediaButtonEnabled = true;
+            }
+            else if (MediaItems.Count == 0)
             {
                 OwlType = OwlType.NoMedia;
                 MediaButtonEnabled = true;
