@@ -1,4 +1,5 @@
-﻿using InterTwitter.Models;
+﻿using InterTwitter.Enums;
+using InterTwitter.Models;
 using Prism.Mvvm;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -10,8 +11,9 @@ namespace InterTwitter.ViewModels.OwlItems
         public OwlViewModel() { }
 
         public OwlViewModel(
-            OwlModel model, 
-            UserModel author)
+            OwlModel model,
+            UserModel author,
+            int authorizedUserId)
         {
             Id = model.Id;
             AuthorId = author.Id;
@@ -21,8 +23,12 @@ namespace InterTwitter.ViewModels.OwlItems
             PostDate = model.Date.ToString("dd.MM.yyyy");
             PostTime = model.Date.ToString("HH:mm");
             LikesCount = model.LikesList.Count;
+            IsLiked = model.LikesList.Contains(authorizedUserId);
+            IsBookmarked = model.SavesList.Contains(authorizedUserId);
             LikesList = model.LikesList;
             SavesList = model.SavesList;
+            Media = model.Media;
+            MediaType = model.MediaType;
             AllHashtags = new List<string>();
 
             foreach (var word in Text.Split(' '))
@@ -87,11 +93,32 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _postTime, value);
         }
 
-        private List<int> _likestList;
+        private int _likesCount;
+        public int LikesCount
+        {
+            get => _likesCount;
+            set => SetProperty(ref _likesCount, value);
+        }
+
+        private bool _isLiked;
+        public bool IsLiked
+        {
+            get => _isLiked;
+            set => SetProperty(ref _isLiked, value);
+        }
+
+        private bool _isBookmarked;
+        public bool IsBookmarked
+        {
+            get => _isBookmarked;
+            set => SetProperty(ref _isBookmarked, value);
+        }
+
+        private List<int> _likesList;
         public List<int> LikesList
         {
-            get => _likestList;
-            set => SetProperty(ref _likestList, value);
+            get => _likesList;
+            set => SetProperty(ref _likesList, value);
         }
 
         private List<int> _savesList;
@@ -100,12 +127,19 @@ namespace InterTwitter.ViewModels.OwlItems
             get => _savesList;
             set => SetProperty(ref _savesList, value);
         }
-        
-        private int _likesCount;
-        public int LikesCount
+
+        private List<string> _media;
+        public List<string> Media
         {
-            get => _likesCount;
-            set => SetProperty(ref _likesCount, value);
+            get => _media;
+            set => SetProperty(ref _media, value);
+        }
+
+        private OwlType _mediaType;
+        public OwlType MediaType
+        {
+            get => _mediaType;
+            set => SetProperty(ref _mediaType, value);
         }
 
         private List<string> _allHashtags;

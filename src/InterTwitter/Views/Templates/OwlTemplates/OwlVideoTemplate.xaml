@@ -5,8 +5,8 @@
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
               xmlns:videoplayer="clr-namespace:Octane.Xamarin.Forms.VideoPlayer;assembly=Octane.Xamarin.Forms.VideoPlayer"
               x:Class="InterTwitter.Views.Templates.OwlTemplates.OwlVideoTemplate">
-    
-    <Grid Margin="10">
+
+    <Grid Margin="10, 0, 10, 0">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70" />
@@ -15,8 +15,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="1" />
+            <RowDefinition Height="1"/>
         </Grid.RowDefinitions>
 
         <!-- AUTHOR AVATAR IMAGE -->
@@ -92,9 +91,25 @@
                         x:Name="likeButton"
                         VerticalOptions="Center"
                         HorizontalOptions="End"
-                        ImageSource="ic_like_gray.png"
                         BackgroundColor="Transparent"
-                        WidthRequest="20">
+                        HeightRequest="34"
+                        CornerRadius="17"                       
+                        ImageSource="ic_like_gray.png"
+                        Command="{Binding BindingContext.LikeClickCommand,
+                                  Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
+                                  CommandParameter="{Binding .}">
+
+                    <Button.Triggers>
+
+                        <DataTrigger TargetType="Button"
+                                     Binding="{Binding Path=IsLiked}"
+                                     Value="true">
+
+                            <Setter Property="ImageSource" Value="ic_like_blue.png"/>
+
+                        </DataTrigger>
+
+                    </Button.Triggers>
 
                 </Button>
 
@@ -102,7 +117,22 @@
                 <Label Grid.Column="4"
                        HorizontalOptions="Start"
                        VerticalOptions="Center"
-                       Text="{Binding LikesCount}"/>
+                       TextColor="{StaticResource tx_5}"
+                       Text="{Binding LikesCount}">
+
+                    <Label.Triggers>
+
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding Path=IsLiked}"
+                                     Value="true">
+
+                            <Setter Property="TextColor" Value="{StaticResource bg_2}"/>
+
+                        </DataTrigger>
+
+                    </Label.Triggers>
+
+                </Label>
 
                 <!-- BOOKMARK BUTTON -->
                 <Button Grid.Column="5"
@@ -111,7 +141,24 @@
                         HorizontalOptions="End"
                         ImageSource="ic_bookmarks_gray.png"
                         BackgroundColor="Transparent"
-                        WidthRequest="20">
+                        WidthRequest="30"
+                        HeightRequest="34"
+                        CornerRadius="17"
+                        Command="{Binding BindingContext.BookmarkCommand,
+                                  Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
+                                  CommandParameter="{Binding .}">
+
+                    <Button.Triggers>
+
+                        <DataTrigger TargetType="Button"
+                                     Binding="{Binding Path=IsBookmarked}"
+                                     Value="true">
+
+                            <Setter Property="ImageSource" Value="ic_bookmarks_blue.png"/>
+
+                        </DataTrigger>
+
+                    </Button.Triggers>
 
                 </Button>
 
@@ -119,11 +166,11 @@
 
         </StackLayout>
 
-        <BoxView Grid.Row="2"
+        <BoxView Grid.Row="1"
                  Grid.ColumnSpan="2"
                  Style="{StaticResource boxViewSeparator}"
                  HorizontalOptions="Fill"
-                 VerticalOptions="Fill"/>
+                 VerticalOptions="End"/>
 
     </Grid>
 

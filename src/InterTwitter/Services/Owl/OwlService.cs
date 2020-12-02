@@ -2,6 +2,7 @@
 using InterTwitter.Helpers;
 using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
+using InterTwitter.Services.Settings;
 using InterTwitter.Services.UserService;
 using InterTwitter.ViewModels.OwlItems;
 using System;
@@ -15,15 +16,17 @@ namespace InterTwitter.Services.Owl
     {
         private readonly IUserService _userService;
         private readonly IAuthorizationService _authorizationService;
+        private readonly ISettingsService _settingsService;
 
         private List<OwlModel> _owlsMock;
 
-        public OwlService(
-            IUserService userService,
-            IAuthorizationService authorizationService)
+        public OwlService(IUserService userService,
+                          IAuthorizationService authorizationService,
+                          ISettingsService settingsService)
         {
             _userService = userService;
             _authorizationService = authorizationService;
+            _settingsService = settingsService;
 
             InitMock();
         }
@@ -88,25 +91,25 @@ namespace InterTwitter.Services.Owl
                     {
                         case OwlType.OneImage:
                             {
-                                owls.Add(owlVM = new OwlOneImageViewModel(owl, author));
+                                owls.Add(owlVM = new OwlOneImageViewModel(owl, author, _settingsService.AuthorizedUserId));
                                 break;
                             }
 
                         case OwlType.FewImages:
                             {
-                                owls.Add(owlVM = new OwlFewImagesViewModel(owl, author));
+                                owls.Add(owlVM = new OwlFewImagesViewModel(owl, author, _settingsService.AuthorizedUserId));
                                 break;
                             }
 
                         case OwlType.Video:
                             {
-                                owls.Add(owlVM = new OwlVideoViewModel(owl, author));
+                                owls.Add(owlVM = new OwlVideoViewModel(owl, author, _settingsService.AuthorizedUserId));
                                 break;
                             }
 
                         case OwlType.NoMedia:
                             {
-                                owls.Add(owlVM = new OwlNoMediaViewModel(owl, author));
+                                owls.Add(owlVM = new OwlNoMediaViewModel(owl, author, _settingsService.AuthorizedUserId));
                                 break;
                             }
 
@@ -239,7 +242,7 @@ namespace InterTwitter.Services.Owl
             return result;
         }
 
-        public async Task<AOResult<bool>> UpdateOwlAsync(OwlModel owl)
+        public async Task<AOResult<bool>> UpdateOwlAsync(OwlViewModel owl)
         {
             var result = new AOResult<bool>();
 
@@ -250,7 +253,6 @@ namespace InterTwitter.Services.Owl
                 if (changingOwl is not null)
                 {
                     changingOwl.AuthorId = owl.AuthorId;
-                    changingOwl.Date = owl.Date;
                     changingOwl.LikesList = owl.LikesList;
                     changingOwl.Media = owl.Media;
                     changingOwl.MediaType = owl.MediaType;
