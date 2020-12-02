@@ -5,7 +5,7 @@
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
               xmlns:flowview="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
               xmlns:resources="clr-namespace:InterTwitter.Resources"
-              x:Class="InterTwitter.Views.NotificationTemplates.NotificationTemplate">
+              x:Class="InterTwitter.Views.Templates.NotificationTemplates.NotificationTemplate">
 
     <Grid RowSpacing="0">
         

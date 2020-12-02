@@ -168,9 +168,6 @@
   <data name="InvalidUserDataText" xml:space="preserve">
     <value>Invalid user data</value>
   </data>
-  <data name="LeftImage" xml:space="preserve">
-    <value>ic_left.png</value>
-  </data>
   <data name="LikedPostText" xml:space="preserve">
     <value>liked your post</value>
   </data>
@@ -254,6 +251,9 @@
   </data>
   <data name="LeftGreyImage" xml:space="preserve">
     <value>ic_left_grey.png</value>
+  </data>
+  <data name="LeftImage" xml:space="preserve">
+    <value>ic_left.png</value>
   </data>
   <data name="RightImage" xml:space="preserve">
     <value>ic_right.png</value>

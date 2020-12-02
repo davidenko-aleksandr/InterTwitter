@@ -26,9 +26,6 @@ namespace InterTwitter.ViewModels
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
             _keyboardService = keyboardService;
-
-            _keyboardService.KeyboardShown += KeyboardShown;
-            _keyboardService.KeyboardHidden += KeyboardHidden;
         }
 
         #region -- Public properties --
@@ -78,6 +75,15 @@ namespace InterTwitter.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             await CheckAuthorizedUserAsync();
+
+            _keyboardService.KeyboardShown += KeyboardShown;
+            _keyboardService.KeyboardHidden += KeyboardHidden;
+        }
+
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            _keyboardService.KeyboardShown -= KeyboardShown;
+            _keyboardService.KeyboardHidden -= KeyboardHidden;
         }
 
         #endregion

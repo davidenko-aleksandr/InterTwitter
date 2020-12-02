@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace InterTwitter.Views.Templates
+namespace InterTwitter.Views.Templates.ProfilePageTemplates
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePageLikesTemplate : DataTemplate

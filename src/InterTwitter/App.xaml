@@ -5,8 +5,9 @@
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
                         xmlns:controls="clr-namespace:InterTwitter.Controls"  
                         xmlns:helpers="clr-namespace:InterTwitter.Helpers" 
-                        xmlns:owlTemplates="clr-namespace:InterTwitter.Views.OwlTemplates"
-                        xmlns:postTemplates="clr-namespace:InterTwitter.Views.PostTemplates">
+                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates"
+                        xmlns:owlTemplates="clr-namespace:InterTwitter.Views.Templates.OwlTemplates"
+                        xmlns:postTemplates="clr-namespace:InterTwitter.Views.Templates.PostTemplates">
 
     <Application.Resources>
        
@@ -136,6 +137,8 @@
         </Style>
 
         <ResourceDictionary>
+
+            <templates:EmptyTemplate x:Key="EmptyTemplate"/>
 
             <owlTemplates:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
 

@@ -398,11 +398,7 @@ namespace InterTwitter.Services.Owl
                     AuthorId = 2,
                     Date = DateTime.Now,
                     Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
-                    MediaType = OwlType.Gif,
-                    Media = new List<string>()
-                    {
-                        "https://i.gifer.com/Ar.gif"
-                    },
+                    MediaType = OwlType.NoMedia,
                     likesList = new List<int>(),
                     savesList = new List<int>(),
                     LikesCount = 200
@@ -444,11 +440,7 @@ namespace InterTwitter.Services.Owl
                     AuthorId = 3,
                     Date = new DateTime(2020, 8, 5, 18, 30, 25),
                     Text = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
-                    MediaType = OwlType.Gif,
-                    Media = new List<string>()
-                    {
-                        "https://uc.uxpin.com/files/614612/609600/www.GIFCreator.me_W6dTbP.gif"
-                    },
+                    MediaType = OwlType.NoMedia,
                     likesList = new List<int>(),
                     savesList = new List<int>(),
                     LikesCount = 200
@@ -557,11 +549,7 @@ namespace InterTwitter.Services.Owl
                     AuthorId = 2,
                     Date = DateTime.Now,
                     Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
-                    MediaType = OwlType.Gif,
-                    Media = new List<string>()
-                    {
-                        "https://i.gifer.com/Ar.gif"
-                    },
+                    MediaType = OwlType.NoMedia,
                     likesList = new List<int>(),
                     savesList = new List<int>(),
                     LikesCount = 240
@@ -603,11 +591,7 @@ namespace InterTwitter.Services.Owl
                     AuthorId = 3,
                     Date = new DateTime(2020, 8, 5, 18, 30, 25),
                     Text = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
-                    MediaType = OwlType.Gif,
-                    Media = new List<string>()
-                    {
-                        "https://uc.uxpin.com/files/614612/609600/www.GIFCreator.me_W6dTbP.gif"
-                    },
+                    MediaType = OwlType.NoMedia,
                     likesList = new List<int>(),
                     savesList = new List<int>(),
                     LikesCount = 1200
@@ -716,11 +700,7 @@ namespace InterTwitter.Services.Owl
                     AuthorId = 2,
                     Date = DateTime.Now,
                     Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
-                    MediaType = OwlType.Gif,
-                    Media = new List<string>()
-                    {
-                        "https://i.gifer.com/Ar.gif"
-                    },
+                    MediaType = OwlType.NoMedia,
                     likesList = new List<int>(),
                     savesList = new List<int>(),
                     LikesCount = 1200
@@ -762,11 +742,7 @@ namespace InterTwitter.Services.Owl
                     AuthorId = 3,
                     Date = new DateTime(2020, 8, 5, 18, 30, 25),
                     Text = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
-                    MediaType = OwlType.Gif,
-                    Media = new List<string>()
-                    {
-                        "https://uc.uxpin.com/files/614612/609600/www.GIFCreator.me_W6dTbP.gif"
-                    },
+                    MediaType = OwlType.NoMedia,
                     likesList = new List<int>(),
                     savesList = new List<int>(),
                     LikesCount = 240

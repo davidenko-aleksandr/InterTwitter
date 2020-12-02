@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <DataTemplate xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InterTwitter.Views.Templates.PostNoMediaTemplate">
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:videoplayer="clr-namespace:Octane.Xamarin.Forms.VideoPlayer;assembly=Octane.Xamarin.Forms.VideoPlayer"
+              x:Class="InterTwitter.Views.Templates.PostTemplates.PostVideoTemplate">
 
     <Grid Padding="20">
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -14,6 +16,14 @@
         <Label Grid.Row="0"
                Text="{Binding Text}"
                TextColor="{StaticResource tx_3}"/>
+
+        <!-- VIDEO FILE -->
+        <videoplayer:VideoPlayer Grid.Row="0"
+                                 Source="{Binding Video}"
+                                 VerticalOptions="Fill"
+                                 HorizontalOptions="Fill"
+                                 AutoPlay="False"
+                                 DisplayControls="True"/>
 
         <Grid Grid.Row="2">
 
@@ -25,7 +35,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
-            
+
             <!-- DATE LABEL -->
             <Label Grid.Column="0"
                    Text="{Binding PostDate}"
@@ -66,7 +76,7 @@
                     VerticalOptions="Center"
                     HorizontalOptions="End"
                     ImageSource="ic_bookmarks_gray.png"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="#Transparent"
                     WidthRequest="20">
 
             </Button>

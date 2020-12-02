@@ -167,7 +167,6 @@
                                            Grid.Row="1"
                                            FontSize="Large"
                                            TextColor="Black"
-                                           FontFamily="Ubuntu-Bold"
                                            VerticalOptions="Center"/>
 
                                 </controls:ClickableContentView>
@@ -176,7 +175,6 @@
                                 <Label Grid.Column="0"
                                        Grid.Row="2"
                                        Margin="0,0,0,5"
-                                       FontFamily="Ubuntu"
                                        VerticalOptions="End">
 
                                     <Label.FormattedText>

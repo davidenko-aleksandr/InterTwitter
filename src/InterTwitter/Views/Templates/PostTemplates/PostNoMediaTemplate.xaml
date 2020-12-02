@@ -1,15 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <DataTemplate xmlns="http://xamarin.com/schemas/2014/forms" 
-              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-              xmlns:controls="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView" 
-              x:Class="InterTwitter.Views.Templates.PostFewImageTemplate">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InterTwitter.Views.Templates.PostTemplates.PostNoMediaTemplate">
 
-    <Grid Padding="20, 30, 20, 5">
+    <Grid Padding="20">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -17,44 +13,7 @@
         <!-- POST DESCRIPTION LABEL -->
         <Label Grid.Row="0"
                Text="{Binding Text}"
-               TextColor="{StaticResource tx_3}"
-               MaxLines="10"/>
-
-        <!-- COLLECTION OF IMAGES -->
-        <controls:FlowListView Grid.Row="1"
-                               FlowColumnCount="3"
-                               HasUnevenRows="False"
-                               FlowItemsSource="{Binding Media}"
-                               RowHeight="120"                        
-                               SeparatorVisibility="Default" FlowIsLoadingInfinite="True">
-
-            <controls:FlowListView.FlowColumnTemplate>
-
-                <DataTemplate>
-
-                    <ffimageloading:CachedImage Margin="3" 
-                                                HorizontalOptions="Fill" 
-                                                VerticalOptions="Fill"  
-                                                Source="{Binding .}"
-                                                Aspect="AspectFit">
-
-                        <ffimageloading:CachedImage.Transformations>
-
-                            <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                     BottomLeftCornerSize="5"
-                                                                     TopLeftCornerSize="5"
-                                                                     BottomRightCornerSize="5"
-                                                                     TopRightCornerSize="5"/>
-
-                        </ffimageloading:CachedImage.Transformations>
-
-                    </ffimageloading:CachedImage>
-
-                </DataTemplate>
-
-            </controls:FlowListView.FlowColumnTemplate>
-
-        </controls:FlowListView>
+               TextColor="{StaticResource tx_3}"/>
 
         <Grid Grid.Row="2">
 
@@ -66,7 +25,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
-
+            
             <!-- DATE LABEL -->
             <Label Grid.Column="0"
                    Text="{Binding PostDate}"
@@ -115,5 +74,5 @@
         </Grid>
 
     </Grid>
-
+    
 </DataTemplate>

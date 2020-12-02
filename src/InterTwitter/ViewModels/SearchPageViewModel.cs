@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Services.Owl;
-using InterTwitter.ViewModels.HomePageItems;
 using InterTwitter.Helpers;
 using Prism.Navigation;
 using System.Linq;
@@ -13,6 +12,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
 using InterTwitter.Resources;
+using InterTwitter.ViewModels.OwlItems;
 
 namespace InterTwitter.ViewModels
 {

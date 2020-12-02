@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace InterTwitter.Views.Templates
+namespace InterTwitter.Views.Templates.ProfilePageTemplates
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilPagePostsTemplate : DataTemplate
+    public partial class ProfilePagePostsTemplate : DataTemplate
     {
-        public ProfilPagePostsTemplate()
+        public ProfilePagePostsTemplate()
         {
             InitializeComponent();
         }

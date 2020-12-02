@@ -3,9 +3,8 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-              xmlns:videoplayer="clr-namespace:Octane.Xamarin.Forms.VideoPlayer;assembly=Octane.Xamarin.Forms.VideoPlayer"
-              x:Class="InterTwitter.Views.OwlTemplates.OwlVideoTemplate">
-    
+              x:Class="InterTwitter.Views.Templates.OwlTemplates.OwlOneImageTemplate">
+
     <Grid Margin="10">
 
         <Grid.ColumnDefinitions>
@@ -16,7 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="1" />
+            <RowDefinition Height="1"/>
         </Grid.RowDefinitions>
 
         <!-- AUTHOR AVATAR IMAGE -->
@@ -53,11 +52,21 @@
             <Label Text="{Binding Text}"
                    TextColor="{StaticResource tx_3}"/>
 
-            <!-- VIDEO FILE -->
-            <videoplayer:VideoPlayer Source="{Binding Video}"
-                                     HeightRequest="250"
-                                     AutoPlay="False"
-                                     DisplayControls="True"/>
+            <!-- POST IMAGE -->
+            <ffimageloading:CachedImage Source="{Binding PostPhoto}"
+                                        HeightRequest="250">
+                
+                <ffimageloading:CachedImage.Transformations>
+
+                    <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                             BottomLeftCornerSize="5"
+                                                             TopLeftCornerSize="5"
+                                                             BottomRightCornerSize="5"
+                                                             TopRightCornerSize="5"/>
+
+                </ffimageloading:CachedImage.Transformations>
+
+            </ffimageloading:CachedImage>
 
             <Grid>
 
@@ -126,5 +135,5 @@
                  VerticalOptions="Fill"/>
 
     </Grid>
-
+    
 </DataTemplate>

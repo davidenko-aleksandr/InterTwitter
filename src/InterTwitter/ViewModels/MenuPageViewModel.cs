@@ -230,7 +230,7 @@ namespace InterTwitter.ViewModels
             await SetUserDataAsync();
         }
 
-        public void OnDissAppearing()
+        public void OnDisappearing()
         {
            
         }

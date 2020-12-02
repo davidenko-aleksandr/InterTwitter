@@ -1,12 +1,12 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace InterTwitter.Views.OwlTemplates
+namespace InterTwitter.Views.Templates.OwlTemplates
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OwlVideoTemplate : DataTemplate
+    public partial class OwlOneImageTemplate : DataTemplate
     {
-        public OwlVideoTemplate()
+        public OwlOneImageTemplate()
         {
             InitializeComponent();
         }

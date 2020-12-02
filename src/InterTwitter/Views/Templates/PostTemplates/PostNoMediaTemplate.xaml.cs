@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace InterTwitter.Views.Templates
+namespace InterTwitter.Views.Templates.PostTemplates
 {
     public partial class PostNoMediaTemplate : DataTemplate
     {
