@@ -17,7 +17,7 @@ using Octane.Xamarin.Forms.VideoPlayer.Android;
 namespace InterTwitter.Droid
 {
     [Activity(Label = "InterTwitter",
-        Icon = "@mipmap/icon",
+        Icon = "@mipmap/ic_launcher",
         Theme = "@style/MainTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity

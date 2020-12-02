@@ -8,7 +8,7 @@
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
                         
-    <Grid>
+    <Grid>       
 
         <!-- CUSTOM COLLECTION VIEW -->
         <controls:CustomCollectionView x:Name="customCollectionView" 

@@ -4,7 +4,6 @@ using InterTwitter.Helpers;
 using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Services.Settings;
-using InterTwitter.Services.UserService;
 using InterTwitter.ViewModels.NotificationItems;
 using InterTwitter.ViewModels.OwlItems;
 using System;

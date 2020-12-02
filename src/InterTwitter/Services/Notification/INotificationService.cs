@@ -1,7 +1,7 @@
 ﻿using InterTwitter.Enums;
 using InterTwitter.Helpers;
-using InterTwitter.Models;
 using InterTwitter.ViewModels.NotificationItems;
+using InterTwitter.ViewModels.OwlItems;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
