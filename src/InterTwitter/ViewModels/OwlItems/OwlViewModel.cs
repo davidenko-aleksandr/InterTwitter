@@ -1,10 +1,14 @@
 ﻿using InterTwitter.Models;
 using Prism.Mvvm;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlViewModel : BindableBase
     {
+        public OwlViewModel() { }
+
         public OwlViewModel(OwlModel model, UserModel author)
         {
             Id = model.Id;
@@ -15,6 +19,17 @@ namespace InterTwitter.ViewModels.OwlItems
             PostDate = model.Date.ToString("dd.MM.yyyy");
             PostTime = model.Date.ToString("HH:mm");
             LikesCount = model.LikesCount;
+            AllHashtags = new List<string>();
+
+            foreach (var word in Text.Split(' '))
+            {
+                var match = Regex.Match(word, Constants.RegexHashtag);
+
+                if (match.Success)
+                {
+                    AllHashtags.Add(match.Value);
+                }
+            }
         }
 
         #region -- Public properties --
@@ -73,6 +88,20 @@ namespace InterTwitter.ViewModels.OwlItems
         {
             get => _likesCount;
             set => SetProperty(ref _likesCount, value);
+        }
+
+        private List<string> _allHashtags;
+        public List<string> AllHashtags
+        {
+            get => _allHashtags;
+            set => SetProperty(ref _allHashtags, value);
+        }
+
+        private string _currentHashtag;
+        public string CurrentHashtag
+        {
+            get => _currentHashtag;
+            set => SetProperty(ref _currentHashtag, value);
         }
 
         #endregion

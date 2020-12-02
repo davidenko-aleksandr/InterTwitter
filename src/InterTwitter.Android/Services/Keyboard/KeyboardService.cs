@@ -28,6 +28,7 @@ namespace InterTwitter.Droid.Services.Keyboard
 
         public event EventHandler KeyboardShown;
         public event EventHandler KeyboardHidden;
+        public float FrameHeight { get; set; }
 
         #endregion
 

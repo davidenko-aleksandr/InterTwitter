@@ -84,6 +84,9 @@
     <EmbeddedResource Update="Controls\AuthorizationNavigationBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Controls\SearchPageBar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Controls\TabbedPageNavigationBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -91,7 +94,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\OwlTemplates\PostFewImageTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\PostTemplates\PostFewImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PostPage.xaml">
@@ -100,16 +103,16 @@
     <EmbeddedResource Update="Views\Templates\OwlFewImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\OwlTemplates\OwlFewImageTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\OwlTemplates\OwlFewImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\OwlTemplates\OwlNoMediaTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\OwlTemplates\OwlNoMediaTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\OwlTemplates\OwlOneImageTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\OwlTemplates\OwlOneImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\OwlTemplates\OwlVideoTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\OwlTemplates\OwlVideoTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\PostFewImageTemplate.xaml">
@@ -140,5 +143,13 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Views\Templates\ProfilePageTemplates\ProfilePagePostsTemplate.xaml.cs">
+      <DependentUpon>ProfilePagePostsTemplate.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Controls\SearchPageBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 </Project>

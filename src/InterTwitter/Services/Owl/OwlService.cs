@@ -37,14 +37,14 @@ namespace InterTwitter.Services.Owl
             {
                 if (owlModel is not null)
                 {
-                    var res =  await _authorizationService.GetAuthorizedUserAsync();
+                    var res = await _authorizationService.GetAuthorizedUserAsync();
                     var author = res.Result;
 
                     owlModel.Id = _owlsMock.Count;
                     owlModel.AuthorId = author.Id;
 
                     _owlsMock.Add(owlModel);
-                    
+
                     result.SetSuccess(true);
                 }
                 else
@@ -60,7 +60,7 @@ namespace InterTwitter.Services.Owl
             return result;
         }
 
-        public async Task<AOResult<IEnumerable<OwlViewModel>>> GetAllOwlsAsync()
+        public async Task<AOResult<IEnumerable<OwlViewModel>>> GetAllOwlsAsync(string searchQuery = null)
         {
             var result = new AOResult<IEnumerable<OwlViewModel>>();
 
@@ -104,6 +104,17 @@ namespace InterTwitter.Services.Owl
                         default:
                             break;
                     }
+                }
+
+                if (!string.IsNullOrEmpty(searchQuery))
+                {
+                    owls = new List<OwlViewModel>(owls.Where(x => 
+                    x.AuthorNickName.ToUpper().Contains(searchQuery?.ToUpper()) ||
+                    x.Text.ToUpper().Contains(searchQuery?.ToUpper())));
+                }
+                else
+                {
+                    //searchQuery is not given
                 }
 
                 await Task.Delay(300);
@@ -353,8 +364,461 @@ namespace InterTwitter.Services.Owl
                     },
                     likesList = new List<int>(),
                     savesList = new List<int>(),
+                    LikesCount = 459
+                },                
+                new OwlModel
+                {
+                    Id = 11,
+                    AuthorId = 0,
+                    Date = new DateTime(2020, 11, 20, 12, 00, 00),
+                    Text = "Look at this in Michigan! A day AFTER the election, Biden receives a dump of 134,886 votes at 6:31AM!",
+                    MediaType = OwlType.OneImage,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 200
+                },
+                new OwlModel
+                {
+                    Id = 12,
+                    AuthorId = 0,
+                    Date = new DateTime(2019, 3, 1, 15, 40, 00),
+                    Text = "So true!",
+                    MediaType = OwlType.Video,
+                    Media = new List<string>()
+                    {
+                        "https://twitter.com/i/status/1329535287735816194"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1200
+                },
+                new OwlModel
+                {
+                    Id = 13,
+                    AuthorId = 2,
+                    Date = DateTime.Now,
+                    Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 200
+                },
+                new OwlModel
+                {
+                    Id = 14,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 11, 25, 18, 30, 25),
+                    Text = $"Go beyond Hello World. In today's guest post, #MSMVP Tim_Lariviere discusses importants part of writing real world apps and how to leverage functional programming with the Model-View-Update architecture to build mobile and desktop apps with #Fabulous",
+                    MediaType = OwlType.OneImage,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1200
+                },
+                new OwlModel
+                {
+                    Id = 15,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 8, 14, 18, 30, 25),
+                    Text = $"Measure, optimize, and fine-tune the #performance of your #Android apps with #Xamarin & #XamarinForms with these tips and tricks by JonathanPeppers",
+                    MediaType = OwlType.OneImage,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/EfZTe2JWoAAsUuE?format=png&name=small",
+                        "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 459
+                },
+                new OwlModel
+                {
+                    Id = 16,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 8, 5, 18, 30, 25),
+                    Text = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 200
+                },
+                new OwlModel
+                {
+                    Id = 17,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 7, 2, 18, 30, 25),
+                    Text = $"This guest post by Charlin Agramonte elaborates on how multilingual support is one of the most common requirements for mobile apps and the simplicity of building mobile apps with #Xamarin that handle multiple languages.",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1200
+                },
+                new OwlModel
+                {
+                    Id = 18,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 3, 4, 18, 30, 25),
+                    Text = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild",
+                    MediaType = OwlType.Video,
+                    Media = new List<string>()
+                    {
+                        "https://twitter.com/i/status/1262782634335383554"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 459
+                },
+                new OwlModel
+                {
+                    Id = 19,
+                    AuthorId = 2,
+                    Date = new DateTime(2019, 11, 6, 18, 30, 25),
+                    Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone.",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 200
+                },
+                new OwlModel
+                {
+                    Id = 20,
+                    AuthorId = 3,
+                    Date = new DateTime(2012, 3, 4, 18, 30, 25),
+                    Text = $"In the latest Xamarin Community Standup, join the Xamarin team as they discuss the latest and greatest for Xamarin. This week we sit down with Eilon Lipton to discuss the latest in the Mobile #Blazor Bindings. #XamarinForms #Blazor",
+                    MediaType = OwlType.FewImages,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/Emuf9aiXEAcjdXw?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/Empy-qvWEAIz7CT?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmplPyCW8AAL9g7?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmoZtwnW8AIbaO2?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 459
+                },
+                new OwlModel
+                {
+                    Id = 21,
+                    AuthorId = 0,
+                    Date = new DateTime(2020, 11, 28, 21, 48, 0),
+                    Text = $"FoxNews daytime is virtually unwatchable, especially during the weekends. Watch OANN, newsmax, or almost anything else.You won’t have to suffer through endless interviews with Democrats, and even worse!",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1200
+                },
+                new OwlModel
+                {
+                    Id = 22,
+                    AuthorId = 0,
+                    Date = new DateTime(2020, 11, 20, 12, 00, 00),
+                    Text = "Look at this in Michigan! A day AFTER the election, Biden receives a dump of 134,886 votes at 6:31AM!",
+                    MediaType = OwlType.OneImage,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 240
+                },
+                new OwlModel
+                {
+                    Id = 23,
+                    AuthorId = 0,
+                    Date = new DateTime(2019, 3, 1, 15, 40, 00),
+                    Text = "So true!",
+                    MediaType = OwlType.Video,
+                    Media = new List<string>()
+                    {
+                        "https://twitter.com/i/status/1329535287735816194"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 200
+                },
+                new OwlModel
+                {
+                    Id = 24,
+                    AuthorId = 2,
+                    Date = DateTime.Now,
+                    Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 240
+                },
+                new OwlModel
+                {
+                    Id = 25,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 11, 25, 18, 30, 25),
+                    Text = $"Go beyond Hello World. In today's guest post, #MSMVP Tim_Lariviere discusses importants part of writing real world apps and how to leverage functional programming with the Model-View-Update architecture to build mobile and desktop apps with #Fabulous",
+                    MediaType = OwlType.OneImage,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1200
+                },
+                new OwlModel
+                {
+                    Id = 26,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 8, 14, 18, 30, 25),
+                    Text = $"Measure, optimize, and fine-tune the #performance of your #Android apps with #Xamarin & #XamarinForms with these tips and tricks by JonathanPeppers",
+                    MediaType = OwlType.OneImage,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/EfZTe2JWoAAsUuE?format=png&name=small",
+                        "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 200
+                },
+                new OwlModel
+                {
+                    Id = 27,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 8, 5, 18, 30, 25),
+                    Text = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1200
+                },
+                new OwlModel
+                {
+                    Id = 28,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 7, 2, 18, 30, 25),
+                    Text = $"This guest post by Charlin Agramonte elaborates on how multilingual support is one of the most common requirements for mobile apps and the simplicity of building mobile apps with #Xamarin that handle multiple languages.",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 240
+                },
+                new OwlModel
+                {
+                    Id = 29,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 3, 4, 18, 30, 25),
+                    Text = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild",
+                    MediaType = OwlType.Video,
+                    Media = new List<string>()
+                    {
+                        "https://twitter.com/i/status/1262782634335383554"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 200
+                },
+                new OwlModel
+                {
+                    Id = 30,
+                    AuthorId = 2,
+                    Date = new DateTime(2019, 11, 6, 18, 30, 25),
+                    Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone.",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 200
+                },
+                new OwlModel
+                {
+                    Id = 31,
+                    AuthorId = 3,
+                    Date = new DateTime(2012, 3, 4, 18, 30, 25),
+                    Text = $"In the latest Xamarin Community Standup, join the Xamarin team as they discuss the latest and greatest for Xamarin. This week we sit down with Eilon Lipton to discuss the latest in the Mobile #Blazor Bindings. #XamarinForms #Blazor",
+                    MediaType = OwlType.FewImages,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/Emuf9aiXEAcjdXw?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/Empy-qvWEAIz7CT?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmplPyCW8AAL9g7?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmoZtwnW8AIbaO2?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1200
+                },
+                new OwlModel
+                {
+                    Id = 32,
+                    AuthorId = 0,
+                    Date = new DateTime(2020, 11, 28, 21, 48, 0),
+                    Text = $"FoxNews daytime is virtually unwatchable, especially during the weekends. Watch OANN, newsmax, or almost anything else.You won’t have to suffer through endless interviews with Democrats, and even worse!",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 240
+                },
+                new OwlModel
+                {
+                    Id = 33,
+                    AuthorId = 0,
+                    Date = new DateTime(2020, 11, 20, 12, 00, 00),
+                    Text = "Look at this in Michigan! A day AFTER the election, Biden receives a dump of 134,886 votes at 6:31AM!",
+                    MediaType = OwlType.OneImage,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1200
+                },
+                new OwlModel
+                {
+                    Id = 34,
+                    AuthorId = 0,
+                    Date = new DateTime(2019, 3, 1, 15, 40, 00),
+                    Text = "So true!",
+                    MediaType = OwlType.Video,
+                    Media = new List<string>()
+                    {
+                        "https://twitter.com/i/status/1329535287735816194"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 200
+                },
+                new OwlModel
+                {
+                    Id = 35,
+                    AuthorId = 2,
+                    Date = DateTime.Now,
+                    Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1200
+                },
+                new OwlModel
+                {
+                    Id = 36,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 11, 25, 18, 30, 25),
+                    Text = $"Go beyond Hello World. In today's guest post, #MSMVP Tim_Lariviere discusses importants part of writing real world apps and how to leverage functional programming with the Model-View-Update architecture to build mobile and desktop apps with #Fabulous",
+                    MediaType = OwlType.OneImage,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 240
+                },
+                new OwlModel
+                {
+                    Id = 37,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 8, 14, 18, 30, 25),
+                    Text = $"Measure, optimize, and fine-tune the #performance of your #Android apps with #Xamarin & #XamarinForms with these tips and tricks by JonathanPeppers",
+                    MediaType = OwlType.OneImage,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/EfZTe2JWoAAsUuE?format=png&name=small",
+                        "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1200
+                },
+                new OwlModel
+                {
+                    Id = 38,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 8, 5, 18, 30, 25),
+                    Text = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 240
+                },
+                new OwlModel
+                {
+                    Id = 39,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 7, 2, 18, 30, 25),
+                    Text = $"This guest post by Charlin Agramonte elaborates on how multilingual support is one of the most common requirements for mobile apps and the simplicity of building mobile apps with #Xamarin that handle multiple languages.",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 240
+                },
+                new OwlModel
+                {
+                    Id = 40,
+                    AuthorId = 3,
+                    Date = new DateTime(2020, 3, 4, 18, 30, 25),
+                    Text = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild #microsoft",
+                    MediaType = OwlType.Video,
+                    Media = new List<string>()
+                    {
+                        "https://twitter.com/i/status/1262782634335383554"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1200,
+                },
+                new OwlModel
+                {
+                    Id = 41,
+                    AuthorId = 2,
+                    Date = new DateTime(2019, 11, 6, 18, 30, 25),
+                    Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone. #StalloneRules #Number1 #sports",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 2400
+                },
+                new OwlModel
+                {
+                    Id = 42,
+                    AuthorId = 3,
+                    Date = new DateTime(2012, 3, 4, 18, 30, 25),
+                    Text = $"In the latest Xamarin Community Standup, join the Xamarin team as they discuss the latest and greatest for Xamarin. This week we sit down with Eilon Lipton to discuss the latest in the Mobile #Blazor Bindings. #microsoft #XamarinForms #Blazor",
+                    MediaType = OwlType.FewImages,
+                    Media = new List<string>()
+                    {
+                        "https://pbs.twimg.com/media/Emuf9aiXEAcjdXw?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/Empy-qvWEAIz7CT?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmplPyCW8AAL9g7?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmoZtwnW8AIbaO2?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
+                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
+                    },
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
+                    LikesCount = 1000
+                },
+                new OwlModel
+                {
+                    Id = 43,
+                    AuthorId = 0,
+                    Date = new DateTime(2020, 11, 28, 21, 48, 0),
+                    Text = $"#FoxNews daytime is virtually unwatchable, especially during the weekends. Watch OANN, newsmax, or almost anything else.You won’t have to suffer through endless interviews with Democrats, and even worse! #democrats #itsucks",
+                    MediaType = OwlType.NoMedia,
+                    likesList = new List<int>(),
+                    savesList = new List<int>(),
                     LikesCount = 10000
-                }
+                },
             };
 
             _owlsMock[8].likesList.Insert(0, 0);
@@ -366,7 +830,7 @@ namespace InterTwitter.Services.Owl
             _owlsMock[4].likesList.Insert(0, 1);
             _owlsMock[4].savesList.Insert(0, 1);
         }
-            
+
         #endregion
 
     }

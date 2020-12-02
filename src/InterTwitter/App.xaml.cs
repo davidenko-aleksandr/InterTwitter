@@ -34,7 +34,7 @@ namespace InterTwitter
 
             FlowListView.Init();
 
-            await NavigationService.NavigateAsync(nameof(LogInPage));
+            MainPage = new LogInPage();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

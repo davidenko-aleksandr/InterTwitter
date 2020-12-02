@@ -3,11 +3,11 @@
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
-                        xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-                        xmlns:controls="clr-namespace:InterTwitter.Controls" xmlns:templates="clr-namespace:InterTwitter.Views.Templates" 
-                        xmlns:local="clr-namespace:InterTwitter.Enums" xmlns:templates1="clr-namespace:InterTwitter.Helpers" 
-                        xmlns:templates2="clr-namespace:InterTwitter.Views.OwlTemplates"
-                        android:Application.WindowSoftInputModeAdjust="Resize">
+                        xmlns:controls="clr-namespace:InterTwitter.Controls"  
+                        xmlns:helpers="clr-namespace:InterTwitter.Helpers" 
+                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates"
+                        xmlns:owlTemplates="clr-namespace:InterTwitter.Views.Templates.OwlTemplates"
+                        xmlns:postTemplates="clr-namespace:InterTwitter.Views.Templates.PostTemplates">
 
     <Application.Resources>
        
@@ -90,9 +90,7 @@
             <Setter Property="FontSize"
                     Value="18" />
             <Setter Property="FontFamily" 
-                    Value="Ubuntu" />
-            <Setter Property="FontAttributes"
-                    Value="Bold"/>
+                    Value="Ubuntu-Bold" />
             <Setter Property="HorizontalOptions" 
                     Value="Center" />
             <Setter Property="TextColor"
@@ -140,33 +138,35 @@
 
         <ResourceDictionary>
 
-            <templates2:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
+            <templates:EmptyTemplate x:Key="EmptyTemplate"/>
 
-            <templates2:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
+            <owlTemplates:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
 
-            <templates2:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
+            <owlTemplates:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
 
-            <templates2:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
+            <owlTemplates:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
 
-            <local:OwlTemplateSelector x:Key="OwlTemplateSelector"
-                                       OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
-                                       OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
-                                       OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
-                                       OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>
+            <owlTemplates:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
 
-            <templates:PostOneImageTemplate x:Key="PostOneImageTemplate"/>
+            <helpers:OwlTemplateSelector x:Key="OwlTemplateSelector"
+                                         OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
+                                         OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
+                                         OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
+                                         OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>
 
-            <templates:PostFewImageTemplate x:Key="PostFewImageTemplate"/>
+            <postTemplates:PostOneImageTemplate x:Key="PostOneImageTemplate"/>
 
-            <templates:PostNoMediaTemplate x:Key="PostNoMediaTemplate"/>
+            <postTemplates:PostFewImageTemplate x:Key="PostFewImageTemplate"/>
 
-            <templates:PostVideoTemplate x:Key="PostVideoTemplate"/>
+            <postTemplates:PostNoMediaTemplate x:Key="PostNoMediaTemplate"/>
 
-            <templates1:PostTemplateSelector x:Key="PostTemplateSelector"
-                                             PostOneImageTemplate="{StaticResource PostOneImageTemplate}"
-                                             PostFewImageTemplate="{StaticResource PostFewImageTemplate}"
-                                             PostNoMediaTemplate="{StaticResource PostNoMediaTemplate}"
-                                             PostVideoTemplate="{StaticResource PostVideoTemplate}"/>
+            <postTemplates:PostVideoTemplate x:Key="PostVideoTemplate"/>
+
+            <helpers:PostTemplateSelector x:Key="PostTemplateSelector"
+                                          PostOneImageTemplate="{StaticResource PostOneImageTemplate}"
+                                          PostFewImageTemplate="{StaticResource PostFewImageTemplate}"
+                                          PostNoMediaTemplate="{StaticResource PostNoMediaTemplate}"
+                                          PostVideoTemplate="{StaticResource PostVideoTemplate}"/>
         </ResourceDictionary>
         
     </Application.Resources>
