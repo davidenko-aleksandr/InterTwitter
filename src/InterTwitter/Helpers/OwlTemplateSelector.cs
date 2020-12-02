@@ -1,7 +1,7 @@
 ﻿using InterTwitter.ViewModels.OwlItems;
 using Xamarin.Forms;
 
-namespace InterTwitter.Enums
+namespace InterTwitter.Helpers
 {
     public class OwlTemplateSelector : DataTemplateSelector
     {
@@ -12,8 +12,6 @@ namespace InterTwitter.Enums
         public DataTemplate OwlFewImageTemplate { get; set; }
 
         public DataTemplate OwlNoMediaTemplate { get; set; }
-
-        public DataTemplate OwlGifTemplate { get; set; }
 
         public DataTemplate OwlVideoTemplate { get; set; }
 
@@ -37,17 +35,13 @@ namespace InterTwitter.Enums
             {
                 dataTemplate = OwlNoMediaTemplate;
             }
-            else if (item is OwlGifViewModel)
-            {
-                dataTemplate = OwlGifTemplate;
-            }
             else if (item is OwlVideoViewModel)
             {
                 dataTemplate = OwlVideoTemplate;
             }
             else
             {
-                //
+                // DataTemplate item isn't OwlViewModel
             }
 
             return dataTemplate;

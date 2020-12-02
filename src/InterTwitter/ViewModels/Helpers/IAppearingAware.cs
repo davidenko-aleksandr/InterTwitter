@@ -8,6 +8,6 @@ namespace InterTwitter.ViewModels.Helpers
     {
         void OnAppearing();
 
-        void OnDissAppearing();
+        void OnDisappearing();
     }
 }

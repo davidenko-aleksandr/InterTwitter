@@ -4,7 +4,7 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                         xmlns:controls="clr-namespace:InterTwitter.Controls" 
                         xmlns:resources="clr-namespace:InterTwitter.Resources"
-                        xmlns:notificationtemplate="clr-namespace:InterTwitter.Views.NotificationTemplates"
+                        xmlns:notificationtemplate="clr-namespace:InterTwitter.Views.Templates.NotificationTemplates"
                         x:Class="InterTwitter.Views.NotificationsPage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">

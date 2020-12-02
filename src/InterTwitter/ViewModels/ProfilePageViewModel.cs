@@ -17,10 +17,10 @@ namespace InterTwitter.ViewModels
         private readonly IOwlService _owlService;
 
         public ProfilePageViewModel(
-                                    INavigationService navigationService,
-                                    IAuthorizationService authorizationService,
-                                    IOwlService owlService)
-                                   : base(navigationService)
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IOwlService owlService)
+            : base(navigationService)
         {
             _authorizationService = authorizationService;
             _owlService = owlService;

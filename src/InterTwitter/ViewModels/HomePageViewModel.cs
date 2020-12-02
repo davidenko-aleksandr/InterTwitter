@@ -20,11 +20,11 @@ namespace InterTwitter.ViewModels
         private readonly IAuthorizationService _authorizationService;
 
         public HomePageViewModel(
-                                INavigationService navigationService,
-                                IOwlService owlService,
-                                IUserDialogs userDialogs,
-                                IAuthorizationService authorizationService)
-                                : base(navigationService)
+            INavigationService navigationService,
+            IOwlService owlService,
+            IUserDialogs userDialogs,
+            IAuthorizationService authorizationService)
+            : base(navigationService)
         {
             _owlService = owlService;
             _userDialogs = userDialogs;
@@ -54,7 +54,16 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _authorizedUser, value);
         }
 
+        private OwlViewModel selectedItem;
+        public OwlViewModel SelectedItem
+        {
+            get => selectedItem;
+            set => SetProperty(ref selectedItem, value);            
+        }
+
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
+
+        public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc(OnOpenPostCommandAsync);
 
         public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
 
@@ -64,22 +73,21 @@ namespace InterTwitter.ViewModels
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
+            Icon = "ic_home_blue";
+
             var isConnected = Connectivity.NetworkAccess;
 
             if (isConnected == NetworkAccess.Internet)
             {
-                Icon = "ic_home_blue";
-
-                var owls = await _owlService.GetAllOwlsAsync();
-
-                Owls = new ObservableCollection<OwlViewModel>(owls.Result);
+                await FillCollectionAsync();
+                await SetUserDataAsync();
             }
             else
             {
-                _userDialogs.Toast("No internet connection");
+                var errorText = Resources.AppResource.NoInternetText;
+                _userDialogs.Toast(errorText);
             }
 
-            await SetUserDataAsync();
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -91,11 +99,38 @@ namespace InterTwitter.ViewModels
 
         #region -- Private helpers --
 
+        private async Task FillCollectionAsync()
+        {
+            var owlsResult = await _owlService.GetAllOwlsAsync();
+            if (owlsResult.IsSuccess)
+            {
+                Owls = new ObservableCollection<OwlViewModel>(owlsResult.Result);
+            }
+            else
+            {
+                var errorText = Resources.AppResource.RandomError;
+                _userDialogs.Toast(errorText);
+            }
+
+        }
+
         private async Task OnOpenMenuCommandAsync()
         {
             MessagingCenter.Send<object>(this, Constants.OpenMenuMessage);
         }
 
+        private async Task OnOpenPostCommandAsync()
+        {             
+            NavigationParameters parameters = new NavigationParameters 
+            { 
+                {
+                    "OwlViewModel", SelectedItem 
+                }
+            };
+
+            await NavigationService.NavigateAsync(nameof(PostPage), parameters, useModalNavigation: true, true);
+        }
+        
         private async Task OnAddPostCommandAsync()
         {
             await NavigationService.NavigateAsync(nameof(AddPostPage), new NavigationParameters(), useModalNavigation: true, true);

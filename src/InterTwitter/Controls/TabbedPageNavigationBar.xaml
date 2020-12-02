@@ -38,9 +38,9 @@
                                     Aspect="AspectFit">
 
             <ffimageloading:CachedImage.Transformations>
-                
+
                 <fftransformations:CircleTransformation/>
-                
+
             </ffimageloading:CachedImage.Transformations>
 
         </ffimageloading:CachedImage>
@@ -81,7 +81,7 @@
 
 
     </controls:ClickableContentView>
-    
+
     <BoxView Grid.Column="0" 
              Grid.ColumnSpan="3"
              Grid.Row="1"

@@ -152,6 +152,8 @@ namespace InterTwitter.ViewModels
                     MediaType = OwlType,
                     Date = DateTime.Now,
                     Text = OwlText,
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                     Media = list
                 };
 
@@ -235,7 +237,7 @@ namespace InterTwitter.ViewModels
                     MediaButtonEnabled = false;
                 }
             }
-            else if (OwlType == OwlType.Gif || OwlType == OwlType.Video)
+            else if (OwlType == OwlType.Video)
             {
                 MediaButtonEnabled = false;
                 GifButtonEnabled = false;

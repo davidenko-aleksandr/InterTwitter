@@ -8,5 +8,6 @@ namespace InterTwitter.Services.Keyboard
     {
         event EventHandler KeyboardShown;
         event EventHandler KeyboardHidden;
+        public float FrameHeight { get; set; }
     }
 }
