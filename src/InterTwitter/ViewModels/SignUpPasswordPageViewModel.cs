@@ -70,7 +70,7 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _keyboardButtonTranslationY, value);
         }
 
-        public ICommand ConfirmCommand => SingleExecutionCommand.FromFunc(OnConfirmCommandAsync);
+        public ICommand ConfirmPasswordCommand => SingleExecutionCommand.FromFunc(OnConfirmCommandAsync);
                 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
                

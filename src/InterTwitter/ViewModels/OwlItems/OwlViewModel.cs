@@ -118,7 +118,6 @@ namespace InterTwitter.ViewModels.OwlItems
         {
             get => _currentHashtag;
             set => SetProperty(ref _currentHashtag, value);
->>>>>>> 001e6847649ea13743518f3e8aa00ebf516268dc
         }
 
         #endregion

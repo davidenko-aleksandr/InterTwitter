@@ -425,8 +425,8 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },                
                 new OwlModel
                 {
@@ -439,8 +439,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -453,8 +453,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://twitter.com/i/status/1329535287735816194"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -463,8 +463,8 @@ namespace InterTwitter.Services.Owl
                     Date = DateTime.Now,
                     Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -477,8 +477,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -492,8 +492,8 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EfZTe2JWoAAsUuE?format=png&name=small",
                         "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -502,8 +502,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2020, 8, 5, 18, 30, 25),
                     Text = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -512,8 +512,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2020, 7, 2, 18, 30, 25),
                     Text = $"This guest post by Charlin Agramonte elaborates on how multilingual support is one of the most common requirements for mobile apps and the simplicity of building mobile apps with #Xamarin that handle multiple languages.",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -526,8 +526,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://twitter.com/i/status/1262782634335383554"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -536,8 +536,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2019, 11, 6, 18, 30, 25),
                     Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone.",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -555,8 +555,8 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -565,8 +565,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2020, 11, 28, 21, 48, 0),
                     Text = $"FoxNews daytime is virtually unwatchable, especially during the weekends. Watch OANN, newsmax, or almost anything else.You won’t have to suffer through endless interviews with Democrats, and even worse!",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -579,8 +579,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -593,8 +593,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://twitter.com/i/status/1329535287735816194"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -603,8 +603,8 @@ namespace InterTwitter.Services.Owl
                     Date = DateTime.Now,
                     Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -617,8 +617,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -632,8 +632,8 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EfZTe2JWoAAsUuE?format=png&name=small",
                         "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -642,8 +642,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2020, 8, 5, 18, 30, 25),
                     Text = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -652,8 +652,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2020, 7, 2, 18, 30, 25),
                     Text = $"This guest post by Charlin Agramonte elaborates on how multilingual support is one of the most common requirements for mobile apps and the simplicity of building mobile apps with #Xamarin that handle multiple languages.",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -666,8 +666,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://twitter.com/i/status/1262782634335383554"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -676,8 +676,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2019, 11, 6, 18, 30, 25),
                     Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone.",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -695,8 +695,8 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -705,8 +705,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2020, 11, 28, 21, 48, 0),
                     Text = $"FoxNews daytime is virtually unwatchable, especially during the weekends. Watch OANN, newsmax, or almost anything else.You won’t have to suffer through endless interviews with Democrats, and even worse!",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -719,8 +719,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -733,8 +733,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://twitter.com/i/status/1329535287735816194"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -743,8 +743,8 @@ namespace InterTwitter.Services.Owl
                     Date = DateTime.Now,
                     Text = "Descriptions - this is more text jrtv rt rt br br brbref fewfe fege veerv e",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -757,8 +757,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -772,8 +772,8 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EfZTe2JWoAAsUuE?format=png&name=small",
                         "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -782,8 +782,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2020, 8, 5, 18, 30, 25),
                     Text = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -792,8 +792,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2020, 7, 2, 18, 30, 25),
                     Text = $"This guest post by Charlin Agramonte elaborates on how multilingual support is one of the most common requirements for mobile apps and the simplicity of building mobile apps with #Xamarin that handle multiple languages.",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -806,8 +806,8 @@ namespace InterTwitter.Services.Owl
                     {
                         "https://twitter.com/i/status/1262782634335383554"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -816,8 +816,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2019, 11, 6, 18, 30, 25),
                     Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone. #StalloneRules #Number1 #sports",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -835,8 +835,8 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
                     },
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -845,8 +845,8 @@ namespace InterTwitter.Services.Owl
                     Date = new DateTime(2020, 11, 28, 21, 48, 0),
                     Text = $"#FoxNews daytime is virtually unwatchable, especially during the weekends. Watch OANN, newsmax, or almost anything else.You won’t have to suffer through endless interviews with Democrats, and even worse! #democrats #itsucks",
                     MediaType = OwlType.NoMedia,
-                    likesList = new List<int>(),
-                    savesList = new List<int>(),
+                    LikesList = new List<int>(),
+                    SavesList = new List<int>(),
                 },
             };
 

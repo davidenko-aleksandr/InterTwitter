@@ -27,7 +27,7 @@ namespace InterTwitter
 
         #region -- Overrides --
 
-        protected override async void OnInitialized()
+        protected override void OnInitialized()
         {
             InitializeComponent();
 

@@ -4,8 +4,9 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                         xmlns:resources="clr-namespace:InterTwitter.Resources"
                         xmlns:controls="clr-namespace:InterTwitter.Controls" 
-                        xmlns:templates="clr-namespace:InterTwitter.Views.OwlTemplates" 
-                        xmlns:local="clr-namespace:InterTwitter.Enums" xmlns:sh="http://sharpnado.com"
+                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates.OwlTemplates" 
+                        xmlns:local="clr-namespace:InterTwitter.Helpers" 
+                        xmlns:sh="http://sharpnado.com"
                         x:Class="InterTwitter.Views.BookmarksPage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
@@ -20,15 +21,12 @@
 
             <templates:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
 
-            <templates:OwlGifTemplate x:Key="OwlGifTemplate"/>
-
             <templates:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
 
             <local:OwlTemplateSelector x:Key="OwlTemplateSelector"
                                        OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
                                        OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
                                        OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
-                                       OwlGifTemplate ="{StaticResource OwlGifTemplate}"
                                        OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>
         </ResourceDictionary>
 
