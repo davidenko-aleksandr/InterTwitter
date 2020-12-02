@@ -7,8 +7,9 @@ namespace InterTwitter.ViewModels.OwlItems
     {
         public OwlFewImagesViewModel(
             OwlModel model, 
-            UserModel author) 
-            : base(model, author)
+            UserModel author, 
+            int authorizedUserId) 
+            : base(model, author, authorizedUserId)
         {
             Media = model.Media;
         }

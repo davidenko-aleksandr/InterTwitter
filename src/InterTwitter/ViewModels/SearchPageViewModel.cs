@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Services.Owl;
 using InterTwitter.Helpers;
 using Prism.Navigation;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
