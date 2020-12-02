@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace InterTwitter.Views.Templates
+namespace InterTwitter.Views.OwlTemplates
 {
     public partial class EmptyTemplate : DataTemplate
     {

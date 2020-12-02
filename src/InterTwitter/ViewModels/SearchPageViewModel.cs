@@ -53,8 +53,15 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _iconSource, value);
         }
 
-        private UserModel _authorizedUser;
-        public UserModel AuthorizedUser
+        private string _searchBarIconSource;
+        public string SearchBarIconSource
+        {
+            get => _searchBarIconSource;
+            set => SetProperty(ref _searchBarIconSource, value);
+        }
+
+        private UserViewModel _authorizedUser;
+        public UserViewModel AuthorizedUser
         {
             get => _authorizedUser;
             set => SetProperty(ref _authorizedUser, value);
@@ -107,7 +114,7 @@ namespace InterTwitter.ViewModels
 
         public ICommand HashtagClickCommand => SingleExecutionCommand.FromFunc(OnHashtagClickCommandAsync);
 
-        public ICommand ClearCommand => SingleExecutionCommand.FromFunc(OnClearCommandAsync);
+        public ICommand IconClickCommand => SingleExecutionCommand.FromFunc(OnIconClickCommandAsync);
 
         #endregion
 
@@ -134,16 +141,16 @@ namespace InterTwitter.ViewModels
         {
             if (!string.IsNullOrEmpty(SearchQuery))
             {
-                IsUserPictureVisible = false;
-                IsClearButtonVisible = true;
+                IsPopularThemesVisible = false;
+                SearchBarIconSource = AppResource.LeftGreyImage;
                 IsFoundPostsVisible = true;
 
                 ShowFoundPostsAsync(SearchQuery);
             }
             else
             {
-                IsUserPictureVisible = true;
-                IsClearButtonVisible = false;
+                IsPopularThemesVisible = true;
+                SearchBarIconSource = AuthorizedUser.Avatar;
                 IsFoundPostsVisible = false;
             }
         }
@@ -153,15 +160,27 @@ namespace InterTwitter.ViewModels
             SearchQuery = (group as Grouping<string, OwlViewModel>).Header;
         }
 
-        private async Task OnClearCommandAsync()
+        private async Task OnIconClickCommandAsync()
         {
-            SearchQuery = string.Empty;
+            if (SearchBarIconSource == AuthorizedUser.Avatar)
+            {
+                MessagingCenter.Send<object>(this, Constants.OpenMenuMessage);
+            }
+            else if (SearchBarIconSource == AppResource.LeftGreyImage)
+            {
+                SearchQuery = string.Empty;
+            }
+            else
+            {
+                //icon source is not set
+            }
         }
 
         private async Task SetUserDataAsync()
         {
             var result = await _authorizationService.GetAuthorizedUserAsync();
             AuthorizedUser = result.Result;
+            SearchBarIconSource = AuthorizedUser.Avatar;
         }
 
         private async void InitPopularThemesAsync()

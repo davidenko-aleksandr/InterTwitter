@@ -252,4 +252,10 @@
   <data name="ExistEmailError" xml:space="preserve">
     <value>Email is already exist!</value>
   </data>
+  <data name="LeftGreyImage" xml:space="preserve">
+    <value>ic_left_grey.png</value>
+  </data>
+  <data name="RightImage" xml:space="preserve">
+    <value>ic_right.png</value>
+  </data>
 </root>

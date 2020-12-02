@@ -206,13 +206,14 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.1.0.466</Version>
     </PackageReference>
-
     <PackageReference Include="CardsView">
       <Version>2.6.8</Version>
     </PackageReference>
     <PackageReference Include="DLToolkit.Forms.Controls.FlowListView">
       <Version>2.0.11</Version>
-
+    </PackageReference>
+    <PackageReference Include="Hackiftekhar.IQKeyboardManager.Xamarin">
+      <Version>6.5.6</Version>
     </PackageReference>
     <PackageReference Include="NGraphics">
       <Version>0.5.0</Version>
@@ -376,9 +377,6 @@
     <BundleResource Include="Resources\ic_left_blue.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_left_gray.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\ic_left_round.png" />
   </ItemGroup>
   <ItemGroup>
@@ -540,6 +538,24 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_video%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_left_grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_left_grey%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_left_grey%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_right%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_right%403x.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

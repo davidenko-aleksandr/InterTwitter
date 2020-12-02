@@ -4,7 +4,7 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
                         xmlns:controls="clr-namespace:InterTwitter.Controls" 
-                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates" 
+                        xmlns:templates="clr-namespace:InterTwitter.Views.OwlTemplates" 
                         xmlns:helpers="clr-namespace:InterTwitter.Helpers">
 
     <Application.Resources>
@@ -32,8 +32,6 @@
 
             <templates:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
 
-            <templates:OwlAlbumTemplate x:Key="OwlAlbumTemplate"/>
-
             <templates:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
 
             <templates:OwlGifTemplate x:Key="OwlGifTemplate"/>
@@ -43,7 +41,6 @@
             <helpers:OwlTemplateSelector x:Key="OwlTemplateSelector"
                                          OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
                                          OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
-                                         OwlAlbumTemplate="{StaticResource OwlAlbumTemplate}"
                                          OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
                                          OwlGifTemplate ="{StaticResource OwlGifTemplate}"
                                          OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>

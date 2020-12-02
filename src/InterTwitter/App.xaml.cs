@@ -34,6 +34,8 @@ namespace InterTwitter
 
             FlowListView.Init();
 
+            //MainPage = new LogInPage();
+
             await NavigationService.NavigateAsync(nameof(LogInPage));
         }
 
