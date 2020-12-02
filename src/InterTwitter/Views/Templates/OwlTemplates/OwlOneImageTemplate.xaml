@@ -109,16 +109,15 @@
                                   CommandParameter="{Binding .}">
 
                     <Button.Triggers>
-                        
+
                         <DataTrigger TargetType="Button"
-                                     Binding="{Binding 
-                                     Path=IsLiked}"
+                                     Binding="{Binding Path=IsLiked}"
                                      Value="true">
-                            
+
                             <Setter Property="ImageSource" Value="ic_like_blue.png"/>
-                            
+
                         </DataTrigger>
-                        
+
                     </Button.Triggers>
 
                 </Button>
@@ -129,20 +128,19 @@
                        VerticalOptions="Center"
                        TextColor="{StaticResource tx_5}"
                        Text="{Binding LikesCount}">
-                    
+
                     <Label.Triggers>
-                        
+
                         <DataTrigger TargetType="Label"
-                                     Binding="{Binding 
-                                     Path=IsLiked}"
+                                     Binding="{Binding Path=IsLiked}"
                                      Value="true">
-                            
+
                             <Setter Property="TextColor" Value="{StaticResource bg_2}"/>
-                            
+
                         </DataTrigger>
-                        
+
                     </Label.Triggers>
-                    
+
                 </Label>
 
                 <!-- BOOKMARK BUTTON -->
@@ -155,21 +153,20 @@
                         WidthRequest="30"
                         HeightRequest="34"
                         CornerRadius="17"
-                        Command="{Binding BindingContext.BookMarkCommand,
+                        Command="{Binding BindingContext.BookmarkCommand,
                                   Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
                                   CommandParameter="{Binding .}">
 
                     <Button.Triggers>
-                        
+
                         <DataTrigger TargetType="Button"
-                                     Binding="{Binding 
-                                     Path=IsBookMarked}"
+                                     Binding="{Binding Path=IsBookmarked}"
                                      Value="true">
-                            
+
                             <Setter Property="ImageSource" Value="ic_bookmarks_blue.png"/>
-                            
+
                         </DataTrigger>
-                        
+
                     </Button.Triggers>
 
                 </Button>

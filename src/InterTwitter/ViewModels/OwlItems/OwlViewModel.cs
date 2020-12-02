@@ -24,7 +24,7 @@ namespace InterTwitter.ViewModels.OwlItems
             PostTime = model.Date.ToString("HH:mm");
             LikesCount = model.LikesList.Count;
             IsLiked = model.LikesList.Contains(authorizedUserId);
-            IsBookMarked = model.SavesList.Contains(authorizedUserId);
+            IsBookmarked = model.SavesList.Contains(authorizedUserId);
             LikesList = model.LikesList;
             SavesList = model.SavesList;
             Media = model.Media;
@@ -107,11 +107,11 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _isLiked, value);
         }
 
-        private bool _isBookMarked;
-        public bool IsBookMarked
+        private bool _isBookmarked;
+        public bool IsBookmarked
         {
-            get => _isBookMarked;
-            set => SetProperty(ref _isBookMarked, value);
+            get => _isBookmarked;
+            set => SetProperty(ref _isBookmarked, value);
         }
 
         private List<int> _likesList;
@@ -135,11 +135,11 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _media, value);
         }
 
-        private OwlType _owlType;
+        private OwlType _mediaType;
         public OwlType MediaType
         {
-            get => _owlType;
-            set => SetProperty(ref _owlType, value);
+            get => _mediaType;
+            set => SetProperty(ref _mediaType, value);
         }
 
         private List<string> _allHashtags;

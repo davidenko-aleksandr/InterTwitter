@@ -5,7 +5,7 @@
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
               x:Class="InterTwitter.Views.Templates.PostTemplates.PostOneImageTemplate">
     
-        <Grid Padding="20">
+    <Grid Padding="20">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -33,35 +33,35 @@
 
                 </ffimageloading:CachedImage.Transformations>
 
-            </ffimageloading:CachedImage>
+        </ffimageloading:CachedImage>
 
         <Grid Grid.Row="2">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="3"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="30"/>
-                </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
 
-                <!-- DATE LABEL -->
-                <Label Grid.Column="0"
-                       Text="{Binding PostDate}"
-                       TextColor="{StaticResource tx_5}"
-                       VerticalOptions="Center"/>
+            <!-- DATE LABEL -->
+            <Label Grid.Column="0"
+                   Text="{Binding PostDate}"
+                   TextColor="{StaticResource tx_5}"
+                   VerticalOptions="Center"/>
 
-                <BoxView Grid.Column="1"
-                         Style="{StaticResource boxViewPoint}"
-                         VerticalOptions="Center"/>
+            <BoxView Grid.Column="1"
+                     Style="{StaticResource boxViewPoint}"
+                     VerticalOptions="Center"/>
 
-                <!-- TIME LABEL -->
-                <Label Grid.Column="2"
-                       Text="{Binding PostTime}"
-                       TextColor="{StaticResource tx_5}"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Start"/>
+            <!-- TIME LABEL -->
+            <Label Grid.Column="2"
+                   Text="{Binding PostTime}"
+                   TextColor="{StaticResource tx_5}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"/>
 
             <!-- LIKE BUTTON -->
             <Button Grid.Column="3"
@@ -123,7 +123,7 @@
                     WidthRequest="30"
                     HeightRequest="34"
                     CornerRadius="17"
-                    Command="{Binding BindingContext.BookMarkCommand,
+                    Command="{Binding BindingContext.BookmarkCommand,
                               Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
                               CommandParameter="{Binding .}">
 
@@ -131,7 +131,7 @@
 
                     <DataTrigger TargetType="Button"
                                  Binding="{Binding 
-                                 Path=IsBookMarked}"
+                                 Path=IsBookmarked}"
                                  Value="true">
 
                         <Setter Property="ImageSource" Value="ic_bookmarks_blue.png"/>
@@ -142,8 +142,8 @@
 
             </Button>
 
-            </Grid>
-
         </Grid>
+
+    </Grid>
     
 </DataTemplate>

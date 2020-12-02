@@ -74,7 +74,7 @@ namespace InterTwitter.ViewModels
 
         public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnLikeClickCommandAsync);
 
-        public ICommand BookMarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookMarkCommandAsync);       
+        public ICommand BookmarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookmarkCommandAsync);       
 
         #endregion
 
@@ -153,16 +153,7 @@ namespace InterTwitter.ViewModels
 
                 owl.LikesCount = owl.IsLiked ? owl.LikesCount + 1 : owl.LikesCount - 1;   
 
-                var result = await _postActionService.SaveActionAsync(owl, OwlAction.Liked);
-
-                if (result.IsSuccess)
-                {
-
-                }
-                else
-                {
-                    //something went wrong
-                }
+                await _postActionService.SaveActionAsync(owl, OwlAction.Liked);
             }
             else
             {
@@ -170,24 +161,15 @@ namespace InterTwitter.ViewModels
             }
         }
 
-        private async Task OnBookMarkCommandAsync(OwlViewModel owl)
+        private async Task OnBookmarkCommandAsync(OwlViewModel owl)
         {
             if (owl != null)
             {
-                owl.IsBookMarked = !owl.IsBookMarked;
+                owl.IsBookmarked = !owl.IsBookmarked;
 
                 await _postActionService.SaveActionAsync(owl, OwlAction.Saved);
 
-                var result = await _postActionService.SaveActionAsync(owl, OwlAction.Saved);
-
-                if (result.IsSuccess)
-                {
-
-                }
-                else
-                {
-                    //something went wrong
-                }
+                await _postActionService.SaveActionAsync(owl, OwlAction.Saved);
             }
         }
 
