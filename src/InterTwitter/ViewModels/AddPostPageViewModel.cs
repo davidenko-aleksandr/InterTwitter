@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using InterTwitter.Enums;
 using InterTwitter.Helpers;
 using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
+using InterTwitter.Services.Keyboard;
 using InterTwitter.Services.Owl;
-using InterTwitter.Services.Permission;
 using InterTwitter.ViewModels.MediaItems;
 using Plugin.Media.Abstractions;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
 {
@@ -21,27 +23,29 @@ namespace InterTwitter.ViewModels
         private readonly IOwlService _owlService;
         private readonly IAuthorizationService _authorizationService;
         private readonly IMedia _mediaPlugin;
-        private readonly IPermissionService _permissionService;
+        private readonly IKeyboardService _keyboardService;
 
         private ICommand _removeItemCommand;
 
         public AddPostPageViewModel(INavigationService navigationService,
                                     IOwlService owlService,
                                     IMedia mediaPlugin,
-                                    IPermissionService permissionService,
+                                    IKeyboardService keyboardService,
                                     IAuthorizationService authorizationService)
                                    : base(navigationService)
         {
             _owlService = owlService;
             _authorizationService = authorizationService;
             _mediaPlugin = mediaPlugin;
-            _permissionService = permissionService;
+            _keyboardService = keyboardService;
 
             OwlType = OwlType.NoMedia;
             MediaItems = new ObservableCollection<MediaItemViewModel>();
             MediaButtonEnabled = true;
-            GifButtonEnabled = true;
             VideoButtonEnabled = true;
+
+            _keyboardService.KeyboardShown += OnKeyboardOpened;
+            _keyboardService.KeyboardHidden += OnKeyboardClosed;
 
             _removeItemCommand = SingleExecutionCommand.FromFunc<MediaItemViewModel>(OnRemoveItemCommandAsync);
         }
@@ -53,13 +57,6 @@ namespace InterTwitter.ViewModels
         {
             get => _mediaButtonEnabled;
             set => SetProperty(ref _mediaButtonEnabled, value);
-        }
-
-        private bool _gifButtonEnabled;
-        public bool GifButtonEnabled
-        {
-            get => _gifButtonEnabled;
-            set => SetProperty(ref _gifButtonEnabled, value);
         }
 
         private bool _videoButtonEnabled;
@@ -97,13 +94,18 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _authorAvatar, value);
         }
 
+        private Thickness _toolbarMargin;
+        public Thickness ToolbarMargin
+        {
+            get => _toolbarMargin;
+            set => SetProperty(ref _toolbarMargin, value);
+        }
+
         public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
 
         public ICommand CancelCommand => SingleExecutionCommand.FromFunc(OnCancelCommandAsync);
 
         public ICommand MediaCommand => SingleExecutionCommand.FromFunc(OnMediaCommandAsync);
-
-        public ICommand GifCommand => SingleExecutionCommand.FromFunc(OnGifCommand);
 
         public ICommand VideoCommand => SingleExecutionCommand.FromFunc(OnVideoCommand);
 
@@ -169,14 +171,24 @@ namespace InterTwitter.ViewModels
             {
                 if (MediaButtonEnabled)
                 {
-                        MediaFile file = await _mediaPlugin.PickPhotoAsync();
+                    MediaFile file = await _mediaPlugin.PickPhotoAsync();
 
-                        if (file != null)
+                    if (file != null)
+                    {
+                        MediaItems.Add(new MediaItemViewModel(file.Path, _removeItemCommand));
+
+                        if (OwlType == OwlType.NoMedia)
                         {
-                            OwlType = _mediaItems.Count == 1 ? OwlType.OneImage : OwlType.FewImages;
-                            MediaItems.Add(new MediaItemViewModel(file.Path, _removeItemCommand));
-                            RefreshCollection();
+                            MediaButtonEnabled = !CheckMediaIsGif(file.Path);
+                            OwlType = OwlType.OneImage;
                         }
+                        else
+                        {
+                            OwlType = OwlType.FewImages;
+                        }
+
+                        RefreshCollection();
+                    }
                     else
                     {
                         //Currentfile == null;
@@ -187,11 +199,6 @@ namespace InterTwitter.ViewModels
             {
                 //Pick photo is not supported;
             }
-        }
-
-        private Task OnGifCommand()
-        {
-            return Task.FromResult(true);
         }
 
         private async Task OnVideoCommand()
@@ -220,16 +227,23 @@ namespace InterTwitter.ViewModels
             }
         }
 
-        private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void RefreshCollection()
         {
+            MediaItems = new ObservableCollection<MediaItemViewModel>(MediaItems);
+
             if (MediaItems.Count == 0)
             {
                 OwlType = OwlType.NoMedia;
+                MediaButtonEnabled = true;
+                VideoButtonEnabled = true;
             }
-
-            if (OwlType == OwlType.OneImage || OwlType == OwlType.FewImages)
+            else if ((OwlType == OwlType.OneImage && CheckMediaIsGif(MediaItems.First().MediaPath)) || OwlType == OwlType.Video)
             {
-                GifButtonEnabled = false;
+                MediaButtonEnabled = false;
+                VideoButtonEnabled = false;
+            }
+            else if (OwlType == OwlType.OneImage || OwlType == OwlType.FewImages)
+            {
                 VideoButtonEnabled = false;
 
                 if (MediaItems.Count == 6)
@@ -237,24 +251,23 @@ namespace InterTwitter.ViewModels
                     MediaButtonEnabled = false;
                 }
             }
-            else if (OwlType == OwlType.Video)
-            {
-                MediaButtonEnabled = false;
-                GifButtonEnabled = false;
-                VideoButtonEnabled = false;
-            }
         }
 
-        private void RefreshCollection()
+        private bool CheckMediaIsGif(string mediaPath)
         {
-            if (MediaItems is not null)
-            {
-                MediaItems.CollectionChanged -= OnCollectionChanged;
+            Regex gifRegex = new Regex("([^\\s]+.(?i)(gif)$)");
 
-                MediaItems = new ObservableCollection<MediaItemViewModel>(MediaItems);
+            return gifRegex.IsMatch(mediaPath);
+        }
 
-                MediaItems.CollectionChanged += OnCollectionChanged;
-            }
+        private void OnKeyboardClosed(object sender, EventArgs e)
+        {
+            ToolbarMargin = new Thickness(0, 0, 0, 0);
+        }
+
+        private void OnKeyboardOpened(object sender, EventArgs e)
+        {
+            ToolbarMargin = new Thickness(0, 0, 0, _keyboardService.FrameHeight);
         }
 
         #endregion

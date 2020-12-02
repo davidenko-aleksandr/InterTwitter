@@ -7,17 +7,24 @@
                         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                         xmlns:converters="clr-namespace:InterTwitter.Converters"
                         xmlns:flowview="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+                        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                        ios:Page.UseSafeArea="False"
                         x:Class="InterTwitter.Views.AddPostPage">
 
     <ContentPage.Resources>
-
         <ResourceDictionary>
-
             <converters:StringToBoolConverter x:Key="stringToBool" />
-
         </ResourceDictionary>
-
     </ContentPage.Resources>
+
+    <views:BaseContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS"
+                Value="0,45,0,0"/>
+            <On Platform="Android"
+                Value="0,20,0,0"/>
+        </OnPlatform>
+    </views:BaseContentPage.Padding>
 
     <Grid HorizontalOptions="Fill"
           VerticalOptions="Fill">
@@ -200,7 +207,7 @@
                      Grid.Column="0"
                      Grid.ColumnSpan="2"
                      Grid.Row="3"
-                     Margin="0">
+                     Margin="{Binding ToolbarMargin}">
 
             <BoxView HeightRequest="1"
                      Color="#DEDFE1"
@@ -224,31 +231,6 @@
 
                                 <Setter Property="Source"
                                         Value="ic_media_disabled"/>
-
-                            </DataTrigger>
-
-                        </Image.Triggers>
-
-                    </Image>
-
-                </controls:ClickableContentView>
-
-                <!--ADD GIF BUTTON-->
-                <controls:ClickableContentView HeightRequest="40"
-                                               WidthRequest="40"
-                                               Padding="10"
-                                               Command="{Binding GifCommand}">
-
-                    <Image Source="ic_gif">
-
-                        <Image.Triggers>
-
-                            <DataTrigger Binding="{Binding GifButtonEnabled}"
-                                         Value="false"
-                                         TargetType="Image">
-
-                                <Setter Property="Source"
-                                        Value="ic_gif_disabled"/>
 
                             </DataTrigger>
 
