@@ -63,33 +63,84 @@
                        VerticalOptions="Center"
                        HorizontalOptions="Start"/>
 
-                <!-- LIKE BUTTON -->
-                <Button Grid.Column="3"
-                        x:Name="likeButton"
-                        VerticalOptions="Center"
-                        HorizontalOptions="End"
-                        ImageSource="ic_like_gray.png"
-                        BackgroundColor="Transparent"
-                        WidthRequest="20">
+            <!-- LIKE BUTTON -->
+            <Button Grid.Column="3"
+                    x:Name="likeButton"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    BackgroundColor="Transparent"
+                    HeightRequest="34"
+                    CornerRadius="17"                       
+                    ImageSource="ic_like_gray.png"
+                    Command="{Binding BindingContext.LikeClickCommand,
+                              Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
+                              CommandParameter="{Binding .}">
 
-                </Button>
+                <Button.Triggers>
 
-                <!-- LIKE COUNT LABEL -->
-                <Label Grid.Column="4"
-                       HorizontalOptions="Start"
-                       VerticalOptions="Center"
-                       Text="{Binding LikesCount}"/>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding 
+                                 Path=IsLiked}"
+                                 Value="true">
 
-                <!-- BOOKMARK BUTTON -->
-                <Button Grid.Column="5"
-                        x:Name="bookmarkButton"
-                        VerticalOptions="Center"
-                        HorizontalOptions="End"
-                        ImageSource="ic_bookmarks_gray.png"
-                        BackgroundColor="Transparent"
-                        WidthRequest="20">
+                        <Setter Property="ImageSource" Value="ic_like_blue.png"/>
 
-                </Button>
+                    </DataTrigger>
+
+                </Button.Triggers>
+
+            </Button>
+
+            <!-- LIKE COUNT LABEL -->
+            <Label Grid.Column="4"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   TextColor="{StaticResource tx_5}"
+                   Text="{Binding LikesCount}">
+
+                <Label.Triggers>
+
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding 
+                                 Path=IsLiked}"
+                                 Value="true">
+
+                        <Setter Property="TextColor" Value="{StaticResource bg_2}"/>
+
+                    </DataTrigger>
+
+                </Label.Triggers>
+
+            </Label>
+
+            <!-- BOOKMARK BUTTON -->
+            <Button Grid.Column="5"
+                    x:Name="bookmarkButton"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    ImageSource="ic_bookmarks_gray.png"
+                    BackgroundColor="Transparent"
+                    WidthRequest="30"
+                    HeightRequest="34"
+                    CornerRadius="17"
+                    Command="{Binding BindingContext.BookMarkCommand,
+                              Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
+                              CommandParameter="{Binding .}">
+
+                <Button.Triggers>
+
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding 
+                                 Path=IsBookMarked}"
+                                 Value="true">
+
+                        <Setter Property="ImageSource" Value="ic_bookmarks_blue.png"/>
+
+                    </DataTrigger>
+
+                </Button.Triggers>
+
+            </Button>
 
             </Grid>
 

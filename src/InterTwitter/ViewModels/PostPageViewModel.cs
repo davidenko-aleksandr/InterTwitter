@@ -1,5 +1,7 @@
 ﻿using Acr.UserDialogs;
+using InterTwitter.Enums;
 using InterTwitter.Helpers;
+using InterTwitter.Services.PostAction;
 using InterTwitter.ViewModels.OwlItems;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
@@ -12,15 +14,18 @@ namespace InterTwitter.ViewModels
     public class PostPageViewModel : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
+        private readonly IPostActionService _postActionService;
 
         private OwlViewModel _owlViewModel;
 
         public PostPageViewModel(
                                 INavigationService navigationService,
-                                IUserDialogs userDialogs)
+                                IUserDialogs userDialogs,
+                                IPostActionService postActionService)
                                 : base(navigationService)
         {
             _userDialogs = userDialogs;
+            _postActionService = postActionService;
         }
 
         #region -- Public properties --
@@ -48,7 +53,13 @@ namespace InterTwitter.ViewModels
 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
 
+        public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnLikeClickCommandAsync);
+
+        public ICommand BookMarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookMarkCommandAsync);
+
         #endregion
+
+        #region -- Overrides --
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
@@ -71,9 +82,58 @@ namespace InterTwitter.ViewModels
 
         }
 
+        #endregion
+
+        #region -- Private helpers --
         private async Task OnGoBackCommandAsync()
         {
            await NavigationService.GoBackAsync();
         }
+
+        private async Task OnLikeClickCommandAsync(OwlViewModel owl)
+        {
+            if (owl != null)
+            {
+                owl.IsLiked = !owl.IsLiked;
+
+                owl.LikesCount = owl.IsLiked ? owl.LikesCount + 1 : owl.LikesCount - 1;
+
+                var result = await _postActionService.SaveActionAsync(owl, OwlAction.Liked);
+
+                if (result.IsSuccess)
+                {
+
+                }
+                else
+                {
+                    //something went wrong
+                }
+            }
+            else
+            {
+                //something went wrong
+            }
+        }
+
+        private async Task OnBookMarkCommandAsync(OwlViewModel owl)
+        {
+            if (owl != null)
+            {
+                owl.IsBookMarked = !owl.IsBookMarked;
+
+                var result = await _postActionService.SaveActionAsync(owl, OwlAction.Saved);
+
+                if (result.IsSuccess)
+                {
+
+                }
+                else
+                {
+                    //something went wrong
+                }
+            }
+        }
+
+        #endregion
     }
 }

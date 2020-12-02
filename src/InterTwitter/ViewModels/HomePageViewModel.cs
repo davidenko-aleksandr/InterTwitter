@@ -10,6 +10,9 @@ using InterTwitter.Views;
 using Xamarin.Essentials;
 using Acr.UserDialogs;
 using InterTwitter.Services.Authorization;
+using InterTwitter.Services.PostAction;
+using InterTwitter.Enums;
+using System;
 
 namespace InterTwitter.ViewModels
 {
@@ -18,17 +21,20 @@ namespace InterTwitter.ViewModels
         private readonly IOwlService _owlService;
         private readonly IUserDialogs _userDialogs;
         private readonly IAuthorizationService _authorizationService;
+        private readonly IPostActionService _postActionService;
 
         public HomePageViewModel(
                                 INavigationService navigationService,
                                 IOwlService owlService,
                                 IUserDialogs userDialogs,
-                                IAuthorizationService authorizationService)
+                                IAuthorizationService authorizationService,
+                                IPostActionService postActionService)
                                 : base(navigationService)
         {
             _owlService = owlService;
             _userDialogs = userDialogs;
             _authorizationService = authorizationService;
+            _postActionService = postActionService;
         }
 
         #region -- Public properties --
@@ -66,6 +72,10 @@ namespace InterTwitter.ViewModels
         public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc(OnOpenPostCommandAsync);
 
         public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
+
+        public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnLikeClickCommandAsync);
+
+        public ICommand BookMarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookMarkCommandAsync);       
 
         #endregion
 
@@ -122,23 +132,59 @@ namespace InterTwitter.ViewModels
             await NavigationService.NavigateAsync(nameof(AddPostPage), new NavigationParameters(), useModalNavigation: true, true);
         }
 
+        private async Task OnLikeClickCommandAsync(OwlViewModel owl)
+        {            
+            if (owl != null)
+            {
+                owl.IsLiked = !owl.IsLiked;
+
+                owl.LikesCount = owl.IsLiked ? owl.LikesCount + 1 : owl.LikesCount - 1;   
+
+                var result = await _postActionService.SaveActionAsync(owl, OwlAction.Liked);
+
+                if (result.IsSuccess)
+                {
+
+                }
+                else
+                {
+                    //something went wrong
+                }
+            }
+            else
+            {
+                //something went wrong
+            }
+        }
+
+        private async Task OnBookMarkCommandAsync(OwlViewModel owl)
+        {
+            if (owl != null)
+            {
+                owl.IsBookMarked = !owl.IsBookMarked;
+
+                await _postActionService.SaveActionAsync(owl, OwlAction.Saved);
+
+                var result = await _postActionService.SaveActionAsync(owl, OwlAction.Saved);
+
+                if (result.IsSuccess)
+                {
+
+                }
+                else
+                {
+                    //something went wrong
+                }
+            }
+        }
+
         private async Task SetUserDataAsync()
         {
             var result = await _authorizationService.GetAuthorizedUserAsync();
 
             if (result.IsSuccess)
             {
-                var userResult = result.Result;
-
-                if (userResult is not null)
-                {
-                    AuthorizedUser = userResult;
-                }
-                else
-                {
-                    //userResult was null
-                }
-
+                AuthorizedUser = result.Result;
             }
             else
             {

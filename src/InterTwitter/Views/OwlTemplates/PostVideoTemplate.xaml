@@ -58,9 +58,26 @@
                     x:Name="likeButton"
                     VerticalOptions="Center"
                     HorizontalOptions="End"
-                    ImageSource="ic_like_gray.png"
                     BackgroundColor="Transparent"
-                    WidthRequest="20">
+                    HeightRequest="34"
+                    CornerRadius="17"                       
+                    ImageSource="ic_like_gray.png"
+                    Command="{Binding BindingContext.LikeClickCommand,
+                              Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
+                              CommandParameter="{Binding .}">
+
+                <Button.Triggers>
+
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding 
+                                 Path=IsLiked}"
+                                 Value="true">
+
+                        <Setter Property="ImageSource" Value="ic_like_blue.png"/>
+
+                    </DataTrigger>
+
+                </Button.Triggers>
 
             </Button>
 
@@ -68,7 +85,23 @@
             <Label Grid.Column="4"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
-                   Text="{Binding LikesCount}"/>
+                   TextColor="{StaticResource tx_5}"
+                   Text="{Binding LikesCount}">
+
+                <Label.Triggers>
+
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding 
+                                 Path=IsLiked}"
+                                 Value="true">
+
+                        <Setter Property="TextColor" Value="{StaticResource bg_2}"/>
+
+                    </DataTrigger>
+
+                </Label.Triggers>
+
+            </Label>
 
             <!-- BOOKMARK BUTTON -->
             <Button Grid.Column="5"
@@ -76,8 +109,26 @@
                     VerticalOptions="Center"
                     HorizontalOptions="End"
                     ImageSource="ic_bookmarks_gray.png"
-                    BackgroundColor="#Transparent"
-                    WidthRequest="20">
+                    BackgroundColor="Transparent"
+                    WidthRequest="30"
+                    HeightRequest="34"
+                    CornerRadius="17"
+                    Command="{Binding BindingContext.BookMarkCommand,
+                              Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
+                              CommandParameter="{Binding .}">
+
+                <Button.Triggers>
+
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding 
+                                 Path=IsBookMarked}"
+                                 Value="true">
+
+                        <Setter Property="ImageSource" Value="ic_bookmarks_blue.png"/>
+
+                    </DataTrigger>
+
+                </Button.Triggers>
 
             </Button>
 

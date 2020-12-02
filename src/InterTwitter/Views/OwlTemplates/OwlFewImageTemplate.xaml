@@ -5,8 +5,8 @@
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
               xmlns:controls="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
               x:Class="InterTwitter.Views.OwlTemplates.OwlFewImageTemplate">
-    
-    <Grid Margin="10">
+
+    <Grid Margin="10, 0, 10, 0">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70" />
@@ -14,7 +14,6 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="1"/>
         </Grid.RowDefinitions>
@@ -59,11 +58,11 @@
                                    FlowItemsSource="{Binding Media}"
                                    RowHeight="110"                                   
                                    SeparatorVisibility="Default" FlowIsLoadingInfinite="True">
-                
+
                 <controls:FlowListView.FlowColumnTemplate>
-                    
+
                     <DataTemplate>
-                    
+
                         <ffimageloading:CachedImage Margin="3" 
                                                     HorizontalOptions="Fill" 
                                                     VerticalOptions="Fill"  
@@ -81,13 +80,13 @@
                             </ffimageloading:CachedImage.Transformations>
 
                         </ffimageloading:CachedImage>
-                        
+
                     </DataTemplate>
-                    
+
                 </controls:FlowListView.FlowColumnTemplate>
-                
-            </controls:FlowListView>            
-           
+
+            </controls:FlowListView>
+
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -121,17 +120,50 @@
                         x:Name="likeButton"
                         VerticalOptions="Center"
                         HorizontalOptions="End"
-                        ImageSource="ic_like_gray.png"
                         BackgroundColor="Transparent"
-                        WidthRequest="20">
-                    
+                        HeightRequest="34"
+                        CornerRadius="17"                       
+                        ImageSource="ic_like_gray.png"
+                        Command="{Binding BindingContext.LikeClickCommand,
+                                  Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
+                                  CommandParameter="{Binding .}">
+
+                    <Button.Triggers>
+
+                        <DataTrigger TargetType="Button"
+                                     Binding="{Binding 
+                                     Path=IsLiked}"
+                                     Value="true">
+
+                            <Setter Property="ImageSource" Value="ic_like_blue.png"/>
+
+                        </DataTrigger>
+
+                    </Button.Triggers>
+
                 </Button>
 
                 <!-- LIKE COUNT LABEL -->
                 <Label Grid.Column="4"
                        HorizontalOptions="Start"
                        VerticalOptions="Center"
-                       Text="{Binding LikesCount}"/>
+                       TextColor="{StaticResource tx_5}"
+                       Text="{Binding LikesCount}">
+
+                    <Label.Triggers>
+
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding 
+                                     Path=IsLiked}"
+                                     Value="true">
+
+                            <Setter Property="TextColor" Value="{StaticResource bg_2}"/>
+
+                        </DataTrigger>
+
+                    </Label.Triggers>
+
+                </Label>
 
                 <!-- BOOKMARK BUTTON -->
                 <Button Grid.Column="5"
@@ -140,20 +172,38 @@
                         HorizontalOptions="End"
                         ImageSource="ic_bookmarks_gray.png"
                         BackgroundColor="Transparent"
-                        WidthRequest="20">
+                        WidthRequest="30"
+                        HeightRequest="34"
+                        CornerRadius="17"
+                        Command="{Binding BindingContext.BookMarkCommand,
+                                  Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
+                                  CommandParameter="{Binding .}">
+
+                    <Button.Triggers>
+
+                        <DataTrigger TargetType="Button"
+                                     Binding="{Binding 
+                                     Path=IsBookMarked}"
+                                     Value="true">
+
+                            <Setter Property="ImageSource" Value="ic_bookmarks_blue.png"/>
+
+                        </DataTrigger>
+
+                    </Button.Triggers>
 
                 </Button>
-               
+
             </Grid>
 
         </StackLayout>
 
-        <BoxView Grid.Row="2"
+        <BoxView Grid.Row="1"
                  Grid.ColumnSpan="2"
                  Style="{StaticResource boxViewSeparator}"
                  HorizontalOptions="Fill"
-                 VerticalOptions="Fill"/>
+                 VerticalOptions="End"/>
 
     </Grid>
-    
+
 </DataTemplate>

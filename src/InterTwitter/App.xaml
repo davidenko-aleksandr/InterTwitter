@@ -169,6 +169,35 @@
                                              PostVideoTemplate="{StaticResource PostVideoTemplate}"/>
         </ResourceDictionary>
         
+        <Style TargetType="Grid">
+            
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                
+                <VisualStateGroupList>
+                    
+                    <VisualStateGroup x:Name="CommonStates">
+                        
+                        <VisualState x:Name="Normal" />
+                        
+                        <VisualState x:Name="Selected">
+                            
+                            <VisualState.Setters>
+                                
+                                <Setter Property="BackgroundColor"
+                                        Value="{StaticResource bg_1}" />
+                                
+                            </VisualState.Setters>
+                            
+                        </VisualState>
+                        
+                    </VisualStateGroup>
+                    
+                </VisualStateGroupList>
+                
+            </Setter>
+            
+        </Style>
+        
     </Application.Resources>
 
 </prism:PrismApplication>

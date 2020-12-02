@@ -5,7 +5,7 @@ namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlVideoViewModel : OwlViewModel
     {
-        public OwlVideoViewModel(OwlModel model, UserModel author) : base(model, author)
+        public OwlVideoViewModel(OwlModel model, UserModel author, int authorizedUserId) : base(model, author, authorizedUserId)
         {
             Video = model.Media.First();
         }

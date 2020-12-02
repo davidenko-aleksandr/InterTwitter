@@ -9,16 +9,6 @@
                         BackgroundColor="{StaticResource bg_1}">
     
     <Grid>
-
-        <!-- TABBED PAGE NAVIGATION BAR -->
-        <controls:TabbedPageNavigationBar  VerticalOptions="Start"
-                                           HorizontalOptions="FillAndExpand"
-                                           IsBottomLineVisible="False"
-                                           MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"
-                                           LeftIconClickCommand="{Binding OpenMenuCommand}"
-                                           IsLeftIconVisible="True"
-                                           LeftIconSource="{Binding AuthorizedUser.Avatar}"
-                                           TitleText="{x:Static resources:AppResource.HomeTitle}"/>
         
         <!-- CUSTOM COLLECTION VIEW -->
         <controls:CustomCollectionView x:Name="customCollectionView" 
@@ -49,6 +39,16 @@
             </controls:CustomCollectionView.Header>
 
         </controls:CustomCollectionView>
+
+        <!-- TABBED PAGE NAVIGATION BAR -->
+        <controls:TabbedPageNavigationBar  VerticalOptions="Start"
+                                           HorizontalOptions="FillAndExpand"
+                                           IsBottomLineVisible="False"
+                                           MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"
+                                           LeftIconClickCommand="{Binding OpenMenuCommand}"
+                                           IsLeftIconVisible="True"
+                                           LeftIconSource="{Binding AuthorizedUser.Avatar}"
+                                           TitleText="{x:Static resources:AppResource.HomeTitle}"/>
 
         <!-- MOVING IMAGE BUTTON -->
         <controls:MovingImageButton Source="ic_add_white.png"
