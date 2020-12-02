@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using InterTwitter.Enums;
@@ -9,6 +10,7 @@ using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Services.Owl;
 using InterTwitter.Services.Permission;
+using InterTwitter.ViewModels.MediaItems;
 using Plugin.Media.Abstractions;
 using Prism.Navigation;
 
@@ -20,6 +22,8 @@ namespace InterTwitter.ViewModels
         private readonly IAuthorizationService _authorizationService;
         private readonly IMedia _mediaPlugin;
         private readonly IPermissionService _permissionService;
+
+        private ICommand _removeItemCommand;
 
         public AddPostPageViewModel(INavigationService navigationService,
                                     IOwlService owlService,
@@ -34,10 +38,36 @@ namespace InterTwitter.ViewModels
             _permissionService = permissionService;
 
             OwlType = OwlType.NoMedia;
-            OwlMedia = new ObservableCollection<string>();
+            MediaItems = new ObservableCollection<MediaItemViewModel>();
+            MediaButtonEnabled = true;
+            GifButtonEnabled = true;
+            VideoButtonEnabled = true;
+
+            _removeItemCommand = SingleExecutionCommand.FromFunc<MediaItemViewModel>(OnRemoveItemCommandAsync);
         }
 
         #region -- Public Properties --
+
+        private bool _mediaButtonEnabled;
+        public bool MediaButtonEnabled
+        {
+            get => _mediaButtonEnabled;
+            set => SetProperty(ref _mediaButtonEnabled, value);
+        }
+
+        private bool _gifButtonEnabled;
+        public bool GifButtonEnabled
+        {
+            get => _gifButtonEnabled;
+            set => SetProperty(ref _gifButtonEnabled, value);
+        }
+
+        private bool _videoButtonEnabled;
+        public bool VideoButtonEnabled
+        {
+            get => _videoButtonEnabled;
+            set => SetProperty(ref _videoButtonEnabled, value);
+        }
 
         private OwlType _owlType;
         public OwlType OwlType
@@ -46,11 +76,11 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _owlType, value);
         }
 
-        private ObservableCollection<string> _owlMedia;
-        public ObservableCollection<string> OwlMedia
+        private ObservableCollection<MediaItemViewModel> _mediaItems;
+        public ObservableCollection<MediaItemViewModel> MediaItems
         {
-            get => _owlMedia;
-            set => SetProperty(ref _owlMedia, value);
+            get => _mediaItems;
+            set => SetProperty(ref _mediaItems, value);
         }
 
         private string _owlText;
@@ -66,7 +96,6 @@ namespace InterTwitter.ViewModels
             get => _authorAvatar;
             set => SetProperty(ref _authorAvatar, value);
         }
-
 
         public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
 
@@ -94,6 +123,15 @@ namespace InterTwitter.ViewModels
 
         #region -- Private Helpers --
 
+        private Task OnRemoveItemCommandAsync(MediaItemViewModel arg)
+        {
+            MediaItems.Remove(arg);
+
+            RefreshCollection();
+
+            return Task.CompletedTask;
+        }
+
         private async Task OnCancelCommandAsync()
         {
             await NavigationService.GoBackAsync();
@@ -103,12 +141,18 @@ namespace InterTwitter.ViewModels
         {
             if (!string.IsNullOrEmpty(_owlText) && _owlText.Length > 0 && _owlText.Length < 280)
             {
+                var list = new List<string>();
+                foreach (MediaItemViewModel item in MediaItems)
+                {
+                    list.Add(item.MediaPath);
+                }
+
                 var owl = new OwlModel()
                 {
                     MediaType = OwlType,
                     Date = DateTime.Now,
                     Text = OwlText,
-                    Media = new List<string>(OwlMedia)
+                    Media = list
                 };
 
                 await _owlService.AddOwlAsync(owl);
@@ -121,33 +165,20 @@ namespace InterTwitter.ViewModels
         {
             if (_mediaPlugin.IsPickPhotoSupported)
             {
-                if (_owlType == OwlType.Video || _owlType == OwlType.Gif)
+                if (MediaButtonEnabled)
                 {
-                    _owlMedia.Clear();
-                }
-                else
-                {
-                    //_owlType is compatible with adding images
-                }
+                        MediaFile file = await _mediaPlugin.PickPhotoAsync();
 
-                if (_owlMedia.Count < 6)
-                {
-                    MediaFile file = await _mediaPlugin.PickPhotoAsync();
-
-                    if (file != null)
-                    {
-                        OwlMedia.Add(file.Path);
-                        OwlMedia = new ObservableCollection<string>(OwlMedia);
-                        OwlType = _owlMedia.Count == 1 ? OwlType.OneImage : OwlType.FewImages;
-                    }
+                        if (file != null)
+                        {
+                            OwlType = _mediaItems.Count == 1 ? OwlType.OneImage : OwlType.FewImages;
+                            MediaItems.Add(new MediaItemViewModel(file.Path, _removeItemCommand));
+                            RefreshCollection();
+                        }
                     else
                     {
                         //Currentfile == null;
                     }
-                }
-                else
-                {
-                    //TODO toast max 6 photos
                 }
             }
             else
@@ -165,38 +196,62 @@ namespace InterTwitter.ViewModels
         {
             if (_mediaPlugin.IsPickVideoSupported)
             {
-                if (_owlType == OwlType.OneImage || _owlType == OwlType.FewImages || _owlType == OwlType.Gif)
-                {
-                    _owlMedia.Clear();
-                }
-                else
-                {
-                    //_owlType is compatible with adding video
-                }
-
-                if (_owlMedia.Count == 0)
+                if (VideoButtonEnabled)
                 {
                     MediaFile file = await _mediaPlugin.PickVideoAsync();
 
                     if (file != null)
                     {
-                        _owlMedia.Add(file.Path);
-                        OwlMedia = new ObservableCollection<string>(OwlMedia);
                         OwlType = OwlType.Video;
+                        _mediaItems.Add(new MediaItemViewModel(file.Path, _removeItemCommand));
+                        RefreshCollection();
                     }
                     else
                     {
                         //Currentfile == null;
                     }
                 }
-                else
-                {
-                    //TODO toast max 1 video
-                }
             }
             else
             {
                 //Pick video is not supported;
+            }
+        }
+
+        private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (MediaItems.Count == 0)
+            {
+                OwlType = OwlType.NoMedia;
+            }
+
+            if (OwlType == OwlType.OneImage || OwlType == OwlType.FewImages)
+            {
+                GifButtonEnabled = false;
+                VideoButtonEnabled = false;
+
+                if (MediaItems.Count == 6)
+                {
+                    MediaButtonEnabled = false;
+                }
+            }
+            else if (OwlType == OwlType.Gif || OwlType == OwlType.Video)
+            {
+                MediaButtonEnabled = false;
+                GifButtonEnabled = false;
+                VideoButtonEnabled = false;
+            }
+        }
+
+        private void RefreshCollection()
+        {
+            if (MediaItems is not null)
+            {
+                MediaItems.CollectionChanged -= OnCollectionChanged;
+
+                MediaItems = new ObservableCollection<MediaItemViewModel>(MediaItems);
+
+                MediaItems.CollectionChanged += OnCollectionChanged;
             }
         }
 

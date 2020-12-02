@@ -103,7 +103,7 @@
         <flowview:FlowListView 
                                FlowColumnCount="6"
                                HasUnevenRows="False"
-                               FlowItemsSource="{Binding OwlMedia}"
+                               FlowItemsSource="{Binding MediaItems}"
                                RowHeight="50"
                                VerticalScrollBarVisibility="Never"
                                HorizontalScrollBarVisibility="Never"
@@ -113,23 +113,38 @@
 
                 <DataTemplate>
 
-                    <ffimageloading:CachedImage Margin="2" 
-                                                HorizontalOptions="Fill" 
-                                                VerticalOptions="Fill"  
-                                                Source="{Binding .}"
-                                                Aspect="AspectFit">
+                    <Grid>
 
-                        <ffimageloading:CachedImage.Transformations>
+                        <ffimageloading:CachedImage Margin="10" 
+                                                    HorizontalOptions="Fill" 
+                                                    VerticalOptions="Fill"  
+                                                    Source="{Binding MediaPath}"
+                                                    Aspect="AspectFit">
 
-                            <fftransformations:CornersTransformation CornersTransformType="AllRounded"
-                                                                     BottomLeftCornerSize="10"
-                                                                     TopLeftCornerSize="10"
-                                                                     BottomRightCornerSize="10"
-                                                                     TopRightCornerSize="10"/>
+                            <ffimageloading:CachedImage.Transformations>
 
-                        </ffimageloading:CachedImage.Transformations>
+                                <fftransformations:CornersTransformation CornersTransformType="AllRounded"
+                                                                         BottomLeftCornerSize="10"
+                                                                         TopLeftCornerSize="10"
+                                                                         BottomRightCornerSize="10"
+                                                                         TopRightCornerSize="10"/>
 
-                    </ffimageloading:CachedImage>
+                            </ffimageloading:CachedImage.Transformations>
+
+                        </ffimageloading:CachedImage>
+
+                        <controls:ClickableContentView HeightRequest="30"
+                                                       WidthRequest="30"
+                                                       HorizontalOptions="End"
+                                                       VerticalOptions="Start"
+                                                       Command="{Binding RemoveItemCommand}"
+                                                       CommandParameter="{Binding .}">
+
+                            <Image Source="ic_clear_filled"/>
+
+                        </controls:ClickableContentView>
+
+                    </Grid>
 
                 </DataTemplate>
 
@@ -199,7 +214,22 @@
                                                Padding="10"
                                                Command="{Binding MediaCommand}">
 
-                    <Image Source="ic_media"/>
+                    <Image Source="ic_media">
+
+                        <Image.Triggers>
+
+                            <DataTrigger Binding="{Binding MediaButtonEnabled}"
+                                         Value="false"
+                                         TargetType="Image">
+
+                                <Setter Property="Source"
+                                        Value="ic_media_disabled"/>
+
+                            </DataTrigger>
+
+                        </Image.Triggers>
+
+                    </Image>
 
                 </controls:ClickableContentView>
 
@@ -209,7 +239,22 @@
                                                Padding="10"
                                                Command="{Binding GifCommand}">
 
-                    <Image Source="ic_gif"/>
+                    <Image Source="ic_gif">
+
+                        <Image.Triggers>
+
+                            <DataTrigger Binding="{Binding GifButtonEnabled}"
+                                         Value="false"
+                                         TargetType="Image">
+
+                                <Setter Property="Source"
+                                        Value="ic_gif_disabled"/>
+
+                            </DataTrigger>
+
+                        </Image.Triggers>
+
+                    </Image>
 
                 </controls:ClickableContentView>
 
@@ -219,7 +264,22 @@
                                                Padding="10"
                                                Command="{Binding VideoCommand}">
 
-                    <Image Source="ic_video"/>
+                    <Image Source="ic_video">
+
+                        <Image.Triggers>
+
+                            <DataTrigger Binding="{Binding VideoButtonEnabled}"
+                                         Value="false"
+                                         TargetType="Image">
+
+                                <Setter Property="Source"
+                                        Value="ic_video_disabled"/>
+
+                            </DataTrigger>
+
+                        </Image.Triggers>
+
+                    </Image>
 
                 </controls:ClickableContentView>
 

@@ -79,6 +79,7 @@
     <Folder Include="Services\Authorization\" />
     <Folder Include="Behaviors\" />
     <Folder Include="Converters\" />
+    <Folder Include="ViewModels\MediaItems\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Controls\AuthorizationNavigationBar.xaml">
