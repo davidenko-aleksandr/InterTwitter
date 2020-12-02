@@ -11,6 +11,7 @@ namespace InterTwitter.Services.Owl
         Task<AOResult<IEnumerable<OwlViewModel>>> GetAllOwlsAsync();
         Task<AOResult<IEnumerable<OwlViewModel>>> GetAuthorOwlsAsync(int authorId);
         Task<AOResult<IEnumerable<OwlViewModel>>> GetSavedOwlsAsync();
+        Task<AOResult<bool>> ClearUserBookmarks();
         Task<AOResult<bool>> AddOwlAsync(OwlModel owlModel);
         Task<AOResult<bool>> UpdateOwlAsync(OwlModel owl);
     }

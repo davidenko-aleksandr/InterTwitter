@@ -1,6 +1,5 @@
 ﻿using Acr.UserDialogs;
 using InterTwitter.Helpers;
-using InterTwitter.Services.Authorization;
 using InterTwitter.Services.Owl;
 using InterTwitter.ViewModels.OwlItems;
 using Prism.Navigation;
@@ -15,36 +14,44 @@ namespace InterTwitter.ViewModels
     {
         private readonly IOwlService _owlService;
         private readonly IUserDialogs _userDialogs;
-        private readonly IAuthorizationService _authorizationService;
 
         public BookmarksPageViewModel(
                                       INavigationService navigationService,
                                       IOwlService owlService,
-                                      IUserDialogs userDialogs,
-                                      IAuthorizationService authorizationService) : base(navigationService)
+                                      IUserDialogs userDialogs)
+                                      : base(navigationService)
         {
             _owlService = owlService;
             _userDialogs = userDialogs;
-            _authorizationService = authorizationService;
+            Icon = "ic_bookmarks_gray";
         }
 
         #region -- Public Properties --
 
-        private string _icon = "ic_bookmarks_gray";
+        private string _icon;
         public string Icon
         {
             get => _icon;
             set => SetProperty(ref _icon, value);
         }
 
-        private ObservableCollection<OwlViewModel> _owls;
-        public ObservableCollection<OwlViewModel> Owls
+        private ObservableCollection<OwlViewModel> _bookmarksOwls;
+        public ObservableCollection<OwlViewModel> BookmarksOwls
         {
-            get => _owls;
-            set => SetProperty(ref _owls, value);
+            get => _bookmarksOwls;
+            set => SetProperty(ref _bookmarksOwls, value);
         }
 
+        private bool _isMenuVisible;
+        public bool IsMenuVisible
+        {
+            get => _isMenuVisible;
+            set => SetProperty(ref _isMenuVisible, value);
+        }
+
+
         public ICommand MenuClickCommand => SingleExecutionCommand.FromFunc(OnMenuClickCommandAsync);
+        public ICommand ClearBookmarksCommand => SingleExecutionCommand.FromFunc(OnClearBookmarksCommand);
 
         #endregion
 
@@ -53,18 +60,9 @@ namespace InterTwitter.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             Icon = "ic_bookmarks_blue";
+            IsMenuVisible = false;
 
-            var isConnected = Connectivity.NetworkAccess;
-
-            if (isConnected == NetworkAccess.Internet)
-            {
-                await FillCollectionAsync();
-            }
-            else
-            {
-                var errorText = Resources.AppResource.NoInternetText;
-                _userDialogs.Toast(errorText);
-            }
+            await FillCollectionAsync();
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -76,23 +74,51 @@ namespace InterTwitter.ViewModels
 
         #region -- Private helpers --
 
+        private async Task OnClearBookmarksCommand()
+        {
+            var isConnected = Connectivity.NetworkAccess;
+            if (isConnected == NetworkAccess.Internet)
+            {
+                BookmarksOwls = null;
+                await OnMenuClickCommandAsync();
+                await _owlService.ClearUserBookmarks();
+            }
+            else
+            {
+                var errorText = Resources.AppResource.NoInternetText;
+                _userDialogs.Toast(errorText);
+            }
+
+        }
+
         private async Task OnMenuClickCommandAsync()
         {
-            
+            IsMenuVisible = !IsMenuVisible;
         }
 
         private async Task FillCollectionAsync()
         {
-            var owlsResult = await _owlService.GetSavedOwlsAsync();
-            if (owlsResult.IsSuccess)
+            var isConnected = Connectivity.NetworkAccess;
+            if (isConnected == NetworkAccess.Internet)
             {
-                Owls = new ObservableCollection<OwlViewModel>(owlsResult.Result);
+                var owlsResult = await _owlService.GetSavedOwlsAsync();
+                if (owlsResult.IsSuccess)
+                {
+                    BookmarksOwls = new ObservableCollection<OwlViewModel>(owlsResult.Result);
+                }
+                else
+                {
+                    var errorText = Resources.AppResource.RandomError;
+                    _userDialogs.Toast(errorText);
+                }
+
             }
             else
             {
-                var errorText = Resources.AppResource.RandomError;
+                var errorText = Resources.AppResource.NoInternetText;
                 _userDialogs.Toast(errorText);
             }
+
         }
 
         #endregion

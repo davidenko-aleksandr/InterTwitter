@@ -140,6 +140,42 @@ namespace InterTwitter.Services.Owl
             return result;
         }
 
+        public async Task<AOResult<bool>> ClearUserBookmarks()
+        {
+            var result = new AOResult<bool>();
+
+            try
+            {
+                var owlResult = await GetSavedOwlsAsync();
+                var userResult = await _authorizationService.GetAuthorizedUserAsync();
+
+                if (userResult.IsSuccess && owlResult.IsSuccess)
+                {
+                    var authorizedUser = userResult.Result;
+
+                    var owls = owlResult.Result;
+
+                    foreach(var item in owls)
+                    {
+                        item.SavesList.Remove(authorizedUser.Id);
+                    }
+
+                    result.SetSuccess();
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetAllOwlsAsync)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
         public async Task<AOResult<IEnumerable<OwlViewModel>>> GetSavedOwlsAsync()
         {
             var result = new AOResult<IEnumerable<OwlViewModel>>();
