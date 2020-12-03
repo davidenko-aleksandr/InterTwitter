@@ -75,7 +75,7 @@ namespace InterTwitter.Services.UserService
             try
             {
                 _usersRepositoryMock.Add(user);
-                
+
                 result.SetSuccess(true);
             }
             catch (Exception ex)
@@ -88,7 +88,6 @@ namespace InterTwitter.Services.UserService
 
         public async Task<AOResult<bool>> UpdateUserAsync(UserViewModel userViewModel)
         {
-             
             var result = new AOResult<bool>();
 
             try
@@ -120,7 +119,7 @@ namespace InterTwitter.Services.UserService
 
         #endregion
 
-        #region -- Private Helpers -- 
+        #region -- Private Helpers --
 
         private void InitData()
         {
@@ -161,9 +160,8 @@ namespace InterTwitter.Services.UserService
                     Password = "Xamarin20",
                     Avatar = "https://pbs.twimg.com/profile_images/471641515756769282/RDXWoY7W_400x400.png",
                     ProfileHeaderImage = "https://pbs.twimg.com/profile_banners/299659914/1401283128/1500x500",
-                }
+                },
             };
-
         }
 
         #endregion

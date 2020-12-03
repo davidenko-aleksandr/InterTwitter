@@ -105,12 +105,12 @@ namespace InterTwitter.ViewModels
                 {
                     //NewPassword is null
                 }
+
                 await _userServcie.UpdateUserAsync(User);
 
-                var parameters = new NavigationParameters()
-                {
-                    { Constants.Navigation.User, User }
-                };
+                var parameters = new NavigationParameters();
+
+                parameters.Add(Constants.Navigation.User, User);
 
                 await NavigationService.GoBackAsync(parameters);
             }
@@ -134,7 +134,7 @@ namespace InterTwitter.ViewModels
             parameters.Add(AppResource.TakeGalleryPicture, TakeGalleryPicture, null);
             parameters.SetCancel(AppResource.CancelText, null, null);
 
-            _userDialogs.ActionSheet(parameters);  //await 
+            _userDialogs.ActionSheet(parameters);  //await
         }
 
         private async Task OnSetHeaderImageCommandAsync()
@@ -157,6 +157,7 @@ namespace InterTwitter.ViewModels
         private bool CheckUserDataValidity()
         {
             bool isValid;
+
             if (OldPassword != User.Password)
             {
                 _userDialogs.Toast(AppResource.WrongEmailPasswordText);
@@ -210,7 +211,7 @@ namespace InterTwitter.ViewModels
             }
             else
             {
-                await _userDialogs.AlertAsync(AppResource.CameraPermisionWarning, okText: AppResource.OkText);                
+                await _userDialogs.AlertAsync(AppResource.CameraPermisionWarning, okText: AppResource.OkText);
                 await _permissionService.RequestPermissionAsync<Camera>();
             }
         }
@@ -245,11 +246,13 @@ namespace InterTwitter.ViewModels
                         User.ProfileHeaderImage = path;
                         break;
                     }
+
                 case nameof(User.Avatar):
                     {
                         User.Avatar = path;
                         break;
                     }
+
                 default:
                     {
                         break;

@@ -8,7 +8,6 @@ namespace InterTwitter.Controls
         private double _oldVerticalOffset;
         public CustomCollectionView()
         {
-            
         }
 
         #region -- Public properties --
@@ -41,11 +40,10 @@ namespace InterTwitter.Controls
             {
                 MovingState = MovingStates.MovingUp;
             }
-            
+
             _oldVerticalOffset = e.VerticalOffset;
         }
 
         #endregion
-
     }
 }

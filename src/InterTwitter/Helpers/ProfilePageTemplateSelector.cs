@@ -13,7 +13,6 @@ namespace InterTwitter.Helpers
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-
             return LikesViewTemplate;
         }
     }

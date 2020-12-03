@@ -79,7 +79,6 @@ namespace InterTwitter.ViewModels
             {
                 _userDialogs.Toast("No internet connection");
             }
-
         }
 
         #endregion
