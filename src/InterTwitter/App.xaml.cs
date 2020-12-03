@@ -10,7 +10,8 @@ using Prism;
 using Prism.Ioc;
 using Prism.Unity;
 using Xamarin.Forms;
-using System.Threading.Tasks;
+using InterTwitter.Services.PostAction;
+using InterTwitter.Services.Notification;
 using Plugin.Media;
 using InterTwitter.Services.Permission;
 using DLToolkit.Forms.Controls;
@@ -20,7 +21,7 @@ namespace InterTwitter
     public partial class App : PrismApplication
     {
         public App(IPlatformInitializer initializer = null)
-            : base(initializer)
+                   : base(initializer)
         {
         }
 
@@ -31,6 +32,7 @@ namespace InterTwitter
             InitializeComponent();
             Sharpnado.Tabs.Initializer.Initialize(false, false);
 
+            Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
             FlowListView.Init();
 
             SetMainPage();
@@ -45,10 +47,11 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<SignUpPasswordPage, SignUpPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
-            containerRegistry.RegisterForNavigation<MessagesPage, MessagesPageViewModel>();
+            containerRegistry.RegisterForNavigation<BookmarksPage, BookmarksPageViewModel>();
             containerRegistry.RegisterForNavigation<NotificationsPage, NotificationsPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<PostPage, PostPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangeProfilePage,ChangeProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<AddPostPage, AddPostPageViewModel>();
 
@@ -62,12 +65,9 @@ namespace InterTwitter
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
             containerRegistry.RegisterInstance<IOwlService>(Container.Resolve<OwlService>());
+            containerRegistry.RegisterInstance<INotificationService>(Container.Resolve<NotificationService>());
+            containerRegistry.RegisterInstance<IPostActionService>(Container.Resolve<PostActionService>());
             containerRegistry.RegisterInstance<IPermissionService>(Container.Resolve<PermissionService>());
-        }
-
-        #endregion
-
-        #region -- Private Helpers --
 
         private void SetMainPage()
         {
@@ -79,5 +79,6 @@ namespace InterTwitter
         }
 
         #endregion
+
     }
 }

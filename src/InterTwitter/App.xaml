@@ -3,9 +3,11 @@
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
-                        xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-                        xmlns:controls="clr-namespace:InterTwitter.Controls"
-                        android:Application.WindowSoftInputModeAdjust="Resize">
+                        xmlns:controls="clr-namespace:InterTwitter.Controls"  
+                        xmlns:helpers="clr-namespace:InterTwitter.Helpers" 
+                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates"
+                        xmlns:owlTemplates="clr-namespace:InterTwitter.Views.Templates.OwlTemplates"
+                        xmlns:postTemplates="clr-namespace:InterTwitter.Views.Templates.PostTemplates">
 
     <Application.Resources>
        
@@ -88,9 +90,7 @@
             <Setter Property="FontSize"
                     Value="18" />
             <Setter Property="FontFamily" 
-                    Value="Ubuntu" />
-            <Setter Property="FontAttributes"
-                    Value="Bold"/>
+                    Value="Ubuntu-Bold" />
             <Setter Property="HorizontalOptions" 
                     Value="Center" />
             <Setter Property="TextColor"
@@ -134,8 +134,70 @@
             <Setter Property="Margin" 
                     Value="0,12,0,0"/>
             
-        </Style> 
+        </Style>
 
+        <ResourceDictionary>
+
+            <templates:EmptyTemplate x:Key="EmptyTemplate"/>
+
+            <owlTemplates:OwlOneImageTemplate x:Key="OwlOneImageTemplate"/>
+
+            <owlTemplates:OwlFewImageTemplate x:Key="OwlFewImageTemplate"/>
+
+            <owlTemplates:OwlNoMediaTemplate x:Key="OwlNoMediaTemplate"/>
+
+            <owlTemplates:OwlVideoTemplate x:Key="OwlVideoTemplate"/>
+
+            <helpers:OwlTemplateSelector x:Key="OwlTemplateSelector"
+                                         OwlOneImageTemplate="{StaticResource OwlOneImageTemplate}"
+                                         OwlFewImageTemplate="{StaticResource OwlFewImageTemplate}"
+                                         OwlNoMediaTemplate ="{StaticResource OwlNoMediaTemplate}"
+                                         OwlVideoTemplate ="{StaticResource OwlVideoTemplate}"/>
+
+            <postTemplates:PostOneImageTemplate x:Key="PostOneImageTemplate"/>
+
+            <postTemplates:PostFewImageTemplate x:Key="PostFewImageTemplate"/>
+
+            <postTemplates:PostNoMediaTemplate x:Key="PostNoMediaTemplate"/>
+
+            <postTemplates:PostVideoTemplate x:Key="PostVideoTemplate"/>
+
+            <helpers:PostTemplateSelector x:Key="PostTemplateSelector"
+                                          PostOneImageTemplate="{StaticResource PostOneImageTemplate}"
+                                          PostFewImageTemplate="{StaticResource PostFewImageTemplate}"
+                                          PostNoMediaTemplate="{StaticResource PostNoMediaTemplate}"
+                                          PostVideoTemplate="{StaticResource PostVideoTemplate}"/>
+        </ResourceDictionary>
+        
+        <Style TargetType="Grid">
+            
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                
+                <VisualStateGroupList>
+                    
+                    <VisualStateGroup x:Name="CommonStates">
+                        
+                        <VisualState x:Name="Normal" />
+                        
+                        <VisualState x:Name="Selected">
+                            
+                            <VisualState.Setters>
+                                
+                                <Setter Property="BackgroundColor"
+                                        Value="{StaticResource bg_1}" />
+                                
+                            </VisualState.Setters>
+                            
+                        </VisualState>
+                        
+                    </VisualStateGroup>
+                    
+                </VisualStateGroupList>
+                
+            </Setter>
+            
+        </Style>
+        
     </Application.Resources>
 
 </prism:PrismApplication>

@@ -18,8 +18,8 @@ namespace InterTwitter.Models
 
         public OwlType MediaType { get; set; }
 
-        public int LikesCount { get; set; }
+        public List<int> LikesList { get; set; }
 
-        public bool IsFavorite { get; set; }
+        public List<int> SavesList { get; set; }
     }
 }

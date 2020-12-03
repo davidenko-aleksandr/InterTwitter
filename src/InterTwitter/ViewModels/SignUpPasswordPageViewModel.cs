@@ -15,20 +15,23 @@ namespace InterTwitter.ViewModels
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
+        private readonly IKeyboardService _keyboardService;
         private string _email;
         private string _name;
 
-        public SignUpPasswordPageViewModel(INavigationService navigationService,
-                                           IAuthorizationService authorizationService,
-                                           IUserDialogs userDialogs,
-                                           IKeyboardService keyboardService)
-                                           : base(navigationService)
+        public SignUpPasswordPageViewModel(
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IUserDialogs userDialogs,
+            IKeyboardService keyboardService)
+            : base(navigationService)
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
+            _keyboardService = keyboardService;
 
-            keyboardService.KeyboardShown += KeyboardShown;
-            keyboardService.KeyboardHidden += KeyboardHidden;
+            _keyboardService.KeyboardShown += KeyboardShown;
+            _keyboardService.KeyboardHidden += KeyboardHidden;
         }
 
         #region -- Public Properties --
@@ -61,7 +64,14 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isSignButtonsBlockVisible, value);
         }
 
-        public ICommand ConfirmCommand => SingleExecutionCommand.FromFunc(OnConfirmCommandAsync);
+        private double _keyboardButtonTranslationY;
+        public double KeyboardButtonTranslationY
+        {
+            get => _keyboardButtonTranslationY;
+            set => SetProperty(ref _keyboardButtonTranslationY, value);
+        }
+
+        public ICommand ConfirmPasswordCommand => SingleExecutionCommand.FromFunc(OnConfirmCommandAsync);
                 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
                
@@ -91,27 +101,29 @@ namespace InterTwitter.ViewModels
 
         private Task OnGoBackCommandAsync()
         {
-          return  NavigationService.GoBackAsync();            
+          return NavigationService.GoBackAsync();            
         }
 
         private async Task OnConfirmCommandAsync()
         {
             var isValid = ValidatePassword();
-
             if (isValid)
             {
-                await _authorizationService.SignUpAsync(_email, _name, Password);
-
-                var parameters = new NavigationParameters
-                                {
-                                    { Constants.Navigation.Email, _email }
-                                };
-
-                await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+                var signUpResult = await _authorizationService.SignUpAsync(_email, _name, Password);
+                if (signUpResult.IsSuccess)
+                {
+                    await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+                }
+                else
+                {
+                    var errorText = Resources.AppResource.RandomError;
+                    _userDialogs.Toast(errorText);
+                }
+                
             }
             else
             {
-                _userDialogs.Toast("Passwords should match");
+                //entry not valid
             }
         }
 
@@ -122,17 +134,23 @@ namespace InterTwitter.ViewModels
 
         private void KeyboardHidden(object sender, System.EventArgs e)
         {
-            IsSignButtonsBlockVisible = true;
             IsKeyboardButtonVisible = false;
+            IsSignButtonsBlockVisible = true;
+
+            KeyboardButtonTranslationY = 0.0d;
         }
 
         private void KeyboardShown(object sender, System.EventArgs e)
         {
             IsSignButtonsBlockVisible = false;
             IsKeyboardButtonVisible = true;
+
+            var keyboardHeight = _keyboardService.FrameHeight;
+
+            KeyboardButtonTranslationY = keyboardHeight != 0.0f ? -keyboardHeight : KeyboardButtonTranslationY;
+
         }
 
         #endregion
-
     }
 }

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+      xmlns:controls="clr-namespace:InterTwitter.Controls" 
+      xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+      xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+      x:Class="InterTwitter.Controls.TabbedPageNavigationBar"
+      x:Name="tabbedPageNavigationBar"
+      VerticalOptions="Start"
+      HorizontalOptions="FillAndExpand"
+      ColumnSpacing="0"
+      RowSpacing="0"
+      HeightRequest="60"
+      BackgroundColor="{StaticResource bg_1}">
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="50"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="50"/>
+    </Grid.ColumnDefinitions>
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="1"/>
+    </Grid.RowDefinitions>
+
+    <controls:ClickableContentView Grid.Column="0"
+                                   Grid.Row="0"
+                                   Padding="8"
+                                   BindingContext="{x:Reference tabbedPageNavigationBar}"
+                                   Command="{Binding LeftIconClickCommand}"
+                                   IsVisible="{Binding IsLeftIconVisible}">
+
+        <ffimageloading:CachedImage BindingContext="{x:Reference tabbedPageNavigationBar}"
+                                    Source="{Binding LeftIconSource}"
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center"
+                                    Aspect="AspectFit">
+
+            <ffimageloading:CachedImage.Transformations>
+
+                <fftransformations:CircleTransformation/>
+
+            </ffimageloading:CachedImage.Transformations>
+
+        </ffimageloading:CachedImage>
+
+
+    </controls:ClickableContentView>
+
+    <Label Grid.Column="1"
+           Grid.Row="0"
+           FontAttributes="Bold"
+           VerticalOptions="Center"
+           HorizontalOptions="Center"
+           FontSize="24"
+           TextColor="{StaticResource tx_3}"
+           BindingContext="{x:Reference tabbedPageNavigationBar}"
+           Text="{Binding TitleText}"/>
+
+    <controls:ClickableContentView Grid.Column="2"
+                                   Grid.Row="0"
+                                   Padding="8"
+                                   BindingContext="{x:Reference tabbedPageNavigationBar}"
+                                   Command="{Binding RightIconClickCommand}"
+                                   IsVisible="{Binding IsRightIconVisible}">
+
+        <ffimageloading:CachedImage BindingContext="{x:Reference tabbedPageNavigationBar}"
+                                    Source="{Binding RightIconSource}"
+                                    HorizontalOptions="Center" 
+                                    VerticalOptions="Center"
+                                    Aspect="AspectFit">
+
+            <ffimageloading:CachedImage.Transformations>
+
+                <fftransformations:CircleTransformation/>
+
+            </ffimageloading:CachedImage.Transformations>
+
+        </ffimageloading:CachedImage>
+
+
+    </controls:ClickableContentView>
+
+    <BoxView Grid.Column="0" 
+             Grid.ColumnSpan="3"
+             Grid.Row="1"
+             HorizontalOptions="FillAndExpand"
+             VerticalOptions="EndAndExpand"
+             HeightRequest="1"
+             BackgroundColor="{StaticResource bg_3}"
+             BindingContext="{x:Reference tabbedPageNavigationBar}"
+             IsVisible="{Binding IsBottomLineVisible}"/>
+
+</Grid>

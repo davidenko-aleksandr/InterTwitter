@@ -18,7 +18,6 @@ namespace InterTwitter.iOS
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
         #region -- Overrides --
-
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 #if ENABLE_TEST_CLOUD
@@ -27,11 +26,10 @@ namespace InterTwitter.iOS
             global::Xamarin.Forms.Forms.Init();
             Sharpnado.Tabs.iOS.Preserver.Preserve();
 
+            Sharpnado.Shades.iOS.iOSShadowsRenderer.Initialize();
             FormsVideoPlayer.Init();
-
             CachedImageRenderer.Init();
             CachedImageRenderer.InitImageSourceHandler();
-
             var config = new FFImageLoading.Config.Configuration()
             {
                 VerboseLogging = false,

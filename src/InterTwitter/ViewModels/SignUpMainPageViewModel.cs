@@ -17,18 +17,21 @@ namespace InterTwitter.ViewModels
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
+        private readonly IKeyboardService _keyboardService;
 
-        public SignUpMainPageViewModel(INavigationService navigationService,
-                                       IAuthorizationService authorizationService,
-                                       IKeyboardService keyboardService,
-                                       IUserDialogs userDialogs)
-                                       : base(navigationService)
+        public SignUpMainPageViewModel(
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IKeyboardService keyboardService,
+            IUserDialogs userDialogs)
+            : base(navigationService)
         {
             _userDialogs = userDialogs;
             _authorizationService = authorizationService;
+            _keyboardService = keyboardService;
 
-            keyboardService.KeyboardShown += KeyboardShown;
-            keyboardService.KeyboardHidden += KeyboardHidden;
+            _keyboardService.KeyboardShown += KeyboardShown;
+            _keyboardService.KeyboardHidden += KeyboardHidden;
         }
 
         #region --Public properties--
@@ -61,6 +64,13 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isSignButtonsBlockVisible, value);
         }
 
+        private double _keyboardButtonTranslationY;
+        public double KeyboardButtonTranslationY
+        {
+            get => _keyboardButtonTranslationY;
+            set => SetProperty(ref _keyboardButtonTranslationY, value);
+        }
+
         public ICommand SignUpCommand => SingleExecutionCommand.FromFunc(OnSignUpCommandAsync);
                 
         public ICommand LogInCommand => SingleExecutionCommand.FromFunc(OnLoginCommandAsync);
@@ -75,25 +85,36 @@ namespace InterTwitter.ViewModels
             if (isConnected == NetworkAccess.Internet)
             {
                 var isValid = ValidateData();
-
                 if (isValid)
                 {
-                    var parameters = new NavigationParameters
+                    var checkResult = await _authorizationService.CheckUserEmail(Email);
+                    if (checkResult.IsSuccess)
                     {
-                        { Constants.Navigation.Name, Name },
-                        { Constants.Navigation.Email, Email }
-                    };
+                        var parameters = new NavigationParameters
+                        {
+                            { Constants.Navigation.Name, Name },
+                            { Constants.Navigation.Email, Email }
+                        };
 
-                    await NavigationService.NavigateAsync(nameof(SignUpPasswordPage), parameters);
+                        await NavigationService.NavigateAsync(nameof(SignUpPasswordPage), parameters);
+                    }
+                    else
+                    {
+                        var errorText = Resources.AppResource.ExistEmailError;
+                        _userDialogs.Toast(errorText);
+                    }
+
                 }
                 else
                 {
-                    _userDialogs.Toast("Registration data error");
+                    //isValid is false
                 }
+
             }
             else 
             {
-                _userDialogs.Toast("No internet connection");
+                var errorText = Resources.AppResource.NoInternetText;
+                _userDialogs.Toast(errorText);
             }
         }
 
@@ -109,14 +130,21 @@ namespace InterTwitter.ViewModels
 
         private void KeyboardHidden(object sender, System.EventArgs e)
         {
-            IsSignButtonsBlockVisible = true;
             IsKeyboardButtonVisible = false;
+            IsSignButtonsBlockVisible = true;
+
+            KeyboardButtonTranslationY = 0.0d;
         }
 
         private void KeyboardShown(object sender, System.EventArgs e)
         {
             IsSignButtonsBlockVisible = false;
             IsKeyboardButtonVisible = true;
+
+            var keyboardHeight = _keyboardService.FrameHeight;
+
+            KeyboardButtonTranslationY = keyboardHeight != 0.0f ? -keyboardHeight : KeyboardButtonTranslationY;
+
         }
 
         #endregion

@@ -72,7 +72,7 @@ namespace InterTwitter.ViewModels
 
         public ICommand BackCommand => SingleExecutionCommand.FromFunc(OnBackCommandAsync);
 
-        public ICommand ChangeProfileCommand => SingleExecutionCommand.FromFunc(OnChangeProfileCommand);
+        public ICommand ChangeProfileCommand => SingleExecutionCommand.FromFunc(OnChangeProfileCommandAsync);
 
         #endregion
 
@@ -91,8 +91,7 @@ namespace InterTwitter.ViewModels
             }
             else
             {
-                var result = await _authorizationService.GetAuthorizedUserAsync();
-                User = result.Result;
+                await SetAuthorizedUserAsync();
             }
 
             InitTabs();

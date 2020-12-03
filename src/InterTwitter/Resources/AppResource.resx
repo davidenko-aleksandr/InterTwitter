@@ -168,17 +168,14 @@
   <data name="InvalidUserDataText" xml:space="preserve">
     <value>Invalid user data</value>
   </data>
-  <data name="LeftImage" xml:space="preserve">
-    <value>ic_left.png</value>
+  <data name="LikedPostText" xml:space="preserve">
+    <value>liked your post</value>
   </data>
   <data name="LogInButton" xml:space="preserve">
     <value>Log In</value>
   </data>
   <data name="LogoImage" xml:space="preserve">
     <value>pic_logo_small.png</value>
-  </data>
-  <data name="LogOutError" xml:space="preserve">
-    <value>Oops, something went wrong</value>
   </data>
   <data name="NameEntryPlaceHolder" xml:space="preserve">
     <value>Name</value>
@@ -201,8 +198,8 @@
   <data name="NoInternetText" xml:space="preserve">
     <value>No Internet connection</value>
   </data>
-  <data name="OkText" xml:space="preserve">
-    <value>Ok</value>
+  <data name="NotificationPageTitle" xml:space="preserve">
+    <value>Notification</value>
   </data>
   <data name="OldPasswordText" xml:space="preserve">
     <value>Old password</value>
@@ -213,6 +210,12 @@
   <data name="PasswordText" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="RandomError" xml:space="preserve">
+    <value>Oops, something went wrong</value>
+  </data>
+  <data name="SavedPostText" xml:space="preserve">
+    <value>saved your post</value>
+  </data>
   <data name="PicProfileHeaderImage" xml:space="preserve">
     <value>pic_profile_header_photo.jpg</value>
   </data>
@@ -221,6 +224,9 @@
   </data>
   <data name="SignUpButton" xml:space="preserve">
     <value>Sign Up</value>
+  </data>
+  <data name="VideoText" xml:space="preserve">
+    <value>Video</value>
   </data>
   <data name="TakeCameraPicture" xml:space="preserve">
     <value>Take picture from camera</value>
@@ -236,5 +242,29 @@
   </data>
   <data name="WrongOldPassword" xml:space="preserve">
     <value>You entered wrong old password</value>
+  </data>
+  <data name="OkText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ExistEmailError" xml:space="preserve">
+    <value>Email is already exist!</value>
+  </data>
+  <data name="BookmarksTitle" xml:space="preserve">
+    <value>Bookmarks</value>
+  </data>
+  <data name="LeftGreyImage" xml:space="preserve">
+    <value>ic_left_grey.png</value>
+  </data>
+  <data name="LeftImage" xml:space="preserve">
+    <value>ic_left.png</value>
+  </data>
+  <data name="RightImage" xml:space="preserve">
+    <value>ic_right.png</value>
+  </data>
+  <data name="DeleteBookmarksText" xml:space="preserve">
+    <value>Delete all bookmarks</value>
+  </data>
+  <data name="LoadingPlaceholder" xml:space="preserve">
+    <value>loading_placeholder.gif</value>
   </data>
 </root>

@@ -6,7 +6,6 @@ using System.Windows.Input;
 using Acr.UserDialogs;
 using InterTwitter.Extensions;
 using InterTwitter.Helpers;
-using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.ViewModels.Helpers;
 using InterTwitter.Views;
@@ -20,10 +19,11 @@ namespace InterTwitter.ViewModels
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
 
-        public MenuPageViewModel(INavigationService navigationService,
-                                 IAuthorizationService authorizationService,
-                                 IUserDialogs userDialogs)
-                                 : base(navigationService)
+        public MenuPageViewModel(
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IUserDialogs userDialogs)
+            : base(navigationService)
         {
             _authorizationService = authorizationService;
             _userDialogs = userDialogs;
@@ -93,25 +93,17 @@ namespace InterTwitter.ViewModels
                     {
                         item.Icon = item.IsSelected ? "ic_notifications_blue" : "ic_notifications_gray";
                     }
-                    else if (item.PageType == typeof(MessagesPage))
+                    else if (item.PageType == typeof(BookmarksPage))
                     {
-                        item.Icon = item.IsSelected ? "ic_messages_blue" : "ic_messages_gray";
+                        item.Icon = item.IsSelected ? "ic_bookmarks_blue" : "ic_bookmarks_gray";
+                    }
+                    else
+                    {
+                        //page type is not set
                     }
                 }
             }
             
-        }
-
-        public override async void OnNavigatedTo(INavigationParameters parameters)
-        {
-            //if (parameters.TryGetValue(Constants.Navigation.User, out UserViewModel user))
-            //{
-            //    AuthorizedUser = user;
-            //}
-            //else
-            //{
-            //    await SetUserDataAsync();
-            //}
         }
 
         #endregion
@@ -138,7 +130,7 @@ namespace InterTwitter.ViewModels
             }
             else
             {
-                var errorText = Resources.AppResource.LogOutError;
+                var errorText = Resources.AppResource.RandomError;
                 _userDialogs.Toast(errorText);
             }
 
@@ -188,8 +180,8 @@ namespace InterTwitter.ViewModels
                     },
                     new MenuItemViewModel()
                     {
-                        Text = "Direct messages",
-                        PageType = typeof(MessagesPage),
+                        Text = "Bookmarks",
+                        PageType = typeof(BookmarksPage),
                         Icon = "ic_messages_gray",
                         NavigationCommand = selectTabCommand
                     },
@@ -217,7 +209,25 @@ namespace InterTwitter.ViewModels
         private async Task SetUserDataAsync()
         {
             var result = await _authorizationService.GetAuthorizedUserAsync();
-            AuthorizedUser = result.Result;
+
+            if (result.IsSuccess)
+            {
+                var userResult = result.Result;
+
+                if (userResult is not null)
+                {
+                    AuthorizedUser = userResult;
+                }
+                else
+                {
+                    //userResult was null
+                }
+
+            }
+            else
+            {
+                //result is failed
+            }
         }
 
         public async void OnAppearing()
@@ -225,7 +235,7 @@ namespace InterTwitter.ViewModels
             await SetUserDataAsync();
         }
 
-        public void OnDissAppearing()
+        public void OnDisappearing()
         {
            
         }

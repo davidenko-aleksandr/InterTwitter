@@ -14,7 +14,7 @@ namespace InterTwitter.ViewModels
             Name = userModel.Name;
             Email = userModel.Email;
             Password = userModel.Password;
-            Picture = userModel.Picture;
+            Avatar = userModel.Avatar;
             ProfileHeaderImage = userModel.ProfileHeaderImage;
         }
 
@@ -48,11 +48,11 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _password, value);
         }
 
-        private string _picture;
-        public string Picture
+        private string _avatar;
+        public string Avatar
         {
-            get => _picture;
-            set => SetProperty(ref _picture, value);
+            get => _avatar;
+            set => SetProperty(ref _avatar, value);
         }
 
         private string _profileHeaderImage;

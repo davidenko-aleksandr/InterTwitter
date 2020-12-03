@@ -1,4 +1,6 @@
 ﻿using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace InterTwitter.Views
 {
@@ -15,6 +17,8 @@ namespace InterTwitter.Views
         {
             base.OnAppearing();
 
+            App.Current.On<Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+
             keyboardButton.PropertyChanging += KeyboardButtonPropertyChanging;
             signButtonsBlock.PropertyChanging += SignButtonsBlockPropertyChanging;
         }
@@ -22,6 +26,8 @@ namespace InterTwitter.Views
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
+
+            App.Current.On<Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Pan);
 
             keyboardButton.PropertyChanging -= KeyboardButtonPropertyChanging;
             signButtonsBlock.PropertyChanging -= SignButtonsBlockPropertyChanging;

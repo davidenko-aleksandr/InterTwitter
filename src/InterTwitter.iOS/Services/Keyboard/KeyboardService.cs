@@ -19,6 +19,7 @@ namespace InterTwitter.iOS.Services.Keyboard
 
         public event EventHandler KeyboardShown;
         public event EventHandler KeyboardHidden;
+        public float FrameHeight { get; set; }
 
         #endregion
 
@@ -26,16 +27,18 @@ namespace InterTwitter.iOS.Services.Keyboard
 
         private void SubscribeEvents()
         {
-            UIKeyboard.Notifications.ObserveDidShow(OnKeyboardDidShow);
-            UIKeyboard.Notifications.ObserveDidHide(OnKeyboardDidHide);
+            UIKeyboard.Notifications.ObserveWillShow(OnKeyboardDidShow);
+            UIKeyboard.Notifications.ObserveWillHide(OnKeyboardDidHide);
         }
 
-        private void OnKeyboardDidShow(object sender, EventArgs e)
+        private void OnKeyboardDidShow(object sender, UIKeyboardEventArgs e)
         {
+            FrameHeight = (float)e.FrameEnd.Size.Height;
+
             KeyboardShown?.Invoke(this, EventArgs.Empty);
         }
 
-        private void OnKeyboardDidHide(object sender, EventArgs e)
+        private void OnKeyboardDidHide(object sender, UIKeyboardEventArgs e)
         {
             KeyboardHidden?.Invoke(this, EventArgs.Empty);
         }

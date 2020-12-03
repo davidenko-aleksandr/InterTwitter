@@ -103,7 +103,7 @@
                                     HorizontalOptions="Start"                                    
                                     DownsampleToViewSize="True"
                                     Aspect="AspectFit"                                              
-                                    Source="{Binding User.Picture}">
+                                    Source="{Binding User.Avatar}">
 
             <ffimageloading:CachedImage.Transformations>
 

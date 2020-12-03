@@ -80,31 +80,50 @@
     <Folder Include="Services\Authorization\" />
     <Folder Include="Behaviors\" />
     <Folder Include="Converters\" />
+    <Folder Include="ViewModels\MediaItems\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Controls\AuthorizationNavigationBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Controls\HomePageNavigationBar.xaml">
+    <EmbeddedResource Update="Controls\SearchPageBar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\TabbedPageNavigationBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\AppResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\PostTemplates\PostFewImageTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PostPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\OwlFewImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlGifTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\OwlTemplates\OwlFewImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlNoMediaTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\OwlTemplates\OwlNoMediaTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlOneImageTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\OwlTemplates\OwlOneImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\OwlVideoTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\OwlTemplates\OwlVideoTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\PostFewImageTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\PostNoMediaTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\PostVideoTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\ProfilePageLikesTemplate.xaml">
@@ -118,10 +137,24 @@
     <Compile Update="Controls\AuthorizationNavigationBar.xaml.cs">
       <DependentUpon>AuthorizationNavigationBar.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Controls\TabbedPageNavigationBar.xaml.cs">
+      <DependentUpon>TabbedPageNavigationBar.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Resources\AppResource.Designer.cs">
       <DependentUpon>AppResource.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Views\BookmarksPage.xaml.cs">
+      <DependentUpon>BookmarksPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\ProfilePageTemplates\ProfilePagePostsTemplate.xaml.cs">
+      <DependentUpon>ProfilePagePostsTemplate.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Controls\SearchPageBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 </Project>
