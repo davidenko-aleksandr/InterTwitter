@@ -223,6 +223,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove from Blacklist.
+        /// </summary>
+        public static string FromBlackListText {
+            get {
+                return ResourceManager.GetString("FromBlackListText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get your account.
         /// </summary>
         public static string GetAccountLabel {
@@ -304,20 +313,20 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Muted profiles.
+        /// </summary>
+        public static string MutedProfilesText {
+            get {
+                return ResourceManager.GetString("MutedProfilesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Muted.
         /// </summary>
         public static string MutedText {
             get {
                 return ResourceManager.GetString("MutedText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mute profiles.
-        /// </summary>
-        public static string MuteProfilesText {
-            get {
-                return ResourceManager.GetString("MuteProfilesText", resourceCulture);
             }
         }
         
@@ -534,6 +543,24 @@ namespace InterTwitter.Resources {
         public static string TakeGalleryPicture {
             get {
                 return ResourceManager.GetString("TakeGalleryPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add to Blacklist.
+        /// </summary>
+        public static string ToBlackListText {
+            get {
+                return ResourceManager.GetString("ToBlackListText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This user will not see your posts.
+        /// </summary>
+        public static string ToBlackListWarning {
+            get {
+                return ResourceManager.GetString("ToBlackListWarning", resourceCulture);
             }
         }
         

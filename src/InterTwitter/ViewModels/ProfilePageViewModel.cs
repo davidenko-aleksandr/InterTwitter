@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using InterTwitter.ViewModels.ProfilePageItems;
 using InterTwitter.Services.UserService;
 using InterTwitter.ViewModels.OwlItems;
+using System;
 
 namespace InterTwitter.ViewModels
 {
@@ -37,6 +38,20 @@ namespace InterTwitter.ViewModels
         {
             get => _isMuted;
             set => SetProperty(ref _isMuted, value);
+        }
+
+        private bool _isVisibleToBlackListConfirm;
+        public bool IsVisibleToBlackListConfirm
+        {
+            get => _isVisibleToBlackListConfirm;
+            set => SetProperty(ref _isVisibleToBlackListConfirm, value);
+        }
+
+        private bool _isVisibleFromBlackListConfirm;
+        public bool IsVisibleFromBlackListConfirm
+        {
+            get => _isVisibleFromBlackListConfirm;
+            set => SetProperty(ref _isVisibleFromBlackListConfirm, value);
         }
 
         private bool _isBackFrameIsVisible;
@@ -99,7 +114,12 @@ namespace InterTwitter.ViewModels
 
         public ICommand ChangeProfileCommand => SingleExecutionCommand.FromFunc(OnChangeProfileCommandAsync);
 
+        public ICommand CancellCommand => SingleExecutionCommand.FromFunc(OnCancellCommandAsync);
+
+        public ICommand OpenDialogCommand => SingleExecutionCommand.FromFunc(OnOpenDialogCommand);
+
         public ICommand MenuClickCommand => SingleExecutionCommand.FromFunc(OnMenuClickCommandAsync);
+       
         #endregion
 
         #region -- Overrides --
@@ -120,6 +140,7 @@ namespace InterTwitter.ViewModels
                 var result = await _authorizationService.GetAuthorizedUserAsync();
                 User = result.Result;
             }
+
             await SetDataAsync();
             InitTabs();
         }
@@ -128,22 +149,38 @@ namespace InterTwitter.ViewModels
 
         #region -- Private helpers --
 
+        private Task OnOpenDialogCommand()
+        {
+            if (IsMuted)
+            {
+                IsVisibleToBlackListConfirm = true;
+            }
+            else
+            {
+                IsVisibleFromBlackListConfirm = true;
+            }
+
+            return Task.CompletedTask;
+        }
+
         private Task OnMenuClickCommandAsync()
         {
             if (IsBackFrameIsVisible)
             {
                 IsBackFrameIsVisible = false;
                 IsMenuVisible = false;
-                IsSecondaryMenuVisible = false;
+                IsSecondaryMenuVisible = false;                
             }
             else if (IsAuthorized)
             {
+                IsBackFrameIsVisible = true;
                 IsMenuVisible = true;
             }
-            else 
+            else
             {
+                IsBackFrameIsVisible = true;
                 IsSecondaryMenuVisible = true;
-            }            
+            }
 
             return Task.CompletedTask;
         }
@@ -181,8 +218,8 @@ namespace InterTwitter.ViewModels
 
         private async Task SetDataAsync()
         {
-            IsAuthorized = User.Id == _authorizationService.AuthorizedUserId;
-
+             IsAuthorized = User.Id == _authorizationService.AuthorizedUserId;
+            
             var owlAOResult = _owlService.GetAuthorOwlsAsync(User.Id);
             var likedOwlsAOresult = _owlService.GetLikedOwlsAsync(User.Id);
 
@@ -191,6 +228,15 @@ namespace InterTwitter.ViewModels
             Owls = new ObservableCollection<OwlViewModel>(owlAOResult.Result.Result);
             LikedOwls = new ObservableCollection<OwlViewModel>(likedOwlsAOresult.Result.Result);
         }
+
+        private Task OnCancellCommandAsync()
+        {            
+            IsVisibleToBlackListConfirm = false;
+            IsVisibleFromBlackListConfirm = false;
+
+            return Task.CompletedTask;
+        }
+
         #endregion
 
     }

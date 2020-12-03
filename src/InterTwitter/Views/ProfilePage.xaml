@@ -125,22 +125,22 @@
                                     DownsampleToViewSize="True"
                                     ErrorPlaceholder="pic_logo_small.png"
                                     LoadingPlaceholder="pic_logo_small.png"
-                                    Source="{ Binding User.ProfileHeaderImage }"
+                                    Source="{Binding User.ProfileHeaderImage}"
                                     Aspect="AspectFill"/>
 
         <ImageButton Grid.Row="0"
-                     Style="{ StaticResource OnHeaderImageButtonStyle }"
+                     Style="{StaticResource OnHeaderImageButtonStyle}"
                      VerticalOptions="Start"
                      HorizontalOptions="Start"                                   
                      Source="ic_left_round"
-                     Command="{ Binding BackCommand }"/>
+                     Command="{Binding BackCommand}"/>
 
         <ImageButton Grid.Row="0"
-                     Style="{ StaticResource OnHeaderImageButtonStyle }"
+                     Style="{StaticResource OnHeaderImageButtonStyle}"
                      VerticalOptions="Start"
                      HorizontalOptions="End"
                      Source="ic_hidden_menu_gray"
-                     Command="{ Binding MenuClickCommand }"/>
+                     Command="{Binding MenuClickCommand}"/>
 
         <ffimageloading:CachedImage Grid.Row="1"
                                     HeightRequest="52"
@@ -166,7 +166,7 @@
         <!--CHANGE CHANGE PROFILE BUTTON-->
         <Button Grid.Row="1"
                 x:Name="ChangeProfileButton"
-                Text="{ x:Static resources:AppResource.ChangeProfileLable }"
+                Text="{x:Static resources:AppResource.ChangeProfileLable}"
                 FontSize="12"
                 FontFamily="Ubuntu"
                 VerticalOptions="Start"
@@ -181,11 +181,11 @@
                 BackgroundColor="Transparent"
                 IsVisible="{Binding IsAuthorized}"
                 BorderWidth="1"
-                Command="{ Binding ChangeProfileCommand }"/>
+                Command="{Binding ChangeProfileCommand}"/>
         
         <!--BLACK_LIST LABEL-->
         <Frame Grid.Row="1"
-               Style="{ StaticResource StatusLabelFrameStyle }"
+               Style="{StaticResource StatusLabelFrameStyle}"
                Margin="10,2"               
                WidthRequest="140">
             
@@ -194,12 +194,14 @@
                              Binding="{Binding IsMuted}"                              
                              Value="True">                    
                     <Setter Property="WidthRequest"
-                            Value="100" />  
-                    
+                            Value="100" />
+                    <Setter Property="BorderColor"
+                            Value="{DynamicResource bg_4}"/>
+
                 </DataTrigger>
 
                 <DataTrigger TargetType="Frame" 
-                             Binding="{Binding Source={x:Reference ChangeProfileButton }, Path=IsVisible}"
+                             Binding="{Binding Source={x:Reference ChangeProfileButton}, Path=IsVisible}"
                              Value="True">
                     <Setter Property="IsVisible"
                             Value="False"/>
@@ -208,9 +210,9 @@
                 
             </Frame.Triggers>
 
-            <Label Text="{ x:Static resources:AppResource.BlacklistText }"                   
-                   TextColor="{ DynamicResource tx_4 }"
-                   Style="{ StaticResource StatusLabelStyle }"
+            <Label Text="{x:Static resources:AppResource.BlacklistText}"                   
+                   TextColor="{DynamicResource tx_4}"
+                   Style="{StaticResource StatusLabelStyle}"
                    BackgroundColor="Transparent">
                 
                 <Label.Triggers>
@@ -229,9 +231,9 @@
         <Label Grid.Row="1"
                VerticalOptions="Start"
                HorizontalOptions="Start"
-               TextColor="#02060E"
+               TextColor="{StaticResource tx_3}"
                Margin="12,32"
-               Text="{ Binding User.Name }"
+               Text="{Binding User.Name}"
                FontAttributes="Bold"
                FontSize="16"
                FontFamily="Ubuntu"/>
@@ -240,8 +242,8 @@
         <Label Grid.Row="1"
                VerticalOptions="Start"
                HorizontalOptions="Start"
-               Text="{ Binding User.Email }"
-               TextColor="{ DynamicResource tx_5 }"
+               Text="{Binding User.Email}"
+               TextColor="{StaticResource tx_5}"
                Margin="12,52,12,0"
                FontSize="12"
                FontFamily="Ubuntu"/>
@@ -300,11 +302,12 @@
         </StackLayout>
 
         <!--DROP DOWN MENU ACTIVE PROFILE-->
-        <BoxView BackgroundColor="Transparent"
+        <BoxView Grid.Row="0" 
+                 Grid.RowSpan="3"
+                 BackgroundColor="Transparent"
                  VerticalOptions="FillAndExpand"
                  HorizontalOptions="FillAndExpand"
-                 IsVisible="{Binding IsBackFrameIsVisible}">
-
+                 IsVisible="{Binding IsBackFrameIsVisible}">            
 
             <BoxView.GestureRecognizers>
 
@@ -361,7 +364,7 @@
                                                    HorizontalOptions="Fill"
                                                    Command="{Binding MuteProfilesCommand}">
 
-                        <Label Text="{x:Static resources:AppResource.MuteProfilesText}"
+                        <Label Text="{x:Static resources:AppResource.MutedProfilesText}"
                                Style="{StaticResource HiddenMenuLabel}"/>
 
                     </controls:ClickableContentView>
@@ -417,8 +420,7 @@
                     </controls:ClickableContentView>
 
                     <controls:ClickableContentView Padding="10"                                               
-                                                   HorizontalOptions="Fill"
-                                                   Command="{Binding ChangeProfileCommand}">
+                                                   HorizontalOptions="Fill">
 
                         <Label Text="{x:Static resources:AppResource.MuteText}"
                                Style="{StaticResource HiddenMenuLabel}"/>
@@ -427,12 +429,200 @@
 
                     <controls:ClickableContentView Padding="10"                                               
                                                    HorizontalOptions="Fill"
-                                                   Command="{Binding MuteProfilesCommand}">
+                                                   Command="{Binding OpenDialogCommand}">
 
-                        <Label Text="{x:Static resources:AppResource.MuteProfilesText}"
-                               Style="{StaticResource HiddenMenuLabel}"/>
+                        <Label Text="{x:Static resources:AppResource.ToBlackListText}"
+                               Style="{StaticResource HiddenMenuLabel}">
+
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding IsMuted}"
+                                             Value="False">
+                                    
+                                    <Setter Property="Text"
+                                            Value="{x:Static resources:AppResource.FromBlackListText}"/>
+                                    
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
 
                     </controls:ClickableContentView>                    
+
+                </StackLayout>
+
+            </Frame>
+
+        </sharpnado:Shadows>
+
+        <!--BACK BLURED VIEW-->
+        <BoxView Grid.Row="0" 
+                 Grid.RowSpan="3"
+                 BackgroundColor="{StaticResource bg_4}"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand"
+                 IsVisible="false">
+            
+            <BoxView.Triggers>
+                
+                <DataTrigger TargetType="BoxView"
+                             Binding="{Binding IsVisibleToBlackListConfirm}"
+                             Value="true">
+                     <Setter Property="IsVisible"
+                             Value="true"/> 
+                    
+                </DataTrigger>
+                
+                <DataTrigger TargetType="BoxView"
+                             Binding="{Binding IsVisibleFromBlackListConfirm}"
+                             Value="true">
+                     <Setter Property="IsVisible"
+                             Value="True"/>
+                    
+                </DataTrigger>
+
+            </BoxView.Triggers>
+
+        </BoxView>
+
+        <!--ADDING TO BLACKLIST CONFIRMATION-->
+        <sharpnado:Shadows Grid.Row="0"
+                           Grid.RowSpan="3"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Fill"
+                           Margin="0,10,10,0"
+                           CornerRadius="6"
+                           Shades="{sharpnado:SingleShade Offset='-5, 5', Opacity=0.2, Color=Black}"
+                           IsVisible="{Binding IsVisibleToBlackListConfirm}">           
+
+            <Frame BackgroundColor="{StaticResource bg_1}"
+                   CornerRadius="5"
+                   Margin="20,0"
+                   HasShadow="False"                   
+                   VerticalOptions="Center"
+                   HorizontalOptions="Fill"                                      
+                   Padding="0">
+
+                <StackLayout VerticalOptions="Fill"
+                             HorizontalOptions="Fill">
+
+                    <Label  HorizontalOptions="Start"
+                            VerticalOptions="Start"
+                            Margin="20,20,10,0"
+                            TextColor="{StaticResource tx_3}">
+                        
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontSize="16"                                      
+                                      Text="Add " />
+                                <Span Text="{Binding User.Name}"
+                                      FontSize="16"/>
+                                <Span Text=" to blacklist?"
+                                      FontSize="16"/>
+                            </FormattedString>
+                            </Label.FormattedText>
+                    </Label>
+
+                    <Label Text="{x:Static resources:AppResource.ToBlackListWarning}"
+                           FontSize="14"
+                           HorizontalOptions="Start"
+                           Margin="30,10"/>
+                    
+                    <StackLayout HorizontalOptions="End"
+                                 Margin="20,10">
+                        
+                    <controls:ClickableContentView Padding="10"                                               
+                                                   HorizontalOptions="End">
+
+                            <Label Text="{x:Static resources:AppResource.ToBlackListText}"
+                                   FontSize="14"/>
+
+                        </controls:ClickableContentView>
+
+                        <controls:ClickableContentView Padding="10"                                               
+                                                       HorizontalOptions="End"
+                                                       Command="{Binding CancellCommand}">
+
+                            <Label Text="{x:Static resources:AppResource.CancelText}"
+                                   FontSize="14"
+                                   TextColor="{StaticResource tx_2}"/>
+                            
+                        </controls:ClickableContentView>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </Frame>
+
+        </sharpnado:Shadows>
+
+        <!--REMOVE FROM BLACKLIST CONFIRMATION-->
+        <sharpnado:Shadows Grid.Row="0"
+                           Grid.RowSpan="3"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Fill"
+                           Margin="0,10,10,0"
+                           CornerRadius="6"
+                           Shades="{sharpnado:SingleShade Offset='-5, 5', Opacity=0.2, Color=Black}"
+                           IsVisible="{Binding IsVisibleFromBlackListConfirm}">
+
+            <Frame BackgroundColor="{StaticResource bg_1}"
+                   CornerRadius="5"
+                   Margin="20,0"
+                   HasShadow="False"                   
+                   VerticalOptions="Center"
+                   HorizontalOptions="Fill"                                      
+                   Padding="0">
+
+                <StackLayout VerticalOptions="Fill"
+                             HorizontalOptions="Fill">
+
+                    <Label  HorizontalOptions="Start"
+                            VerticalOptions="Start"
+                            Margin="20,20,10,0"
+                            TextColor="{StaticResource tx_3}">
+                        
+                        <Label.FormattedText>
+                            
+                            <FormattedString>
+                                
+                                <Span FontSize="16"                                      
+                                      Text="Remove " />
+                                <Span Text="{Binding User.Name}"
+                                      FontSize="16"/>
+                                <Span Text=" from the blacklist?"
+                                      FontSize="16"/>
+                                
+                            </FormattedString>
+                            
+                        </Label.FormattedText>
+                        
+                    </Label>                    
+
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="End"
+                                 Margin="20,10">
+
+                        <controls:ClickableContentView Padding="10"                                               
+                                                       HorizontalOptions="End">
+
+                            <Label Text="{x:Static resources:AppResource.FromBlackListText}"
+                                   TextColor="{StaticResource tx_2}"
+                                   FontSize="14"/>
+
+                        </controls:ClickableContentView>
+
+                        <controls:ClickableContentView Padding="10"                                               
+                                                       HorizontalOptions="End"
+                                                       Command="{Binding CancellCommand}">
+
+                            <Label Text="{x:Static resources:AppResource.CancelText}"
+                                   FontSize="14"
+                                   TextColor="{StaticResource tx_5}"/>
+
+                        </controls:ClickableContentView>
+
+                    </StackLayout>
 
                 </StackLayout>
 

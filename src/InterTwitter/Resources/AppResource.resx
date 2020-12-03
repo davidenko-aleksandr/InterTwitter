@@ -267,8 +267,8 @@
   <data name="BlacklistText" xml:space="preserve">
     <value>Profile in BlackList</value>
   </data>
-  <data name="MuteProfilesText" xml:space="preserve">
-    <value>Mute profiles</value>
+  <data name="MutedProfilesText" xml:space="preserve">
+    <value>Muted profiles</value>
   </data>
   <data name="ShareLabelText" xml:space="preserve">
     <value>Share</value>
@@ -287,5 +287,14 @@
   </data>
   <data name="MutedText" xml:space="preserve">
     <value>Muted</value>
+  </data>
+  <data name="FromBlackListText" xml:space="preserve">
+    <value>Remove from Blacklist</value>
+  </data>
+  <data name="ToBlackListText" xml:space="preserve">
+    <value>Add to Blacklist</value>
+  </data>
+  <data name="ToBlackListWarning" xml:space="preserve">
+    <value>This user will not see your posts</value>
   </data>
 </root>
