@@ -50,7 +50,7 @@ namespace InterTwitter.Services.Owl
                         owlModel.Id = _owlsMock.Count;
                         owlModel.AuthorId = author.Id;
 
-                        _owlsMock.Add(owlModel);
+                        _owlsMock.Insert(0, owlModel);
 
                         result.SetSuccess(true);
                     }

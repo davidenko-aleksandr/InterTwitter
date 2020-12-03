@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -44,6 +45,7 @@ namespace InterTwitter.ViewModels
             MediaItems = new ObservableCollection<MediaItemViewModel>();
             MediaButtonEnabled = true;
             VideoButtonEnabled = true;
+            OwlText = string.Empty;
 
             _keyboardService.KeyboardShown += OnKeyboardOpened;
             _keyboardService.KeyboardHidden += OnKeyboardClosed;
@@ -102,6 +104,13 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _toolbarMargin, value);
         }
 
+        private int _counter;
+        public int Counter
+        {
+            get => _counter;
+            set => SetProperty(ref _counter, value);
+        }
+
         public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
 
         public ICommand CancelCommand => SingleExecutionCommand.FromFunc(OnCancelCommandAsync);
@@ -122,6 +131,16 @@ namespace InterTwitter.ViewModels
             var author = result.Result;
 
             AuthorAvatar = author.Avatar;
+        }
+
+        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
+        {
+            base.OnPropertyChanged(args);
+
+            if (args.PropertyName == nameof(OwlText))
+            {
+                Counter = 280 - OwlText.Length;
+            }
         }
 
         #endregion
@@ -152,7 +171,8 @@ namespace InterTwitter.ViewModels
 
         private async Task OnAddPostCommandAsync()
         {
-            if (!string.IsNullOrEmpty(_owlText) && _owlText.Length > 0 && _owlText.Length < 280)
+            if ((_owlText.Length > 0 && _owlText.Length <= 280) ||
+                (MediaItems.Count > 0 && _owlText.Length <= 280))
             {
                 var list = new List<string>();
                 foreach (MediaItemViewModel item in MediaItems)
@@ -167,7 +187,7 @@ namespace InterTwitter.ViewModels
                     Text = OwlText,
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
-                    Media = list
+                    Media = list,
                 };
 
                 await _owlService.AddOwlAsync(owl);
