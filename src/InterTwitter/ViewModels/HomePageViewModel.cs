@@ -162,8 +162,6 @@ namespace InterTwitter.ViewModels
                 owl.IsBookmarked = !owl.IsBookmarked;
 
                 await _postActionService.SaveActionAsync(owl, OwlAction.Saved);
-
-                await _postActionService.SaveActionAsync(owl, OwlAction.Saved);
             }
         }
 
