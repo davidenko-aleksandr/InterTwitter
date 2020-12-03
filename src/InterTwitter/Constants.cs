@@ -16,6 +16,7 @@ namespace InterTwitter
 
         public const string RegexHashtag = @"(#+[a-zA-Z0-9(_)]{1,})";
         public const int NoAuthorizedUser = -1;
+        public const int MaxPostLength = 280;
 
         public const string DefaultProfilePicture = "pic_profile_big";
 
