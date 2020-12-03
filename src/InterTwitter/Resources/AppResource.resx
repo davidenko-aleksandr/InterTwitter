@@ -264,4 +264,13 @@
   <data name="DeleteBookmarksText" xml:space="preserve">
     <value>Delete all bookmarks</value>
   </data>
+  <data name="BlacklistText" xml:space="preserve">
+    <value>Black list</value>
+  </data>
+  <data name="MuteProfilesText" xml:space="preserve">
+    <value>Mute profiles</value>
+  </data>
+  <data name="ShareLabelText" xml:space="preserve">
+    <value>Share</value>
+  </data>
 </root>

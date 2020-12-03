@@ -32,6 +32,13 @@ namespace InterTwitter.ViewModels
 
         #region -- Public properties --
 
+        private bool _isMenuVisible;
+       public bool IsMenuVisible
+        {
+            get => _isMenuVisible;
+            set => SetProperty(ref _isMenuVisible, value);
+        }
+
         private bool _isAuthorized;
         public bool IsAuthorized
         {
@@ -71,6 +78,7 @@ namespace InterTwitter.ViewModels
 
         public ICommand ChangeProfileCommand => SingleExecutionCommand.FromFunc(OnChangeProfileCommandAsync);
 
+        public ICommand MenuClickCommand => SingleExecutionCommand.FromFunc(OnMenuClickCommandAsync);
         #endregion
 
         #region -- Overrides --
@@ -98,6 +106,13 @@ namespace InterTwitter.ViewModels
         #endregion
 
         #region -- Private helpers --
+
+        private Task OnMenuClickCommandAsync()
+        {
+            IsMenuVisible = !IsMenuVisible;
+
+            return Task.CompletedTask;
+        }
 
         private Task OnChangeProfileCommandAsync()
         {

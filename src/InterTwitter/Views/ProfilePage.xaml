@@ -9,7 +9,7 @@
                         xmlns:sharpnado="http://sharpnado.com"
                         xmlns:helpers="clr-namespace:InterTwitter.Helpers"
                         xmlns:templates="clr-namespace:InterTwitter.Views.Templates.ProfilePageTemplates" 
-                        xmlns:viewModels="clr-namespace:InterTwitter.ViewModels.ProfilePageItems"
+                        xmlns:viewModels="clr-namespace:InterTwitter.ViewModels.ProfilePageItems" xmlns:controls="clr-namespace:InterTwitter.Controls"
                         x:Class="InterTwitter.Views.ProfilePage">                      
 
     <views:BaseContentPage.Resources>
@@ -48,7 +48,23 @@
                         Value="-12,-5"/>
 
             </Style>
-            
+
+            <Style TargetType="Label"
+                   x:Key="HiddenMenuLabel">
+
+                <Setter Property="FontSize" 
+                        Value="12"/>
+                <Setter Property="TextColor"
+                        Value="{ DynamicResource tx_3 }"/>
+                <Setter Property="FontFamily"
+                        Value="Ubuntu"/>
+                <Setter Property="HorizontalOptions"
+                        Value="Start"/>
+                <Setter Property="VerticalOptions"
+                        Value="Center"/>
+
+            </Style>
+        
         </ResourceDictionary>
         
     </views:BaseContentPage.Resources>
@@ -83,7 +99,8 @@
                      Style="{StaticResource OnHeaderImageButtonStyle}"
                      VerticalOptions="Start"
                      HorizontalOptions="End"
-                     Source="ic_hidden_menu_gray"/>
+                     Source="ic_hidden_menu_gray"
+                     Command="{Binding MenuClickCommand}"/>
 
         <ffimageloading:CachedImage Grid.Row="1"
                                     HeightRequest="52"
@@ -227,6 +244,89 @@
             </cardView:CarouselView>
 
         </StackLayout>
+
+        <!-- DROP DOWN MENU -->
+        <BoxView BackgroundColor="Transparent"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand"
+                 IsVisible="{Binding IsMenuVisible}">
+
+
+            <BoxView.GestureRecognizers>
+
+                <TapGestureRecognizer Command="{Binding MenuClickCommand}"/>
+
+            </BoxView.GestureRecognizers>
+
+        </BoxView>
+
+        <sharpnado:Shadows Grid.Row="0"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End"
+                           Margin="0,10,10,0"
+                           CornerRadius="6"
+                           Shades="{sharpnado:SingleShade Offset='-5, 5', Opacity=0.2, Color=Black}"
+                           IsVisible="{Binding IsMenuVisible}">
+
+            <sharpnado:Shadows.GestureRecognizers>
+
+                <TapGestureRecognizer Command="{Binding MenuClickCommand}"/>
+
+            </sharpnado:Shadows.GestureRecognizers>
+
+            <Frame BackgroundColor="{StaticResource bg_1}"
+                   CornerRadius="5"
+                   HasShadow="False"                   
+                   VerticalOptions="Start"
+                   HorizontalOptions="End"
+                   WidthRequest="136"                   
+                   Padding="0">
+                
+                <StackLayout VerticalOptions="Fill"
+                             HorizontalOptions="Fill">
+
+                <controls:ClickableContentView Padding="10"                                               
+                                               HorizontalOptions="Fill"
+                                               Command="{Binding ShareCommand}">
+
+                    <Label Text="{x:Static resources:AppResource.ShareLabelText}"
+                           Style="{StaticResource HiddenMenuLabel}"/>
+
+                </controls:ClickableContentView>
+
+                    <controls:ClickableContentView Padding="10"                                               
+                                                   HorizontalOptions="Fill"
+                                                   Command="{Binding ChangeProfileCommand}">
+
+                        <Label Text="{x:Static resources:AppResource.ChangeProfileLable}"
+                               Style="{StaticResource HiddenMenuLabel}"/>
+
+                    </controls:ClickableContentView>
+
+                    <controls:ClickableContentView Padding="10"                                               
+                                                   HorizontalOptions="Fill"
+                                                   Command="{Binding MuteProfilesCommand}">
+
+                        <Label Text="{x:Static resources:AppResource.MuteProfilesText}"
+                               Style="{StaticResource HiddenMenuLabel}"/>
+
+                    </controls:ClickableContentView>
+                    
+                    <controls:ClickableContentView Padding="10"                                               
+                                                   HorizontalOptions="Fill"
+                                                   Command="{Binding BlackListCommand}">
+
+                        <Label Text="{x:Static resources:AppResource.BlacklistText}"
+                               Style="{StaticResource HiddenMenuLabel}"/>
+
+                    </controls:ClickableContentView>
+
+                </StackLayout>
+                
+            </Frame>
+
+        </sharpnado:Shadows>
+
     </Grid>
 
 </views:BaseContentPage>

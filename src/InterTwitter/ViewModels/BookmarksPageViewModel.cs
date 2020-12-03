@@ -92,9 +92,11 @@ namespace InterTwitter.ViewModels
 
         }
 
-        private async Task OnMenuClickCommandAsync()
+        private  Task OnMenuClickCommandAsync()
         {
             IsMenuVisible = !IsMenuVisible;
+
+            return Task.CompletedTask;
         }
 
         private async Task FillCollectionAsync()
