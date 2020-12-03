@@ -26,13 +26,14 @@ namespace InterTwitter
 
         #region -- Overrides --
 
-        protected override async void OnInitialized()
+        protected override void OnInitialized()
         {
             InitializeComponent();
+            Sharpnado.Tabs.Initializer.Initialize(false, false);
 
             FlowListView.Init();
 
-            await NavigateAsync();
+            SetMainPage();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -68,13 +69,11 @@ namespace InterTwitter
 
         #region -- Private Helpers --
 
-        private async Task NavigateAsync()
+        private void SetMainPage()
         {
             var isAuthorized = Container.Resolve<IAuthorizationService>().IsAuthorized;
 
-            var path = isAuthorized ? nameof(MenuPage) : nameof(LogInPage);
-
-            await NavigationService.NavigateAsync(path);
+            MainPage = isAuthorized ? new MenuPage() : new LogInPage();
 
             //await NavigationService.NavigateAsync(nameof(ProfilePage));
         }

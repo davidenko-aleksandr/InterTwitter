@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterTwitter.ViewModels.ProfilePageItems;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -11,10 +12,12 @@ namespace InterTwitter.Helpers
 
         public DataTemplate LikesViewTemplate { get; set; }
 
-        protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
-        {
-
-            return LikesViewTemplate;
-        }
+        protected override DataTemplate OnSelectTemplate(object item, BindableObject container) =>
+           item switch
+           {
+               LikesViewModel => LikesViewTemplate,
+               PostsViewModel => PostsViewTemplate,
+               _ => throw new ArgumentException($"Undefined item in: {nameof(ProfilePageTemplateSelector)}.{nameof(OnSelectTemplate)}")
+           };
     }
 }
