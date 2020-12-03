@@ -41,12 +41,12 @@ namespace InterTwitter.Services.Notification
             {
                 var authorizedUser = await _authorizationService.GetAuthorizedUserAsync();
 
-                if (authorizedUser is not null)
+                if (authorizedUser != null)
                 {
                     var user = authorizedUser.Result;
                     var existNotification = _notificationMock.FirstOrDefault(x => x.OwlId == actionOwl.Id && x.UserId == user.Id && x.Action == action);
 
-                    if (existNotification is null && user.Id != actionOwl.AuthorId)
+                    if (existNotification == null && user.Id != actionOwl.AuthorId)
                     {
                         var newNotification = new NotificationModel
                         {
@@ -92,7 +92,7 @@ namespace InterTwitter.Services.Notification
             {
                 var authorizedUserId = _settingsService.AuthorizedUserId;
 
-                if (_notificationMock is not null && authorizedUserId != Constants.NoAuthorizedUser)
+                if (_notificationMock != null && authorizedUserId != Constants.NoAuthorizedUser)
                 {
                     var currentUserCollection = _notificationMock.Where(x => x.AuthorId == authorizedUserId);
                     var finalCollection = new ObservableCollection<NotificationViewModel>();
