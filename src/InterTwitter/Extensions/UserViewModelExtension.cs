@@ -8,7 +8,7 @@ namespace InterTwitter.Extensions
         public static UserModel ToUserModel(this UserViewModel viewModel)
         {
             UserModel user = null;
-            if (viewModel is not null)
+            if (viewModel != null)
             {
                 user = new UserModel
                 {

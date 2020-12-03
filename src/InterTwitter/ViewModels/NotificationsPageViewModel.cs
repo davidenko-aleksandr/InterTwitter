@@ -67,7 +67,7 @@ namespace InterTwitter.ViewModels
             {
                 var notificationsResult = await _notificationService.GetNotificationCollectionAsync();
 
-                if (notificationsResult.Result is not null)
+                if (notificationsResult.Result != null)
                 {
                     NotificationList = notificationsResult.Result;
                 }

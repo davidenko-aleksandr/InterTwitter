@@ -40,7 +40,7 @@ namespace InterTwitter.Services.Owl
 
             try
             {
-                if (owlModel is not null)
+                if (owlModel != null)
                 {
                     var userResult = await _authorizationService.GetAuthorizedUserAsync();
                     if (userResult.IsSuccess)
@@ -131,7 +131,7 @@ namespace InterTwitter.Services.Owl
 
                 await Task.Delay(300);
 
-                if (owls is not null)
+                if (owls != null)
                 {
                     result.SetSuccess(owls);
                 }
@@ -247,7 +247,7 @@ namespace InterTwitter.Services.Owl
             {
                 var changingOwl = _owlsMock.FirstOrDefault(x => x.Id == owl.Id);
 
-                if (changingOwl is not null)
+                if (changingOwl != null)
                 {
                     changingOwl.AuthorId = owl.AuthorId;
                     changingOwl.LikesList = owl.LikesList;

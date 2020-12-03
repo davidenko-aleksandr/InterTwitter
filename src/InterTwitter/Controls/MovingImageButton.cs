@@ -30,7 +30,7 @@ namespace InterTwitter.Controls
             var oldOffset = (MovingStates)oldvalue;
             var newOffset = (MovingStates)newValue;
 
-            if (frame is not null && oldOffset != newOffset)
+            if (frame != null && oldOffset != newOffset)
             {
                 switch (newOffset)
                 {

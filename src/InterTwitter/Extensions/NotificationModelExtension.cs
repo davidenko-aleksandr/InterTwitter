@@ -8,7 +8,7 @@ namespace InterTwitter.Extensions
         public static NotificationViewModel ToViewModel(this NotificationModel model)
         {
             NotificationViewModel notification = null;
-            if (model is not null)
+            if (model != null)
             {
                 notification = new NotificationViewModel
                 {

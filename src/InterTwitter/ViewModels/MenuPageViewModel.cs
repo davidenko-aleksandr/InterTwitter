@@ -99,7 +99,7 @@ namespace InterTwitter.ViewModels
                     }
                     else
                     {
-                        //page type is not set
+                        //page type != set
                     }
                 }
             }
@@ -213,7 +213,7 @@ namespace InterTwitter.ViewModels
             {
                 var userResult = result.Result;
 
-                if (userResult is not null)
+                if (userResult != null)
                 {
                     AuthorizedUser = userResult;
                 }

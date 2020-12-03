@@ -95,7 +95,7 @@ namespace InterTwitter.Controls
             var oldOffset = (MovingStates)oldValue;
             var newOffset = (MovingStates)newValue;
 
-            if (tab is not null && oldOffset != newOffset)
+            if (tab != null && oldOffset != newOffset)
             {
                 switch (newOffset)
                 {

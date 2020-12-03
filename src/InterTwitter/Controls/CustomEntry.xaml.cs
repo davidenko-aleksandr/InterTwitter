@@ -140,7 +140,7 @@ namespace InterTwitter.Controls
         {
             var entry = bindable as CustomEntry;
 
-            if (entry is not null)
+            if (entry != null)
             {
                 entry.IsPasswordLocal = (bool)newValue;
             }
@@ -198,7 +198,7 @@ namespace InterTwitter.Controls
 
         private void OnEntryFocusChanged(object sender, FocusEventArgs e)
         {
-            if (e is not null)
+            if (e != null)
             {
                 IsEntryFocused = e.IsFocused;
             }

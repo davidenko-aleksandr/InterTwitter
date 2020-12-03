@@ -9,11 +9,11 @@
     <Optimize>true</Optimize>
     <DebugSymbols>true</DebugSymbols>
     <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet>
-    <LangVersion>latestmajor</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
-    <LangVersion>latestmajor</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEV|AnyCPU' ">
     <IntermediateOutputPath>obj\DEV</IntermediateOutputPath>
@@ -23,7 +23,7 @@
     <DefineConstants>TRACE;DEV;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
     <NoWarn>1701;1702</NoWarn>
     <NoStdLib>false</NoStdLib>
-    <LangVersion>latestmajor</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'STAGE|AnyCPU' ">
     <IntermediateOutputPath>obj\STAGE</IntermediateOutputPath>
@@ -33,7 +33,7 @@
     <DefineConstants>TRACE;STAGE;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
-    <LangVersion>latestmajor</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="ViewModels\Authorization\**" />

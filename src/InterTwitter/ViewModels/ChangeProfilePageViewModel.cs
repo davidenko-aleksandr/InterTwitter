@@ -195,7 +195,7 @@ namespace InterTwitter.ViewModels
 
                     MediaFile file = await _mediaPluggin.TakePhotoAsync(options);
 
-                    if (file is not null)
+                    if (file != null)
                     {
                         SetPicture(CallerPropertyName, file.Path);
                     }

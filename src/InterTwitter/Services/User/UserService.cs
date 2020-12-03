@@ -94,7 +94,7 @@ namespace InterTwitter.Services.UserService
             {
                 var changingUser = _usersRepositoryMock.FirstOrDefault(x => x.Id == userViewModel.Id);
 
-                if (changingUser is not null)
+                if (changingUser != null)
                 {
                     changingUser.Avatar = userViewModel.Avatar;
                     changingUser.Email = userViewModel.Email;
