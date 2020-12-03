@@ -234,7 +234,13 @@ namespace InterTwitter.ViewModels
         private async void ShowFoundPostsAsync(string searchQuery)
         {
             var answer = await _owlService.GetAllOwlsAsync(searchQuery);
-            FoundPosts = new ObservableCollection<OwlViewModel>(answer.Result);
+            var foundPosts = new List<OwlViewModel>();
+            foreach (var owl in answer.Result)
+            {
+                owl.SearchQuery = searchQuery;
+                foundPosts.Add(owl);
+            }
+            FoundPosts = new ObservableCollection<OwlViewModel>(foundPosts);
             EmptyStateText = $"\"{SearchQuery}\"";
             IsEmptyStateVisible = FoundPosts.Count == 0;
 

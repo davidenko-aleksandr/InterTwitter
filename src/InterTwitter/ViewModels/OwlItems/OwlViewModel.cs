@@ -122,6 +122,13 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _currentHashtag, value);
         }
 
+        private string _searchQuery;
+        public string SearchQuery
+        {
+            get => _searchQuery;
+            set => SetProperty(ref _searchQuery, value);
+        }
+
         #endregion
     }
 }
