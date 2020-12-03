@@ -70,7 +70,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Black list.
+        ///   Looks up a localized string similar to Profile in BlackList.
         /// </summary>
         public static string BlacklistText {
             get {
@@ -277,6 +277,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Likes.
+        /// </summary>
+        public static string LikesText {
+            get {
+                return ResourceManager.GetString("LikesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log In.
         /// </summary>
         public static string LogInButton {
@@ -300,6 +309,15 @@ namespace InterTwitter.Resources {
         public static string MuteProfilesText {
             get {
                 return ResourceManager.GetString("MuteProfilesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mute.
+        /// </summary>
+        public static string MuteText {
+            get {
+                return ResourceManager.GetString("MuteText", resourceCulture);
             }
         }
         
@@ -417,6 +435,24 @@ namespace InterTwitter.Resources {
         public static string PicProfileHeaderImage {
             get {
                 return ResourceManager.GetString("PicProfileHeaderImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Posts.
+        /// </summary>
+        public static string PostsText {
+            get {
+                return ResourceManager.GetString("PostsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile in BlackList.
+        /// </summary>
+        public static string ProfileInBlackListText {
+            get {
+                return ResourceManager.GetString("ProfileInBlackListText", resourceCulture);
             }
         }
         

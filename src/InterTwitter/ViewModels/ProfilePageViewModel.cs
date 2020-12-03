@@ -32,8 +32,15 @@ namespace InterTwitter.ViewModels
 
         #region -- Public properties --
 
+        private bool _isMuted;
+        public bool IsMuted
+        {
+            get => _isMuted;
+            set => SetProperty(ref _isMuted, value);
+        }
+
         private bool _isMenuVisible;
-       public bool IsMenuVisible
+        public bool IsMenuVisible
         {
             get => _isMenuVisible;
             set => SetProperty(ref _isMenuVisible, value);

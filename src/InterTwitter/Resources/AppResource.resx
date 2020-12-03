@@ -265,12 +265,24 @@
     <value>Delete all bookmarks</value>
   </data>
   <data name="BlacklistText" xml:space="preserve">
-    <value>Black list</value>
+    <value>Profile in BlackList</value>
   </data>
   <data name="MuteProfilesText" xml:space="preserve">
     <value>Mute profiles</value>
   </data>
   <data name="ShareLabelText" xml:space="preserve">
     <value>Share</value>
+  </data>
+  <data name="MuteText" xml:space="preserve">
+    <value>Mute</value>
+  </data>
+  <data name="ProfileInBlackListText" xml:space="preserve">
+    <value>Profile in BlackList</value>
+  </data>
+  <data name="LikesText" xml:space="preserve">
+    <value>Likes</value>
+  </data>
+  <data name="PostsText" xml:space="preserve">
+    <value>Posts</value>
   </data>
 </root>
