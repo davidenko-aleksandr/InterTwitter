@@ -264,7 +264,4 @@
   <data name="DeleteBookmarksText" xml:space="preserve">
     <value>Delete all bookmarks</value>
   </data>
-  <data name="LoadingPlaceholder" xml:space="preserve">
-    <value>loading_placeholder.gif</value>
-  </data>
 </root>
