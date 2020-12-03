@@ -285,4 +285,7 @@
   <data name="PostsText" xml:space="preserve">
     <value>Posts</value>
   </data>
+  <data name="MutedText" xml:space="preserve">
+    <value>Muted</value>
+  </data>
 </root>

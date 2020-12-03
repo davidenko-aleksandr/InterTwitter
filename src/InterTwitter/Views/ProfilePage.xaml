@@ -15,10 +15,10 @@
     <views:BaseContentPage.Resources>
         
         <ResourceDictionary>
-            
-                 
-            <Style TargetType="ImageButton" 
-                   x:Key="OnHeaderImageButtonStyle">
+
+
+            <Style x:Key="OnHeaderImageButtonStyle" 
+                   TargetType="ImageButton">
                 
                 <Setter Property="WidthRequest"
                         Value="24"/>
@@ -33,8 +33,8 @@
                 
             </Style>
 
-            <Style TargetType="sharpnado:UnderlinedTabItem"
-                   x:Key="TabPageControlBarStyle">
+            <Style x:Key="TabPageControlBarStyle" 
+                   TargetType="sharpnado:UnderlinedTabItem">
                 
                 <Setter Property="LabelSize" 
                         Value="16"/>
@@ -49,8 +49,8 @@
 
             </Style>
 
-            <Style TargetType="Label"
-                   x:Key="HiddenMenuLabel">
+            <Style x:Key="HiddenMenuLabel" 
+                   TargetType="Label">
 
                 <Setter Property="FontSize" 
                         Value="12"/>
@@ -65,8 +65,8 @@
 
             </Style>
 
-            <Style TargetType="Frame"
-                   x:Key="StatusLabelFrameStyle">
+            <Style x:Key="StatusLabelFrameStyle"
+                TargetType="Frame">
 
                 <Setter Property="BorderColor"
                         Value="{ DynamicResource tx_4 }"/>
@@ -92,8 +92,8 @@
 
             </Style>
 
-            <Style TargetType="Label"
-                   x:Key="StatusLabelStyle">
+            <Style x:Key="StatusLabelStyle"
+                   TargetType="Label">
                 
                 <Setter Property="FontSize"
                         Value="14"/>
@@ -217,15 +217,13 @@
                     <DataTrigger TargetType="Label"
                                  Binding="{Binding IsMuted}"
                                  Value="True">
-                        <Setter Property="Text" Value="{x:Static resources:AppResource.MuteText}"/>
+                        <Setter Property="Text" Value="{x:Static resources:AppResource.MutedText}"/>
                         <Setter Property="TextColor" Value="{DynamicResource tx_5}"/>
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
 
         </Frame>
-
-        
 
         <!--NAME LABEL-->
         <Label Grid.Row="1"
@@ -301,11 +299,11 @@
 
         </StackLayout>
 
-        <!-- DROP DOWN MENU -->
+        <!--DROP DOWN MENU ACTIVE PROFILE-->
         <BoxView BackgroundColor="Transparent"
                  VerticalOptions="FillAndExpand"
                  HorizontalOptions="FillAndExpand"
-                 IsVisible="{Binding IsMenuVisible}">
+                 IsVisible="{Binding IsBackFrameIsVisible}">
 
 
             <BoxView.GestureRecognizers>
@@ -379,6 +377,65 @@
 
                 </StackLayout>
                 
+            </Frame>
+
+        </sharpnado:Shadows>
+       
+        <!--DROP DOWN MENU CLICKED PROFILE-->
+        <sharpnado:Shadows Grid.Row="0"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End"
+                           Margin="0,10,10,0"
+                           CornerRadius="6"
+                           Shades="{sharpnado:SingleShade Offset='-5, 5', Opacity=0.2, Color=Black}"
+                           IsVisible="{Binding IsSecondaryMenuVisible}">
+
+            <sharpnado:Shadows.GestureRecognizers>
+
+                <TapGestureRecognizer Command="{Binding MenuClickCommand}"/>
+
+            </sharpnado:Shadows.GestureRecognizers>
+
+            <Frame BackgroundColor="{StaticResource bg_1}"
+                   CornerRadius="5"
+                   HasShadow="False"                   
+                   VerticalOptions="Start"
+                   HorizontalOptions="End"
+                   WidthRequest="136"                   
+                   Padding="0">
+
+                <StackLayout VerticalOptions="Fill"
+                             HorizontalOptions="Fill">
+
+                    <controls:ClickableContentView Padding="10"                                               
+                                                   HorizontalOptions="Fill"
+                                                   Command="{Binding ShareCommand}">
+
+                        <Label Text="{x:Static resources:AppResource.ShareLabelText}"
+                               Style="{StaticResource HiddenMenuLabel}"/>
+
+                    </controls:ClickableContentView>
+
+                    <controls:ClickableContentView Padding="10"                                               
+                                                   HorizontalOptions="Fill"
+                                                   Command="{Binding ChangeProfileCommand}">
+
+                        <Label Text="{x:Static resources:AppResource.MuteText}"
+                               Style="{StaticResource HiddenMenuLabel}"/>
+
+                    </controls:ClickableContentView>
+
+                    <controls:ClickableContentView Padding="10"                                               
+                                                   HorizontalOptions="Fill"
+                                                   Command="{Binding MuteProfilesCommand}">
+
+                        <Label Text="{x:Static resources:AppResource.MuteProfilesText}"
+                               Style="{StaticResource HiddenMenuLabel}"/>
+
+                    </controls:ClickableContentView>                    
+
+                </StackLayout>
+
             </Frame>
 
         </sharpnado:Shadows>

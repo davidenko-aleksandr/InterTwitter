@@ -304,6 +304,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Muted.
+        /// </summary>
+        public static string MutedText {
+            get {
+                return ResourceManager.GetString("MutedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mute profiles.
         /// </summary>
         public static string MuteProfilesText {

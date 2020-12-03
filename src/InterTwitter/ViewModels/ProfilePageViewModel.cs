@@ -39,11 +39,25 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isMuted, value);
         }
 
+        private bool _isBackFrameIsVisible;
+        public bool IsBackFrameIsVisible
+        {
+            get => _isBackFrameIsVisible;
+            set => SetProperty(ref _isBackFrameIsVisible, value);
+        }
+
         private bool _isMenuVisible;
         public bool IsMenuVisible
         {
             get => _isMenuVisible;
             set => SetProperty(ref _isMenuVisible, value);
+        }
+
+        private bool _isSecondaryMenuVisible;
+        public bool IsSecondaryMenuVisible
+        {
+            get => _isSecondaryMenuVisible;
+            set => SetProperty(ref _isSecondaryMenuVisible, value);
         }
 
         private bool _isAuthorized;
@@ -116,7 +130,20 @@ namespace InterTwitter.ViewModels
 
         private Task OnMenuClickCommandAsync()
         {
-            IsMenuVisible = !IsMenuVisible;
+            if (IsBackFrameIsVisible)
+            {
+                IsBackFrameIsVisible = false;
+                IsMenuVisible = false;
+                IsSecondaryMenuVisible = false;
+            }
+            else if (IsAuthorized)
+            {
+                IsMenuVisible = true;
+            }
+            else 
+            {
+                IsSecondaryMenuVisible = true;
+            }            
 
             return Task.CompletedTask;
         }
