@@ -26,6 +26,6 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _postPhoto, value);
         }
 
-        #endregion        
+        #endregion
     }
 }

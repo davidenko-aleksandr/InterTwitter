@@ -50,7 +50,7 @@ namespace InterTwitter.Services.Notification
                     var user = authorizedUser.Result;
                     var existNotification = _notificationMock.FirstOrDefault(x => x.Owl.Id == actionOwl.Id && x.User.Id == user.Id && x.Action == action);
 
-                    if (existNotification != null && user.Id != actionOwl.Author.Id)
+                    if (existNotification == null && user.Id != actionOwl.Author.Id)
                     {
                         var newNotification = new NotificationModel
                         {
@@ -101,7 +101,6 @@ namespace InterTwitter.Services.Notification
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {

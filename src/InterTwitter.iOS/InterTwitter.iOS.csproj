@@ -74,7 +74,7 @@
     <DefineConstants>
     </DefineConstants>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Distribution: Sergii Gerasymenko (6XMYH77MJ3)</CodesignKey>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchVerbosity>
     </MtouchVerbosity>
@@ -84,6 +84,7 @@
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARM64</MtouchArch>
     <LangVersion>latestmajor</LangVersion>
+    <CodesignProvision>HW Simple AdHoc</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEV|iPhoneSimulator' ">
     <Optimize>true</Optimize>
@@ -156,6 +157,24 @@
     <BundleResource Include="Resources\ic_video.png" />
     <BundleResource Include="Resources\ic_video%402x.png" />
     <BundleResource Include="Resources\ic_video%403x.png" />
+    <BundleResource Include="Resources\avatar.png" />
+    <BundleResource Include="Resources\ic_add_photo%402x.png" />
+    <BundleResource Include="Resources\ic_add_photo%403x.png" />
+    <BundleResource Include="Resources\ic_gif_disabled.png" />
+    <BundleResource Include="Resources\ic_gif_disabled%402x.png" />
+    <BundleResource Include="Resources\ic_gif_disabled%403x.png" />
+    <BundleResource Include="Resources\ic_liked.png" />
+    <BundleResource Include="Resources\ic_media_disabled.png" />
+    <BundleResource Include="Resources\ic_media_disabled%402x.png" />
+    <BundleResource Include="Resources\ic_media_disabled%403x.png" />
+    <BundleResource Include="Resources\ic_saved.png" />
+    <BundleResource Include="Resources\ic_video_disabled.png" />
+    <BundleResource Include="Resources\ic_video_disabled%402x.png" />
+    <BundleResource Include="Resources\ic_video_disabled%403x.png" />
+    <BundleResource Include="Resources\mac_book.png" />
+    <BundleResource Include="Resources\ic_clear_filled.png" />
+    <BundleResource Include="Resources\ic_clear_filled%402x.png" />
+    <BundleResource Include="Resources\ic_clear_filled%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\App_store_1024_1x.png">
@@ -639,6 +658,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_Empty_State%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\loading_placeholder.gif" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

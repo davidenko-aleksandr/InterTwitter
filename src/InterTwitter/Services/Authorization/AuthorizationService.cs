@@ -13,8 +13,9 @@ namespace InterTwitter.Services.Authorization
         private readonly IUserService _userService;
         private readonly ISettingsService _settingsService;
 
-        public AuthorizationService(IUserService userService,
-                                    ISettingsService settingsService)
+        public AuthorizationService(
+            IUserService userService,
+            ISettingsService settingsService)
         {
             _userService = userService;
             _settingsService = settingsService;
@@ -48,7 +49,6 @@ namespace InterTwitter.Services.Authorization
                     {
                         result.SetFailure();
                     }
-
                 }
                 else
                 {
@@ -97,7 +97,6 @@ namespace InterTwitter.Services.Authorization
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {
@@ -144,6 +143,7 @@ namespace InterTwitter.Services.Authorization
 
             return result;
         }
+
         public async Task<AOResult<bool>> LogOutAsync()
         {
             var result = new AOResult<bool>();

@@ -12,7 +12,6 @@ namespace InterTwitter.ViewModels.OwlItems
     {
         public OwlViewModel()
         {
-
         }
 
         public OwlViewModel(

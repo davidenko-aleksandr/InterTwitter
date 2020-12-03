@@ -30,11 +30,11 @@ namespace InterTwitter.Services.PostAction
         public async Task<AOResult<bool>> SaveActionAsync(OwlModel actionOwl, OwlAction action)
         {
             var result = new AOResult<bool>();
-            
+
             try
             {
                 var authorizedUserId = _settingsService.AuthorizedUserId;
-         
+
                 if (authorizedUserId != Constants.NoAuthorizedUser)
                 {
                     switch (action)
@@ -54,6 +54,7 @@ namespace InterTwitter.Services.PostAction
 
                                 break;
                             }
+
                         case OwlAction.Saved:
                             {
                                 var isExist = actionOwl.SavesList.Contains(authorizedUserId);
@@ -69,6 +70,7 @@ namespace InterTwitter.Services.PostAction
 
                                 break;
                             }
+
                         default:
                             {
                                 break;
@@ -86,13 +88,11 @@ namespace InterTwitter.Services.PostAction
                     {
                         result.SetFailure();
                     }
-
                 }
                 else
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {

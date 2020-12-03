@@ -10,7 +10,6 @@ namespace InterTwitter.ViewModels.NotificationItems
     {
         public NotificationViewModel()
         {
-
         }
 
         #region -- Public properties --

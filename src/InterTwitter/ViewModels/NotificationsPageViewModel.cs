@@ -132,13 +132,11 @@ namespace InterTwitter.ViewModels
                 {
                     State = States.Normal;
                 }
-
             }
             else
             {
                 State = States.Error;
             }
-
         }
 
         #endregion

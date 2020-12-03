@@ -82,34 +82,29 @@ namespace InterTwitter.ViewModels
                 {
                     //userResult was null
                 }
-
             }
             else
             {
                 //result is failed
             }
-
         }
 
         private async Task OnChangeProfileCommandAsync()
         {
-            var parameters = new NavigationParameters()
-            {
-                { Constants.Navigation.User, User}
-            };
+            var parameters = new NavigationParameters();
+
+            parameters.Add(Constants.Navigation.User, User);
 
             await NavigationService.NavigateAsync(nameof(ChangeProfilePage), parameters);
         }
 
         private async Task OnBackCommandAsync()
         {
-            var parameters = new NavigationParameters()
-            {
-                { Constants.Navigation.User, User}
-            };
+            var parameters = new NavigationParameters();
+            parameters.Add(Constants.Navigation.User, User);
 
-           await NavigationService.GoBackAsync(parameters);
-        }       
+            await NavigationService.GoBackAsync(parameters);
+        }
 
         #endregion
 

@@ -183,7 +183,6 @@ namespace InterTwitter.ViewModels
                 var errorText = Resources.AppResource.NoInternetText;
                 _userDialogs.Toast(errorText);
             }
-
         }
 
         private async Task OnMenuClickCommandAsync()
@@ -210,13 +209,11 @@ namespace InterTwitter.ViewModels
                     State = States.Normal;
                     IsBarIconVisible = true;
                 }
-
             }
             else
             {
                 State = States.Error;
             }
-
         }
 
         private async Task OnLikeClickCommandAsync(OwlViewModel owl)

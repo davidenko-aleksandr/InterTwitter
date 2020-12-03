@@ -19,9 +19,10 @@ namespace InterTwitter.Services.Owl
 
         private List<OwlModel> _owlsMock;
 
-        public OwlService(IUserService userService,
-                          IAuthorizationService authorizationService,
-                          ISettingsService settingsService)
+        public OwlService(
+            IUserService userService,
+            IAuthorizationService authorizationService,
+            ISettingsService settingsService)
         {
             _userService = userService;
             _authorizationService = authorizationService;
@@ -40,7 +41,7 @@ namespace InterTwitter.Services.Owl
             {
                 if (owlModel != null)
                 {
-                    var userResult =  await _authorizationService.GetAuthorizedUserAsync();
+                    var userResult = await _authorizationService.GetAuthorizedUserAsync();
                     if (userResult.IsSuccess)
                     {
                         var author = userResult.Result;
@@ -48,7 +49,7 @@ namespace InterTwitter.Services.Owl
                         owlModel.Id = _owlsMock.Count;
                         owlModel.Author = author;
 
-                        _owlsMock.Add(owlModel);
+                        _owlsMock.Insert(0, owlModel);
 
                         result.SetSuccess(true);
                     }
@@ -56,7 +57,6 @@ namespace InterTwitter.Services.Owl
                     {
                         result.SetFailure();
                     }
-
                 }
                 else
                 {
@@ -129,7 +129,6 @@ namespace InterTwitter.Services.Owl
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {
@@ -163,7 +162,6 @@ namespace InterTwitter.Services.Owl
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {
@@ -190,7 +188,6 @@ namespace InterTwitter.Services.Owl
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {
@@ -208,7 +205,7 @@ namespace InterTwitter.Services.Owl
             {
                 var changingOwl = _owlsMock.FirstOrDefault(x => x.Id == owl.Id);
 
-                if (changingOwl is not null)
+                if (changingOwl != null)
                 {
                     changingOwl.LikesList = owl.LikesList;
                     changingOwl.SavesList = owl.SavesList;
@@ -386,7 +383,7 @@ namespace InterTwitter.Services.Owl
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
-                },                
+                },
                 new OwlModel
                 {
                     Id = 11,

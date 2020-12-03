@@ -72,7 +72,7 @@ namespace InterTwitter.ViewModels
         }
 
         public ICommand SignUpCommand => SingleExecutionCommand.FromFunc(OnSignUpCommandAsync);
-                
+
         public ICommand LogInCommand => SingleExecutionCommand.FromFunc(OnLoginCommandAsync);
 
         #endregion
@@ -103,15 +103,13 @@ namespace InterTwitter.ViewModels
                         var errorText = Resources.AppResource.ExistEmailError;
                         _userDialogs.Toast(errorText);
                     }
-
                 }
                 else
                 {
                     //isValid is false
                 }
-
             }
-            else 
+            else
             {
                 var errorText = Resources.AppResource.NoInternetText;
                 _userDialogs.Toast(errorText);
@@ -122,7 +120,7 @@ namespace InterTwitter.ViewModels
         {
             await NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LogInPage)}");
         }
-       
+
         private bool ValidateData()
         {
             return Validator.IsMatch(Name, Validator.RegexName) && Validator.IsMatch(Email, Validator.RegexEmail, RegexOptions.IgnoreCase);
@@ -144,10 +142,8 @@ namespace InterTwitter.ViewModels
             var keyboardHeight = _keyboardService.FrameHeight;
 
             KeyboardButtonTranslationY = keyboardHeight != 0.0f ? -keyboardHeight : KeyboardButtonTranslationY;
-
         }
 
         #endregion
     }
 }
-

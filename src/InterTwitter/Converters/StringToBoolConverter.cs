@@ -10,7 +10,7 @@ namespace InterTwitter.Converters
         {
             string text = value as string;
 
-            bool isValid = !string.IsNullOrEmpty(text) && text.Length > 0 && text.Length < 280;
+            bool isValid = text != null ? text.Length >= 0 && text.Length <= 280 : true;
 
             return isValid;
         }

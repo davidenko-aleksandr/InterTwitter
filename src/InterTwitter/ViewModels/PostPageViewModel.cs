@@ -76,7 +76,6 @@ namespace InterTwitter.ViewModels
             {
                 State = States.NoData;
             }
-
         }
 
         #endregion

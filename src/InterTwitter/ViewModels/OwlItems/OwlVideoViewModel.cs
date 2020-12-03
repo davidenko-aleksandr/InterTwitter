@@ -26,6 +26,6 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _video, value);
         }
 
-        #endregion    
+        #endregion
     }
 }

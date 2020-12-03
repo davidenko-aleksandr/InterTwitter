@@ -74,7 +74,7 @@ namespace InterTwitter.ViewModels
             get => _state;
             set => SetProperty(ref _state, value);
         }
-
+        
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
 
         public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnOpenPostCommandAsync);
@@ -125,7 +125,6 @@ namespace InterTwitter.ViewModels
                 }
 
             }
-
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -177,7 +176,6 @@ namespace InterTwitter.ViewModels
             {
                 State = States.Error;
             }
-
         }
 
         private async Task OnOpenMenuCommandAsync()
@@ -204,7 +202,7 @@ namespace InterTwitter.ViewModels
 
         private async Task OnLikeClickCommandAsync(OwlViewModel owl)
         {
-            if (owl is not null)
+            if (owl != null)
             {
                 owl.IsLiked = !owl.IsLiked;
                 owl.LikesCount = owl.IsLiked ? ++owl.LikesCount : --owl.LikesCount;

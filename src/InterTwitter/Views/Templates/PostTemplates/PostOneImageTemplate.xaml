@@ -21,7 +21,8 @@
             <!-- POST MEDIA FILE -->
         <ffimageloading:CachedImage Grid.Row="1"
                                     Source="{Binding PostPhoto}"
-                                    HeightRequest="340">
+                                    HeightRequest="340"
+                                    LoadingPlaceholder="loading_placeholder.gif">
 
                 <ffimageloading:CachedImage.Transformations>
 

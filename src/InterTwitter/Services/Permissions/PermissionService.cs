@@ -9,12 +9,14 @@ namespace InterTwitter.Services.Permission
         {
         }
 
-        public Task<PermissionStatus> CheckPermissionAsync<T>() where T : Permissions.BasePermission, new()
+        public Task<PermissionStatus> CheckPermissionAsync<T>()
+            where T : Permissions.BasePermission, new()
         {
             return Permissions.CheckStatusAsync<T>();
         }
 
-        public async Task<PermissionStatus> RequestPermissionAsync<T>() where T : Permissions.BasePermission, new()
+        public async Task<PermissionStatus> RequestPermissionAsync<T>()
+            where T : Permissions.BasePermission, new()
         {
             var permissionStatus = await CheckPermissionAsync<T>();
             if (permissionStatus != PermissionStatus.Granted)
