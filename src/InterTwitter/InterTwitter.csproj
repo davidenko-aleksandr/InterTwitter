@@ -4,18 +4,14 @@
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <UserSecretsId>b6179fae-0a3b-4ffe-9ba1-a9af41f7a20e</UserSecretsId>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <DebugSymbols>true</DebugSymbols>
-    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
     <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
-    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
     <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEV|AnyCPU' ">
@@ -26,7 +22,6 @@
     <DefineConstants>TRACE;DEV;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
     <NoWarn>1701;1702</NoWarn>
     <NoStdLib>false</NoStdLib>
-    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
     <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'STAGE|AnyCPU' ">
@@ -37,7 +32,6 @@
     <DefineConstants>TRACE;STAGE;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
-    <!-- <CodeAnalysisRuleSet>StyleCopRuleSet.ruleset</CodeAnalysisRuleSet> -->
     <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -50,11 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.466" />
-
     <PackageReference Include="CardsView" Version="2.6.8" />
-
     <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
-
     <PackageReference Include="NGraphics" Version="0.5.0" />
     <PackageReference Include="Octane.Xam.VideoPlayer" Version="3.1.0" />
     <PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
@@ -71,11 +62,8 @@
     <PackageReference Include="Prism.Unity.Forms" Version="8.0.0.1909" />
   </ItemGroup>
   <ItemGroup>
-
     <Folder Include="Enums\" />
-
     <Folder Include="Resources\" />
-
     <Folder Include="Models\" />
     <Folder Include="Services\Authorization\" />
     <Folder Include="Behaviors\" />
