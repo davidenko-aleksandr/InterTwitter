@@ -9,7 +9,6 @@ namespace InterTwitter.Controls
     {
         public CustomTabbedPage()
         {
-
         }
 
         #region -- Public properties --

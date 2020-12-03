@@ -109,7 +109,6 @@ namespace InterTwitter.Services.Notification
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {
@@ -125,7 +124,7 @@ namespace InterTwitter.Services.Notification
 
         private async Task InitMock()
         {
-                var notifications = new List<NotificationModel>
+            var notifications = new List<NotificationModel>
                 {
                     new NotificationModel
                     {
@@ -140,8 +139,8 @@ namespace InterTwitter.Services.Notification
                         OwlText = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild",
                         MediaList = new List<string>
                         {
-                            "https://twitter.com/i/status/1262782634335383554"
-                        }
+                            "https://twitter.com/i/status/1262782634335383554",
+                        },
                     },
                     new NotificationModel
                     {
@@ -156,8 +155,8 @@ namespace InterTwitter.Services.Notification
                         OwlText = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild",
                         MediaList = new List<string>
                         {
-                            "https://twitter.com/i/status/1262782634335383554"
-                        }
+                            "https://twitter.com/i/status/1262782634335383554",
+                        },
                     },
                     new NotificationModel
                     {
@@ -168,11 +167,11 @@ namespace InterTwitter.Services.Notification
                         UserAvatar = "https://pbs.twimg.com/profile_images/1298649731980238848/29o9j4e__400x400.jpg",
                         UserName = "Shakira",
                         Action = OwlAction.Liked,
-                        MediaType = OwlType.OneImage ,
+                        MediaType = OwlType.OneImage,
                         OwlText = $"What?!? fully-functional #XamarinForms sample apps? With source code & walkthroughs? Free? Yes, please! #xamarin #devcommunity #dotnet",
                         MediaList = new List<string>
                         {
-                            "https://uc.uxpin.com/files/614612/609600/www.GIFCreator.me_W6dTbP.gif"
+                            "https://uc.uxpin.com/files/614612/609600/www.GIFCreator.me_W6dTbP.gif",
                         },
                     },
                     new NotificationModel
@@ -220,7 +219,7 @@ namespace InterTwitter.Services.Notification
                         OwlText = $"Go beyond Hello World. In today's guest post, #MSMVP Tim_Lariviere discusses importants part of writing real world apps and how to leverage functional programming with the Model-View-Update architecture to build mobile and desktop apps with #Fabulous",
                         MediaList = new List<string>
                         {
-                            "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
+                            "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large",
                         },
                     },
                     new NotificationModel
@@ -234,7 +233,7 @@ namespace InterTwitter.Services.Notification
                         Action = OwlAction.Liked,
                         MediaType = OwlType.NoMedia,
                         OwlText = $"FoxNews daytime is virtually unwatchable, especially during the weekends. Watch OANN, newsmax, or almost anything else.You won’t have to suffer through endless interviews with Democrats, and even worse!",
-                        MediaList = new List<string>()
+                        MediaList = new List<string>(),
                     },
                     new NotificationModel
                     {
@@ -254,9 +253,9 @@ namespace InterTwitter.Services.Notification
                             "https://pbs.twimg.com/media/EmplPyCW8AAL9g7?format=jpg&name=small",
                             "https://pbs.twimg.com/media/EmoZtwnW8AIbaO2?format=jpg&name=small",
                             "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
-                            "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
-                        }
-                    }
+                            "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small",
+                        },
+                    },
                 };
 
             _notificationMock = new Stack<NotificationModel>(notifications);

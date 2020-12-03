@@ -72,9 +72,9 @@ namespace InterTwitter.ViewModels
         }
 
         public ICommand ConfirmPasswordCommand => SingleExecutionCommand.FromFunc(OnConfirmCommandAsync);
-                
+
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
-               
+
         #endregion
 
         #region -- Overrides --
@@ -83,12 +83,12 @@ namespace InterTwitter.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            if (parameters.TryGetValue<string>(Constants.Navigation.Name, out string Name) &&
-                parameters.TryGetValue<string>(Constants.Navigation.Email, out string Email))
+            if (parameters.TryGetValue<string>(Constants.Navigation.Name, out string name) &&
+                parameters.TryGetValue<string>(Constants.Navigation.Email, out string email))
             {
-                _name = Name;
-                _email = Email;
-            }            
+                _name = name;
+                _email = email;
+            }
             else
             {
                 Debug.WriteLine("value error");
@@ -101,7 +101,7 @@ namespace InterTwitter.ViewModels
 
         private Task OnGoBackCommandAsync()
         {
-          return NavigationService.GoBackAsync();            
+            return NavigationService.GoBackAsync();
         }
 
         private async Task OnConfirmCommandAsync()
@@ -119,7 +119,6 @@ namespace InterTwitter.ViewModels
                     var errorText = Resources.AppResource.RandomError;
                     _userDialogs.Toast(errorText);
                 }
-                
             }
             else
             {
@@ -148,7 +147,6 @@ namespace InterTwitter.ViewModels
             var keyboardHeight = _keyboardService.FrameHeight;
 
             KeyboardButtonTranslationY = keyboardHeight != 0.0f ? -keyboardHeight : KeyboardButtonTranslationY;
-
         }
 
         #endregion

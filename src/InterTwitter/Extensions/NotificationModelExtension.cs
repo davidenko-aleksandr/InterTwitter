@@ -21,7 +21,7 @@ namespace InterTwitter.Extensions
                     UserAvatar = model.UserAvatar,
                     UserId = model.UserId,
                     UserName = model.UserName,
-                    MediaList = model.MediaList
+                    MediaList = model.MediaList,
                 };
             }
             else
@@ -31,6 +31,5 @@ namespace InterTwitter.Extensions
 
             return notification;
         }
-
     }
 }

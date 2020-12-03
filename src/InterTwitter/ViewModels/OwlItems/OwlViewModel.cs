@@ -8,7 +8,9 @@ namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlViewModel : BindableBase
     {
-        public OwlViewModel() { }
+        public OwlViewModel()
+        {
+        }
 
         public OwlViewModel(
             OwlModel model,

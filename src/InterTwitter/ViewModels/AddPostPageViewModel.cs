@@ -27,12 +27,13 @@ namespace InterTwitter.ViewModels
 
         private ICommand _removeItemCommand;
 
-        public AddPostPageViewModel(INavigationService navigationService,
-                                    IOwlService owlService,
-                                    IMedia mediaPlugin,
-                                    IKeyboardService keyboardService,
-                                    IAuthorizationService authorizationService)
-                                   : base(navigationService)
+        public AddPostPageViewModel(
+            INavigationService navigationService,
+            IOwlService owlService,
+            IMedia mediaPlugin,
+            IKeyboardService keyboardService,
+            IAuthorizationService authorizationService)
+            : base(navigationService)
         {
             _owlService = owlService;
             _authorizationService = authorizationService;

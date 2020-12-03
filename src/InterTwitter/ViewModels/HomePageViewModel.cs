@@ -63,7 +63,7 @@ namespace InterTwitter.ViewModels
         public OwlViewModel SelectedItem
         {
             get => selectedItem;
-            set => SetProperty(ref selectedItem, value);            
+            set => SetProperty(ref selectedItem, value);
         }
 
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
@@ -74,7 +74,7 @@ namespace InterTwitter.ViewModels
 
         public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnLikeClickCommandAsync);
 
-        public ICommand BookmarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookmarkCommandAsync);       
+        public ICommand BookmarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookmarkCommandAsync);
 
         #endregion
 
@@ -96,7 +96,6 @@ namespace InterTwitter.ViewModels
                 var errorText = Resources.AppResource.NoInternetText;
                 _userDialogs.Toast(errorText);
             }
-
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -120,7 +119,6 @@ namespace InterTwitter.ViewModels
                 var errorText = Resources.AppResource.RandomError;
                 _userDialogs.Toast(errorText);
             }
-
         }
 
         private async Task OnOpenMenuCommandAsync()
@@ -129,29 +127,25 @@ namespace InterTwitter.ViewModels
         }
 
         private async Task OnOpenPostCommandAsync()
-        {             
-            NavigationParameters parameters = new NavigationParameters 
-            { 
-                {
-                    "OwlViewModel", SelectedItem 
-                }
-            };
+        {
+            NavigationParameters parameters = new NavigationParameters();
+            parameters.Add("OwlViewModel", SelectedItem);
 
             await NavigationService.NavigateAsync(nameof(PostPage), parameters, useModalNavigation: true, true);
         }
-        
+
         private async Task OnAddPostCommandAsync()
         {
             await NavigationService.NavigateAsync(nameof(AddPostPage), new NavigationParameters(), useModalNavigation: true, true);
         }
 
         private async Task OnLikeClickCommandAsync(OwlViewModel owl)
-        {            
+        {
             if (owl != null)
             {
                 owl.IsLiked = !owl.IsLiked;
 
-                owl.LikesCount = owl.IsLiked ? owl.LikesCount + 1 : owl.LikesCount - 1;   
+                owl.LikesCount = owl.IsLiked ? owl.LikesCount + 1 : owl.LikesCount - 1;
 
                 await _postActionService.SaveActionAsync(owl, OwlAction.Liked);
             }

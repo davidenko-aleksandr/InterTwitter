@@ -40,12 +40,14 @@ namespace InterTwitter.Controls
                             frame.FadeTo(0, 300);
                             break;
                         }
+
                     case MovingStates.MovingDown:
                         {
                             frame.TranslateTo(0, 0);
                             frame.FadeTo(1, 300);
                             break;
                         }
+
                     default:
                         {
                             break;
@@ -54,7 +56,7 @@ namespace InterTwitter.Controls
             }
             else
             {
-                //button is null or oldOffset == newOffset 
+                //button is null or oldOffset == newOffset
             }
         }
 

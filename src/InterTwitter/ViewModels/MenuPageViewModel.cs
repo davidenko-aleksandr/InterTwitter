@@ -103,7 +103,6 @@ namespace InterTwitter.ViewModels
                     }
                 }
             }
-            
         }
 
         #endregion
@@ -112,10 +111,10 @@ namespace InterTwitter.ViewModels
 
         private async Task OnGoToProfilePageCommandAsync()
         {
-            var navParameters = new NavigationParameters
-            {
-                { Constants.Navigation.User, AuthorizedUser}
-            };
+            var navParameters = new NavigationParameters();
+
+            navParameters.Add(Constants.Navigation.User, AuthorizedUser);
+
             await NavigationService.NavigateAsync(nameof(ProfilePage), navParameters, useModalNavigation: true, true);
         }
 
