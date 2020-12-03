@@ -38,7 +38,7 @@
                                                 VerticalOptions="Fill"  
                                                 Source="{Binding .}"
                                                 Aspect="AspectFit"
-                                                LoadingPlaceholder="{x:Static resources:AppResource.LoadingPlaceholder}">
+                                                LoadingPlaceholder="loading_placeholder.gif">
 
                         <ffimageloading:CachedImage.Transformations>
 

@@ -23,7 +23,7 @@
         <ffimageloading:CachedImage Grid.Row="1"
                                     Source="{Binding PostPhoto}"
                                     HeightRequest="340"
-                                    LoadingPlaceholder="{x:Static resources:AppResource.LoadingPlaceholder}">
+                                    LoadingPlaceholder="loading_placeholder.gif">
 
                 <ffimageloading:CachedImage.Transformations>
 
