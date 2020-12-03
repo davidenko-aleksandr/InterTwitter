@@ -97,6 +97,15 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to load popular hashtags.
+        /// </summary>
+        public static string CantLoadHashTags {
+            get {
+                return ResourceManager.GetString("CantLoadHashTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to load post.
         /// </summary>
         public static string CantLoadPost {
@@ -381,6 +390,15 @@ namespace InterTwitter.Resources {
         public static string NoBookmarks {
             get {
                 return ResourceManager.GetString("NoBookmarks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have no hashtags yet.
+        /// </summary>
+        public static string NoHashTags {
+            get {
+                return ResourceManager.GetString("NoHashTags", resourceCulture);
             }
         }
         

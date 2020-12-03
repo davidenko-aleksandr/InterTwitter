@@ -268,7 +268,7 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"/>
 
-                    <Label Text="{x:Static resources:AppResource.CantUpdateNotifications}"
+                    <Label Text="{x:Static resources:AppResource.CantLoadHashTags}"
                            TextColor="{StaticResource tx_3}"
                            FontSize="18"/>
 
@@ -286,7 +286,7 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"/>
 
-                    <Label Text="{x:Static resources:AppResource.CantUpdateNotifications}"
+                    <Label Text="{x:Static resources:AppResource.CantLoadHashTags}"
                            TextColor="{StaticResource tx_3}"
                            FontSize="18"/>
 
@@ -304,7 +304,7 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"/>
 
-                    <Label Text="{x:Static resources:AppResource.NoNotifications}"
+                    <Label Text="{x:Static resources:AppResource.NoHashTags}"
                            TextColor="{StaticResource tx_3}"
                            FontSize="18"/>
 
