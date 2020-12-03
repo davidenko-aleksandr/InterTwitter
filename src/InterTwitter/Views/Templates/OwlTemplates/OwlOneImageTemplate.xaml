@@ -55,7 +55,7 @@
             <!-- POST IMAGE -->
             <ffimageloading:CachedImage Source="{Binding PostPhoto}"
                                         HeightRequest="250"
-                                        LoadingPlaceholder="{x:Static resources:AppResource.LoadingPlaceholder}">
+                                        LoadingPlaceholder="loading_placeholder.gif">
                 
                 <ffimageloading:CachedImage.Transformations>
 
