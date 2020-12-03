@@ -1,11 +1,15 @@
 ﻿using Acr.UserDialogs;
+using InterTwitter.Enums;
+using InterTwitter.Extensions;
 using InterTwitter.Helpers;
 using InterTwitter.Services.Notification;
 using InterTwitter.Services.Owl;
 using InterTwitter.ViewModels.NotificationItems;
-using InterTwitter.ViewModels.OwlItems;
+using InterTwitter.Views;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -46,14 +50,14 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _notificationList, value);
         }
 
-        private NotificationViewModel _selectedItem;
-        public NotificationViewModel SelectedItem
+        private States _state;
+        public States State
         {
-            get => _selectedItem;
-            set => SetProperty(ref _selectedItem, value);
+            get => _state;
+            set => SetProperty(ref _state, value);
         }
 
-        public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc(OnOpenPostCommandAsync);
+        public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc<NotificationViewModel>(OnOpenPostCommandAsync);
 
         #endregion
 
@@ -62,55 +66,77 @@ namespace InterTwitter.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             Icon = "ic_notifications_blue";
-           
-            await FillNotificationListAsync();
+
+            Connectivity.ConnectivityChanged += InternetConnectionChanged;
+
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                State = States.Loading;
+                await FillNotificationListAsync();
+            }
+            else
+            {
+                //no internet connection
+            }
+
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             Icon = "ic_notifications_gray";
+
+            Connectivity.ConnectivityChanged -= InternetConnectionChanged;
         }
 
         #endregion
 
         #region -- Private helpers --
 
-        private async Task OnOpenPostCommandAsync()
+        private async void InternetConnectionChanged(object sender, ConnectivityChangedEventArgs e)
         {
-            await _owlService.get
-            NavigationParameters parameters = new NavigationParameters
+            if (e.NetworkAccess == NetworkAccess.Internet)
             {
+                State = States.Loading;
+                await FillNotificationListAsync();
+            }
+            else
+            {
+                State = States.NoInternet;
+            }
+
+        }
+
+        private async Task OnOpenPostCommandAsync(NotificationViewModel notification)
+        {
+            NavigationParameters parameters = new NavigationParameters
                 {
-                    "OwlViewModel", SelectedItem
-                }
-            };
+                    {
+                        "OwlViewModel", notification.Owl
+                    }
+                };
 
             await NavigationService.NavigateAsync(nameof(PostPage), parameters, useModalNavigation: true, true);
         }
 
         private async Task FillNotificationListAsync()
         {
-            var current = Connectivity.NetworkAccess;
-
-            if (current == NetworkAccess.Internet)
+            var notificationsResult = await _notificationService.GetNotificationCollectionAsync();
+            if (notificationsResult.IsSuccess)
             {
-                var notificationsResult = await _notificationService.GetNotificationCollectionAsync();
-
-                if(notificationsResult.Result is not null)
+                NotificationList = new ObservableCollection<NotificationViewModel>(notificationsResult.Result.Select(x => x.ToViewModel(OpenPostCommand)));
+                if (NotificationList == null || !NotificationList.Any())
                 {
-                    NotificationList = notificationsResult.Result;
+                    State = States.NoData;
                 }
                 else
                 {
-                    var errorText = Resources.AppResource.RandomError;
-                    _userDialogs.Toast(errorText);
+                    State = States.Normal;
                 }
 
             }
             else
             {
-                var errorText = Resources.AppResource.NoInternetText;
-                _userDialogs.Toast(errorText);
+                State = States.Error;
             }
 
         }

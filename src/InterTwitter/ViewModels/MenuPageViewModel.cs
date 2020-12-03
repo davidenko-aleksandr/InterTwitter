@@ -216,7 +216,7 @@ namespace InterTwitter.ViewModels
 
                 if (userResult is not null)
                 {
-                    AuthorizedUser = userResult;
+                    AuthorizedUser = userResult.ToViewModel();
                 }
                 else
                 {

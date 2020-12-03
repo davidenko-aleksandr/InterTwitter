@@ -4,7 +4,9 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                         xmlns:resources="clr-namespace:InterTwitter.Resources"
                         xmlns:controls="clr-namespace:InterTwitter.Controls"
-                        xmlns:sh="http://sharpnado.com"
+                        xmlns:sh="http://sharpnado.com" 
+                        xmlns:stateContainer="clr-namespace:InterTwitter.Controls.StateContainer"
+                        xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                         x:Class="InterTwitter.Views.BookmarksPage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
@@ -20,23 +22,95 @@
 
             <!-- TABBED PAGE NAVIGATION BAR -->
             <controls:TabbedPageNavigationBar Grid.Row="0"
-                                              IsRightIconVisible="True"
+                                              IsRightIconVisible="{Binding IsBarIconVisible}"
                                               RightIconSource="ic_hidden_menu_gray.png"
                                               RightIconClickCommand="{Binding MenuClickCommand}"
                                               TitleText="{x:Static resources:AppResource.BookmarksTitle}"
                                               IsBottomLineVisible="True"/>
-            <!-- CLICKABLE FRAME -->
+            
+            <!-- STATE CONTAINERS BLOCK-->
+            <stateContainer:StateContainer State="{Binding State}"
+                                           Grid.Row="1">
 
+                <!-- LOADING -->
+                <stateContainer:StateCondition State="Loading">
 
-            <!-- COLLECTION VIEW -->
-            <controls:CustomCollectionView Grid.Row="1"
-                                           x:Name="customCollectionView" 
-                                           ItemsSource="{Binding BookmarksOwls}"
-                                           ItemTemplate="{StaticResource OwlTemplateSelector}"
-                                           ItemsUpdatingScrollMode="KeepItemsInView"
-                                           BackgroundColor="{StaticResource bg_1}"
-                                           SelectionMode="None"
-                                           IsTabStop="True"/>
+                    <ActivityIndicator IsRunning="True"
+                                       Color="{StaticResource bg_2}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                </stateContainer:StateCondition>
+
+                <!-- LOADED -->
+                <stateContainer:StateCondition State="Normal">
+
+                    <!-- COLLECTION VIEW -->
+                    <controls:CustomCollectionView x:Name="customCollectionView" 
+                                                   ItemsSource="{Binding BookmarksOwls}"
+                                                   ItemTemplate="{StaticResource OwlTemplateSelector}"
+                                                   ItemsUpdatingScrollMode="KeepItemsInView"
+                                                   BackgroundColor="{StaticResource bg_1}"
+                                                   SelectionMode="None"
+                                                   IsTabStop="True"/>
+                    
+                </stateContainer:StateCondition>
+
+                <!-- ERROR -->
+                <stateContainer:StateCondition State="Error">
+
+                    <StackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+
+                        <forms:CachedImage Source="ic_Empty_State"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+
+                        <Label Text="{x:Static resources:AppResource.CantUpdateBookmarks}"
+                               TextColor="{StaticResource tx_3}"
+                               FontSize="18"/>
+
+                    </StackLayout>
+
+                </stateContainer:StateCondition>
+
+                <!-- NO INTERNER -->
+                <stateContainer:StateCondition State="NoInternet">
+
+                    <StackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+
+                        <forms:CachedImage Source="ic_Empty_State"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+
+                        <Label Text="{x:Static resources:AppResource.CantUpdateBookmarks}"
+                               TextColor="{StaticResource tx_3}"
+                               FontSize="18"/>
+
+                    </StackLayout>
+
+                </stateContainer:StateCondition>
+
+                <!-- NO DATA -->
+                <stateContainer:StateCondition State="NoData">
+
+                    <StackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+
+                        <forms:CachedImage Source="ic_Empty_State"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                        <Label Text="{x:Static resources:AppResource.NoBookmarks}"
+                               TextColor="{StaticResource tx_3}"
+                               FontSize="18"/>
+
+                    </StackLayout>
+
+                </stateContainer:StateCondition>
+
+            </stateContainer:StateContainer>
 
         </Grid>
 
@@ -87,7 +161,6 @@
             </Frame>
             
         </sh:Shadows>
-
 
     </Grid>
 

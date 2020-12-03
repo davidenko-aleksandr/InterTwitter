@@ -10,6 +10,9 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using InterTwitter.Resources;
 using InterTwitter.ViewModels.OwlItems;
+using InterTwitter.Enums;
+using Xamarin.Essentials;
+using InterTwitter.Extensions;
 
 namespace InterTwitter.ViewModels
 {
@@ -106,11 +109,16 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _foundPosts, value);
         }
 
+        private States _state;
+        public States State
+        {
+            get => _state;
+            set => SetProperty(ref _state, value);
+        }
+
         private ICommand _searchCommand;
         public ICommand SearchCommand => _searchCommand ??= new Command(OnSearchCommand);
-
         public ICommand HashtagClickCommand => SingleExecutionCommand.FromFunc(OnHashtagClickCommandAsync);
-
         public ICommand IconClickCommand => SingleExecutionCommand.FromFunc(OnIconClickCommandAsync);
 
         #endregion
@@ -121,8 +129,19 @@ namespace InterTwitter.ViewModels
         {
             Icon = "ic_search_blue";
 
-            await SetUserDataAsync();
-            InitPopularThemesAsync();
+            Connectivity.ConnectivityChanged += InternetConnectionChanged;
+
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                State = States.Loading;
+                await SetUserDataAsync();
+                InitPopularThemesAsync();
+            }
+            else
+            {
+                //no internet connection
+            }
+
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -133,6 +152,21 @@ namespace InterTwitter.ViewModels
         #endregion
 
         #region -- Private helpers --
+
+        private async void InternetConnectionChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.NetworkAccess == NetworkAccess.Internet)
+            {
+                State = States.Loading;
+                await SetUserDataAsync();
+                InitPopularThemesAsync();
+            }
+            else
+            {
+                State = States.NoInternet;
+            }
+
+        }
 
         private void OnSearchCommand()
         {
@@ -175,48 +209,80 @@ namespace InterTwitter.ViewModels
 
         private async Task SetUserDataAsync()
         {
-            var result = await _authorizationService.GetAuthorizedUserAsync();
-            AuthorizedUser = result.Result;
-            SearchBarIconSource = AuthorizedUser.Avatar;
+            var authorizationResult = await _authorizationService.GetAuthorizedUserAsync();
+            if (authorizationResult.IsSuccess)
+            {
+                AuthorizedUser = authorizationResult.Result.ToViewModel();
+                SearchBarIconSource = AuthorizedUser.Avatar;
+            }
+            else
+            {
+                //authorization is failed
+            }
         }
 
         private async void InitPopularThemesAsync()
         {
-            var answer = await _owlService.GetAllOwlsAsync();
-            var posts = answer.Result;
-            var allPosts = new List<OwlViewModel>();
-
-            foreach (var post in posts)
+            var owlsResult = await _owlService.GetAllOwlsAsync();
+            if (owlsResult.IsSuccess)
             {
-                foreach (var hashtag in post.AllHashtags)
+                var posts = owlsResult.Result.Select(x=> x.ToViewModel(AuthorizedUser.Id, null, null, null));
+                var allPosts = new List<OwlViewModel>();
+
+                foreach (var post in posts)
                 {
-                    var newPost = new OwlViewModel
+                    foreach (var hashtag in post.AllHashtags)
                     {
-                        CurrentHashtag = hashtag
-                    };
+                        var newPost = new OwlViewModel
+                        {
+                            CurrentHashtag = hashtag
+                        };
 
-                    allPosts.Add(newPost);
+                        allPosts.Add(newPost);
+                    }
                 }
-            }
 
-            var groups = allPosts.GroupBy(x => x.CurrentHashtag).Select(g => new Grouping<string, OwlViewModel>(g.Key, g));
+                var groups = allPosts.GroupBy(x => x.CurrentHashtag).Select(g => new Grouping<string, OwlViewModel>(g.Key, g));
+                groups = groups.OrderByDescending(x => x.Count);
+                
+                if (groups == null || !groups.Any())
+                {
+                    State = States.NoData;
+                }
+                else
+                {
+                    if (groups.Count() > 10)
+                    {
+                        PopularThemes = new ObservableCollection<Grouping<string, OwlViewModel>>(groups.Take(10));
+                    }
+                    else
+                    {
+                        PopularThemes = new ObservableCollection<Grouping<string, OwlViewModel>>(groups);
+                    }
 
-            groups = groups.OrderByDescending(x => x.Count);
+                    State = States.Normal;
+                }
 
-            if (groups.Count() > 10)
-            {
-                PopularThemes = new ObservableCollection<Grouping<string, OwlViewModel>>(groups.Take(10));
             }
             else
             {
-                PopularThemes = new ObservableCollection<Grouping<string, OwlViewModel>>(groups);
+                State = States.Error;
             }
+
         }
 
         private async void ShowFoundPostsAsync(string searchQuery)
         {
-            var answer = await _owlService.GetAllOwlsAsync(searchQuery);
-            FoundPosts = new ObservableCollection<OwlViewModel>(answer.Result);
+            var owlsResult = await _owlService.GetAllOwlsAsync(searchQuery);
+            if (owlsResult.IsSuccess)
+            {
+                var collection = owlsResult.Result.Select(x => x.ToViewModel(AuthorizedUser.Id, null, null, null));
+                FoundPosts = new ObservableCollection<OwlViewModel>(collection);
+            }
+            else
+            {
+                //owlsResult failed
+            }
         }
 
         #endregion

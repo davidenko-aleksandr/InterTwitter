@@ -10,12 +10,14 @@
                        BackgroundColor="{StaticResource bg_1}">
 
     <views:BaseContentPage.Padding>
+        
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS"
                 Value="0,45,0,0"/>
             <On Platform="Android"
                 Value="0,20,0,0"/>
         </OnPlatform>
+        
     </views:BaseContentPage.Padding>
 
     <Grid HorizontalOptions="Fill"
@@ -73,7 +75,6 @@
                      x:Name="signButtonsBlock" 
                      IsVisible="{Binding IsSignButtonsBlockVisible}"
                      Margin="0,40,0,0">
-
 
             <!--LOG IN BUTTON-->
             <Button Style="{StaticResource LoginButtonStyle}" 

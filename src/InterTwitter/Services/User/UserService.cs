@@ -1,11 +1,9 @@
 ﻿using InterTwitter.Helpers;
 using InterTwitter.Models;
-using InterTwitter.ViewModels;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using InterTwitter.Extensions;
 
 namespace InterTwitter.Services.UserService
 {
@@ -20,16 +18,15 @@ namespace InterTwitter.Services.UserService
 
         #region -- IUserService Implementation --
 
-        public async Task<AOResult<List<UserViewModel>>> GetUsersAsync()
+        public async Task<AOResult<IEnumerable<UserModel>>> GetUsersAsync()
         {
-            var result = new AOResult<List<UserViewModel>>();
+            var result = new AOResult<IEnumerable<UserModel>>();
 
             try
             {
                 if (_usersRepositoryMock != null)
                 {
-                    var list = _usersRepositoryMock.Select(x => new UserViewModel(x)).ToList();
-                    result.SetSuccess(list);
+                    result.SetSuccess(_usersRepositoryMock);
                 }
                 else
                 {
@@ -50,7 +47,7 @@ namespace InterTwitter.Services.UserService
 
             try
             {
-                var user = _usersRepositoryMock.First(x => x.Id == id);
+                var user = _usersRepositoryMock.FirstOrDefault(x => x.Id == id);
 
                 if (user != null)
                 {
@@ -86,22 +83,22 @@ namespace InterTwitter.Services.UserService
             return result;
         }
 
-        public async Task<AOResult<bool>> UpdateUserAsync(UserViewModel userViewModel)
+        public async Task<AOResult<bool>> UpdateUserAsync(UserModel userModel)
         {
              
             var result = new AOResult<bool>();
 
             try
             {
-                var changingUser = _usersRepositoryMock.FirstOrDefault(x => x.Id == userViewModel.Id);
+                var changingUser = _usersRepositoryMock.FirstOrDefault(x => x.Id == userModel.Id);
 
                 if (changingUser is not null)
                 {
-                    changingUser.Avatar = userViewModel.Avatar;
-                    changingUser.Email = userViewModel.Email;
-                    changingUser.ProfileHeaderImage = userViewModel.ProfileHeaderImage;
-                    changingUser.Name = userViewModel.Name;
-                    changingUser.Password = userViewModel.Password;
+                    changingUser.Avatar = userModel.Avatar;
+                    changingUser.Email = userModel.Email;
+                    changingUser.ProfileHeaderImage = userModel.ProfileHeaderImage;
+                    changingUser.Name = userModel.Name;
+                    changingUser.Password = userModel.Password;
 
                     result.SetSuccess(true);
                 }
@@ -109,6 +106,7 @@ namespace InterTwitter.Services.UserService
                 {
                     result.SetFailure();
                 }
+
             }
             catch (Exception ex)
             {

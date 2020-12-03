@@ -72,8 +72,6 @@
   </ItemGroup>
   <ItemGroup>
 
-    <Folder Include="Enums\" />
-
     <Folder Include="Resources\" />
 
     <Folder Include="Models\" />

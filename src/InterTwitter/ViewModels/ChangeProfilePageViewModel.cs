@@ -11,6 +11,7 @@ using InterTwitter.Resources;
 using InterTwitter.Services.Permission;
 using static Xamarin.Essentials.Permissions;
 using Xamarin.Essentials;
+using InterTwitter.Extensions;
 
 namespace InterTwitter.ViewModels
 {
@@ -83,7 +84,14 @@ namespace InterTwitter.ViewModels
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             var userResult = await _authorizationService.GetAuthorizedUserAsync();
-            User = userResult.Result;
+            if (userResult.IsSuccess)
+            {
+                User = userResult.Result.ToViewModel();
+            }
+            else
+            {
+                //userResult failed
+            }
         }
 
         #endregion
@@ -105,7 +113,7 @@ namespace InterTwitter.ViewModels
                 {
                     //NewPassword is null
                 }
-                await _userServcie.UpdateUserAsync(User);
+                await _userServcie.UpdateUserAsync(User.ToModel());
 
                 var parameters = new NavigationParameters()
                 {

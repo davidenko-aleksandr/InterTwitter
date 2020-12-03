@@ -4,7 +4,9 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                         xmlns:controls="clr-namespace:InterTwitter.Controls" 
                         xmlns:resources="clr-namespace:InterTwitter.Resources"
-                        xmlns:notificationtemplate="clr-namespace:InterTwitter.Views.Templates.NotificationTemplates"
+                        xmlns:notificationtemplate="clr-namespace:InterTwitter.Views.Templates.NotificationTemplates" 
+                        xmlns:stateContainer="clr-namespace:InterTwitter.Controls.StateContainer" 
+                        xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                         x:Class="InterTwitter.Views.NotificationsPage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
@@ -22,21 +24,94 @@
                                            TitleText="{x:Static resources:AppResource.NotificationPageTitle}"
                                            IsBottomLineVisible="True"/>
 
-        <!-- COLLECTION VIEW -->
-        <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding NotificationList}"
-                        SelectedItem="{Binding SelectedItem}"
-                        SelectionMode="Single"
-                        SelectionChangedCommand="{Binding OpenPostCommand}">
+        <!-- STATE CONTAINERS BLOCK-->
+        <stateContainer:StateContainer State="{Binding State}"
+                                        Grid.Row="1">
 
-            <CollectionView.ItemTemplate>
+            <!-- LOADING -->
+            <stateContainer:StateCondition State="Loading">
 
-                <notificationtemplate:NotificationTemplate/>
+                <ActivityIndicator IsRunning="True"
+                                   Color="{StaticResource bg_2}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
 
-            </CollectionView.ItemTemplate>
-            
-        </CollectionView>
-        
+            </stateContainer:StateCondition>
+
+            <!-- LOADED -->
+            <stateContainer:StateCondition State="Normal">
+                
+                <!-- COLLECTION VIEW -->
+                <CollectionView Grid.Row="1"
+                                ItemsSource="{Binding NotificationList}"
+                                SelectionMode="None">
+
+                    <CollectionView.ItemTemplate>
+
+                        <notificationtemplate:NotificationTemplate/>
+
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+                
+            </stateContainer:StateCondition>
+
+            <!-- ERROR -->
+            <stateContainer:StateCondition State="Error">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <forms:CachedImage Source="ic_Empty_State"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.CantUpdateNotifications}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+
+            <!-- NO INTERNER -->
+            <stateContainer:StateCondition State="NoInternet">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <forms:CachedImage Source="ic_Empty_State"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.CantUpdateNotifications}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+
+            <!-- NO DATA -->
+            <stateContainer:StateCondition State="NoData">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <forms:CachedImage Source="ic_Empty_State"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.NoNotifications}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+
+        </stateContainer:StateContainer>
+
     </Grid>
-    
+
 </views:BaseContentPage>

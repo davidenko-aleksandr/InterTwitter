@@ -7,6 +7,7 @@ using InterTwitter.Views;
 using InterTwitter.Services.Authorization;
 using System.Collections.ObjectModel;
 using InterTwitter.Services.Owl;
+using InterTwitter.Extensions;
 
 namespace InterTwitter.ViewModels
 {
@@ -73,9 +74,9 @@ namespace InterTwitter.ViewModels
             {
                 var userResult = result.Result;
 
-                if(userResult is not null)
+                if(userResult != null)
                 {
-                    User = userResult;
+                    User = userResult.ToViewModel();
                 }
                 else
                 {

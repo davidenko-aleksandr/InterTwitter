@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Windows.Input;
 using InterTwitter.Models;
 
 namespace InterTwitter.ViewModels.OwlItems
@@ -7,9 +8,11 @@ namespace InterTwitter.ViewModels.OwlItems
     {
         public OwlOneImageViewModel(
             OwlModel model,
-            UserModel author,
-            int authorizedUserId)
-            : base(model, author, authorizedUserId)
+            int authorizedUserId,
+            ICommand itemTappedCommand,
+            ICommand likeTappedCommad,
+            ICommand saveTappedCommand)
+            : base(model, authorizedUserId, itemTappedCommand, likeTappedCommad, saveTappedCommand)
         {
             PostPhoto = model.Media.First();
         }

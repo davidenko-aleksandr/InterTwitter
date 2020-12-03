@@ -1,5 +1,6 @@
 ﻿using InterTwitter.Models;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace InterTwitter.ViewModels.OwlItems
 {
@@ -7,9 +8,11 @@ namespace InterTwitter.ViewModels.OwlItems
     {
         public OwlFewImagesViewModel(
             OwlModel model, 
-            UserModel author, 
-            int authorizedUserId) 
-            : base(model, author, authorizedUserId)
+            int authorizedUserId,
+            ICommand itemTappedCommand,
+            ICommand likeTappedCommad,
+            ICommand saveTappedCommand) 
+            : base(model, authorizedUserId, itemTappedCommand, likeTappedCommad, saveTappedCommand)
         {
             Media = model.Media;
         }

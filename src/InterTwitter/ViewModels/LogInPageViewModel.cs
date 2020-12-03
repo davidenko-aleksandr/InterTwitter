@@ -7,6 +7,7 @@ using InterTwitter.Services.Keyboard;
 using InterTwitter.Views;
 using Prism.Navigation;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
 {
@@ -90,7 +91,7 @@ namespace InterTwitter.ViewModels
 
                     if (isUserExist)
                     {
-                        await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+                        await NavigationService.NavigateAsync($"/{nameof(MenuPage)}/{nameof(NavigationPage)}/{nameof(MainTabbedPage)}");
                     }
                     else
                     {

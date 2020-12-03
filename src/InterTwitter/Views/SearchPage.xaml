@@ -6,7 +6,7 @@
                         xmlns:resources="clr-namespace:InterTwitter.Resources"
                         xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
                         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
-                        xmlns:prism="http://prismlibrary.com"
+                        xmlns:prism="http://prismlibrary.com" xmlns:stateContainer="clr-namespace:InterTwitter.Controls.StateContainer"
                         x:Class="InterTwitter.Views.SearchPage"
                         x:Name="searchPage"
                         IconImageSource="{Binding Icon}"
@@ -25,7 +25,7 @@
                Padding="0"
                HasShadow="False">
 
-        <StackLayout>
+            <StackLayout>
 
                 <Grid>
 
@@ -87,150 +87,232 @@
         <BoxView Grid.Row="1"
                  Style="{StaticResource boxViewSeparator}"/>
 
-        <Grid x:Name="popularThemes"
-              Grid.Row="2"
-              IsVisible="{Binding IsPopularThemesVisible}"
-              RowSpacing="0">
+        <!-- TABBED PAGE NAVIGATION BAR -->
+        <controls:TabbedPageNavigationBar  Grid.Row="0"
+                                           IsLeftIconVisible="False"
+                                           TitleText="{x:Static resources:AppResource.NotificationPageTitle}"
+                                           IsBottomLineVisible="True"/>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
+        <!-- STATE CONTAINERS BLOCK-->
+        <stateContainer:StateContainer State="{Binding State}"
+                                        Grid.Row="2">
 
-            <StackLayout Grid.Row="0"
-                         Margin="15">
+            <!-- LOADING -->
+            <stateContainer:StateCondition State="Loading">
 
-                <Label TextColor="Black"
-                       FontFamily="Ubuntu-Bold"
-                       FontSize="Title"
-                       FontAttributes="Bold"
-                       Text="Popular themes"/>
+                <ActivityIndicator IsRunning="True"
+                                   Color="{StaticResource bg_2}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
 
-            </StackLayout>
+            </stateContainer:StateCondition>
+
+            <!-- LOADED -->
+            <stateContainer:StateCondition State="Normal">
+
+                <Grid>
+                    
+                    <Grid x:Name="popularThemes"
+                          IsVisible="{Binding IsPopularThemesVisible}"
+                          RowSpacing="0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0"
+                                     Margin="15">
+
+                            <Label TextColor="Black"
+                                   FontFamily="Ubuntu-Bold"
+                                   FontSize="Title"
+                                   FontAttributes="Bold"
+                                   Text="Popular themes"/>
+
+                        </StackLayout>
 
 
-            <BoxView Grid.Row="1" 
-                     Margin="15,0"
-                     Style="{StaticResource boxViewSeparator}"/>
+                        <BoxView Grid.Row="1" 
+                                 Margin="15,0"
+                                 Style="{StaticResource boxViewSeparator}"/>
 
-            <CollectionView Grid.Row="2" 
-                            ItemsSource="{Binding PopularThemes}"
-                            IsVisible="{Binding IsPopularThemesVisible}"
-                            IsGrouped="True"
-                            ItemsUpdatingScrollMode="KeepItemsInView"
-                            BackgroundColor="{StaticResource bg_1}"
-                            ItemTemplate="{StaticResource EmptyTemplate}"
-                            SelectionMode="None"
-                            IsTabStop="True">
+                        <CollectionView Grid.Row="2" 
+                                        ItemsSource="{Binding PopularThemes}"
+                                        IsVisible="{Binding IsPopularThemesVisible}"
+                                        IsGrouped="True"
+                                        ItemsUpdatingScrollMode="KeepItemsInView"
+                                        BackgroundColor="{StaticResource bg_1}"
+                                        ItemTemplate="{StaticResource EmptyTemplate}"
+                                        SelectionMode="None"
+                                        IsTabStop="True">
 
-                <CollectionView.GroupHeaderTemplate>
+                            <CollectionView.GroupHeaderTemplate>
 
-                    <DataTemplate>
+                                <DataTemplate>
 
-                        <ContentView>
+                                    <ContentView>
 
-                            <Grid HorizontalOptions="FillAndExpand"
-                                  VerticalOptions="FillAndExpand"
-                                  RowSpacing="0"
-                                  Margin="15,0" >
+                                        <Grid HorizontalOptions="FillAndExpand"
+                                              VerticalOptions="FillAndExpand"
+                                              RowSpacing="0"
+                                              Margin="15,0" >
 
-                                <Grid.RowDefinitions>
+                                            <Grid.RowDefinitions>
 
-                                    <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
 
-                                    <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
 
-                                    <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
 
-                                    <RowDefinition Height="1"/>
+                                                <RowDefinition Height="1"/>
 
-                                </Grid.RowDefinitions>
+                                            </Grid.RowDefinitions>
 
-                                <Grid.ColumnDefinitions>
+                                            <Grid.ColumnDefinitions>
 
-                                    <ColumnDefinition Width="0.8*"/>
+                                                <ColumnDefinition Width="0.8*"/>
 
-                                    <ColumnDefinition Width="0.2*"/>
+                                                <ColumnDefinition Width="0.2*"/>
 
-                                </Grid.ColumnDefinitions>
+                                            </Grid.ColumnDefinitions>
 
-                                <!-- GROUP HEADER -->
-                                <controls:ClickableContentView Grid.Column="0"
-                                                               Grid.Row="1"
-                                                               IsAnimated="True"
-                                                               Margin="0"
-                                                               Style="{StaticResource ClickableContentViewStyle}">
+                                            <!-- GROUP HEADER -->
+                                            <controls:ClickableContentView Grid.Column="0"
+                                                                           Grid.Row="1"
+                                                                           IsAnimated="True"
+                                                                           Margin="0"
+                                                                           Style="{StaticResource ClickableContentViewStyle}">
 
-                                    <Label Text="{Binding Header}"
-                                           Grid.Column="0"
-                                           Grid.Row="1"
-                                           FontSize="Large"
-                                           TextColor="Black"
-                                           VerticalOptions="Center"/>
+                                                <Label Text="{Binding Header}"
+                                                       Grid.Column="0"
+                                                       Grid.Row="1"
+                                                       FontSize="Large"
+                                                       TextColor="Black"
+                                                       VerticalOptions="Center"/>
 
-                                </controls:ClickableContentView>
+                                            </controls:ClickableContentView>
 
-                                <!-- POSTS AMOUNT -->
-                                <Label Grid.Column="0"
-                                       Grid.Row="2"
-                                       Margin="0,0,0,5"
-                                       VerticalOptions="End">
+                                            <!-- POSTS AMOUNT -->
+                                            <Label Grid.Column="0"
+                                                   Grid.Row="2"
+                                                   Margin="0,0,0,5"
+                                                   VerticalOptions="End">
 
-                                    <Label.FormattedText>
+                                                <Label.FormattedText>
 
-                                        <FormattedString>
+                                                    <FormattedString>
 
-                                            <Span Text="Posts: "/>
+                                                        <Span Text="Posts: "/>
 
-                                            <Span Text="{Binding Amount}"/>
+                                                        <Span Text="{Binding Amount}"/>
 
-                                        </FormattedString>
+                                                    </FormattedString>
 
-                                    </Label.FormattedText>
+                                                </Label.FormattedText>
 
-                                </Label>
+                                            </Label>
 
-                                <!-- SHOW BUTTON -->
-                                <controls:ClickableContentView Grid.Column="1"
-                                                               Grid.Row="1"
-                                                               IsAnimated="True"
-                                                               Margin="0"
-                                                               Command="{Binding Source={x:Reference searchPage}, Path=BindingContext.HashtagClickCommand}"
-                                                               CommandParameter="{Binding .}"
-                                                               Style="{StaticResource ClickableContentViewStyle}">
+                                            <!-- SHOW BUTTON -->
+                                            <controls:ClickableContentView Grid.Column="1"
+                                                                           Grid.Row="1"
+                                                                           IsAnimated="True"
+                                                                           Margin="0"
+                                                                           Command="{Binding Source={x:Reference searchPage}, Path=BindingContext.HashtagClickCommand}"
+                                                                           CommandParameter="{Binding .}"
+                                                                           Style="{StaticResource ClickableContentViewStyle}">
 
-                                    <Image Scale="1.5"
-                                           Source="{x:Static resources:AppResource.RightImage}"/>
+                                                <Image Scale="1.5"
+                                                       Source="{x:Static resources:AppResource.RightImage}"/>
 
-                                </controls:ClickableContentView>
+                                            </controls:ClickableContentView>
 
-                                <BoxView Grid.Row="3"
-                                         Grid.ColumnSpan="2"
-                                         Style="{StaticResource boxViewSeparator}"
-                                         HorizontalOptions="Fill"/>
+                                            <BoxView Grid.Row="3"
+                                                     Grid.ColumnSpan="2"
+                                                     Style="{StaticResource boxViewSeparator}"
+                                                     HorizontalOptions="Fill"/>
 
-                            </Grid>
+                                        </Grid>
 
-                        </ContentView>
+                                    </ContentView>
 
-                    </DataTemplate>
+                                </DataTemplate>
 
-                </CollectionView.GroupHeaderTemplate>
+                            </CollectionView.GroupHeaderTemplate>
 
-            </CollectionView>
+                        </CollectionView>
 
-        </Grid>
+                    </Grid>
 
-        <CollectionView x:Name="foundPosts"
-                        Grid.Row="2" 
-                        IsVisible="{Binding IsFoundPostsVisible}"
-                        ItemsSource="{Binding FoundPosts}"
-                        ItemTemplate="{StaticResource OwlTemplateSelector}"
-                        ItemsUpdatingScrollMode="KeepItemsInView"
-                        BackgroundColor="{StaticResource bg_1}"
-                        SelectionMode="None"
-                        IsTabStop="True"/>
+                    <CollectionView x:Name="foundPosts"
+                                    IsVisible="{Binding IsFoundPostsVisible}"
+                                    ItemsSource="{Binding FoundPosts}"
+                                    ItemTemplate="{StaticResource OwlTemplateSelector}"
+                                    ItemsUpdatingScrollMode="KeepItemsInView"
+                                    BackgroundColor="{StaticResource bg_1}"
+                                    SelectionMode="None"
+                                    IsTabStop="True"/>
+                </Grid>
+
+            </stateContainer:StateCondition>
+
+            <!-- ERROR -->
+            <stateContainer:StateCondition State="Error">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <ffimageloading:CachedImage Source="ic_Empty_State"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.CantUpdateNotifications}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+
+            <!-- NO INTERNER -->
+            <stateContainer:StateCondition State="NoInternet">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <ffimageloading:CachedImage Source="ic_Empty_State"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.CantUpdateNotifications}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+
+            <!-- NO DATA -->
+            <stateContainer:StateCondition State="NoData">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <ffimageloading:CachedImage Source="ic_Empty_State"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.NoNotifications}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+
+        </stateContainer:StateContainer>
 
     </Grid>
 

@@ -2,11 +2,19 @@
 <DataTemplate xmlns="http://xamarin.com/schemas/2014/forms" 
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
-              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+              xmlns:controls="clr-namespace:InterTwitter.Controls"
               x:Class="InterTwitter.Views.Templates.OwlTemplates.OwlOneImageTemplate">
 
     <Grid Margin="10, 0, 10, 0">
 
+        <Grid.GestureRecognizers>
+
+            <TapGestureRecognizer Command="{Binding ItemTappedCommand}"
+                                  CommandParameter="{Binding .}"/>
+
+        </Grid.GestureRecognizers>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70" />
             <ColumnDefinition Width="*" />
@@ -21,7 +29,7 @@
         <ffimageloading:CachedImage Grid.Row ="0"
                                     Grid.Column="0"
                                     Grid.RowSpan="2"
-                                    Source="{Binding AuthorAvatar}"
+                                    Source="{Binding Author.Avatar}"
                                     Margin="10,0,10,0"
                                     VerticalOptions="Start"
                                     HorizontalOptions="Center"
@@ -43,7 +51,7 @@
                      Margin="0, 10, 10, 0">
 
             <!-- AUTHOR NAME LABEL -->
-            <Label Text="{Binding AuthorNickName}"
+            <Label Text="{Binding Author.Name}"
                    TextColor="{StaticResource tx_3}"
                    FontSize="Large"/>
 
@@ -96,31 +104,33 @@
                        HorizontalOptions="Start"/>
 
                 <!-- LIKE BUTTON -->
-                <Button Grid.Column="3"
-                        x:Name="likeButton"
-                        VerticalOptions="Center"
-                        HorizontalOptions="End"
-                        BackgroundColor="Transparent"
-                        HeightRequest="34"
-                        CornerRadius="17"                       
-                        ImageSource="ic_like_gray.png"
-                        Command="{Binding BindingContext.LikeClickCommand,
-                                  Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
-                                  CommandParameter="{Binding .}">
+                <controls:ClickableContentView Command="{Binding LikeTappedCommand}"
+                                               CommandParameter="{Binding .}"
+                                               Grid.Column="3">
 
-                    <Button.Triggers>
+                    <ffimageloading:CachedImage x:Name="likeButton"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="End"
+                                                BackgroundColor="Transparent"
+                                                HeightRequest="34"                   
+                                                Source="ic_like_gray.png">
 
-                        <DataTrigger TargetType="Button"
-                                     Binding="{Binding Path=IsLiked}"
-                                     Value="true">
+                        <ffimageloading:CachedImage.Triggers>
 
-                            <Setter Property="ImageSource" Value="ic_like_blue.png"/>
+                            <DataTrigger TargetType="ffimageloading:CachedImage"
+                                         Binding="{Binding Path=IsLiked}"
+                                         Value="true">
 
-                        </DataTrigger>
+                                <Setter Property="Source" 
+                                        Value="ic_like_blue.png"/>
 
-                    </Button.Triggers>
+                            </DataTrigger>
 
-                </Button>
+                        </ffimageloading:CachedImage.Triggers>
+
+                    </ffimageloading:CachedImage>
+
+                </controls:ClickableContentView>
 
                 <!-- LIKE COUNT LABEL -->
                 <Label Grid.Column="4"
@@ -144,32 +154,34 @@
                 </Label>
 
                 <!-- BOOKMARK BUTTON -->
-                <Button Grid.Column="5"
-                        x:Name="bookmarkButton"
-                        VerticalOptions="Center"
-                        HorizontalOptions="End"
-                        ImageSource="ic_bookmarks_gray.png"
-                        BackgroundColor="Transparent"
-                        WidthRequest="30"
-                        HeightRequest="34"
-                        CornerRadius="17"
-                        Command="{Binding BindingContext.BookmarkCommand,
-                                  Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
-                                  CommandParameter="{Binding .}">
+                <controls:ClickableContentView Command="{Binding SaveTappedCommand}"
+                                               CommandParameter="{Binding .}"
+                                               Grid.Column="5">
 
-                    <Button.Triggers>
+                    <ffimageloading:CachedImage x:Name="bookmarkButton"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="End"
+                                                Source="ic_bookmarks_gray.png"
+                                                BackgroundColor="Transparent"
+                                                WidthRequest="30"
+                                                HeightRequest="34">
 
-                        <DataTrigger TargetType="Button"
-                                     Binding="{Binding Path=IsBookmarked}"
-                                     Value="true">
+                        <ffimageloading:CachedImage.Triggers>
 
-                            <Setter Property="ImageSource" Value="ic_bookmarks_blue.png"/>
+                            <DataTrigger TargetType="ffimageloading:CachedImage"
+                                             Binding="{Binding Path=IsBookmarked}"
+                                             Value="true">
 
-                        </DataTrigger>
+                                <Setter Property="Source" 
+                                        Value="ic_bookmarks_blue.png"/>
 
-                    </Button.Triggers>
+                            </DataTrigger>
 
-                </Button>
+                        </ffimageloading:CachedImage.Triggers>
+
+                    </ffimageloading:CachedImage>
+
+                </controls:ClickableContentView>
 
             </Grid>
 
