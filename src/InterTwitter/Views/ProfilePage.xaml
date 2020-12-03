@@ -3,28 +3,20 @@
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-                        xmlns:resources="clr-namespace:InterTwitter.Resources" 
-                        xmlns:helpers="clr-namespace:InterTwitter.Helpers"
-                        xmlns:cardView="clr-namespace:PanCardView;assembly=PanCardView"
-                        xmlns:proc="clr-namespace:PanCardView.Processors;assembly=PanCardView"
-                        xmlns:cardControls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
-                        xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates"
+                        xmlns:resources="clr-namespace:InterTwitter.Resources"                         
+                        xmlns:cardView="clr-namespace:PanCardView;assembly=PanCardView"                        
+                        xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"                        
                         xmlns:sharpnado="http://sharpnado.com"
+                        xmlns:helpers="clr-namespace:InterTwitter.Helpers"
+                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates.ProfilePageTemplates" 
                         xmlns:viewModels="clr-namespace:InterTwitter.ViewModels.ProfilePageItems"
                         x:Class="InterTwitter.Views.ProfilePage">                      
 
     <views:BaseContentPage.Resources>
         
         <ResourceDictionary>
-
-            <templates:ProfilePageLikesTemplate x:Key="ProfilePageLikesTemplate"/>
-            <templates:ProfilPagePostsTemplate x:Key="ProfilPagePostsTemplate"/>
             
-            <helpers:ProfilePageTemplateSelector x:Key="ProfilePageSelector"
-                                                 LikesViewTemplate="{StaticResource ProfilePageLikesTemplate}"
-                                                 PostsViewTemplate="{StaticResource ProfilPagePostsTemplate}"/>
-            
+                 
             <Style TargetType="ImageButton" 
                    x:Key="OnHeaderImageButtonStyle">
                 
@@ -223,7 +215,7 @@
                     <helpers:ProfilePageTemplateSelector>                       
 
                         <helpers:ProfilePageTemplateSelector.PostsViewTemplate>
-                            <templates:ProfilPagePostsTemplate x:DataType="viewModels:PofilePageItemViewModel"/>
+                            <templates:ProfilePagePostsTemplate x:DataType="viewModels:PofilePageItemViewModel"/>
                         </helpers:ProfilePageTemplateSelector.PostsViewTemplate>
                         
                         <helpers:ProfilePageTemplateSelector.LikesViewTemplate>

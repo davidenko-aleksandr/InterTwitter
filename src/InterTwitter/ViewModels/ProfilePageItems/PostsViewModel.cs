@@ -1,12 +1,5 @@
-﻿using Acr.UserDialogs;
-using InterTwitter.Services.Authorization;
-using InterTwitter.Services.Owl;
-using InterTwitter.ViewModels.HomePageItems;
-using System;
-using System.Collections.Generic;
+﻿using InterTwitter.ViewModels.OwlItems;
 using System.Collections.ObjectModel;
-using System.Text;
-using Xamarin.Essentials;
 
 namespace InterTwitter.ViewModels.ProfilePageItems
 {

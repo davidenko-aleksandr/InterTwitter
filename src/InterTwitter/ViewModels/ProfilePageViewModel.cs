@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Input;
-using InterTwitter.Models;
+﻿using System.Windows.Input;
 using InterTwitter.Helpers;
 using Prism.Navigation;
 using System.Threading.Tasks;
@@ -8,11 +6,10 @@ using InterTwitter.Views;
 using InterTwitter.Services.Authorization;
 using System.Collections.ObjectModel;
 using InterTwitter.Services.Owl;
-using Xamarin.Forms;
 using System.Collections.Generic;
 using InterTwitter.ViewModels.ProfilePageItems;
-using InterTwitter.ViewModels.HomePageItems;
 using InterTwitter.Services.UserService;
+using InterTwitter.ViewModels.OwlItems;
 
 namespace InterTwitter.ViewModels
 {
@@ -87,21 +84,22 @@ namespace InterTwitter.ViewModels
             else if (parameters.TryGetValue(Constants.Navigation.UserId, out int userId))
             {
                 var userAOResult = await _userService.GetUserAsync(userId);
-                User = new UserViewModel( userAOResult.Result);
+                User = new UserViewModel(userAOResult.Result);
             }
             else
             {
-                await SetAuthorizedUserAsync();
+                var result = await _authorizationService.GetAuthorizedUserAsync();
+                User = result.Result;
             }
-
+            await SetDataAsync();
             InitTabs();
-        }        
+        }
 
         #endregion
 
         #region -- Private helpers --
 
-        private Task OnChangeProfileCommand()
+        private Task OnChangeProfileCommandAsync()
         {
             var parameters = new NavigationParameters()
             {
@@ -126,12 +124,24 @@ namespace InterTwitter.ViewModels
             var tabs = new List<PofilePageItemViewModel>()
             {
                 { new PostsViewModel("Posts", Owls)},
-                { new LikesViewModel("Likes",LikedOwls) }                
+                { new LikesViewModel("Likes",LikedOwls) }
             };
 
             Tabs = new ObservableCollection<PofilePageItemViewModel>(tabs);
         }
 
+        private async Task SetDataAsync()
+        {
+            IsAuthorized = User.Id == _authorizationService.AuthorizedUserId;
+
+            var owlAOResult = _owlService.GetAuthorOwlsAsync(User.Id);
+            var likedOwlsAOresult = _owlService.GetLikedOwlsAsync(User.Id);
+
+            await Task.WhenAll(owlAOResult, likedOwlsAOresult);
+
+            Owls = new ObservableCollection<OwlViewModel>(owlAOResult.Result.Result);
+            LikedOwls = new ObservableCollection<OwlViewModel>(likedOwlsAOresult.Result.Result);
+        }
         #endregion
 
     }

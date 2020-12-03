@@ -24,6 +24,10 @@ namespace InterTwitter.Services.Authorization
 
         #region -- IAuthorizationService implementation --
 
+        public int AuthorizedUserId 
+        {
+            get => _settingsService.AuthorizedUserId;
+        }
         public bool IsAuthorized
         {
             get => _settingsService.AuthorizedUserId != Constants.NoAuthorizedUser;

@@ -215,6 +215,34 @@ namespace InterTwitter.Services.Owl
             return result;
         }
 
+        public async Task<AOResult<IEnumerable<OwlViewModel>>> GetLikedOwlsAsync(int authorId)
+        {
+            var result = new AOResult<IEnumerable<OwlViewModel>>();
+
+            try
+            {
+                var owlsResult = await GetAllOwlsAsync();
+
+                if (owlsResult.IsSuccess)
+                {
+                    var owls = owlsResult.Result.Where(x => x.LikesList.Contains(authorId));
+
+                    result.SetSuccess(owls);
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetAllOwlsAsync)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
         public async Task<AOResult<IEnumerable<OwlViewModel>>> GetAuthorOwlsAsync(int authorId)
         {
             var result = new AOResult<IEnumerable<OwlViewModel>>();
@@ -278,7 +306,7 @@ namespace InterTwitter.Services.Owl
 
         #region -- Private helpers --
 
-        private async Task InitMock()
+        private  Task InitMock()
         {
             _owlsMock = new List<OwlModel>()
             {
@@ -856,10 +884,13 @@ namespace InterTwitter.Services.Owl
             _owlsMock[8].SavesList.Insert(0, 3);
 
             _owlsMock[6].LikesList.Insert(0, 1);
-
+            _owlsMock[43].LikesList.Insert(0, 2);
+            _owlsMock[23].LikesList.Insert(0, 2);
             _owlsMock[4].LikesList.Insert(0, 3);
             _owlsMock[4].LikesList.Insert(0, 1);
             _owlsMock[4].SavesList.Insert(0, 1);
+
+            return Task.CompletedTask;
         }
 
         #endregion

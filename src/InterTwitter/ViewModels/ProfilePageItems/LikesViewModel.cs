@@ -1,9 +1,5 @@
-﻿using InterTwitter.Services.Owl;
-using InterTwitter.ViewModels.HomePageItems;
-using System;
-using System.Collections.Generic;
+﻿using InterTwitter.ViewModels.OwlItems;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace InterTwitter.ViewModels.ProfilePageItems
 {
