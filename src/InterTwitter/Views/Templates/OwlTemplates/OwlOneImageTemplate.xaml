@@ -3,6 +3,7 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+              xmlns:resources="clr-namespace:InterTwitter.Resources"
               x:Class="InterTwitter.Views.Templates.OwlTemplates.OwlOneImageTemplate">
 
     <Grid Margin="10, 0, 10, 0">
@@ -21,7 +22,7 @@
         <ffimageloading:CachedImage Grid.Row ="0"
                                     Grid.Column="0"
                                     Grid.RowSpan="2"
-                                    Source="{Binding AuthorAvatar}"
+                                    Source="{Binding AuthorAvatar}"                                    
                                     Margin="10,0,10,0"
                                     VerticalOptions="Start"
                                     HorizontalOptions="Center"
@@ -53,7 +54,8 @@
 
             <!-- POST IMAGE -->
             <ffimageloading:CachedImage Source="{Binding PostPhoto}"
-                                        HeightRequest="250">
+                                        HeightRequest="250"
+                                        LoadingPlaceholder="{x:Static resources:AppResource.LoadingPlaceholder}">
                 
                 <ffimageloading:CachedImage.Transformations>
 

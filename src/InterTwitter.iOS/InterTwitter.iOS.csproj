@@ -650,6 +650,9 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_right%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\loading_placeholder.gif" />
+  </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties TriggeredFromHotReload="False" />
