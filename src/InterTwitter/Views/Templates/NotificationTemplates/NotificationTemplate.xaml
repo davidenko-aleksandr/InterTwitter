@@ -72,7 +72,6 @@
                     </ffimageloading:CachedImage>
 
                     <!-- NAME LABEL -->
-
                     <Label Text="{Binding User.Name}"
                            FontSize="18"
                            FontAttributes="Bold"
@@ -113,6 +112,7 @@
                                        HasUnevenRows="False"
                                        FlowItemsSource="{Binding Owl.Media}"
                                        RowHeight="50"
+                                       HeightRequest="50"
                                        VerticalScrollBarVisibility="Never"
                                        HorizontalScrollBarVisibility="Never"
                                        IsVisible="True">
@@ -147,7 +147,7 @@
                     <flowview:FlowListView.Triggers>
 
                         <DataTrigger Binding="{Binding Owl.MediaType}"
-                                     Value="2"
+                                     Value="3"
                                      TargetType="flowview:FlowListView">
 
                             <Setter Property="IsVisible"

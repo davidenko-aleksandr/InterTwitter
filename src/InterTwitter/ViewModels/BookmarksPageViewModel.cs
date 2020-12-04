@@ -2,7 +2,6 @@
 using InterTwitter.Enums;
 using InterTwitter.Extensions;
 using InterTwitter.Helpers;
-using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Services.Owl;
 using InterTwitter.Services.PostAction;

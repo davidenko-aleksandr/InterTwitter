@@ -4,9 +4,9 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                         xmlns:controls="clr-namespace:InterTwitter.Controls" 
                         xmlns:resources="clr-namespace:InterTwitter.Resources"
-                        xmlns:notificationtemplate="clr-namespace:InterTwitter.Views.Templates.NotificationTemplates" 
                         xmlns:stateContainer="clr-namespace:InterTwitter.Controls.StateContainer" 
-                        xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                        xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+                        xmlns:notificationtemplates="clr-namespace:InterTwitter.Views.Templates.NotificationTemplates"
                         x:Class="InterTwitter.Views.NotificationsPage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
@@ -48,7 +48,7 @@
 
                     <CollectionView.ItemTemplate>
 
-                        <notificationtemplate:NotificationTemplate/>
+                        <notificationtemplates:NotificationTemplate/>
 
                     </CollectionView.ItemTemplate>
 
