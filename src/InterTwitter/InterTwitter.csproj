@@ -73,7 +73,6 @@
     <Folder Include="Models\" />
     <Folder Include="Services\Authorization\" />
     <Folder Include="Behaviors\" />
-    <Folder Include="Converters\" />
     <Folder Include="ViewModels\MediaItems\" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +88,9 @@
     <EmbeddedResource Update="Resources\AppResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OpenPhotoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\PostTemplates\PostFewImageTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

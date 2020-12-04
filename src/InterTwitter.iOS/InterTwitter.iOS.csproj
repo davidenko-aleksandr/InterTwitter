@@ -175,6 +175,12 @@
     <BundleResource Include="Resources\ic_clear_filled.png" />
     <BundleResource Include="Resources\ic_clear_filled%402x.png" />
     <BundleResource Include="Resources\ic_clear_filled%403x.png" />
+    <BundleResource Include="Resources\ic_down.png" />
+    <BundleResource Include="Resources\ic_down%402x.png" />
+    <BundleResource Include="Resources\ic_down%403x.png" />
+    <BundleResource Include="Resources\ic_video_enabled.png" />
+    <BundleResource Include="Resources\ic_video_enabled%402x.png" />
+    <BundleResource Include="Resources\ic_video_enabled%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\App_store_1024_1x.png">

@@ -54,6 +54,7 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<PostPage, PostPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangeProfilePage, ChangeProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<AddPostPage, AddPostPageViewModel>();
+            containerRegistry.RegisterForNavigation<OpenPhotoPage, OpenPhotoPageViewModel>();
             containerRegistry.RegisterForNavigation<MainTabbedPage>(nameof(MainTabbedPage));
 
             //plugins

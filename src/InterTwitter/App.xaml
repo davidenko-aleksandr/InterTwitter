@@ -18,7 +18,8 @@
         <Color x:Key="bg_4">#8002060E</Color> <!-- Backout -->
         <Color x:Key="bg_5">#66696E</Color>   <!-- Dark Grey -->
         <Color x:Key="bg_6">#F44336</Color>   <!-- Error -->
-        
+        <Color x:Key="bg_7">#02060E</Color>   <!-- System Black -->
+
         <!-- TEXT COLOR -->
         <Color x:Key="tx_1">#FCFDFE</Color> <!-- System White -->
         <Color x:Key="tx_2">#2356C5</Color> <!-- Primary -->
