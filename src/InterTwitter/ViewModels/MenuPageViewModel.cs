@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Acr.UserDialogs;
 using InterTwitter.Extensions;
 using InterTwitter.Helpers;
+using InterTwitter.Resources;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Views;
 using Prism.Navigation;
@@ -122,17 +123,26 @@ namespace InterTwitter.ViewModels
 
         private async Task OnLogoutCommandAsync()
         {
-            var result = await _authorizationService.LogOutAsync();
-            var isLoggedOut = result.Result;
+            bool isConfirmed = await _userDialogs.ConfirmAsync(AppResource.ConfirmLogout, null, AppResource.ContinueButton, AppResource.CancelButton);
 
-            if (isLoggedOut)
+            if (isConfirmed)
             {
-                await NavigationService.NavigateAsync($"/{nameof(LogInPage)}");
+                var result = await _authorizationService.LogOutAsync();
+                var isLoggedOut = result.Result;
+
+                if (isLoggedOut)
+                {
+                    await NavigationService.NavigateAsync($"/{nameof(LogInPage)}");
+                }
+                else
+                {
+                    var errorText = Resources.AppResource.RandomError;
+                    _userDialogs.Toast(errorText);
+                }
             }
             else
             {
-                var errorText = Resources.AppResource.RandomError;
-                _userDialogs.Toast(errorText);
+                //User cancelled logout
             }
         }
 
