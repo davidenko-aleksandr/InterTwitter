@@ -264,4 +264,10 @@
   <data name="DeleteBookmarksText" xml:space="preserve">
     <value>Delete all bookmarks</value>
   </data>
+  <data name="MenuSaveLabelText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MenuShareLabelText" xml:space="preserve">
+    <value>Share</value>
+  </data>
 </root>

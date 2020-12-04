@@ -4,6 +4,7 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:cards="http://xamarin.com/schemas/2014/forms/design" 
                         xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                        xmlns:resources="clr-namespace:InterTwitter.Resources" 
                         xmlns:controls="clr-namespace:InterTwitter.Controls"
                         x:Class="InterTwitter.Views.OpenPhotoPage">
 
@@ -11,7 +12,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>     
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- NAVIGATION BAR -->
@@ -21,9 +22,10 @@
                                           LeftIconSource="ic_left_grey.png"
                                           RightIconSource="ic_hidden_menu_gray.png"
                                           LeftIconClickCommand="{Binding GoBackCommand}"
-                                          BackgroundColor="{StaticResource tx_3}"/>
+                                          BackgroundColor="{StaticResource tx_3}"
+                                          RightIconClickCommand="{Binding MenuClickCommand}"/>
         <StackLayout Grid.Row="1">
-            
+
             <cards:CarouselView ItemsSource="{Binding Imeges}"
                                 Position="{Binding CurrentImage, Mode=TwoWay}"
                                 BackgroundColor="{StaticResource tx_3}">
@@ -159,8 +161,51 @@
                 </Button>
 
             </Grid>
+            
         </StackLayout>
-        
-    </Grid>    
-    
+
+        <!--DROP DOWN MENU ACTIVE PROFILE-->
+        <controls:ClickableContentView Grid.Row="0"
+                                       Grid.RowSpan="2"
+                                       VerticalOptions="FillAndExpand"
+                                       HorizontalOptions="FillAndExpand"
+                                       Command="{Binding MenuClickCommand}"
+                                       IsVisible="{Binding IsMenuVisible}"/>
+
+        <Frame Grid.Row="0"
+               Grid.RowSpan="2"
+               BackgroundColor="{StaticResource bg_5}"
+               Margin="0,10,10,0"
+               CornerRadius="5"
+               HasShadow="False"                   
+               VerticalOptions="Start"
+               HorizontalOptions="End"
+               WidthRequest="160"                   
+               Padding="0"
+               IsVisible="{Binding IsMenuVisible}">
+
+            <StackLayout VerticalOptions="Fill"
+                         HorizontalOptions="Fill">
+
+                <controls:ClickableContentView>
+                    
+                    <Label Text="{x:Static resources:AppResource.MenuSaveLabelText}"
+                           TextColor="{StaticResource bg_1}"
+                           Margin="20, 20, 20, 0"/>
+                    
+                </controls:ClickableContentView>
+
+                <controls:ClickableContentView>
+                    <Label Text="{x:Static resources:AppResource.MenuShareLabelText}"
+                           TextColor="{StaticResource bg_1}"
+                           Margin="20"/>
+
+                </controls:ClickableContentView>
+                    
+            </StackLayout>
+
+        </Frame>
+
+    </Grid>
+
 </views:BaseContentPage>

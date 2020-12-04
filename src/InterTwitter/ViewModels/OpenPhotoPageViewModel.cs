@@ -79,7 +79,16 @@ namespace InterTwitter.ViewModels
             get => _boommarked;
             set => SetProperty(ref _boommarked, value);
         }
-        
+
+        private bool _IsMenuVisible;
+        public bool IsMenuVisible
+        {
+            get => _IsMenuVisible;
+            set => SetProperty(ref _IsMenuVisible, value);
+        }
+                            
+        public ICommand MenuClickCommand => SingleExecutionCommand.FromFunc(OnMenuClickCommand);
+
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
 
         public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc(OnLikeClickCommandAsync);
@@ -168,6 +177,13 @@ namespace InterTwitter.ViewModels
         private async Task OnGoBackCommandAsync()
         {
             await NavigationService.GoBackAsync();
+        }
+
+        private Task OnMenuClickCommand()
+        {
+            IsMenuVisible = !IsMenuVisible;
+
+            return Task.CompletedTask;
         }
 
         #endregion
