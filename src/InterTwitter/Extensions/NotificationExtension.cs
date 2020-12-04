@@ -1,11 +1,12 @@
 ﻿using InterTwitter.Models;
 using InterTwitter.ViewModels.NotificationItems;
+using System.Windows.Input;
 
 namespace InterTwitter.Extensions
 {
-    public static class NotificationModelExtension
+    public static class NotificationExtension
     {
-        public static NotificationViewModel ToViewModel(this NotificationModel model)
+        public static NotificationViewModel ToViewModel(this NotificationModel model, ICommand openPostCommand)
         {
             NotificationViewModel notification = null;
             if (model != null)
@@ -13,15 +14,11 @@ namespace InterTwitter.Extensions
                 notification = new NotificationViewModel
                 {
                     Id = model.Id,
-                    AuthorId = model.AuthorId,
-                    OwlId = model.OwlId,
-                    OwlText = model.OwlText,
+                    Author = model.Author.ToViewModel(),
+                    Owl = model.Owl.ToViewModel(model.Author.Id, null, null, null),
                     Action = model.Action,
-                    MediaType = model.MediaType,
-                    UserAvatar = model.UserAvatar,
-                    UserId = model.UserId,
-                    UserName = model.UserName,
-                    MediaList = model.MediaList,
+                    User = model.User.ToViewModel(),
+                    ItemTappedCommand = openPostCommand
                 };
             }
             else

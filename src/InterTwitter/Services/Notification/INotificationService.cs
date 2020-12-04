@@ -1,16 +1,15 @@
 ﻿using InterTwitter.Enums;
 using InterTwitter.Helpers;
-using InterTwitter.ViewModels.NotificationItems;
-using InterTwitter.ViewModels.OwlItems;
-using System.Collections.ObjectModel;
+using InterTwitter.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InterTwitter.Services.Notification
 {
     public interface INotificationService
     {
-        Task<AOResult<bool>> AddNotificationAsync(OwlViewModel actionOwl, OwlAction action);
+        Task<AOResult<bool>> AddNotificationAsync(OwlModel actionOwl, OwlAction action);
 
-        Task<AOResult<ObservableCollection<NotificationViewModel>>> GetNotificationCollectionAsync();
+        Task<AOResult<IEnumerable<NotificationModel>>> GetNotificationCollectionAsync();
     }
 }

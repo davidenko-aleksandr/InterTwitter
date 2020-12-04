@@ -6,7 +6,6 @@
                         xmlns:resources="clr-namespace:InterTwitter.Resources" 
                         xmlns:helpers="clr-namespace:InterTwitter.Helpers"
                         xmlns:cardView="clr-namespace:PanCardView;assembly=PanCardView"
-                        xmlns:proc="clr-namespace:PanCardView.Processors;assembly=PanCardView"
                         xmlns:cardControls="clr-namespace:PanCardView.Controls;assembly=PanCardView"
                         xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                         x:Class="InterTwitter.Views.ProfilePage">                      
@@ -41,8 +40,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.4*"/>
         </Grid.RowDefinitions>
 
         <!--PROFILE HEADER PHOTO BLOCK-->
@@ -51,7 +50,6 @@
                                     Margin="0"
                                     VerticalOptions="Fill"
                                     DownsampleToViewSize="True"
-                                    ErrorPlaceholder="pic_logo_small.png"
                                     LoadingPlaceholder="pic_logo_small.png"
                                     Source="{Binding User.ProfileHeaderImage}"
                                     Aspect="AspectFill"/>
@@ -69,41 +67,49 @@
                      HorizontalOptions="End"
                      Source="ic_hidden_menu_gray"/>
 
-        <ffimageloading:CachedImage Grid.Row="1"
-                                    HeightRequest="52"
-                                    ErrorPlaceholder="pic_logo_small"
-                                    LoadingPlaceholder="pic_logo_small"
-                                    WidthRequest="52"      
-                                    Margin="15,-32,0,0"
-                                    VerticalOptions="Start"
-                                    HorizontalOptions="Start"                                    
-                                    DownsampleToViewSize="True"
-                                    Aspect="AspectFit"                                              
-                                    Source="{Binding User.Avatar}">
+        <Frame Grid.Row="1"
+               HasShadow="False"
+               BackgroundColor="{StaticResource bg_1}"
+               CornerRadius="39"
+               Margin="15,-42,0,0"
+               VerticalOptions="Start"
+               HorizontalOptions="Start"
+               Padding="3">
+            
+            <ffimageloading:CachedImage HeightRequest="70"
+                                        WidthRequest="70"
+                                        ErrorPlaceholder="pic_logo_small"
+                                        LoadingPlaceholder="pic_logo_small"  
+                                        BackgroundColor="{StaticResource bg_1}"
+                                        DownsampleToViewSize="True"
+                                        Aspect="AspectFit"                                              
+                                        Source="{Binding User.Avatar}">
 
-            <ffimageloading:CachedImage.Transformations>
+                <ffimageloading:CachedImage.Transformations>
 
-                <fftransformations:CircleTransformation BorderSize="8"
-                                                        BorderHexColor="#FCFDFE"/>
+                    <fftransformations:CircleTransformation/>
 
-            </ffimageloading:CachedImage.Transformations>
+                </ffimageloading:CachedImage.Transformations>
 
-        </ffimageloading:CachedImage>
-        
+            </ffimageloading:CachedImage>
+            
+        </Frame>
+
         <!--CHANGE CHANGE PROFILE BUTTON-->
         <Button Grid.Row="1"
                 Text="{x:Static resources:AppResource.ChangeProfileLable}"
+                TextColor="{StaticResource tx_5}"
                 FontSize="12"
                 FontFamily="Ubuntu"
                 VerticalOptions="Start"
                 HorizontalOptions="End"
-                Margin="10,2"
                 TextTransform="None"
-                CornerRadius="12"
+                CornerRadius="18"
                 Padding="0"
-                HeightRequest="24"
-                WidthRequest="120"
-                BorderColor="#66696E"
+                Margin="0,0,10,0"
+                HeightRequest="30"
+                WidthRequest="150"
+                BorderColor="{StaticResource bg_5}"
                 BackgroundColor="Transparent"
                 BorderWidth="1"
                 Command="{Binding ChangeProfileCommand}"/>
@@ -112,11 +118,11 @@
         <Label Grid.Row="1"
                VerticalOptions="Start"
                HorizontalOptions="Start"
-               TextColor="#02060E"
+               TextColor="{StaticResource tx_3}"
                Margin="12,32"
                Text="{Binding User.Name}"
                FontAttributes="Bold"
-               FontSize="16"
+               FontSize="20"
                FontFamily="Ubuntu"/>
         
         <!--EMAIL LABEL-->
@@ -124,27 +130,35 @@
                VerticalOptions="Start"
                HorizontalOptions="Start"
                Text="{Binding User.Email}"
-               TextColor="#66696E"
+               TextColor="{StaticResource tx_5}"
                Margin="12,52"
-               FontSize="12"
+               FontSize="15"
                FontFamily="Ubuntu"/>
+        
         <StackLayout Grid.Row="2"
                      Orientation="Vertical" 
                      HorizontalOptions="Fill"
                      VerticalOptions="Fill">
 
             <cardControls:TabsControl BindingContext="{x:Reference carouselView}">
+                
                 <cardControls:TabsControl.ItemTemplate>
+                    
                     <DataTemplate>
+                        
                         <Label Text="1"/>
+                        
                     </DataTemplate>
+                    
                 </cardControls:TabsControl.ItemTemplate>
+                
             </cardControls:TabsControl>
 
             <cardView:CarouselView x:Name="carouselView"
                                    ItemTemplate="{StaticResource ProfilePageSelector}"/>
 
         </StackLayout>
+        
     </Grid>
 
 </views:BaseContentPage>

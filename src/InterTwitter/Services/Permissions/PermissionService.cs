@@ -23,6 +23,10 @@ namespace InterTwitter.Services.Permission
             {
                 permissionStatus = await Permissions.RequestAsync<T>();
             }
+            else
+            {
+                //permissionStatus is not Franted
+            }
 
             return permissionStatus;
         }
