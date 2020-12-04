@@ -58,8 +58,10 @@ namespace InterTwitter.ViewModels
         }
 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
-        public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnLikeClickCommandAsync);
-        public ICommand BookmarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookmarkCommandAsync);
+
+        public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnLikeClickCommandAsync, delayMillisec: 50);
+
+        public ICommand BookmarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookmarkCommandAsync, delayMillisec: 50);
 
         public ICommand OpenPhotoCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnOpenPhotoCommandAsync);
 

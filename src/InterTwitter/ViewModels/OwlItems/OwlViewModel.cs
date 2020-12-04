@@ -3,6 +3,7 @@ using InterTwitter.Models;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 
@@ -37,17 +38,7 @@ namespace InterTwitter.ViewModels.OwlItems
             ItemTappedCommand = itemTappedCommand;
             LikeTappedCommand = likeTappedCommad;
             SaveTappedCommand = saveTappedCommand;
-            AllHashtags = new List<string>();
-
-            foreach (var word in Text.Split(' '))
-            {
-                var match = Regex.Match(word, Constants.RegexHashtag);
-
-                if (match.Success)
-                {
-                    AllHashtags.Add(match.Value);
-                }
-            }
+            AllHashtags = new List<string>(Text.Split().Where(x => Regex.IsMatch(x, Constants.RegexHashtag)));
         }
 
         #region -- Public properties --
@@ -157,6 +148,13 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _currentHashtag, value);
         }
 
+        private string _searchQuery;
+        public string SearchQuery
+        {
+            get => _searchQuery;
+            set => SetProperty(ref _searchQuery, value);
+        }
+
         private ICommand _itemTappedCommand;
         public ICommand ItemTappedCommand
         {
@@ -178,6 +176,6 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _saveTappedCommand, value);
         }
 
-        #endregion
-    }
+    #endregion
+}
 }

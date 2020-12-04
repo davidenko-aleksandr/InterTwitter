@@ -484,7 +484,16 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have no notifications yet.
+        ///   Looks up a localized string similar to No results for .
+        /// </summary>
+        public static string NoResultsText {
+            get {
+                return ResourceManager.GetString("NoResultsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notification.
         /// </summary>
         public static string NoNotifications {
             get {

@@ -440,44 +440,64 @@
       </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-hdpi\ic_down.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-hdpi\ic_video_enabled.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-mdpi\ic_down.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-mdpi\ic_video_enabled.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_down.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_video_enabled.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_down.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_video_enabled.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_down.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_video_enabled.png">
-      <SubType></SubType>
-      <Generator></Generator>
+      <SubType>
+      </SubType>
+      <Generator>
+      </Generator>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
@@ -1022,19 +1042,19 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_hidden_menu_gray.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_Empty_State.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_empty_state.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\ic_Empty_State.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_empty_state.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_Empty_State.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_empty_state.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_Empty_State.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_empty_state.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_Empty_State.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_empty_state.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\loading_placeholder.gif" />

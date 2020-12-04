@@ -327,6 +327,9 @@
   <data name="CantLoadHashTags" xml:space="preserve">
     <value>Unable to load popular hashtags</value>
   </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>No results for </value>
+  </data>
   <data name="NoHashTags" xml:space="preserve">
     <value>You have no hashtags yet</value>
   </data>
