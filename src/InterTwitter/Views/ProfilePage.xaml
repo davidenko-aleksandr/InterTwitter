@@ -155,7 +155,7 @@
                                         WidthRequest="70"
                                         ErrorPlaceholder="pic_logo_small"
                                         LoadingPlaceholder="pic_logo_small"  
-                                        BackgroundColor="{StaticResource bg_1}"
+                                        BackgroundColor="Transparent"
                                         DownsampleToViewSize="True"
                                         Aspect="AspectFit"                                              
                                         Source="{Binding User.Avatar}">

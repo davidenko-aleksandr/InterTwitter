@@ -36,6 +36,8 @@ namespace InterTwitter.Controls
             if (propertyName == nameof(CurrentPage) && CurrentPage != null)
             {
                 SelectedTabType = CurrentPage.GetType();
+
+                MessagingCenter.Send(SelectedTabType, "SelectedTabChanged");
             }
             else
             {

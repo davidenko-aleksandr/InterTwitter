@@ -333,4 +333,70 @@
   <data name="WrongOldPassword" xml:space="preserve">
     <value>You entered wrong old password</value>
   </data>
+  <data name="OkText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ExistEmailError" xml:space="preserve">
+    <value>Email is already exist!</value>
+  </data>
+  <data name="BookmarksTitle" xml:space="preserve">
+    <value>Bookmarks</value>
+  </data>
+  <data name="LeftGreyImage" xml:space="preserve">
+    <value>ic_left_grey.png</value>
+  </data>
+  <data name="LeftImage" xml:space="preserve">
+    <value>ic_left.png</value>
+  </data>
+  <data name="RightImage" xml:space="preserve">
+    <value>ic_right.png</value>
+  </data>
+  <data name="DeleteBookmarksText" xml:space="preserve">
+    <value>Delete all bookmarks</value>
+  </data>
+  <data name="MenuSaveLabelText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MenuShareLabelText" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="CantUpdateBookmarks" xml:space="preserve">
+    <value>Unable to update bookmarks</value>
+  </data>
+  <data name="CantUpdateFeed" xml:space="preserve">
+    <value>Unable to update the feed</value>
+  </data>
+  <data name="CantUpdateNotifications" xml:space="preserve">
+    <value>Unable to update notifications</value>
+  </data>
+  <data name="NoBookmarks" xml:space="preserve">
+    <value>You have no bookmarks yet</value>
+  </data>
+  <data name="NoNotifications" xml:space="preserve">
+    <value>You have no notifications yet</value>
+  </data>
+  <data name="NoOwls" xml:space="preserve">
+    <value>You have no owls yet</value>
+  </data>
+  <data name="CantLoadPost" xml:space="preserve">
+    <value>Unable to load post</value>
+  </data>
+  <data name="CantLoadHashTags" xml:space="preserve">
+    <value>Unable to load popular hashtags</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>No results for </value>
+  </data>
+  <data name="NoHashTags" xml:space="preserve">
+    <value>You have no hashtags yet</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ConfirmLogout" xml:space="preserve">
+    <value>Are you sure you want to logout?</value>
+  </data>
+  <data name="ContinueButton" xml:space="preserve">
+    <value>Continue</value>
+  </data>
 </root>
