@@ -43,8 +43,8 @@ namespace InterTwitter.ViewModels
 
             OwlType = OwlType.NoMedia;
             MediaItems = new ObservableCollection<MediaItemViewModel>();
-            MediaButtonEnabled = true;
-            VideoButtonEnabled = true;
+            MediaButtonEnabled = _mediaPlugin.IsPickPhotoSupported;
+            VideoButtonEnabled = _mediaPlugin.IsPickVideoSupported;
             OwlText = string.Empty;
 
             _keyboardService.KeyboardShown += OnKeyboardOpened;
@@ -111,13 +111,20 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _counter, value);
         }
 
+        private bool _canAddPost;
+        public bool CanAddPost
+        {
+            get => _canAddPost;
+            set => SetProperty(ref _canAddPost, value);
+        }
+
         public ICommand AddPostCommand => SingleExecutionCommand.FromFunc(OnAddPostCommandAsync);
 
         public ICommand CancelCommand => SingleExecutionCommand.FromFunc(OnCancelCommandAsync);
 
         public ICommand MediaCommand => SingleExecutionCommand.FromFunc(OnMediaCommandAsync);
 
-        public ICommand VideoCommand => SingleExecutionCommand.FromFunc(OnVideoCommand);
+        public ICommand VideoCommand => SingleExecutionCommand.FromFunc(OnVideoCommandAsync);
 
         public ICommand RemoveVideoCommand => SingleExecutionCommand.FromFunc(OnRemoveVideoCommandAsync);
 
@@ -137,9 +144,15 @@ namespace InterTwitter.ViewModels
         {
             base.OnPropertyChanged(args);
 
-            if (args.PropertyName == nameof(OwlText))
+            if (OwlText != null && MediaItems != null)
             {
-                Counter = 280 - OwlText.Length;
+                if (args.PropertyName == nameof(OwlText) ||
+                    args.PropertyName == nameof(MediaItems))
+                {
+                    Counter = Constants.MaxPostLength - OwlText.Length;
+
+                    CanAddPost = (!string.IsNullOrEmpty(OwlText) || MediaItems.Count != 0) && OwlText.Length <= Constants.MaxPostLength;
+                }
             }
         }
 
@@ -150,7 +163,6 @@ namespace InterTwitter.ViewModels
         private Task OnRemoveItemCommandAsync(MediaItemViewModel arg)
         {
             MediaItems.Remove(arg);
-
             RefreshCollection();
 
             return Task.CompletedTask;
@@ -171,14 +183,9 @@ namespace InterTwitter.ViewModels
 
         private async Task OnAddPostCommandAsync()
         {
-            if ((_owlText.Length > 0 && _owlText.Length <= 280) ||
-                (MediaItems.Count > 0 && _owlText.Length <= 280))
+            if (CanAddPost)
             {
-                var list = new List<string>();
-                foreach (MediaItemViewModel item in MediaItems)
-                {
-                    list.Add(item.MediaPath);
-                }
+                var list = new List<string>(MediaItems.Select(x => x.MediaPath));
 
                 var owl = new OwlModel()
                 {
@@ -198,76 +205,55 @@ namespace InterTwitter.ViewModels
 
         private async Task OnMediaCommandAsync()
         {
-            if (_mediaPlugin.IsPickPhotoSupported)
+            if (MediaButtonEnabled)
             {
-                if (MediaButtonEnabled)
+                MediaFile file = await _mediaPlugin.PickPhotoAsync();
+
+                if (file != null)
                 {
-                    MediaFile file = await _mediaPlugin.PickPhotoAsync();
-
-                    if (file != null)
+                    if (OwlType == OwlType.NoMedia || !CheckMediaIsGif(file.Path))
                     {
-                        if (OwlType == OwlType.NoMedia || !CheckMediaIsGif(file.Path))
-                        {
-                            MediaItems.Add(new MediaItemViewModel(file.Path, _removeItemCommand));
+                        MediaItems.Add(new MediaItemViewModel(file.Path, _removeItemCommand));
 
-                            if (OwlType == OwlType.NoMedia)
-                            {
-                                MediaButtonEnabled = !CheckMediaIsGif(file.Path);
-                                OwlType = OwlType.OneImage;
-                            }
-                            else
-                            {
-                                OwlType = OwlType.FewImages;
-                            }
+                        MediaButtonEnabled = !CheckMediaIsGif(file.Path);
+                        OwlType = OwlType == OwlType.NoMedia ? OwlType.OneImage : OwlType.FewImages;
 
-                            RefreshCollection();
-                        }
-                        else
-                        {
-                            //you cannot add gif after photo
-                        }
-                    }
-                    else
-                    {
-                        //Currentfile == null;
-                    }
-                }
-            }
-            else
-            {
-                //Pick photo is not supported;
-            }
-        }
-
-        private async Task OnVideoCommand()
-        {
-            if (_mediaPlugin.IsPickVideoSupported)
-            {
-                if (VideoButtonEnabled)
-                {
-                    MediaFile file = await _mediaPlugin.PickVideoAsync();
-
-                    if (file != null)
-                    {
-                        OwlType = OwlType.Video;
-                        _mediaItems.Add(new MediaItemViewModel(file.Path, _removeItemCommand));
                         RefreshCollection();
                     }
                     else
                     {
-                        //Currentfile == null;
+                        //you cannot add gif after photo
                     }
                 }
+                else
+                {
+                    //Currentfile == null;
+                }
             }
-            else
+        }
+
+        private async Task OnVideoCommandAsync()
+        {
+            if (VideoButtonEnabled)
             {
-                //Pick video is not supported;
+                MediaFile file = await _mediaPlugin.PickVideoAsync();
+
+                if (file != null)
+                {
+                    OwlType = OwlType.Video;
+                    _mediaItems.Add(new MediaItemViewModel(file.Path, _removeItemCommand));
+                    RefreshCollection();
+                }
+                else
+                {
+                    //Currentfile == null;
+                }
             }
         }
 
         private void RefreshCollection()
         {
-            MediaItems = new ObservableCollection<MediaItemViewModel>(MediaItems);
+            RaisePropertyChanged(nameof(MediaItems));
 
             if (MediaItems.Count < 6 && OwlType == OwlType.FewImages)
             {
