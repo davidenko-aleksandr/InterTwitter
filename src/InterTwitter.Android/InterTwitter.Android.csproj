@@ -39,6 +39,7 @@
     <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>RELEASE;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
@@ -50,7 +51,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\DEV</OutputPath>
-    <DefineConstants>DEV</DefineConstants>
+    <DefineConstants>DEV;</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <JavaMaximumHeapSize>
     </JavaMaximumHeapSize>
@@ -63,11 +64,10 @@
     <AndroidSupportedAbis>arm64-v8a;armeabi-v7a;x86</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'STAGE|AnyCPU' ">
-    <DebugType>
-    </DebugType>
+    <DebugType></DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\STAGE</OutputPath>
-    <DefineConstants>STAGE</DefineConstants>
+    <DefineConstants>STAGE;</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <JavaMaximumHeapSize>
     </JavaMaximumHeapSize>
