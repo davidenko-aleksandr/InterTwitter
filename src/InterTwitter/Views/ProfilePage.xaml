@@ -39,9 +39,9 @@
                 <Setter Property="LabelSize" 
                         Value="16"/>
                 <Setter Property="UnselectedLabelColor"
-                        Value="{ DynamicResource tx_5 }"/>
+                        Value="{DynamicResource tx_5}"/>
                 <Setter Property="SelectedTabColor"
-                        Value="{ DynamicResource tx_2 }"/>
+                        Value="{DynamicResource tx_2}"/>
                 <Setter Property="FontFamily"
                         Value="Ubuntu"/>
                 <Setter Property="Margin"
@@ -55,7 +55,7 @@
                 <Setter Property="FontSize" 
                         Value="12"/>
                 <Setter Property="TextColor"
-                        Value="{ DynamicResource tx_3 }"/>
+                        Value="{DynamicResource tx_3}"/>
                 <Setter Property="FontFamily"
                         Value="Ubuntu"/>
                 <Setter Property="HorizontalOptions"
@@ -152,7 +152,7 @@
                                     HorizontalOptions="Start"                                    
                                     DownsampleToViewSize="True"
                                     Aspect="AspectFit"                                              
-                                    Source="{ Binding User.Avatar }">
+                                    Source="{Binding User.Avatar}">
 
             <ffimageloading:CachedImage.Transformations>
 
@@ -220,7 +220,7 @@
                                  Binding="{Binding IsMuted}"
                                  Value="True">
                         <Setter Property="Text" Value="{x:Static resources:AppResource.MutedText}"/>
-                        <Setter Property="TextColor" Value="{DynamicResource tx_5}"/>
+                        <Setter Property="TextColor" Value="{StaticResource tx_5}"/>
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
@@ -262,14 +262,14 @@
                                    HeightRequest="45"
                                    BackgroundColor="Transparent"                                  
                                    WidthRequest="100"                                   
-                                   SelectedIndex="{ Binding Source={ x:Reference carouselView },  Path=SelectedIndex,Mode=TwoWay}">
+                                   SelectedIndex="{Binding Source={x:Reference carouselView},  Path=SelectedIndex,Mode=TwoWay}">
                 
                     <sharpnado:TabHostView.Tabs>
                 <sharpnado:UnderlinedTabItem Label="{x:Static resources:AppResource.PostsText }"
-                                             Style="{ StaticResource TabPageControlBarStyle }"/>
+                                             Style="{StaticResource TabPageControlBarStyle}"/>
                 
                 <sharpnado:UnderlinedTabItem Label="{x:Static resources:AppResource.LikesText }"
-                                             Style="{ StaticResource TabPageControlBarStyle }"/>
+                                             Style="{StaticResource TabPageControlBarStyle}"/>
                     </sharpnado:TabHostView.Tabs>
                 
                 </sharpnado:TabHostView>
@@ -277,7 +277,7 @@
                 <BoxView HeightRequest="1"
                          VerticalOptions="End"
                          Margin="0,-5"
-                         BackgroundColor="{ DynamicResource bg_4 }"/>
+                         BackgroundColor="{StaticResource bg_4}"/>
             </Grid>
            
             <cardView:CarouselView x:Name="carouselView"
@@ -343,8 +343,7 @@
                              HorizontalOptions="Fill">
 
                 <controls:ClickableContentView Padding="10"                                               
-                                               HorizontalOptions="Fill"
-                                               Command="{Binding ShareCommand}">
+                                               HorizontalOptions="Fill">
 
                     <Label Text="{x:Static resources:AppResource.ShareLabelText}"
                            Style="{StaticResource HiddenMenuLabel}"/>
@@ -361,8 +360,7 @@
                     </controls:ClickableContentView>
 
                     <controls:ClickableContentView Padding="10"                                               
-                                                   HorizontalOptions="Fill"
-                                                   Command="{Binding MuteProfilesCommand}">
+                                                   HorizontalOptions="Fill">
 
                         <Label Text="{x:Static resources:AppResource.MutedProfilesText}"
                                Style="{StaticResource HiddenMenuLabel}"/>
@@ -370,8 +368,7 @@
                     </controls:ClickableContentView>
                     
                     <controls:ClickableContentView Padding="10"                                               
-                                                   HorizontalOptions="Fill"
-                                                   Command="{Binding BlackListCommand}">
+                                                   HorizontalOptions="Fill">
 
                         <Label Text="{x:Static resources:AppResource.BlacklistText}"
                                Style="{StaticResource HiddenMenuLabel}"/>
@@ -411,8 +408,7 @@
                              HorizontalOptions="Fill">
 
                     <controls:ClickableContentView Padding="10"                                               
-                                                   HorizontalOptions="Fill"
-                                                   Command="{Binding ShareCommand}">
+                                                   HorizontalOptions="Fill">
 
                         <Label Text="{x:Static resources:AppResource.ShareLabelText}"
                                Style="{StaticResource HiddenMenuLabel}"/>
