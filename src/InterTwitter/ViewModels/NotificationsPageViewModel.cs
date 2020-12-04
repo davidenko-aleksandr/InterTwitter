@@ -46,7 +46,7 @@ namespace InterTwitter.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             Icon = "ic_notifications_blue";
-           
+
             await FillNotificationListAsync();
         }
 
@@ -67,7 +67,7 @@ namespace InterTwitter.ViewModels
             {
                 var notificationsResult = await _notificationService.GetNotificationCollectionAsync();
 
-                if(notificationsResult.Result is not null)
+                if (notificationsResult.Result != null)
                 {
                     NotificationList = notificationsResult.Result;
                 }
@@ -76,14 +76,12 @@ namespace InterTwitter.ViewModels
                     var errorText = Resources.AppResource.RandomError;
                     _userDialogs.Toast(errorText);
                 }
-
             }
             else
             {
                 var errorText = Resources.AppResource.NoInternetText;
                 _userDialogs.Toast(errorText);
             }
-
         }
 
         #endregion

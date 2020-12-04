@@ -15,7 +15,7 @@ namespace InterTwitter.Views
         }
 
         protected override void OnAppearing()
-        {           
+        {
             if (BindingContext is IAppearingAware bindable)
             {
                 bindable.OnAppearing();

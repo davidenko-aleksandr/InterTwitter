@@ -29,7 +29,7 @@ namespace InterTwitter.Views
 
         #endregion
 
-        #region -- Private helpers -- 
+        #region -- Private helpers --
 
         private void PopularThemesPropertyChanging(object sender, PropertyChangingEventArgs e)
         {

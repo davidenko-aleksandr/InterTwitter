@@ -68,8 +68,9 @@ namespace InterTwitter
             containerRegistry.RegisterInstance<INotificationService>(Container.Resolve<NotificationService>());
             containerRegistry.RegisterInstance<IPostActionService>(Container.Resolve<PostActionService>());
             containerRegistry.RegisterInstance<IPermissionService>(Container.Resolve<PermissionService>());
+        }
 
-            #endregion
+        #endregion
 
         }
     }

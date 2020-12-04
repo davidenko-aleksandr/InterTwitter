@@ -16,6 +16,6 @@ namespace InterTwitter.Services.UserService
 
         Task<AOResult<bool>> AddUserAsync(UserModel user);
 
-        Task<AOResult<bool>> UpdateUserAsync(UserViewModel user);     
+        Task<AOResult<bool>> UpdateUserAsync(UserViewModel user);
     }
 }

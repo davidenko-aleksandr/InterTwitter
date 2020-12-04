@@ -12,6 +12,7 @@ namespace InterTwitter.Helpers
 
         public DataTemplate LikesViewTemplate { get; set; }
 
+<<<<<<< HEAD
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container) =>
            item switch
            {
@@ -19,5 +20,11 @@ namespace InterTwitter.Helpers
                PostsViewModel => PostsViewTemplate,
                _ => throw new ArgumentException($"Undefined item in: {nameof(ProfilePageTemplateSelector)}.{nameof(OnSelectTemplate)}")
            };
+=======
+        protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
+        {
+            return LikesViewTemplate;
+        }
+>>>>>>> f3bc9c260b87115cba81921ffdd9f5c2b2600fbc
     }
 }

@@ -187,20 +187,17 @@ namespace InterTwitter.ViewModels
 
         private Task OnChangeProfileCommandAsync()
         {
-            var parameters = new NavigationParameters()
-            {
-                { Constants.Navigation.User, User}
-            };
+            var parameters = new NavigationParameters();
+
+            parameters.Add(Constants.Navigation.User, User);
 
             return NavigationService.NavigateAsync(nameof(ChangeProfilePage), parameters);
         }
 
         private Task OnBackCommandAsync()
         {
-            var parameters = new NavigationParameters()
-            {
-                { Constants.Navigation.User, User}
-            };
+            var parameters = new NavigationParameters();
+            parameters.Add(Constants.Navigation.User, User);
 
             return NavigationService.GoBackAsync(parameters);
         }

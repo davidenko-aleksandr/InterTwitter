@@ -20,9 +20,10 @@ namespace InterTwitter.Services.Owl
 
         private List<OwlModel> _owlsMock;
 
-        public OwlService(IUserService userService,
-                          IAuthorizationService authorizationService,
-                          ISettingsService settingsService)
+        public OwlService(
+            IUserService userService,
+            IAuthorizationService authorizationService,
+            ISettingsService settingsService)
         {
             _userService = userService;
             _authorizationService = authorizationService;
@@ -39,9 +40,9 @@ namespace InterTwitter.Services.Owl
 
             try
             {
-                if (owlModel is not null)
+                if (owlModel != null)
                 {
-                    var userResult =  await _authorizationService.GetAuthorizedUserAsync();
+                    var userResult = await _authorizationService.GetAuthorizedUserAsync();
                     if (userResult.IsSuccess)
                     {
                         var author = userResult.Result;
@@ -49,7 +50,7 @@ namespace InterTwitter.Services.Owl
                         owlModel.Id = _owlsMock.Count;
                         owlModel.AuthorId = author.Id;
 
-                        _owlsMock.Add(owlModel);
+                        _owlsMock.Insert(0, owlModel);
 
                         result.SetSuccess(true);
                     }
@@ -57,7 +58,6 @@ namespace InterTwitter.Services.Owl
                     {
                         result.SetFailure();
                     }
-
                 }
                 else
                 {
@@ -120,7 +120,7 @@ namespace InterTwitter.Services.Owl
 
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
-                    owls = new List<OwlViewModel>(owls.Where(x => 
+                    owls = new List<OwlViewModel>(owls.Where(x =>
                     x.AuthorNickName.ToUpper().Contains(searchQuery?.ToUpper()) ||
                     x.Text.ToUpper().Contains(searchQuery?.ToUpper())));
                 }
@@ -131,7 +131,7 @@ namespace InterTwitter.Services.Owl
 
                 await Task.Delay(300);
 
-                if (owls is not null)
+                if (owls != null)
                 {
                     result.SetSuccess(owls);
                 }
@@ -163,7 +163,7 @@ namespace InterTwitter.Services.Owl
 
                     var owls = owlResult.Result;
 
-                    foreach(var item in owls)
+                    foreach (var item in owls)
                     {
                         item.SavesList.Remove(authorizedUser.Id);
                     }
@@ -174,7 +174,6 @@ namespace InterTwitter.Services.Owl
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {
@@ -205,7 +204,6 @@ namespace InterTwitter.Services.Owl
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {
@@ -260,7 +258,6 @@ namespace InterTwitter.Services.Owl
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {
@@ -278,7 +275,7 @@ namespace InterTwitter.Services.Owl
             {
                 var changingOwl = _owlsMock.FirstOrDefault(x => x.Id == owl.Id);
 
-                if (changingOwl is not null)
+                if (changingOwl != null)
                 {
                     changingOwl.AuthorId = owl.AuthorId;
                     changingOwl.LikesList = owl.LikesList;
@@ -457,7 +454,7 @@ namespace InterTwitter.Services.Owl
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
-                },                
+                },
                 new OwlModel
                 {
                     Id = 11,

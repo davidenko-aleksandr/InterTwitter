@@ -8,7 +8,6 @@ namespace InterTwitter.ViewModels.NotificationItems
     {
         public NotificationViewModel()
         {
-
         }
 
         #region -- Public properties --
@@ -63,7 +62,7 @@ namespace InterTwitter.ViewModels.NotificationItems
         }
 
         private OwlType _mediaType;
-        public OwlType MediaType 
+        public OwlType MediaType
         {
             get => _mediaType;
             set => SetProperty(ref _mediaType, value);

@@ -99,11 +99,10 @@ namespace InterTwitter.ViewModels
                     }
                     else
                     {
-                        //page type is not set
+                        //page type != set
                     }
                 }
             }
-            
         }
 
         #endregion
@@ -112,10 +111,10 @@ namespace InterTwitter.ViewModels
 
         private async Task OnGoToProfilePageCommandAsync()
         {
-            var navParameters = new NavigationParameters
-            {
-                { Constants.Navigation.User, AuthorizedUser}
-            };
+            var navParameters = new NavigationParameters();
+
+            navParameters.Add(Constants.Navigation.User, AuthorizedUser);
+
             await NavigationService.NavigateAsync(nameof(ProfilePage), navParameters, useModalNavigation: true, true);
         }
 
@@ -133,7 +132,6 @@ namespace InterTwitter.ViewModels
                 var errorText = Resources.AppResource.RandomError;
                 _userDialogs.Toast(errorText);
             }
-
         }
 
         private async Task OnSelectTabCommandAsync(MenuItemViewModel item)
@@ -142,7 +140,7 @@ namespace InterTwitter.ViewModels
             IsPresented = false;
         }
 
-        private async Task OnNavigateCommandAsync(MenuItemViewModel arg) 
+        private async Task OnNavigateCommandAsync(MenuItemViewModel arg)
         {
             //navigate to settings
         }
@@ -162,28 +160,28 @@ namespace InterTwitter.ViewModels
                         Text = "Home",
                         PageType = typeof(HomePage),
                         Icon = "ic_home_gray",
-                        NavigationCommand = selectTabCommand
+                        NavigationCommand = selectTabCommand,
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Search",
                         PageType = typeof(SearchPage),
                         Icon = "ic_search_gray",
-                        NavigationCommand = selectTabCommand
+                        NavigationCommand = selectTabCommand,
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Notifications",
                         PageType = typeof(NotificationsPage),
                         Icon = "ic_notifications_gray",
-                        NavigationCommand = selectTabCommand
+                        NavigationCommand = selectTabCommand,
                     },
                     new MenuItemViewModel()
                     {
                         Text = "Bookmarks",
                         PageType = typeof(BookmarksPage),
                         Icon = "ic_messages_gray",
-                        NavigationCommand = selectTabCommand
+                        NavigationCommand = selectTabCommand,
                     },
                 },
                 new MenuItemGroup(true)
@@ -193,9 +191,9 @@ namespace InterTwitter.ViewModels
                         Text = "Settings",
                         PageType = typeof(AddPostPage),
                         Icon = "ic_setting",
-                        NavigationCommand = navigateCommand 
+                        NavigationCommand = navigateCommand,
                     },
-                }
+                },
             };
 
             MenuItems = collection;
@@ -214,7 +212,7 @@ namespace InterTwitter.ViewModels
             {
                 var userResult = result.Result;
 
-                if (userResult is not null)
+                if (userResult != null)
                 {
                     AuthorizedUser = userResult;
                 }
@@ -222,7 +220,6 @@ namespace InterTwitter.ViewModels
                 {
                     //userResult was null
                 }
-
             }
             else
             {
@@ -237,7 +234,6 @@ namespace InterTwitter.ViewModels
 
         public void OnDisappearing()
         {
-           
         }
 
         #endregion

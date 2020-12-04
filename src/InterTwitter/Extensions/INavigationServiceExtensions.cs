@@ -20,7 +20,7 @@ namespace InterTwitter.Extensions
 
                 var page = ((IPageAware)navigationService).Page;
 
-                if(page is MasterDetailPage mPage)
+                if (page is MasterDetailPage mPage)
                 {
                     currentPage = mPage;
 
@@ -52,7 +52,7 @@ namespace InterTwitter.Extensions
                 targetPage = tabbedPage.Children.First(x => x.GetType() == targetPageType);
 
                 tabbedPage.CurrentPage = targetPage;
-                
+
                 PageUtilities.OnNavigatedFrom(currentPage, parameters);
                 PageUtilities.OnNavigatedTo(targetPage, parameters);
 
@@ -65,6 +65,5 @@ namespace InterTwitter.Extensions
 
             return result;
         }
-
     }
 }

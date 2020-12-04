@@ -9,7 +9,7 @@ using InterTwitter.Validators;
 
 namespace InterTwitter.Behaviors
 {
-    class ValidationBehavior : BehaviorBase<CustomEntry>
+    public class ValidationBehavior : BehaviorBase<CustomEntry>
     {
         private CustomEntry _control;
 

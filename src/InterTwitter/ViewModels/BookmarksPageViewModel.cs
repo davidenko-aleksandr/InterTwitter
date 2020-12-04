@@ -50,7 +50,6 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isMenuVisible, value);
         }
 
-
         public ICommand MenuClickCommand => SingleExecutionCommand.FromFunc(OnMenuClickCommandAsync);
         public ICommand ClearBookmarksCommand => SingleExecutionCommand.FromFunc(OnClearBookmarksCommand);
 
@@ -89,7 +88,6 @@ namespace InterTwitter.ViewModels
                 var errorText = Resources.AppResource.NoInternetText;
                 _userDialogs.Toast(errorText);
             }
-
         }
 
         private  Task OnMenuClickCommandAsync()
@@ -114,14 +112,12 @@ namespace InterTwitter.ViewModels
                     var errorText = Resources.AppResource.RandomError;
                     _userDialogs.Toast(errorText);
                 }
-
             }
             else
             {
                 var errorText = Resources.AppResource.NoInternetText;
                 _userDialogs.Toast(errorText);
             }
-
         }
 
         #endregion

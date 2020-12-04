@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿﻿using System.Linq;
 using InterTwitter.Models;
 
 namespace InterTwitter.ViewModels.OwlItems
@@ -23,7 +23,6 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _video, value);
         }
 
-        #endregion    
+        #endregion
     }
-
 }

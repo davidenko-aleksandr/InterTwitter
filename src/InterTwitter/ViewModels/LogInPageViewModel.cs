@@ -81,7 +81,6 @@ namespace InterTwitter.ViewModels
 
             if (current == NetworkAccess.Internet)
             {
-
                 if (!string.IsNullOrWhiteSpace(EmailEntry) || !string.IsNullOrWhiteSpace(PasswordEntry))
                 {
                     var result = await _authorizationService.LogInAsync(EmailEntry, PasswordEntry);
@@ -109,7 +108,6 @@ namespace InterTwitter.ViewModels
                 var errorText = Resources.AppResource.NoInternetText;
                 _userDialogs.Toast(errorText);
             }
-
         }
 
         private Task OnSignUpCommandAsync()
@@ -133,7 +131,6 @@ namespace InterTwitter.ViewModels
             var keyboardHeight = _keyboardService.FrameHeight;
 
             KeyboardButtonTranslationY = keyboardHeight != 0.0f ? -keyboardHeight : KeyboardButtonTranslationY;
-
         }
 
         #endregion

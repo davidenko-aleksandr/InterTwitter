@@ -8,7 +8,7 @@ namespace InterTwitter.Extensions
         public static NotificationViewModel ToViewModel(this NotificationModel model)
         {
             NotificationViewModel notification = null;
-            if (model is not null)
+            if (model != null)
             {
                 notification = new NotificationViewModel
                 {
@@ -21,7 +21,7 @@ namespace InterTwitter.Extensions
                     UserAvatar = model.UserAvatar,
                     UserId = model.UserId,
                     UserName = model.UserName,
-                    MediaList = model.MediaList
+                    MediaList = model.MediaList,
                 };
             }
             else
@@ -31,6 +31,5 @@ namespace InterTwitter.Extensions
 
             return notification;
         }
-
     }
 }

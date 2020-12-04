@@ -24,6 +24,5 @@ namespace InterTwitter.Models
         public string OwlText { get; set; }
 
         public List<string> MediaList { get; set; }
-
     }
 }
