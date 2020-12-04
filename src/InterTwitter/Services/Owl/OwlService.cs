@@ -368,20 +368,6 @@ namespace InterTwitter.Services.Owl
                 },
                 new OwlModel
                 {
-                    Id = 8,
-                    Author = users[3],
-                    Date = new DateTime(2020, 3, 4, 18, 30, 25),
-                    Text = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild",
-                    MediaType = OwlType.Video,
-                    Media = new List<string>()
-                    {
-                        "http://vjs.zencdn.net/v/oceans.mp4",
-                    },
-                    LikesList = new List<int>(),
-                    SavesList = new List<int>(),
-                },
-                new OwlModel
-                {
                     Id = 9,
                     Author = users[2],
                     Date = new DateTime(2019, 11, 6, 18, 30, 25),
@@ -419,20 +405,6 @@ namespace InterTwitter.Services.Owl
                     Media = new List<string>()
                     {
                         "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large",
-                    },
-                    LikesList = new List<int>(),
-                    SavesList = new List<int>(),
-                },
-                new OwlModel
-                {
-                    Id = 12,
-                    Author = users[0],
-                    Date = new DateTime(2019, 3, 1, 15, 40, 00),
-                    Text = "So true!",
-                    MediaType = OwlType.Video,
-                    Media = new List<string>()
-                    {
-                        "https://twitter.com/i/status/1329535287735816194",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -498,20 +470,6 @@ namespace InterTwitter.Services.Owl
                 },
                 new OwlModel
                 {
-                    Id = 18,
-                    Author = users[3],
-                    Date = new DateTime(2020, 3, 4, 18, 30, 25),
-                    Text = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild",
-                    MediaType = OwlType.Video,
-                    Media = new List<string>()
-                    {
-                        "https://twitter.com/i/status/1262782634335383554",
-                    },
-                    LikesList = new List<int>(),
-                    SavesList = new List<int>(),
-                },
-                new OwlModel
-                {
                     Id = 19,
                     Author = users[2],
                     Date = new DateTime(2019, 11, 6, 18, 30, 25),
@@ -529,12 +487,12 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.FewImages,
                     Media = new List<string>()
                     {
-                        "https://pbs.twimg.com/media/Emuf9aiXEAcjdXw?format=jpg&name=small",
-                        "https://pbs.twimg.com/media/Empy-qvWEAIz7CT?format=jpg&name=small",
-                        "https://pbs.twimg.com/media/EmplPyCW8AAL9g7?format=jpg&name=small",
-                        "https://pbs.twimg.com/media/EmoZtwnW8AIbaO2?format=jpg&name=small",
-                        "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
-                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small",
+                        "https://covers.zlibcdn2.com/covers200/books/d9/e3/12/d9e3123c9d372e49161f34c89034dc27.jpg",
+                        "https://docs.microsoft.com/ru-ru/xamarin/xamarin-forms/user-interface/map/setup-images/permission-ios-large.png",
+                        "https://cv02.twirpx.net/2472/2472631.jpg?t=20180528025959",
+                        "https://balka-book.com/files/2017/06_23/10_59/u_files_store_3_356900.jpg",
+                        "https://conteq.ru/images/cms/headers/xamarin_dlya_klienta1.png",
+                        "https://sec.ch9.ms/ch9/46c2/817fbe68-28dc-4766-ae90-7126b04d46c2/XamarinFormsStyles_512.jpg"
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -559,20 +517,6 @@ namespace InterTwitter.Services.Owl
                     Media = new List<string>()
                     {
                         "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large",
-                    },
-                    LikesList = new List<int>(),
-                    SavesList = new List<int>(),
-                },
-                new OwlModel
-                {
-                    Id = 23,
-                    Author = users[0],
-                    Date = new DateTime(2019, 3, 1, 15, 40, 00),
-                    Text = "So true!",
-                    MediaType = OwlType.Video,
-                    Media = new List<string>()
-                    {
-                        "https://twitter.com/i/status/1329535287735816194",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -638,20 +582,6 @@ namespace InterTwitter.Services.Owl
                 },
                 new OwlModel
                 {
-                    Id = 29,
-                    Author = users[3],
-                    Date = new DateTime(2020, 3, 4, 18, 30, 25),
-                    Text = $"Code, collaborate, and ship from anywhere. Get the developer tools and platform to keep remote teams productive. #MSBuild",
-                    MediaType = OwlType.Video,
-                    Media = new List<string>()
-                    {
-                        "https://twitter.com/i/status/1262782634335383554",
-                    },
-                    LikesList = new List<int>(),
-                    SavesList = new List<int>(),
-                },
-                new OwlModel
-                {
                     Id = 30,
                     Author = users[2],
                     Date = new DateTime(2019, 11, 6, 18, 30, 25),
@@ -699,20 +629,6 @@ namespace InterTwitter.Services.Owl
                     Media = new List<string>()
                     {
                         "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large",
-                    },
-                    LikesList = new List<int>(),
-                    SavesList = new List<int>(),
-                },
-                new OwlModel
-                {
-                    Id = 34,
-                    Author = users[0],
-                    Date = new DateTime(2019, 3, 1, 15, 40, 00),
-                    Text = "So true!",
-                    MediaType = OwlType.Video,
-                    Media = new List<string>()
-                    {
-                        "https://twitter.com/i/status/1329535287735816194",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -785,7 +701,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.Video,
                     Media = new List<string>()
                     {
-                        "https://twitter.com/i/status/1262782634335383554",
+                        "http://vjs.zencdn.net/v/oceans.mp4"
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -883,6 +799,5 @@ namespace InterTwitter.Services.Owl
         }
 
         #endregion
-
     }
 }

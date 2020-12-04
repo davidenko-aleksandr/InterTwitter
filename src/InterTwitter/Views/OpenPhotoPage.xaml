@@ -19,8 +19,8 @@
         <controls:TabbedPageNavigationBar Grid.Row="0"
                                           IsLeftIconVisible="True"
                                           IsRightIconVisible="True"
-                                          LeftIconSource="ic_left_grey.png"
-                                          RightIconSource="ic_hidden_menu_gray.png"
+                                          LeftIconSource="ic_left_white.png"
+                                          RightIconSource="ic_hidden_menu_white.png"
                                           LeftIconClickCommand="{Binding GoBackCommand}"
                                           BackgroundColor="{StaticResource bg_7}"
                                           RightIconClickCommand="{Binding MenuClickCommand}"/>
@@ -57,21 +57,21 @@
                 <!-- DATE LABEL -->
                 <Label Grid.Column="0"
                        Text="{Binding ImageNumber}"
-                       TextColor="{StaticResource tx_5}"
+                       TextColor="{StaticResource tx_1}"
                        VerticalOptions="Center"
                        HorizontalOptions="End"/>
 
                 <Label Grid.Column="1"
                        Text="-"
                        FontSize="30"
-                       TextColor="{StaticResource tx_5}"
+                       TextColor="{StaticResource tx_1}"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"/>
 
                 <!-- TIME LABEL -->
                 <Label Grid.Column="2"
                        Text="{Binding ImageCount}"
-                       TextColor="{StaticResource tx_5}"
+                       TextColor="{StaticResource tx_1}"
                        VerticalOptions="Center"
                        HorizontalOptions="Start"/>
 
@@ -83,7 +83,7 @@
                         BackgroundColor="Transparent"
                         HeightRequest="34"
                         CornerRadius="17"                       
-                        ImageSource="ic_like_gray.png"
+                        ImageSource="ic_like_white.png"
                         Command="{Binding LikeClickCommand}">
 
                     <Button.Triggers>
@@ -106,7 +106,7 @@
                 <Label Grid.Column="3"
                        HorizontalOptions="Start"
                        VerticalOptions="Center"
-                       TextColor="{StaticResource tx_5}"
+                       TextColor="{StaticResource tx_1}"
                        Text="{Binding LikesCount}">
 
                     <Label.Triggers>
@@ -130,7 +130,7 @@
                         x:Name="bookmarkButton"
                         VerticalOptions="Center"
                         HorizontalOptions="End"
-                        ImageSource="ic_bookmarks_gray.png"
+                        ImageSource="ic_bookmarks_empty_white.png"
                         BackgroundColor="Transparent"
                         WidthRequest="30"
                         HeightRequest="34"
