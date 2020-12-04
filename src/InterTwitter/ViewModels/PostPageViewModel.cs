@@ -74,7 +74,14 @@ namespace InterTwitter.ViewModels
             }
             else
             {
-                State = States.NoData;
+                if (Owls == null)
+                {
+                    State = States.NoData;
+                }
+                else
+                {
+                    //Owls is not null
+                }
             }
         }
 

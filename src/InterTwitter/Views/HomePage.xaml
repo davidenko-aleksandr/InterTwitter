@@ -56,24 +56,38 @@
                     </controls:CustomCollectionView.Header>
 
                     <controls:CustomCollectionView.ItemTemplate>
+                        
                         <helpers:OwlTemplateSelector>
+                            
                             <helpers:OwlTemplateSelector.OwlFewImageTemplate>
+                                
                                 <templates:OwlFewImageTemplate/>
+                                
                             </helpers:OwlTemplateSelector.OwlFewImageTemplate>
+                            
                             <helpers:OwlTemplateSelector.OwlNoMediaTemplate>
+                                
                                 <templates:OwlNoMediaTemplate/>
+                                
                             </helpers:OwlTemplateSelector.OwlNoMediaTemplate>
+                            
                             <helpers:OwlTemplateSelector.OwlOneImageTemplate>
+                                
                                 <templates:OwlOneImageTemplate/>
+                                
                             </helpers:OwlTemplateSelector.OwlOneImageTemplate>
+                            
                             <helpers:OwlTemplateSelector.OwlVideoTemplate>
+
                                 <templates:OwlVideoTemplate/>
+                                
                             </helpers:OwlTemplateSelector.OwlVideoTemplate>
+                            
                         </helpers:OwlTemplateSelector>
+                        
                     </controls:CustomCollectionView.ItemTemplate>
 
                 </controls:CustomCollectionView>
-                
                 
             </stateContainer:StateCondition>
 

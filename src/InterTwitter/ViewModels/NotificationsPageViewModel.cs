@@ -8,7 +8,6 @@ using InterTwitter.ViewModels.NotificationItems;
 using InterTwitter.Views;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -76,7 +75,14 @@ namespace InterTwitter.ViewModels
             }
             else
             {
-                //no internet connection
+                if (NotificationList == null)
+                {
+                    State = States.NoInternet;
+                }
+                else
+                {
+                    // notifications is not null
+                }
             }
         }
 

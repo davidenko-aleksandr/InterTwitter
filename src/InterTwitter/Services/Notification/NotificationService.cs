@@ -174,14 +174,6 @@ namespace InterTwitter.Services.Notification
                     new NotificationModel
                     {
                         Id = 6,
-                        Author = users[0],
-                        User = users[3],
-                        Owl = owls[0],
-                        Action = OwlAction.Liked,
-                    },
-                    new NotificationModel
-                    {
-                        Id = 7,
                         Author = users[3],
                         User = users[1],
                         Owl = owls[10],
