@@ -9,17 +9,15 @@ namespace InterTwitter.Controls
 {
     public class CustomLabel : Label
     {
-        private static string _text;
+        private string _text;
         public CustomLabel()
         {
-
         }
 
         #region -- Public Properties --
 
         public static BindableProperty SearchedTextProperty =
-            BindableProperty.Create(nameof(SearchedText), typeof(string), typeof(CustomLabel), defaultValue: null,
-                propertyChanged: OnSearchedTextPropertyChanged);
+            BindableProperty.Create(nameof(SearchedText), typeof(string), typeof(CustomLabel), defaultValue: null, propertyChanged: OnSearchedTextPropertyChanged);
 
         public string SearchedText
         {
@@ -36,20 +34,23 @@ namespace InterTwitter.Controls
             var label = bindable as CustomLabel;
             var newSearchQuery = (string)newValue;
 
-            if (string.IsNullOrEmpty(newSearchQuery))
+            if (newSearchQuery != null)
             {
-                if (label != null)
+                if (label._text.ToUpper().Contains(newSearchQuery.ToUpper()))
                 {
-                    label.FormattedText = null;
-                    label.Text = _text;
+                    label.Text = null;
+                    var matchingIndexes = KMPSearch.SearchString(label._text.ToUpper(), newSearchQuery.ToUpper());
+                    label.FormattedText = label.CreateFormattedText(matchingIndexes, newSearchQuery);
                 }
-            }
-            else
-            {
-                label.Text = null;
-                var matchingIndexes = KMPSearch.SearchString(_text.ToUpper(), newSearchQuery.ToUpper());
-                label.FormattedText = CreateFormattedText(matchingIndexes, newSearchQuery);
-            }
+                else
+                {
+                    if (label != null)
+                    {
+                        label.FormattedText = null;
+                        label.Text = label._text;
+                    }
+                }
+            } 
         }
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -65,7 +66,7 @@ namespace InterTwitter.Controls
             }
         }
 
-        private static FormattedString CreateFormattedText(int[] matchingIndexes, string newSearchQuery)
+        private FormattedString CreateFormattedText(int[] matchingIndexes, string newSearchQuery)
         {
             FormattedString formattedText = new FormattedString();
             int j = 0;
@@ -73,7 +74,7 @@ namespace InterTwitter.Controls
 
             if (matchingIndexes.Length != 0)
             {
-                for (int i = 0; i < _text.Length - 1; i++)
+                for (int i = 0; i < _text.Length; i++)
                 {
                     if (i == matchingIndexes[j])
                     {
@@ -83,29 +84,35 @@ namespace InterTwitter.Controls
                         {
                             usualString += _text[a];
                         }
-
-                        var usualSpan = new Span
+                        if (!string.IsNullOrEmpty(usualString))
                         {
-                            Text = usualString
-                        };
+                            var usualSpan = new Span
+                            {
+                                Text = usualString
+                            };
+
+                            formattedText.Spans.Add(usualSpan);
+                        }
 
                         string highlightedString = string.Empty;
 
-                        for (int b = matchingIndexes[j]; b < matchingIndexes[j] + newSearchQuery.Length; b++)
+                        for (; a < matchingIndexes[j] + newSearchQuery.Length; a++)
                         {
-                            highlightedString += _text[b];
+                            highlightedString += _text[a];
                         }
 
-                        var highlightedSpan = new Span
+                        if (!string.IsNullOrEmpty(highlightedString))
                         {
-                            Text = highlightedString,
-                            BackgroundColor = Color.FromHex("#C7D6F7")
-                        };
+                            var highlightedSpan = new Span
+                            {
+                                Text = highlightedString,
+                                BackgroundColor = Color.FromHex("#C7D6F7")
+                            };
 
-                        formattedText.Spans.Add(usualSpan);
-                        formattedText.Spans.Add(highlightedSpan);
+                            formattedText.Spans.Add(highlightedSpan);
+                        }
 
-                        if (j + 1 < matchingIndexes.Length)
+                        if (j < matchingIndexes.Length - 1)
                         {
                             j++;
                         }
@@ -113,17 +120,20 @@ namespace InterTwitter.Controls
                         {
                             string lastString = string.Empty;
 
-                            for (; a < _text.Length - 1; a++)
+                            for (; a < _text.Length; a++)
                             {
                                 lastString += _text[a];
                             }
 
-                            var lastSpan = new Span
+                            if (!string.IsNullOrEmpty(lastString))
                             {
-                                Text = usualString
-                            };
+                                var lastSpan = new Span
+                                {
+                                    Text = lastString
+                                };
 
-                            formattedText.Spans.Add(lastSpan);
+                                formattedText.Spans.Add(lastSpan);
+                            }
 
                             break;
                         }
