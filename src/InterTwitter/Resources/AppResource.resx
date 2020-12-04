@@ -297,6 +297,12 @@
   <data name="ToBlackListWarning" xml:space="preserve">
     <value>This user will not see your posts</value>
 </data>
+  <data name="MenuSaveLabelText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MenuShareLabelText" xml:space="preserve">
+    <value>Share</value>
+  </data>
   <data name="CantUpdateBookmarks" xml:space="preserve">
     <value>Unable to update bookmarks</value>
   </data>
@@ -323,6 +329,5 @@
   </data>
   <data name="NoHashTags" xml:space="preserve">
     <value>You have no hashtags yet</value>
->>>>>>> 4f369e775b96684cbf34e26f8782cdc53cdbe0c1
   </data>
 </root>

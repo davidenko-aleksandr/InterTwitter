@@ -3,7 +3,7 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
               xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-              xmlns:resources="clr-namespace:InterTwitter.Resources"
+              xmlns:controls="clr-namespace:InterTwitter.Controls"
               x:Class="InterTwitter.Views.Templates.PostTemplates.PostOneImageTemplate">
     
     <Grid Padding="20">
@@ -14,16 +14,20 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
             
-            <!-- POST DESCRIPTION LABEL -->
-            <Label Grid.Row="0"
-                   Text="{Binding Text}"
-                   TextColor="{StaticResource tx_3}"/>
+        <!-- POST DESCRIPTION LABEL -->
+        <Label Grid.Row="0"
+               Text="{Binding Text}"
+               TextColor="{StaticResource tx_3}"/>
 
-            <!-- POST MEDIA FILE -->
-        <ffimageloading:CachedImage Grid.Row="1"
-                                    Source="{Binding PostPhoto}"
-                                    HeightRequest="340"
-                                    LoadingPlaceholder="loading_placeholder.gif">
+        <!-- POST MEDIA FILE -->
+        <controls:ClickableContentView Grid.Row="1"
+                                       Command="{Binding BindingContext.OpenPhotoCommand,
+                                       Source={RelativeSource AncestorType={x:Type CollectionView}}}" 
+                                       CommandParameter="{Binding .}">
+            
+            <ffimageloading:CachedImage Source="{Binding PostPhoto}"
+                                        HeightRequest="340"
+                                        LoadingPlaceholder="loading_placeholder.gif">
 
                 <ffimageloading:CachedImage.Transformations>
 
@@ -35,7 +39,10 @@
 
                 </ffimageloading:CachedImage.Transformations>
 
-        </ffimageloading:CachedImage>
+            </ffimageloading:CachedImage>
+            
+        </controls:ClickableContentView>
+        
 
         <Grid Grid.Row="2">
 

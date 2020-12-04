@@ -363,6 +363,11 @@ namespace InterTwitter.Resources {
         public static string MutedProfilesText {
             get {
                 return ResourceManager.GetString("MutedProfilesText", resourceCulture);
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string MenuSaveLabelText {
+            get {
+                return ResourceManager.GetString("MenuSaveLabelText", resourceCulture);
             }
         }
         
@@ -381,6 +386,11 @@ namespace InterTwitter.Resources {
         public static string MuteText {
             get {
                 return ResourceManager.GetString("MuteText", resourceCulture);
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        public static string MenuShareLabelText {
+            get {
+                return ResourceManager.GetString("MenuShareLabelText", resourceCulture);
             }
         }
         
@@ -538,11 +548,29 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Posts.
+        ///   Looks up a localized string similar to Oops, something went wrong.
         /// </summary>
-        public static string PostsText {
+        public static string RandomError {
             get {
-                return ResourceManager.GetString("PostsText", resourceCulture);
+                return ResourceManager.GetString("RandomError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ic_right.png.
+        /// </summary>
+        public static string RightImage {
+            get {
+                return ResourceManager.GetString("RightImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to saved your post.
+        /// </summary>
+        public static string SavedPostText {
+            get {
+                return ResourceManager.GetString("SavedPostText", resourceCulture);
             }
         }
         
