@@ -22,20 +22,20 @@
                                           LeftIconSource="ic_left_grey.png"
                                           RightIconSource="ic_hidden_menu_gray.png"
                                           LeftIconClickCommand="{Binding GoBackCommand}"
-                                          BackgroundColor="{StaticResource tx_3}"
+                                          BackgroundColor="{StaticResource bg_7}"
                                           RightIconClickCommand="{Binding MenuClickCommand}"/>
         <StackLayout Grid.Row="1">
 
-            <cards:CarouselView ItemsSource="{Binding Imeges}"
+            <cards:CarouselView ItemsSource="{Binding Images}"
                                 Position="{Binding CurrentImage, Mode=TwoWay}"
-                                BackgroundColor="{StaticResource tx_3}">
+                                BackgroundColor="{StaticResource bg_7}">
 
                 <cards:CarouselView.ItemTemplate>
                     <DataTemplate>
                         <ContentView>
 
                                 <ffimage:CachedImage Source="{Binding .}"
-                                                     BackgroundColor="{StaticResource tx_3}"/>
+                                                     BackgroundColor="{StaticResource bg_7}"/>
                             
                         </ContentView>
                     </DataTemplate>
@@ -57,21 +57,21 @@
                 <!-- DATE LABEL -->
                 <Label Grid.Column="0"
                        Text="{Binding ImageNumber}"
-                       TextColor="{StaticResource bg_5}"
+                       TextColor="{StaticResource tx_5}"
                        VerticalOptions="Center"
                        HorizontalOptions="End"/>
 
                 <Label Grid.Column="1"
                        Text="-"
                        FontSize="30"
-                       TextColor="{StaticResource bg_5}"
+                       TextColor="{StaticResource tx_5}"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"/>
 
                 <!-- TIME LABEL -->
                 <Label Grid.Column="2"
                        Text="{Binding ImageCount}"
-                       TextColor="{StaticResource bg_5}"
+                       TextColor="{StaticResource tx_5}"
                        VerticalOptions="Center"
                        HorizontalOptions="Start"/>
 
@@ -117,7 +117,7 @@
                                      Value="true">
 
                             <Setter Property="TextColor" 
-                                    Value="{StaticResource bg_2}"/>
+                                    Value="{StaticResource tx_2}"/>
 
                         </DataTrigger>
 
@@ -182,14 +182,15 @@
                 <controls:ClickableContentView>
                     
                     <Label Text="{x:Static resources:AppResource.MenuSaveLabelText}"
-                           TextColor="{StaticResource bg_1}"
+                           TextColor="{StaticResource tx_1}"
                            Margin="20, 20, 20, 0"/>
                     
                 </controls:ClickableContentView>
 
                 <controls:ClickableContentView>
+                    
                     <Label Text="{x:Static resources:AppResource.MenuShareLabelText}"
-                           TextColor="{StaticResource bg_1}"
+                           TextColor="{StaticResource tx_1}"
                            Margin="20"/>
 
                 </controls:ClickableContentView>

@@ -33,7 +33,7 @@ namespace InterTwitter.ViewModels
         #region -- Public properties --
 
         private List<string> _images;
-        public List<string> Imeges
+        public List<string> Images
         {
             get => _images;
             set => SetProperty(ref _images, value);
@@ -88,7 +88,7 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _IsMenuVisible, value);
         }
 
-        public ICommand MenuClickCommand => SingleExecutionCommand.FromFunc(OnMenuClickCommand);
+        public ICommand MenuClickCommand => SingleExecutionCommand.FromFunc(OnMenuClickCommandAsync);
 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
 
@@ -108,6 +108,10 @@ namespace InterTwitter.ViewModels
             {
                 ImageNumber = CurrentImage + 1;
             }
+            else
+            {
+                //something went wrong
+            }
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -118,7 +122,7 @@ namespace InterTwitter.ViewModels
             {
                 if (parameters.TryGetValue("OwlViewModel", out _owlViewModel) && _owlViewModel != null)
                 {
-                    Imeges = _owlViewModel.Media;
+                    Images = _owlViewModel.Media;
 
                     ImageCount = _owlViewModel.Media.Count;
 
@@ -129,6 +133,10 @@ namespace InterTwitter.ViewModels
                     ImageNumber = 1;
 
                     IsLiked = _owlViewModel.IsLiked;
+                }
+                else
+                {
+                    //something went wrong
                 }
             }
             else
@@ -149,7 +157,7 @@ namespace InterTwitter.ViewModels
 
                 IsLiked = _owlViewModel.IsLiked;
 
-                _owlViewModel.LikesCount = _owlViewModel.IsLiked ? _owlViewModel.LikesCount + 1 : _owlViewModel.LikesCount - 1;
+                _owlViewModel.LikesCount = _owlViewModel.IsLiked ? ++_owlViewModel.LikesCount : --_owlViewModel.LikesCount;
 
                 LikesCount = _owlViewModel.LikesCount;
 
@@ -182,7 +190,7 @@ namespace InterTwitter.ViewModels
             await NavigationService.GoBackAsync();
         }
 
-        private Task OnMenuClickCommand()
+        private Task OnMenuClickCommandAsync()
         {
             IsMenuVisible = !IsMenuVisible;
 
