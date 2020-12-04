@@ -193,7 +193,8 @@
         <!--BLACK_LIST LABEL-->
         <Frame Grid.Row="1"
                Style="{StaticResource StatusLabelFrameStyle}"
-               Margin="10,2"               
+               Margin="10,2"
+               HasShadow="False"
                WidthRequest="140">
             
             <Frame.Triggers>
