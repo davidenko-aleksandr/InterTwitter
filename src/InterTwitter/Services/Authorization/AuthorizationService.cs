@@ -4,9 +4,7 @@ using System.Threading.Tasks;
 using InterTwitter.Helpers;
 using InterTwitter.Models;
 using InterTwitter.Services.Settings;
-using InterTwitter.Extensions;
 using InterTwitter.Services.UserService;
-using InterTwitter.ViewModels;
 
 namespace InterTwitter.Services.Authorization
 {
@@ -25,6 +23,7 @@ namespace InterTwitter.Services.Authorization
 
         #region -- IAuthorizationService implementation --
 
+<<<<<<< HEAD
         public int AuthorizedUserId 
         {
             get => _settingsService.AuthorizedUserId;
@@ -34,6 +33,8 @@ namespace InterTwitter.Services.Authorization
             get => _settingsService.AuthorizedUserId != Constants.NoAuthorizedUser;
         }
 
+=======
+>>>>>>> 4f369e775b96684cbf34e26f8782cdc53cdbe0c1
         public async Task<AOResult<bool>> LogInAsync(string email, string password)
         {
             var result = new AOResult<bool>();
@@ -46,7 +47,7 @@ namespace InterTwitter.Services.Authorization
                 {
                     var users = getUsersResult.Result;
 
-                    var user = users.First(x => x.Email.ToUpper() == email.ToUpper() && x.Password == password);
+                    var user = users.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Password == password);
 
                     await Task.Delay(300);
 
@@ -84,7 +85,7 @@ namespace InterTwitter.Services.Authorization
 
                 if (getUsersResult.IsSuccess)
                 {
-                    var users = getUsersResult.Result;
+                    var users = getUsersResult.Result.ToList();
 
                     var user = new UserModel()
                     {
@@ -175,9 +176,9 @@ namespace InterTwitter.Services.Authorization
             return result;
         }
 
-        public async Task<AOResult<UserViewModel>> GetAuthorizedUserAsync()
+        public async Task<AOResult<UserModel>> GetAuthorizedUserAsync()
         {
-            var result = new AOResult<UserViewModel>();
+            var result = new AOResult<UserModel>();
 
             try
             {
@@ -214,5 +215,6 @@ namespace InterTwitter.Services.Authorization
         }
 
         #endregion
+
     }
 }

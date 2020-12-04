@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using InterTwitter.Models;
 using InterTwitter.Helpers;
 using Prism.Navigation;
 using System.Threading.Tasks;
@@ -6,11 +7,7 @@ using InterTwitter.Views;
 using InterTwitter.Services.Authorization;
 using System.Collections.ObjectModel;
 using InterTwitter.Services.Owl;
-using System.Collections.Generic;
-using InterTwitter.ViewModels.ProfilePageItems;
-using InterTwitter.Services.UserService;
-using InterTwitter.ViewModels.OwlItems;
-using System;
+using InterTwitter.Extensions;
 
 namespace InterTwitter.ViewModels
 {

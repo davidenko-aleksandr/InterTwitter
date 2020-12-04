@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ﻿﻿using System.Linq;
+=======
+﻿using System.Linq;
+using System.Windows.Input;
+>>>>>>> 4f369e775b96684cbf34e26f8782cdc53cdbe0c1
 using InterTwitter.Models;
 
 namespace InterTwitter.ViewModels.OwlItems
@@ -7,9 +12,11 @@ namespace InterTwitter.ViewModels.OwlItems
     {
         public OwlVideoViewModel(
             OwlModel model,
-            UserModel author,
-            int authorizedUserId)
-            : base(model, author, authorizedUserId)
+            int authorizedUserId,
+            ICommand itemTappedCommand,
+            ICommand likeTappedCommad,
+            ICommand saveTappedCommand)
+            : base(model, authorizedUserId, itemTappedCommand, likeTappedCommad, saveTappedCommand)
         {
             Video = model.Media.First();
         }

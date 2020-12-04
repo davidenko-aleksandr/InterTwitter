@@ -106,6 +106,54 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+<<<<<<< HEAD
+=======
+        ///   Looks up a localized string similar to Unable to load popular hashtags.
+        /// </summary>
+        public static string CantLoadHashTags {
+            get {
+                return ResourceManager.GetString("CantLoadHashTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to load post.
+        /// </summary>
+        public static string CantLoadPost {
+            get {
+                return ResourceManager.GetString("CantLoadPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to update bookmarks.
+        /// </summary>
+        public static string CantUpdateBookmarks {
+            get {
+                return ResourceManager.GetString("CantUpdateBookmarks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to update the feed.
+        /// </summary>
+        public static string CantUpdateFeed {
+            get {
+                return ResourceManager.GetString("CantUpdateFeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to update notifications.
+        /// </summary>
+        public static string CantUpdateNotifications {
+            get {
+                return ResourceManager.GetString("CantUpdateNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+>>>>>>> 4f369e775b96684cbf34e26f8782cdc53cdbe0c1
         ///   Looks up a localized string similar to Change profile.
         /// </summary>
         public static string ChangeProfileLable {
@@ -394,6 +442,27 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+<<<<<<< HEAD
+=======
+        ///   Looks up a localized string similar to You have no bookmarks yet.
+        /// </summary>
+        public static string NoBookmarks {
+            get {
+                return ResourceManager.GetString("NoBookmarks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have no hashtags yet.
+        /// </summary>
+        public static string NoHashTags {
+            get {
+                return ResourceManager.GetString("NoHashTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+>>>>>>> 4f369e775b96684cbf34e26f8782cdc53cdbe0c1
         ///   Looks up a localized string similar to No Internet connection.
         /// </summary>
         public static string NoInternetText {
@@ -403,6 +472,27 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
+<<<<<<< HEAD
+=======
+        ///   Looks up a localized string similar to You have no notifications yet.
+        /// </summary>
+        public static string NoNotifications {
+            get {
+                return ResourceManager.GetString("NoNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have no owls yet.
+        /// </summary>
+        public static string NoOwls {
+            get {
+                return ResourceManager.GetString("NoOwls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+>>>>>>> 4f369e775b96684cbf34e26f8782cdc53cdbe0c1
         ///   Looks up a localized string similar to Notification.
         /// </summary>
         public static string NotificationPageTitle {

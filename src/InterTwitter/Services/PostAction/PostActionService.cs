@@ -4,7 +4,6 @@ using InterTwitter.Models;
 using InterTwitter.Services.Notification;
 using InterTwitter.Services.Owl;
 using InterTwitter.Services.Settings;
-using InterTwitter.ViewModels.OwlItems;
 using System;
 using System.Threading.Tasks;
 
@@ -28,7 +27,7 @@ namespace InterTwitter.Services.PostAction
 
         #region -- IPostActionService implementation --
 
-        public async Task<AOResult<bool>> SaveActionAsync(OwlViewModel actionOwl, OwlAction action)
+        public async Task<AOResult<bool>> SaveActionAsync(OwlModel actionOwl, OwlAction action)
         {
             var result = new AOResult<bool>();
 
@@ -98,6 +97,39 @@ namespace InterTwitter.Services.PostAction
             catch (Exception ex)
             {
                 result.SetError($"{nameof(SaveActionAsync)}: exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
+        public async Task<AOResult<bool>> ClearUserBookmarks()
+        {
+            var result = new AOResult<bool>();
+
+            try
+            {
+                var owlResult = await _owlService.GetSavedOwlsAsync();
+
+                if (owlResult.IsSuccess)
+                {
+                    var owls = owlResult.Result;
+
+                    foreach (var item in owls)
+                    {
+                        item.SavesList.Remove(_settingsService.AuthorizedUserId);
+                        await _owlService.UpdateOwlAsync(item);
+                    }
+
+                    result.SetSuccess();
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(ClearUserBookmarks)}: exception", "Something went wrong", ex);
             }
 
             return result;
