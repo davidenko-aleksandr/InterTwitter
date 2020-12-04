@@ -5,7 +5,6 @@ using InterTwitter.Services.PostAction;
 using InterTwitter.ViewModels.OwlItems;
 using InterTwitter.Views;
 using Prism.Navigation;
-using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -70,10 +69,9 @@ namespace InterTwitter.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             var isConnected = Connectivity.NetworkAccess;
-
-            State = States.Loading;
             if (parameters.TryGetValue("OwlViewModel", out _owlViewModel) && _owlViewModel != null)
             {
+                State = States.Loading;
                 FillPost();
             }
             else

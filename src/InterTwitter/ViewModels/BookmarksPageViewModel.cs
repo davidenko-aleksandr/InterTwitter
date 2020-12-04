@@ -2,7 +2,6 @@
 using InterTwitter.Enums;
 using InterTwitter.Extensions;
 using InterTwitter.Helpers;
-using InterTwitter.Models;
 using InterTwitter.Services.Authorization;
 using InterTwitter.Services.Owl;
 using InterTwitter.Services.PostAction;
@@ -41,13 +40,6 @@ namespace InterTwitter.ViewModels
         }
 
         #region -- Public Properties --
-
-        private bool _isBarIconVisible;
-        public bool IsBarIconVisible
-        {
-            get => _isBarIconVisible;
-            set => SetProperty(ref _isBarIconVisible, value);
-        }
 
         private string _icon;
         public string Icon
@@ -102,8 +94,7 @@ namespace InterTwitter.ViewModels
         public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             Icon = "ic_bookmarks_blue";
-            IsMenuVisible = false;
-            IsBarIconVisible = false;
+            IsMenuVisible = true;
 
             Connectivity.ConnectivityChanged += InternetConnectionChanged;
 
@@ -177,9 +168,11 @@ namespace InterTwitter.ViewModels
             }
         }
 
-        private async Task OnMenuClickCommandAsync()
+        private Task OnMenuClickCommandAsync()
         {
             IsMenuVisible = !IsMenuVisible;
+
+            return Task.CompletedTask;
         }
 
         private async Task FillCollectionAsync()
@@ -199,7 +192,6 @@ namespace InterTwitter.ViewModels
                 else
                 {
                     State = States.Normal;
-                    IsBarIconVisible = true;
                 }
             }
             else

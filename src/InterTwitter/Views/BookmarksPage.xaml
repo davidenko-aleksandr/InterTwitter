@@ -22,7 +22,7 @@
 
             <!-- TABBED PAGE NAVIGATION BAR -->
             <controls:TabbedPageNavigationBar Grid.Row="0"
-                                              IsRightIconVisible="{Binding IsBarIconVisible}"
+                                              IsRightIconVisible="True"
                                               RightIconSource="ic_hidden_menu_gray.png"
                                               RightIconClickCommand="{Binding MenuClickCommand}"
                                               TitleText="{x:Static resources:AppResource.BookmarksTitle}"
@@ -119,7 +119,6 @@
                  VerticalOptions="FillAndExpand"
                  HorizontalOptions="FillAndExpand"
                  IsVisible="{Binding IsMenuVisible}">
-
 
             <BoxView.GestureRecognizers>
 
