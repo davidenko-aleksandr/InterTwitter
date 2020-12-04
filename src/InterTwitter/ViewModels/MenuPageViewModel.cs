@@ -8,14 +8,13 @@ using InterTwitter.Extensions;
 using InterTwitter.Helpers;
 using InterTwitter.Resources;
 using InterTwitter.Services.Authorization;
-using InterTwitter.ViewModels.Helpers;
 using InterTwitter.Views;
 using Prism.Navigation;
 using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
 {
-    public class MenuPageViewModel : BaseViewModel, IAppearingAware
+    public class MenuPageViewModel : BaseViewModel
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly IUserDialogs _userDialogs;
@@ -30,6 +29,7 @@ namespace InterTwitter.ViewModels
             _userDialogs = userDialogs;
 
             MessagingCenter.Subscribe<object>(this, Constants.OpenMenuMessage, (sender) => OpenMenu());
+            MessagingCenter.Subscribe<Type>(this, "SelectedTabChanged", (sender) => { SelectedTabType = sender; });
 
             InitMenuItems();
         }
@@ -66,18 +66,20 @@ namespace InterTwitter.ViewModels
 
         public ICommand LogoutCommand => SingleExecutionCommand.FromFunc(OnLogoutCommandAsync);
 
-        public ICommand GoToProfilePageCommand => SingleExecutionCommand.FromFunc(OnGoToProfilePageCommandAsync);
+        public ICommand GoToProfilePageCommand => SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnGoToProfilePageCommandAsync);
 
         #endregion
 
         #region -- Overrides --
 
-        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
+        protected override async void OnPropertyChanged(PropertyChangedEventArgs args)
         {
             base.OnPropertyChanged(args);
 
             if (args.PropertyName == nameof(IsPresented))
             {
+                await SetUserDataAsync();
+
                 foreach (MenuItemViewModel item in MenuItems[0])
                 {
                     item.IsSelected = SelectedTabType == item.PageType;
@@ -110,7 +112,7 @@ namespace InterTwitter.ViewModels
 
         #region -- Private helpers --
 
-        private async Task OnGoToProfilePageCommandAsync()
+        private async Task OnGoToProfilePageCommandAsync(MenuItemViewModel arg)
         {
             var navParameters = new NavigationParameters();
 
@@ -144,22 +146,19 @@ namespace InterTwitter.ViewModels
             }
         }
 
-        private async Task OnSelectTabCommandAsync(MenuItemViewModel item)
+        private Task OnSelectTabCommandAsync(MenuItemViewModel item)
         {
             NavigationService.FixedSelectTab(item.PageType);
             IsPresented = false;
-        }
 
-        private async Task OnNavigateCommandAsync(MenuItemViewModel arg)
-        {
-            //navigate to settings
+            return Task.CompletedTask;
         }
 
         private void InitMenuItems()
         {
             ICommand selectTabCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnSelectTabCommandAsync);
 
-            ICommand navigateCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnNavigateCommandAsync);
+            ICommand navigateCommand = SingleExecutionCommand.FromFunc<MenuItemViewModel>(OnGoToProfilePageCommandAsync);
 
             var collection = new ObservableCollection<MenuItemGroup>
             {
@@ -235,15 +234,6 @@ namespace InterTwitter.ViewModels
             {
                 //result is failed
             }
-        }
-
-        public async void OnAppearing()
-        {
-            await SetUserDataAsync();
-        }
-
-        public void OnDisappearing()
-        {
         }
 
         #endregion
