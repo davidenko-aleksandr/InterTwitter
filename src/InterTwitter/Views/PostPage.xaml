@@ -24,7 +24,7 @@
                                           RightIconSource="{Binding AuthorAvatar}"
                                           LeftIconClickCommand="{Binding GoBackCommand}"/>
         
-        <CollectionView Grid.Row="1"
+        <CollectionView x:Name="PostCollectionView" Grid.Row="1"
                         ItemsSource="{Binding Owls}"
                         ItemTemplate="{StaticResource PostTemplateSelector}" >
             
