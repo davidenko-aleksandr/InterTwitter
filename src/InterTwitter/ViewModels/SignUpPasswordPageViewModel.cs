@@ -8,6 +8,7 @@ using InterTwitter.Services.Keyboard;
 using InterTwitter.Validators;
 using InterTwitter.Views;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
 {
@@ -112,7 +113,7 @@ namespace InterTwitter.ViewModels
                 var signUpResult = await _authorizationService.SignUpAsync(_email, _name, Password);
                 if (signUpResult.IsSuccess)
                 {
-                    await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+                    await NavigationService.NavigateAsync($"/{nameof(MenuPage)}/{nameof(NavigationPage)}/{nameof(MainTabbedPage)}");
                 }
                 else
                 {
