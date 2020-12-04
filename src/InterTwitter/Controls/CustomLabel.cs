@@ -50,7 +50,7 @@ namespace InterTwitter.Controls
                         label.Text = label._text;
                     }
                 }
-            } 
+            }
         }
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -84,6 +84,7 @@ namespace InterTwitter.Controls
                         {
                             usualString += _text[a];
                         }
+
                         if (!string.IsNullOrEmpty(usualString))
                         {
                             var usualSpan = new Span

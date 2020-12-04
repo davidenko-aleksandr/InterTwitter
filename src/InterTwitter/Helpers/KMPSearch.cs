@@ -9,15 +9,15 @@ namespace InterTwitter.Helpers
 		public static int[] SearchString(string str, string pat)
 		{
 			List<int> retVal = new List<int>();
-			int M = pat.Length;
-			int N = str.Length;
+			int m = pat.Length;
+			int n = str.Length;
 			int i = 0;
 			int j = 0;
-			int[] lps = new int[M];
+			int[] lps = new int[m];
 
-			ComputeLPSArray(pat, M, lps);
+			ComputeLPSArray(pat, m, lps);
 
-			while (i < N)
+			while (i < n)
 			{
 				if (pat[j] == str[i])
 				{
@@ -25,18 +25,21 @@ namespace InterTwitter.Helpers
 					i++;
 				}
 
-				if (j == M)
+				if (j == m)
 				{
 					retVal.Add(i - j);
 					j = lps[j - 1];
 				}
-
-				else if (i < N && pat[j] != str[i])
+				else if (i < n && pat[j] != str[i])
 				{
 					if (j != 0)
+                    {
 						j = lps[j - 1];
+					}
 					else
-						i = i + 1;
+                    {
+						i += 1;
+					}
 				}
 			}
 
@@ -72,6 +75,5 @@ namespace InterTwitter.Helpers
 				}
 			}
 		}
-
 	}
 }

@@ -16,7 +16,6 @@ namespace InterTwitter.ViewModels
 
         public virtual void Initialize(INavigationParameters parameters)
         {
-
         }
 
         #endregion
@@ -25,12 +24,10 @@ namespace InterTwitter.ViewModels
 
         public virtual void OnNavigatedFrom(INavigationParameters parameters)
         {
-
         }
 
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
-
         }
 
         #endregion
@@ -39,7 +36,6 @@ namespace InterTwitter.ViewModels
 
         public virtual void Destroy()
         {
-
         }
 
         #endregion

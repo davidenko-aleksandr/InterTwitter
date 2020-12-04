@@ -51,8 +51,9 @@ namespace InterTwitter
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
             containerRegistry.RegisterForNavigation<ProfilePage, ProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<PostPage, PostPageViewModel>();
-            containerRegistry.RegisterForNavigation<ChangeProfilePage,ChangeProfilePageViewModel>();
+            containerRegistry.RegisterForNavigation<ChangeProfilePage, ChangeProfilePageViewModel>();
             containerRegistry.RegisterForNavigation<AddPostPage, AddPostPageViewModel>();
+            containerRegistry.RegisterForNavigation<MainTabbedPage>(nameof(MainTabbedPage));
 
             //plugins
             containerRegistry.RegisterInstance(UserDialogs.Instance);
@@ -62,12 +63,11 @@ namespace InterTwitter
             //services
             containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
             containerRegistry.RegisterInstance<ISettingsService>(Container.Resolve<SettingsService>());
-            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>()); 
+            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
             containerRegistry.RegisterInstance<IOwlService>(Container.Resolve<OwlService>());
             containerRegistry.RegisterInstance<INotificationService>(Container.Resolve<NotificationService>());
             containerRegistry.RegisterInstance<IPostActionService>(Container.Resolve<PostActionService>());
             containerRegistry.RegisterInstance<IPermissionService>(Container.Resolve<PermissionService>());
-
         }
 
         #endregion

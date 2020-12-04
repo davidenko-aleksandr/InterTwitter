@@ -264,10 +264,34 @@
   <data name="DeleteBookmarksText" xml:space="preserve">
     <value>Delete all bookmarks</value>
   </data>
-  <data name="EmptyState" xml:space="preserve">
-    <value>ic_empty_state.png</value>
+  <data name="CantUpdateBookmarks" xml:space="preserve">
+    <value>Unable to update bookmarks</value>
+  </data>
+  <data name="CantUpdateFeed" xml:space="preserve">
+    <value>Unable to update the feed</value>
+  </data>
+  <data name="CantUpdateNotifications" xml:space="preserve">
+    <value>Unable to update notifications</value>
+  </data>
+  <data name="NoBookmarks" xml:space="preserve">
+    <value>You have no bookmarks yet</value>
+  </data>
+  <data name="NoNotifications" xml:space="preserve">
+    <value>You have no notifications yet</value>
+  </data>
+  <data name="NoOwls" xml:space="preserve">
+    <value>You have no owls yet</value>
+  </data>
+  <data name="CantLoadPost" xml:space="preserve">
+    <value>Unable to load post</value>
+  </data>
+  <data name="CantLoadHashTags" xml:space="preserve">
+    <value>Unable to load popular hashtags</value>
   </data>
   <data name="NoResultsText" xml:space="preserve">
     <value>No results for </value>
+  </data>
+  <data name="NoHashTags" xml:space="preserve">
+    <value>You have no hashtags yet</value>
   </data>
 </root>

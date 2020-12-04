@@ -22,7 +22,7 @@ namespace InterTwitter.Controls
 
         public BorderlessEntry Entry { get; set; }
 
-        private static readonly BindableProperty IsValidProperty = 
+        private static readonly BindableProperty IsValidProperty =
             BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(CustomEntry), false, BindingMode.OneWay);
         public bool IsValid
         {
@@ -30,7 +30,7 @@ namespace InterTwitter.Controls
             set => SetValue(IsValidProperty, value);
         }
 
-        private static readonly BindableProperty IsEntryFocusedProperty = 
+        private static readonly BindableProperty IsEntryFocusedProperty =
             BindableProperty.Create(nameof(IsEntryFocused), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay);
         public bool IsEntryFocused
         {
@@ -38,7 +38,7 @@ namespace InterTwitter.Controls
             set => SetValue(IsEntryFocusedProperty, value);
         }
 
-        private static readonly BindableProperty IsPasswordLocalProperty = 
+        private static readonly BindableProperty IsPasswordLocalProperty =
             BindableProperty.Create(nameof(IsPasswordLocal), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay);
         public bool IsPasswordLocal
         {
@@ -46,7 +46,7 @@ namespace InterTwitter.Controls
             set => SetValue(IsPasswordLocalProperty, value);
         }
 
-        public static readonly BindableProperty NameTextProperty = 
+        public static readonly BindableProperty NameTextProperty =
             BindableProperty.Create(nameof(NameText), typeof(string), typeof(CustomEntry), string.Empty, BindingMode.TwoWay);
         public string NameText
         {
@@ -54,7 +54,7 @@ namespace InterTwitter.Controls
             set => SetValue(NameTextProperty, value);
         }
 
-        public static readonly BindableProperty ErrorTextProperty = 
+        public static readonly BindableProperty ErrorTextProperty =
             BindableProperty.Create(nameof(ErrorText), typeof(string), typeof(CustomEntry), string.Empty, BindingMode.TwoWay);
         public string ErrorText
         {
@@ -62,7 +62,7 @@ namespace InterTwitter.Controls
             set => SetValue(ErrorTextProperty, value);
         }
 
-        public static readonly BindableProperty IsErrorVisibleProperty = 
+        public static readonly BindableProperty IsErrorVisibleProperty =
             BindableProperty.Create(nameof(IsErrorVisible), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay);
         public bool IsErrorVisible
         {
@@ -70,24 +70,23 @@ namespace InterTwitter.Controls
             set => SetValue(IsErrorVisibleProperty, value);
         }
 
-        public static readonly BindableProperty LineColorProperty = 
-            BindableProperty.Create(nameof(LineColor),typeof(Color), typeof(CustomEntry), Color.FromHex("#DEDFE1"), BindingMode.TwoWay);
+        public static readonly BindableProperty LineColorProperty =
+            BindableProperty.Create(nameof(LineColor), typeof(Color), typeof(CustomEntry), Color.FromHex("#DEDFE1"), BindingMode.TwoWay);
         public Color LineColor
         {
             get => (Color)GetValue(LineColorProperty);
             set => SetValue(LineColorProperty, value);
         }
 
-        public static readonly BindableProperty IsPasswordProperty = 
-            BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay, 
-                propertyChanged: OnIsPasswordPropertyChanged);
+        public static readonly BindableProperty IsPasswordProperty =
+            BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay, propertyChanged: OnIsPasswordPropertyChanged);
         public bool IsPassword
         {
             get => (bool)GetValue(IsPasswordProperty);
             set => SetValue(IsPasswordProperty, value);
         }
 
-        public static readonly BindableProperty IsClearButtonVisibleProperty = 
+        public static readonly BindableProperty IsClearButtonVisibleProperty =
             BindableProperty.Create(nameof(IsClearButtonVisible), typeof(bool), typeof(CustomEntry), false, BindingMode.TwoWay);
         public bool IsClearButtonVisible
         {
@@ -95,7 +94,7 @@ namespace InterTwitter.Controls
             set => SetValue(IsClearButtonVisibleProperty, value);
         }
 
-        public static readonly BindableProperty PlaceholderProperty = 
+        public static readonly BindableProperty PlaceholderProperty =
             BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(CustomEntry), null, BindingMode.TwoWay);
         public string Placeholder
         {
@@ -103,7 +102,7 @@ namespace InterTwitter.Controls
             set => SetValue(PlaceholderProperty, value);
         }
 
-        public static readonly BindableProperty KeyboardProperty = 
+        public static readonly BindableProperty KeyboardProperty =
             BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(CustomEntry), null, BindingMode.TwoWay);
         public Keyboard Keyboard
         {
@@ -111,7 +110,7 @@ namespace InterTwitter.Controls
             set => SetValue(KeyboardProperty, value);
         }
 
-        public static readonly BindableProperty ReturnTypeProperty = 
+        public static readonly BindableProperty ReturnTypeProperty =
             BindableProperty.Create(nameof(ReturnType), typeof(ReturnType), typeof(CustomEntry), null, BindingMode.TwoWay);
         public ReturnType ReturnType
         {
@@ -119,9 +118,8 @@ namespace InterTwitter.Controls
             set => SetValue(ReturnTypeProperty, value);
         }
 
-        public static readonly BindableProperty TextProperty = 
-            BindableProperty.Create(nameof(Text), typeof(string), typeof(CustomEntry), string.Empty, BindingMode.TwoWay, 
-                propertyChanged: (bindable, oldValue, newValue) => ((CustomEntry)bindable).OnTextChanged((string)oldValue, (string)newValue));
+        public static readonly BindableProperty TextProperty =
+            BindableProperty.Create(nameof(Text), typeof(string), typeof(CustomEntry), string.Empty, BindingMode.TwoWay, propertyChanged: (bindable, oldValue, newValue) => ((CustomEntry)bindable).OnTextChanged((string)oldValue, (string)newValue));
         public string Text
         {
             get => (string)GetValue(TextProperty);
@@ -138,6 +136,20 @@ namespace InterTwitter.Controls
 
         #region -- Private Helpers --
 
+        private static void OnIsPasswordPropertyChanged(BindableObject bindable, object oldvalue, object newValue)
+        {
+            var entry = bindable as CustomEntry;
+
+            if (entry != null)
+            {
+                entry.IsPasswordLocal = (bool)newValue;
+            }
+            else
+            {
+                //entry is null
+            }
+        }
+
         private void OnClearClickCommand()
         {
             Text = null;
@@ -148,20 +160,6 @@ namespace InterTwitter.Controls
             Eye.Source = IsPasswordLocal ? AppResource.EyeOnImage : AppResource.EyeOffImage;
 
             IsPasswordLocal = !IsPasswordLocal;
-        }
-
-        private static void OnIsPasswordPropertyChanged(BindableObject bindable, object oldvalue, object newValue)
-        {
-            var entry = bindable as CustomEntry;
-
-            if (entry is not null)
-            {
-                entry.IsPasswordLocal = (bool)newValue;
-            }
-            else
-            {
-                //entry is null
-            }
         }
 
         protected virtual void OnTextChanged(string oldValue, string newValue)
@@ -200,7 +198,7 @@ namespace InterTwitter.Controls
 
         private void OnEntryFocusChanged(object sender, FocusEventArgs e)
         {
-            if (e is not null)
+            if (e != null)
             {
                 IsEntryFocused = e.IsFocused;
             }

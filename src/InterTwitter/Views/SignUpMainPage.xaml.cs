@@ -35,7 +35,7 @@ namespace InterTwitter.Views
 
         #endregion
 
-        #region -- Private helpers -- 
+        #region -- Private helpers --
 
         private void KeyboardButtonPropertyChanging(object sender, PropertyChangingEventArgs e)
         {

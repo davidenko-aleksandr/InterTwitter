@@ -2,7 +2,10 @@
 <views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
                         xmlns="http://xamarin.com/schemas/2014/forms" 
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                        xmlns:controls="clr-namespace:InterTwitter.Controls"
+                        xmlns:controls="clr-namespace:InterTwitter.Controls" 
+                        xmlns:resources="clr-namespace:InterTwitter.Resources" 
+                        xmlns:stateContainer="clr-namespace:InterTwitter.Controls.StateContainer" 
+                        xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                         x:Class="InterTwitter.Views.PostPage"                        
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
@@ -23,12 +26,86 @@
                                           TitleText="{Binding AuthorNickName}"
                                           RightIconSource="{Binding AuthorAvatar}"
                                           LeftIconClickCommand="{Binding GoBackCommand}"/>
-        
-        <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding Owls}"
-                        ItemTemplate="{StaticResource PostTemplateSelector}" >
-            
-        </CollectionView>     
-        
+
+        <!-- STATE CONTAINERS BLOCK-->
+        <stateContainer:StateContainer State="{Binding State}"
+                                        Grid.Row="1">
+
+            <!-- LOADING -->
+            <stateContainer:StateCondition State="Loading">
+
+                <ActivityIndicator IsRunning="True"
+                                   Color="{StaticResource bg_2}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+
+            </stateContainer:StateCondition>
+
+            <!-- LOADED -->
+            <stateContainer:StateCondition State="Normal">
+                
+                <CollectionView ItemsSource="{Binding Owls}"
+                                ItemTemplate="{StaticResource PostTemplateSelector}" />
+                
+            </stateContainer:StateCondition>
+
+            <!-- ERROR -->
+            <stateContainer:StateCondition State="Error">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <forms:CachedImage Source="ic_empty_state"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.CantLoadPost}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+
+            <!-- NO INTERNER -->
+            <stateContainer:StateCondition State="NoInternet">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <forms:CachedImage Source="ic_empty_state"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.CantLoadPost}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+
+            <!-- NO DATA -->
+            <stateContainer:StateCondition State="NoData">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <forms:CachedImage Source="ic_empty_state"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.CantLoadPost}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+
+        </stateContainer:StateContainer>
+
+
     </Grid>
+    
 </views:BaseContentPage>

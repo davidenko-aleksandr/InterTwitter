@@ -1,11 +1,9 @@
-﻿
-namespace InterTwitter.Enums
+﻿namespace InterTwitter.Enums
 {
     public enum MovingStates
     {
         Default,
         MovingUp,
-        MovingDown
-    } 
-
+        MovingDown,
+    }
 }

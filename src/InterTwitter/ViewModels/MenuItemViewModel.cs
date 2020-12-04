@@ -6,7 +6,6 @@ namespace InterTwitter.ViewModels
 {
     public class MenuItemViewModel : BindableBase
     {
-
         #region -- Public properties --
 
         private string _text;

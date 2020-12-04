@@ -1,5 +1,5 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace InterTwitter.Views
 {
@@ -10,31 +10,22 @@ namespace InterTwitter.Views
             InitializeComponent();
         }
 
+        #region -- Overrides --
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            editor.Focused += InputFocused;
-            editor.Unfocused += InputUnfocused;
+
+            App.Current.On<Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            editor.Focused -= InputFocused;
-            editor.Unfocused -= InputUnfocused;
+
+            App.Current.On<Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Pan);
         }
 
-        void InputFocused(object sender, EventArgs args)
-        {
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                mediaBar.Margin = new Thickness(0, 0, 0, 350);
-            }
-        }
-
-        void InputUnfocused(object sender, EventArgs args)
-        {
-            mediaBar.Margin = new Thickness(0, 0, 0, 0);
-        }
+        #endregion
     }
 }

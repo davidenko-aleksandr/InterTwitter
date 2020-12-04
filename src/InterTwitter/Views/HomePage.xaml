@@ -3,42 +3,136 @@
                         xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:controls="clr-namespace:InterTwitter.Controls"
-                        xmlns:resources="clr-namespace:InterTwitter.Resources"
+                        xmlns:resources="clr-namespace:InterTwitter.Resources" 
+                        xmlns:stateContainer="clr-namespace:InterTwitter.Controls.StateContainer" 
+                        xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                        xmlns:helpers="clr-namespace:InterTwitter.Helpers"
+                        xmlns:templates="clr-namespace:InterTwitter.Views.Templates.OwlTemplates"
                         x:Class="InterTwitter.Views.HomePage"
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">
                         
     <Grid>
 
-        <!-- CUSTOM COLLECTION VIEW -->
-        <controls:CustomCollectionView x:Name="customCollectionView" 
-                                       ItemsSource="{Binding Owls}"
-                                       ItemTemplate="{StaticResource OwlTemplateSelector}"
-                                       ItemsUpdatingScrollMode="KeepItemsInView"
-                                       BackgroundColor="{StaticResource bg_1}"
-                                       SelectionMode="Single"
-                                       IsTabStop="True"
-                                       SelectedItem="{Binding SelectedItem}"
-                                       SelectionChangedCommand="{Binding OpenPostCommand}">
+        <!-- STATE CONTAINERS BLOCK-->
+        <stateContainer:StateContainer State="{Binding State}">
 
-            <controls:CustomCollectionView.Header>
+            <!-- LOADING -->
+            <stateContainer:StateCondition State="Loading">
+                
+                <ActivityIndicator IsRunning="True"
+                                   Color="{StaticResource bg_2}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                
+            </stateContainer:StateCondition>
 
-                <ContentView>
+            <!-- LOADED -->
+            <stateContainer:StateCondition State="Normal">
+                
+                <!-- CUSTOM COLLECTION VIEW -->
+                <controls:CustomCollectionView x:Name="customCollectionView" 
+                                               ItemsSource="{Binding Owls}"
+                                               ItemsUpdatingScrollMode="KeepItemsInView"
+                                               BackgroundColor="{StaticResource bg_1}"
+                                               SelectionMode="None"
+                                               IsTabStop="True">
 
-                    <Grid HeightRequest="61">
+                    <controls:CustomCollectionView.Header>
 
-                        <BoxView HeightRequest="1"
-                                 BackgroundColor="{StaticResource bg_3}"
-                                 HorizontalOptions="FillAndExpand"
-                                 VerticalOptions="EndAndExpand"/>
+                        <ContentView>
 
-                    </Grid>
+                            <Grid HeightRequest="61">
 
-                </ContentView>
+                                <BoxView HeightRequest="1"
+                                         BackgroundColor="{StaticResource bg_3}"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="EndAndExpand"/>
 
-            </controls:CustomCollectionView.Header>
+                            </Grid>
 
-        </controls:CustomCollectionView>
+                        </ContentView>
+
+                    </controls:CustomCollectionView.Header>
+
+                    <controls:CustomCollectionView.ItemTemplate>
+                        <helpers:OwlTemplateSelector>
+                            <helpers:OwlTemplateSelector.OwlFewImageTemplate>
+                                <templates:OwlFewImageTemplate/>
+                            </helpers:OwlTemplateSelector.OwlFewImageTemplate>
+                            <helpers:OwlTemplateSelector.OwlNoMediaTemplate>
+                                <templates:OwlNoMediaTemplate/>
+                            </helpers:OwlTemplateSelector.OwlNoMediaTemplate>
+                            <helpers:OwlTemplateSelector.OwlOneImageTemplate>
+                                <templates:OwlOneImageTemplate/>
+                            </helpers:OwlTemplateSelector.OwlOneImageTemplate>
+                            <helpers:OwlTemplateSelector.OwlVideoTemplate>
+                                <templates:OwlVideoTemplate/>
+                            </helpers:OwlTemplateSelector.OwlVideoTemplate>
+                        </helpers:OwlTemplateSelector>
+                    </controls:CustomCollectionView.ItemTemplate>
+
+                </controls:CustomCollectionView>
+                
+                
+            </stateContainer:StateCondition>
+
+            <!-- ERROR -->
+            <stateContainer:StateCondition State="Error">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <forms:CachedImage Source="ic_empty_state"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.CantUpdateFeed}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+
+            <!-- NO INTERNER -->
+            <stateContainer:StateCondition State="NoInternet">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <forms:CachedImage Source="ic_empty_state"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.CantUpdateFeed}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+            
+            <!-- NO DATA -->
+            <stateContainer:StateCondition State="NoData">
+
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+                    <forms:CachedImage Source="ic_empty_state"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                    <Label Text="{x:Static resources:AppResource.NoOwls}"
+                           TextColor="{StaticResource tx_3}"
+                           FontSize="18"/>
+
+                </StackLayout>
+
+            </stateContainer:StateCondition>
+            
+        </stateContainer:StateContainer>
+        
 
         <!-- TABBED PAGE NAVIGATION BAR -->
         <controls:TabbedPageNavigationBar  VerticalOptions="Start"
@@ -62,7 +156,7 @@
                                     Padding="18"
                                     Command="{Binding AddPostCommand}"
                                     MovingState="{Binding Source={x:Reference customCollectionView}, Path=MovingState}"/>
-        
+
     </Grid>
 
 </views:BaseContentPage>    
