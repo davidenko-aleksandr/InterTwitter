@@ -3,14 +3,14 @@ using InterTwitter.ViewModels;
 
 namespace InterTwitter.Extensions
 {
-    public static class UserViewModelExtension
+    public static class UserExtension
     {
-        public static UserModel ToUserModel(this UserViewModel viewModel)
+        public static UserModel ToModel(this UserViewModel viewModel)
         {
-            UserModel user = null;
+            UserModel model = null;
             if (viewModel != null)
             {
-                user = new UserModel
+                model = new UserModel
                 {
                     Id = viewModel.Id,
                     Name = viewModel.Name,
@@ -25,7 +25,22 @@ namespace InterTwitter.Extensions
                 //viewmodel is null
             }
 
-            return user;
+            return model;
+        }
+
+        public static UserViewModel ToViewModel(this UserModel model)
+        {
+            UserViewModel viewModel = null;
+            if (model != null)
+            {
+                viewModel = new UserViewModel(model);
+            }
+            else
+            {
+                //viewmodel is null
+            }
+
+            return viewModel;
         }
     }
 }

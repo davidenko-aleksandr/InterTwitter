@@ -8,6 +8,13 @@
               x:Class="InterTwitter.Views.Templates.NotificationTemplates.NotificationTemplate">
 
     <Grid RowSpacing="0">
+
+        <Grid.GestureRecognizers>
+
+            <TapGestureRecognizer Command="{Binding ItemTappedCommand}"
+                                  CommandParameter="{Binding .}"/>
+
+        </Grid.GestureRecognizers>
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -49,7 +56,7 @@
                              HorizontalOptions="Start">
             
                     <!-- AVATAR IMAGE -->
-                    <ffimageloading:CachedImage Source="{Binding UserAvatar}"
+                    <ffimageloading:CachedImage Source="{Binding User.Avatar}"
                                                 WidthRequest="22"
                                                 HeightRequest="22"
                                                 Aspect="AspectFit"
@@ -66,7 +73,7 @@
 
                     <!-- NAME LABEL -->
 
-                    <Label Text="{Binding UserName}"
+                    <Label Text="{Binding User.Name}"
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="{StaticResource tx_3}"
@@ -97,14 +104,14 @@
 
                 <!-- POST TEXT LABEL -->
                 <Label LineBreakMode ="TailTruncation"
-                       Text="{Binding OwlText}"
+                       Text="{Binding Owl.Text}"
                        FontSize="18"
                        TextColor="{StaticResource tx_5}"/>
 
                 <!-- FLOW LIST VIEW -->
                 <flowview:FlowListView FlowColumnCount="6"
                                        HasUnevenRows="False"
-                                       FlowItemsSource="{Binding MediaList}"
+                                       FlowItemsSource="{Binding Owl.Media}"
                                        RowHeight="50"
                                        VerticalScrollBarVisibility="Never"
                                        HorizontalScrollBarVisibility="Never"
@@ -139,7 +146,7 @@
 
                     <flowview:FlowListView.Triggers>
 
-                        <DataTrigger Binding="{Binding MediaType}"
+                        <DataTrigger Binding="{Binding Owl.MediaType}"
                                      Value="2"
                                      TargetType="flowview:FlowListView">
 
@@ -165,7 +172,7 @@
 
                     <StackLayout.Triggers>
 
-                        <DataTrigger Binding="{Binding MediaType}"
+                        <DataTrigger Binding="{Binding Owl.MediaType}"
                                      Value="2"
                                      TargetType="StackLayout">
 

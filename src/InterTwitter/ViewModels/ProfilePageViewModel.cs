@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using InterTwitter.Models;
 using InterTwitter.Helpers;
 using Prism.Navigation;
@@ -8,6 +7,7 @@ using InterTwitter.Views;
 using InterTwitter.Services.Authorization;
 using System.Collections.ObjectModel;
 using InterTwitter.Services.Owl;
+using InterTwitter.Extensions;
 
 namespace InterTwitter.ViewModels
 {
@@ -76,7 +76,7 @@ namespace InterTwitter.ViewModels
 
                 if (userResult != null)
                 {
-                    User = userResult;
+                    User = userResult.ToViewModel();
                 }
                 else
                 {

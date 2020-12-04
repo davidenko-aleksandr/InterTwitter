@@ -181,7 +181,7 @@
 
     </MasterDetailPage.Master>
 
-    <MasterDetailPage.Detail>
+    <!--<MasterDetailPage.Detail>
 
         <NavigationPage>
 
@@ -193,6 +193,6 @@
 
         </NavigationPage>
 
-    </MasterDetailPage.Detail>
+    </MasterDetailPage.Detail>-->
 
 </MasterDetailPage>
