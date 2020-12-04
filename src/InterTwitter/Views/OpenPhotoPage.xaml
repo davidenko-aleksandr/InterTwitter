@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentPage  xmlns:views="clr-namespace:InterTwitter.Views"
+                        xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:cards="http://xamarin.com/schemas/2014/forms/design" 
+                        xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                        xmlns:resources="clr-namespace:InterTwitter.Resources" 
+                        xmlns:controls="clr-namespace:InterTwitter.Controls"
+                        x:Class="InterTwitter.Views.OpenPhotoPage">
+
+    <Grid BackgroundColor="{StaticResource tx_3}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- NAVIGATION BAR -->
+        <controls:TabbedPageNavigationBar Grid.Row="0"
+                                          IsLeftIconVisible="True"
+                                          IsRightIconVisible="True"
+                                          LeftIconSource="ic_left_grey.png"
+                                          RightIconSource="ic_hidden_menu_gray.png"
+                                          LeftIconClickCommand="{Binding GoBackCommand}"
+                                          BackgroundColor="{StaticResource bg_7}"
+                                          RightIconClickCommand="{Binding MenuClickCommand}"/>
+        <StackLayout Grid.Row="1">
+
+            <cards:CarouselView ItemsSource="{Binding Images}"
+                                Position="{Binding CurrentImage, Mode=TwoWay}"
+                                BackgroundColor="{StaticResource bg_7}">
+
+                <cards:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+
+                                <ffimage:CachedImage Source="{Binding .}"
+                                                     BackgroundColor="{StaticResource bg_7}"/>
+                            
+                        </ContentView>
+                    </DataTemplate>
+                </cards:CarouselView.ItemTemplate>
+
+            </cards:CarouselView>
+
+            <Grid HeightRequest="100"
+                  Padding="10, 0, 10, 0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- DATE LABEL -->
+                <Label Grid.Column="0"
+                       Text="{Binding ImageNumber}"
+                       TextColor="{StaticResource tx_5}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="End"/>
+
+                <Label Grid.Column="1"
+                       Text="-"
+                       FontSize="30"
+                       TextColor="{StaticResource tx_5}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+
+                <!-- TIME LABEL -->
+                <Label Grid.Column="2"
+                       Text="{Binding ImageCount}"
+                       TextColor="{StaticResource tx_5}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"/>
+
+                <!-- LIKE BUTTON -->
+                <Button Grid.Column="2"
+                        x:Name="likeButton"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        BackgroundColor="Transparent"
+                        HeightRequest="34"
+                        CornerRadius="17"                       
+                        ImageSource="ic_like_gray.png"
+                        Command="{Binding LikeClickCommand}">
+
+                    <Button.Triggers>
+
+                        <DataTrigger TargetType="Button"
+                                     Binding="{Binding 
+                                     Path=IsLiked}"
+                                     Value="true">
+
+                            <Setter Property="ImageSource" 
+                                    Value="ic_like_blue.png"/>
+
+                        </DataTrigger>
+
+                    </Button.Triggers>
+
+                </Button>
+
+                <!-- LIKE COUNT LABEL -->
+                <Label Grid.Column="3"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       TextColor="{StaticResource tx_5}"
+                       Text="{Binding LikesCount}">
+
+                    <Label.Triggers>
+
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding 
+                                     Path=IsLiked}"
+                                     Value="true">
+
+                            <Setter Property="TextColor" 
+                                    Value="{StaticResource tx_2}"/>
+
+                        </DataTrigger>
+
+                    </Label.Triggers>
+
+                </Label>
+
+                <!-- BOOKMARK BUTTON -->
+                <Button Grid.Column="4"
+                        x:Name="bookmarkButton"
+                        VerticalOptions="Center"
+                        HorizontalOptions="End"
+                        ImageSource="ic_bookmarks_gray.png"
+                        BackgroundColor="Transparent"
+                        WidthRequest="30"
+                        HeightRequest="34"
+                        CornerRadius="17"
+                        Command="{Binding BookmarkCommand}">
+
+                    <Button.Triggers>
+
+                        <DataTrigger TargetType="Button"
+                                     Binding="{Binding 
+                                     Path=IsBookmarked}"
+                                     Value="true">
+
+                            <Setter Property="ImageSource" Value="ic_bookmarks_blue.png"/>
+
+                        </DataTrigger>
+
+                    </Button.Triggers>
+
+                </Button>
+
+            </Grid>
+            
+        </StackLayout>
+
+        <!--DROP DOWN MENU ACTIVE PROFILE-->
+        <controls:ClickableContentView Grid.Row="0"
+                                       Grid.RowSpan="2"
+                                       VerticalOptions="FillAndExpand"
+                                       HorizontalOptions="FillAndExpand"
+                                       Command="{Binding MenuClickCommand}"
+                                       IsVisible="{Binding IsMenuVisible}"/>
+
+        <Frame Grid.Row="0"
+               Grid.RowSpan="2"
+               BackgroundColor="{StaticResource bg_5}"
+               Margin="0,10,10,0"
+               CornerRadius="5"
+               HasShadow="False"                   
+               VerticalOptions="Start"
+               HorizontalOptions="End"
+               WidthRequest="160"                   
+               Padding="0"
+               IsVisible="{Binding IsMenuVisible}">
+
+            <StackLayout VerticalOptions="Fill"
+                         HorizontalOptions="Fill">
+
+                <controls:ClickableContentView>
+                    
+                    <Label Text="{x:Static resources:AppResource.MenuSaveLabelText}"
+                           TextColor="{StaticResource tx_1}"
+                           Margin="20, 20, 20, 0"/>
+                    
+                </controls:ClickableContentView>
+
+                <controls:ClickableContentView>
+                    
+                    <Label Text="{x:Static resources:AppResource.MenuShareLabelText}"
+                           TextColor="{StaticResource tx_1}"
+                           Margin="20"/>
+
+                </controls:ClickableContentView>
+                    
+            </StackLayout>
+
+        </Frame>
+
+    </Grid>
+
+</views:BaseContentPage>

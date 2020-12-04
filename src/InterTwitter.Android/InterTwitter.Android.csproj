@@ -887,7 +887,6 @@
     <AndroidResource Include="Resources\xml\file_paths.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\loading.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_bookmarks_blue.png" />
