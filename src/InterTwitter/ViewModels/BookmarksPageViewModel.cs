@@ -76,10 +76,16 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _state, value);
         }
 
+        public ICommand GoToProfilePageCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnGoToProfilePageCommandAsync);
+
         public ICommand MenuClickCommand => SingleExecutionCommand.FromFunc(OnMenuClickCommandAsync);
+
         public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnOpenPostCommandAsync);
+
         public ICommand ClearBookmarksCommand => SingleExecutionCommand.FromFunc(OnClearBookmarksCommand);
+
         public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnLikeClickCommandAsync, delayMillisec: 50);
+
         public ICommand BookmarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookmarkCommandAsync, delayMillisec: 50);
 
         #endregion
@@ -134,6 +140,15 @@ namespace InterTwitter.ViewModels
         #endregion
 
         #region -- Private helpers --
+
+        private async Task OnGoToProfilePageCommandAsync(OwlViewModel owl)
+        {
+            var navParameters = new NavigationParameters();
+
+            navParameters.Add(Constants.Navigation.UserId, owl.Author.Id);
+
+            await NavigationService.NavigateAsync(nameof(ProfilePage), navParameters, useModalNavigation: true, true);
+        }
 
         private async Task OnOpenPostCommandAsync(OwlViewModel owl)
         {
@@ -192,7 +207,7 @@ namespace InterTwitter.ViewModels
             {
                 var authorizedUser = userResult.Result.ToViewModel();
 
-                BookmarksOwls = new ObservableCollection<OwlViewModel>(owlsResult.Result.Select(x => x.ToViewModel(authorizedUser.Id, OpenPostCommand, LikeClickCommand, BookmarkCommand)));
+                BookmarksOwls = new ObservableCollection<OwlViewModel>(owlsResult.Result.Select(x => x.ToViewModel(authorizedUser.Id, GoToProfilePageCommand, OpenPostCommand, LikeClickCommand, BookmarkCommand)));
                 if (BookmarksOwls is null || !BookmarksOwls.Any())
                 {
                     State = States.NoData;

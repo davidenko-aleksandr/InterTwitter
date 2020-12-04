@@ -18,6 +18,7 @@ namespace InterTwitter.ViewModels.OwlItems
         public OwlViewModel(
             OwlModel model,
             int authorizedUserId,
+            ICommand avatarTappedCommand,
             ICommand itemTappedCommand,
             ICommand likeTappedCommad,
             ICommand saveTappedCommand)
@@ -35,6 +36,7 @@ namespace InterTwitter.ViewModels.OwlItems
             Media = model.Media;
             Date = model.Date;
             MediaType = model.MediaType;
+            AvatarTappedCommand = avatarTappedCommand;
             ItemTappedCommand = itemTappedCommand;
             LikeTappedCommand = likeTappedCommad;
             SaveTappedCommand = saveTappedCommand;
@@ -153,6 +155,13 @@ namespace InterTwitter.ViewModels.OwlItems
         {
             get => _searchQuery;
             set => SetProperty(ref _searchQuery, value);
+        }
+
+        private ICommand _avatarTappedCommand;
+        public ICommand AvatarTappedCommand
+        {
+            get => _avatarTappedCommand;
+            set => SetProperty(ref _avatarTappedCommand, value);
         }
 
         private ICommand _itemTappedCommand;

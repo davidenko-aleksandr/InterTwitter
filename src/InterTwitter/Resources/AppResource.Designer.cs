@@ -99,7 +99,7 @@ namespace InterTwitter.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        public static string CancelButton {
+        internal static string CancelButton {
             get {
                 return ResourceManager.GetString("CancelButton", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace InterTwitter.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        public static string CancelText {
+        internal static string CancelText {
             get {
                 return ResourceManager.GetString("CancelText", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace InterTwitter.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to logout?.
         /// </summary>
-        public static string ConfirmLogout {
+        internal static string ConfirmLogout {
             get {
                 return ResourceManager.GetString("ConfirmLogout", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace InterTwitter.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Continue.
         /// </summary>
-        public static string ContinueButton {
+        internal static string ContinueButton {
             get {
                 return ResourceManager.GetString("ContinueButton", resourceCulture);
             }
@@ -513,7 +513,7 @@ namespace InterTwitter.Resources {
         /// <summary>
         ///   Looks up a localized string similar to You have no notifications yet.
         /// </summary>
-        public static string NoNotifications {
+        internal static string NoNotifications {
             get {
                 return ResourceManager.GetString("NoNotifications", resourceCulture);
             }
@@ -522,7 +522,7 @@ namespace InterTwitter.Resources {
         /// <summary>
         ///   Looks up a localized string similar to You have no owls yet.
         /// </summary>
-        public static string NoOwls {
+        internal static string NoOwls {
             get {
                 return ResourceManager.GetString("NoOwls", resourceCulture);
             }
@@ -531,7 +531,7 @@ namespace InterTwitter.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No results for .
         /// </summary>
-        public static string NoResultsText {
+        internal static string NoResultsText {
             get {
                 return ResourceManager.GetString("NoResultsText", resourceCulture);
             }

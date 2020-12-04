@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using InterTwitter.Extensions;
 using InterTwitter.Models;
+using InterTwitter.Services.PostAction;
+using InterTwitter.Enums;
 
 namespace InterTwitter.ViewModels
 {
@@ -21,17 +23,20 @@ namespace InterTwitter.ViewModels
         private readonly IAuthorizationService _authorizationService;
         private readonly IOwlService _owlService;
         private readonly IUserService _userService;
+        private readonly IPostActionService _postActionService;
 
         public ProfilePageViewModel(
             INavigationService navigationService,
             IAuthorizationService authorizationService,
             IOwlService owlService,
-            IUserService userService)
+            IUserService userService,
+            IPostActionService postActionService)
            : base(navigationService)
         {
             _authorizationService = authorizationService;
             _owlService = owlService;
             _userService = userService;
+            _postActionService = postActionService;
         }
 
         #region -- Public properties --
@@ -113,6 +118,8 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _likedOwls, value);
         }
 
+        public ICommand GoToProfilePageCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnGoToProfilePageCommandAsync);
+
         public ICommand BackCommand => SingleExecutionCommand.FromFunc(OnBackCommandAsync);
 
         public ICommand ChangeProfileCommand => SingleExecutionCommand.FromFunc(OnChangeProfileCommandAsync);
@@ -122,6 +129,12 @@ namespace InterTwitter.ViewModels
         public ICommand OpenDialogCommand => SingleExecutionCommand.FromFunc(OnOpenDialogCommand);
 
         public ICommand MenuClickCommand => SingleExecutionCommand.FromFunc(OnMenuClickCommandAsync);
+
+        public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnOpenPostCommandAsync);
+
+        public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnLikeClickCommandAsync, delayMillisec: 50);
+
+        public ICommand BookmarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookmarkCommandAsync, delayMillisec: 50);
 
         #endregion
 
@@ -151,6 +164,56 @@ namespace InterTwitter.ViewModels
         #endregion
 
         #region -- Private helpers --
+
+        private async Task OnGoToProfilePageCommandAsync(OwlViewModel owl)
+        {
+            var navParameters = new NavigationParameters();
+
+            navParameters.Add(Constants.Navigation.User, owl.Author.Id);
+
+            await NavigationService.NavigateAsync(nameof(ProfilePage), navParameters, useModalNavigation: true, true);
+        }
+
+        private async Task OnOpenPostCommandAsync(OwlViewModel owl)
+        {
+            NavigationParameters parameters = new NavigationParameters
+            {
+                {
+                    "OwlViewModel", owl
+                },
+            };
+
+            await NavigationService.NavigateAsync(nameof(PostPage), parameters, useModalNavigation: true, true);
+        }
+
+        private async Task OnLikeClickCommandAsync(OwlViewModel owl)
+        {
+            if (owl != null)
+            {
+                owl.IsLiked = !owl.IsLiked;
+                owl.LikesCount = owl.IsLiked ? ++owl.LikesCount : --owl.LikesCount;
+
+                await _postActionService.SaveActionAsync(owl.ToModel(), OwlAction.Liked);
+            }
+            else
+            {
+                //owl is null
+            }
+        }
+
+        private async Task OnBookmarkCommandAsync(OwlViewModel owl)
+        {
+            if (owl != null)
+            {
+                owl.IsBookmarked = !owl.IsBookmarked;
+
+                await _postActionService.SaveActionAsync(owl.ToModel(), OwlAction.Saved);
+            }
+            else
+            {
+                //owl is null
+            }
+        }
 
         private Task OnOpenDialogCommand()
         {
@@ -224,8 +287,8 @@ namespace InterTwitter.ViewModels
 
             await Task.WhenAll(owlAOResult, likedOwlsAOresult);
 
-            var owlList = ConverToList(owlAOResult);
-            var likedList = ConverToList(likedOwlsAOresult);
+            var owlList = ConvertToList(owlAOResult);
+            var likedList = ConvertToList(likedOwlsAOresult);
 
             Owls = new ObservableCollection<OwlViewModel>(owlList);
             LikedOwls = new ObservableCollection<OwlViewModel>(likedList);
@@ -239,10 +302,10 @@ namespace InterTwitter.ViewModels
             return Task.CompletedTask;
         }
 
-        private List<OwlViewModel> ConverToList(Task<AOResult<IEnumerable<OwlModel>>> result)
+        private List<OwlViewModel> ConvertToList(Task<AOResult<IEnumerable<OwlModel>>> result)
         {
             var owlResult = result.Result.Result;
-            return owlResult.Select(owl => owl.ToViewModel(User.Id, null, null, null)).ToList();
+            return owlResult.Select(owl => owl.ToViewModel(User.Id, GoToProfilePageCommand, OpenPostCommand, LikeClickCommand, BookmarkCommand)).ToList();
         }
 
         #endregion

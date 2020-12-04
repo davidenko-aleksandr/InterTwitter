@@ -143,6 +143,8 @@ namespace InterTwitter.ViewModels
 
         public ICommand IconClickCommand => SingleExecutionCommand.FromFunc(OnIconClickCommandAsync);
 
+        public ICommand GoToProfilePageCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnGoToProfilePageCommandAsync);
+
         public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnOpenPostCommandAsync);
 
         public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnLikeClickCommandAsync, delayMillisec: 50);
@@ -179,6 +181,15 @@ namespace InterTwitter.ViewModels
         #endregion
 
         #region -- Private helpers --
+
+        private async Task OnGoToProfilePageCommandAsync(OwlViewModel owl)
+        {
+            var navParameters = new NavigationParameters();
+
+            navParameters.Add(Constants.Navigation.UserId, owl.Author.Id);
+
+            await NavigationService.NavigateAsync(nameof(ProfilePage), navParameters, useModalNavigation: true, true);
+        }
 
         private async Task OnOpenPostCommandAsync(OwlViewModel owl)
         {
@@ -298,7 +309,7 @@ namespace InterTwitter.ViewModels
             var owlsResult = await _owlService.GetAllOwlsAsync();
             if (owlsResult.IsSuccess)
             {
-                var posts = owlsResult.Result.Select(x => x.ToViewModel(AuthorizedUser.Id, null, null, null));
+                var posts = owlsResult.Result.Select(x => x.ToViewModel(AuthorizedUser.Id, GoToProfilePageCommand, OpenPostCommand, LikeClickCommand, BookmarkCommand));
                 var allPosts = new List<OwlViewModel>();
 
                 foreach (var post in posts)
@@ -346,7 +357,7 @@ namespace InterTwitter.ViewModels
                 var foundPosts = new List<OwlViewModel>();
                 foreach (var owl in owlsResult.Result)
                 {
-                    var owlVM = owl.ToViewModel(AuthorizedUser.Id, OpenPostCommand, LikeClickCommand, BookmarkCommand);
+                    var owlVM = owl.ToViewModel(AuthorizedUser.Id, GoToProfilePageCommand, OpenPostCommand, LikeClickCommand, BookmarkCommand);
                     owlVM.SearchQuery = searchQuery;
                     foundPosts.Add(owlVM);
                 }
