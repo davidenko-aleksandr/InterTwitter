@@ -82,7 +82,7 @@
                         <On Platform="Android"
                             Value="0,0"/>
                         <On Platform="iOS"
-                            Value="-12,5"/>
+                            Value="0,0"/>
                     </OnPlatform>
                     
                 </Setter>
@@ -179,7 +179,7 @@
                 VerticalOptions="Start"
                 HorizontalOptions="End"
                 TextTransform="None"
-                CornerRadius="18"
+                CornerRadius="15"
                 Padding="0"
                 Margin="0,0,10,0"
                 HeightRequest="30"
@@ -188,12 +188,24 @@
                 BackgroundColor="Transparent"
                 IsVisible="{Binding IsAuthorized}"
                 BorderWidth="1"
-                Command="{Binding ChangeProfileCommand}"/>
-        
+                Command="{Binding ChangeProfileCommand}">
+
+            <Button.Padding>
+                <OnPlatform x:TypeArguments = "Thickness">
+                    <On Platform="Android"
+                            Value="0,0"/>
+                    <On Platform="iOS"
+                            Value="0,0"/>
+                </OnPlatform>
+            </Button.Padding>
+            
+        </Button>
+
         <!--BLACK_LIST LABEL-->
         <Frame Grid.Row="1"
                Style="{StaticResource StatusLabelFrameStyle}"
-               Margin="10,2"               
+               Margin="10,2" 
+               HasShadow="False"
                WidthRequest="140">
             
             <Frame.Triggers>

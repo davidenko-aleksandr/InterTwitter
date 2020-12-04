@@ -117,7 +117,7 @@ namespace InterTwitter.ViewModels
 
         public ICommand ChangeProfileCommand => SingleExecutionCommand.FromFunc(OnChangeProfileCommandAsync);
 
-        public ICommand CancellCommand => SingleExecutionCommand.FromFunc(OnCancellCommandAsync);
+        public ICommand CancellCommand => SingleExecutionCommand.FromFunc(OnCancelCommandAsync);
 
         public ICommand OpenDialogCommand => SingleExecutionCommand.FromFunc(OnOpenDialogCommand);
 
@@ -219,7 +219,6 @@ namespace InterTwitter.ViewModels
         private async Task SetDataAsync()
         {
             IsAuthorized = User.Id == _authorizationService.AuthorizedUserId;
-
             var owlAOResult = _owlService.GetAuthorOwlsAsync(User.Id);
             var likedOwlsAOresult = _owlService.GetLikedOwlsAsync(User.Id);
 
@@ -232,7 +231,7 @@ namespace InterTwitter.ViewModels
             LikedOwls = new ObservableCollection<OwlViewModel>(likedList);
         }
 
-        private Task OnCancellCommandAsync()
+        private Task OnCancelCommandAsync()
         {
             IsVisibleToBlackListConfirm = false;
             IsVisibleFromBlackListConfirm = false;
