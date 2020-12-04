@@ -208,12 +208,10 @@ namespace InterTwitter.ViewModels
             {
                 foreach (var hashtag in post.AllHashtags)
                 {
-                    var newPost = new OwlViewModel
+                    allPosts.Add(new OwlViewModel
                     {
                         CurrentHashtag = hashtag
-                    };
-
-                    allPosts.Add(newPost);
+                    });
                 }
             }
 
@@ -234,13 +232,7 @@ namespace InterTwitter.ViewModels
         private async void ShowFoundPostsAsync(string searchQuery)
         {
             var answer = await _owlService.GetAllOwlsAsync(searchQuery);
-            var foundPosts = new List<OwlViewModel>();
-            foreach (var owl in answer.Result)
-            {
-                owl.SearchQuery = searchQuery;
-                foundPosts.Add(owl);
-            }
-            FoundPosts = new ObservableCollection<OwlViewModel>(foundPosts);
+            FoundPosts = new ObservableCollection<OwlViewModel>(answer.Result.Select(x => { x.SearchQuery = searchQuery; return x; }));
             EmptyStateText = $"\"{SearchQuery}\"";
             IsEmptyStateVisible = FoundPosts.Count == 0;
 

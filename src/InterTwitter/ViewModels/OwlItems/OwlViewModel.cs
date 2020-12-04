@@ -1,6 +1,7 @@
 ﻿using InterTwitter.Models;
 using Prism.Mvvm;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace InterTwitter.ViewModels.OwlItems
@@ -23,17 +24,7 @@ namespace InterTwitter.ViewModels.OwlItems
             LikesCount = model.LikesList.Count;
             LikesList = model.LikesList;
             SavesList = model.SavesList;
-            AllHashtags = new List<string>();
-
-            foreach (var word in Text.Split(' '))
-            {
-                var match = Regex.Match(word, Constants.RegexHashtag);
-
-                if (match.Success)
-                {
-                    AllHashtags.Add(match.Value);
-                }
-            }
+            AllHashtags = new List<string>(Text.Split().Where(x => Regex.IsMatch(x, Constants.RegexHashtag)));
         }
 
         #region -- Public properties --
