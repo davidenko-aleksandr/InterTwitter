@@ -300,4 +300,13 @@
   <data name="NoHashTags" xml:space="preserve">
     <value>You have no hashtags yet</value>
   </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ConfirmLogout" xml:space="preserve">
+    <value>Are you sure you want to logout?</value>
+  </data>
+  <data name="ContinueButton" xml:space="preserve">
+    <value>Continue</value>
+  </data>
 </root>
