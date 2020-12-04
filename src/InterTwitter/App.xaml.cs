@@ -35,7 +35,7 @@ namespace InterTwitter
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
             FlowListView.Init();
 
-            MainPage = new MenuPage();
+            MainPage = new LogInPage();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -73,6 +73,5 @@ namespace InterTwitter
 
         #endregion
 
-        }
     }
 }

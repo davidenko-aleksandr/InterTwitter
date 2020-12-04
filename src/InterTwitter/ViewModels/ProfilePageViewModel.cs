@@ -1,5 +1,4 @@
 ﻿using System.Windows.Input;
-using InterTwitter.Models;
 using InterTwitter.Helpers;
 using Prism.Navigation;
 using System.Threading.Tasks;
@@ -7,7 +6,13 @@ using InterTwitter.Views;
 using InterTwitter.Services.Authorization;
 using System.Collections.ObjectModel;
 using InterTwitter.Services.Owl;
+using InterTwitter.Services.UserService;
+using InterTwitter.ViewModels.ProfilePageItems;
+using InterTwitter.ViewModels.OwlItems;
+using System.Collections.Generic;
+using System.Linq;
 using InterTwitter.Extensions;
+using InterTwitter.Models;
 
 namespace InterTwitter.ViewModels
 {
@@ -17,11 +22,12 @@ namespace InterTwitter.ViewModels
         private readonly IOwlService _owlService;
         private readonly IUserService _userService;
 
-        public ProfilePageViewModel(INavigationService navigationService,
-                                    IAuthorizationService authorizationService,
-                                    IOwlService owlService,
-                                    IUserService userService)
-                                   : base(navigationService)
+        public ProfilePageViewModel(
+            INavigationService navigationService,
+            IAuthorizationService authorizationService,
+            IOwlService owlService,
+            IUserService userService)
+           : base(navigationService)
         {
             _authorizationService = authorizationService;
             _owlService = owlService;
@@ -116,7 +122,7 @@ namespace InterTwitter.ViewModels
         public ICommand OpenDialogCommand => SingleExecutionCommand.FromFunc(OnOpenDialogCommand);
 
         public ICommand MenuClickCommand => SingleExecutionCommand.FromFunc(OnMenuClickCommandAsync);
-       
+
         #endregion
 
         #region -- Overrides --
@@ -135,7 +141,7 @@ namespace InterTwitter.ViewModels
             else
             {
                 var result = await _authorizationService.GetAuthorizedUserAsync();
-                User = result.Result;
+                User = new UserViewModel(result.Result);
             }
 
             await SetDataAsync();
@@ -166,7 +172,7 @@ namespace InterTwitter.ViewModels
             {
                 IsBackFrameIsVisible = false;
                 IsMenuVisible = false;
-                IsSecondaryMenuVisible = false;                
+                IsSecondaryMenuVisible = false;
             }
             else if (IsAuthorized)
             {
@@ -203,8 +209,8 @@ namespace InterTwitter.ViewModels
         {
             var tabs = new List<PofilePageItemViewModel>()
             {
-                { new PostsViewModel("Posts", Owls)},
-                { new LikesViewModel("Likes",LikedOwls) }
+                { new PostsViewModel("Posts", Owls) },
+                { new LikesViewModel("Likes", LikedOwls) },
             };
 
             Tabs = new ObservableCollection<PofilePageItemViewModel>(tabs);
@@ -212,23 +218,32 @@ namespace InterTwitter.ViewModels
 
         private async Task SetDataAsync()
         {
-             IsAuthorized = User.Id == _authorizationService.AuthorizedUserId;
-            
+            IsAuthorized = User.Id == _authorizationService.AuthorizedUserId;
+
             var owlAOResult = _owlService.GetAuthorOwlsAsync(User.Id);
             var likedOwlsAOresult = _owlService.GetLikedOwlsAsync(User.Id);
 
             await Task.WhenAll(owlAOResult, likedOwlsAOresult);
 
-            Owls = new ObservableCollection<OwlViewModel>(owlAOResult.Result.Result);
-            LikedOwls = new ObservableCollection<OwlViewModel>(likedOwlsAOresult.Result.Result);
+            var owlList = ConverToList(owlAOResult);
+            var likedList = ConverToList(likedOwlsAOresult);
+
+            Owls = new ObservableCollection<OwlViewModel>(owlList);
+            LikedOwls = new ObservableCollection<OwlViewModel>(likedList);
         }
 
         private Task OnCancellCommandAsync()
-        {            
+        {
             IsVisibleToBlackListConfirm = false;
             IsVisibleFromBlackListConfirm = false;
 
             return Task.CompletedTask;
+        }
+
+        private List<OwlViewModel> ConverToList(Task<AOResult<IEnumerable<OwlModel>>> result)
+        {
+            var owlResult = result.Result.Result;
+            return owlResult.Select(owl => owl.ToViewModel(User.Id, null, null, null)).ToList();
         }
 
         #endregion

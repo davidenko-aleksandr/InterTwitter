@@ -106,8 +106,6 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-<<<<<<< HEAD
-=======
         ///   Looks up a localized string similar to Unable to load popular hashtags.
         /// </summary>
         public static string CantLoadHashTags {
@@ -153,7 +151,6 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
->>>>>>> 4f369e775b96684cbf34e26f8782cdc53cdbe0c1
         ///   Looks up a localized string similar to Change profile.
         /// </summary>
         public static string ChangeProfileLable {
@@ -442,8 +439,6 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-<<<<<<< HEAD
-=======
         ///   Looks up a localized string similar to You have no bookmarks yet.
         /// </summary>
         public static string NoBookmarks {
@@ -453,7 +448,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have no hashtags yet.
+        ///   Looks up a localized string similar to &gt;&gt;&gt;&gt;&gt;&gt;&gt; 4f369e775b96684cbf34e26f8782cdc53cdbe0c1.
         /// </summary>
         public static string NoHashTags {
             get {
@@ -462,7 +457,6 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
->>>>>>> 4f369e775b96684cbf34e26f8782cdc53cdbe0c1
         ///   Looks up a localized string similar to No Internet connection.
         /// </summary>
         public static string NoInternetText {
@@ -472,8 +466,6 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-<<<<<<< HEAD
-=======
         ///   Looks up a localized string similar to You have no notifications yet.
         /// </summary>
         public static string NoNotifications {
@@ -492,7 +484,6 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
->>>>>>> 4f369e775b96684cbf34e26f8782cdc53cdbe0c1
         ///   Looks up a localized string similar to Notification.
         /// </summary>
         public static string NotificationPageTitle {

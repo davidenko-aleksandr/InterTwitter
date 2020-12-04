@@ -5,7 +5,8 @@ namespace InterTwitter.ViewModels.ProfilePageItems
 {
     public class LikesViewModel : PofilePageItemViewModel
     {
-        public LikesViewModel(string title, ObservableCollection<OwlViewModel> likes) : base(title)
+        public LikesViewModel(string title, ObservableCollection<OwlViewModel> likes)
+            : base(title)
         {
             Likes = likes;
         }
@@ -20,7 +21,6 @@ namespace InterTwitter.ViewModels.ProfilePageItems
         }
 
         #endregion
-
 
     }
 }

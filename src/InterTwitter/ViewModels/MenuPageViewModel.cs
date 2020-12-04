@@ -71,7 +71,7 @@ namespace InterTwitter.ViewModels
 
         #region -- Overrides --
 
-        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
+        protected override async void OnPropertyChanged(PropertyChangedEventArgs args)
         {
             base.OnPropertyChanged(args);
 
@@ -229,7 +229,7 @@ namespace InterTwitter.ViewModels
 
         public async void OnAppearing()
         {
-            await SetUserDataAsync();
+           await SetUserDataAsync();
         }
 
         public void OnDisappearing()

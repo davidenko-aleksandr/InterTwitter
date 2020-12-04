@@ -6,25 +6,33 @@ using Xamarin.Forms;
 
 namespace InterTwitter.Helpers
 {
-   public class ProfilePageTemplateSelector : DataTemplateSelector
+    public class ProfilePageTemplateSelector : DataTemplateSelector
     {
         public DataTemplate PostsViewTemplate { get; set; }
 
         public DataTemplate LikesViewTemplate { get; set; }
 
-<<<<<<< HEAD
-        protected override DataTemplate OnSelectTemplate(object item, BindableObject container) =>
-           item switch
-           {
-               LikesViewModel => LikesViewTemplate,
-               PostsViewModel => PostsViewTemplate,
-               _ => throw new ArgumentException($"Undefined item in: {nameof(ProfilePageTemplateSelector)}.{nameof(OnSelectTemplate)}")
-           };
-=======
+        //protected override DataTemplate OnSelectTemplate(object item, BindableObject container) =>
+        //   item switch
+        //   {
+        //       LikesViewModel => LikesViewTemplate,
+        //       PostsViewModel => PostsViewTemplate,
+        //       _ => throw new ArgumentException($"Undefined item in: {nameof(ProfilePageTemplateSelector)}.{nameof(OnSelectTemplate)}")
+        //   };
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            return LikesViewTemplate;
+            DataTemplate dataTemplate;
+
+            if (item is LikesViewModel)
+            {
+                dataTemplate = LikesViewTemplate;
+            }
+            else
+            {
+                dataTemplate = PostsViewTemplate;
+            }
+
+            return dataTemplate;
         }
->>>>>>> f3bc9c260b87115cba81921ffdd9f5c2b2600fbc
     }
 }

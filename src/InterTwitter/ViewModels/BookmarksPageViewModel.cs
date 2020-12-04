@@ -177,7 +177,7 @@ namespace InterTwitter.ViewModels
             }
         }
 
-        private  Task OnMenuClickCommandAsync()
+        private Task OnMenuClickCommandAsync()
         {
             IsMenuVisible = !IsMenuVisible;
 

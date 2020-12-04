@@ -3,14 +3,12 @@ using System.Collections.ObjectModel;
 
 namespace InterTwitter.ViewModels.ProfilePageItems
 {
-    class PostsViewModel : PofilePageItemViewModel
+    public class PostsViewModel : PofilePageItemViewModel
     {
-        
-        public PostsViewModel(string title, ObservableCollection<OwlViewModel> owls) : base(title)
+        public PostsViewModel(string title, ObservableCollection<OwlViewModel> owls)
+            : base(title)
         {
-
             Owls = owls;
-           
         }
 
         #region -- Public properties --
@@ -34,7 +32,7 @@ namespace InterTwitter.ViewModels.ProfilePageItems
         #region -- Private properties --
 
         //private async void InitDataAsync()
-        //{           
+        //{
         //    var isConnected = Connectivity.NetworkAccess;
 
         //    if (isConnected == NetworkAccess.Internet)
@@ -51,7 +49,6 @@ namespace InterTwitter.ViewModels.ProfilePageItems
         //        // IUserDialogs.Toast("No internet connection");
         //    }
         //}
-
         #endregion
     }
 }

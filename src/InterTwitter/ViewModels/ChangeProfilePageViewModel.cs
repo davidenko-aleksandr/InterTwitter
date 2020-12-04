@@ -145,7 +145,7 @@ namespace InterTwitter.ViewModels
             _userDialogs.ActionSheet(parameters);  //await
         }
 
-        private  Task OnSetHeaderImageCommandAsync()
+        private Task OnSetHeaderImageCommandAsync()
         {
             CallerPropertyName = nameof(User.ProfileHeaderImage);
 

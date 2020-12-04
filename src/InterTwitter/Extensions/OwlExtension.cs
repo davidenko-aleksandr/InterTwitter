@@ -1,9 +1,6 @@
 ﻿using InterTwitter.Enums;
 using InterTwitter.Models;
 using InterTwitter.ViewModels.OwlItems;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace InterTwitter.Extensions
@@ -62,7 +59,7 @@ namespace InterTwitter.Extensions
                     SavesList = viewModel.SavesList,
                     Media = viewModel.Media,
                     MediaType = viewModel.MediaType,
-                    Text = viewModel.Text
+                    Text = viewModel.Text,
                 };
             }
             else

@@ -169,9 +169,9 @@ namespace InterTwitter.Services.Owl
             return result;
         }
 
-         public async Task<AOResult<IEnumerable<OwlViewModel>>> GetLikedOwlsAsync(int authorId)
+        public async Task<AOResult<IEnumerable<OwlModel>>> GetLikedOwlsAsync(int authorId)
         {
-            var result = new AOResult<IEnumerable<OwlViewModel>>();
+            var result = new AOResult<IEnumerable<OwlModel>>();
 
             try
             {
@@ -187,7 +187,6 @@ namespace InterTwitter.Services.Owl
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {
@@ -255,7 +254,7 @@ namespace InterTwitter.Services.Owl
 
         #region -- Private helpers --
 
-        private  Task InitMock()
+        private async Task InitMock()
         {
             var usersResult = await _userService.GetUsersAsync();
             var users = usersResult.Result.ToList();
@@ -270,7 +269,7 @@ namespace InterTwitter.Services.Owl
                     Text = $"FoxNews daytime is virtually unwatchable, especially during the weekends. Watch OANN, newsmax, or almost anything else.You won’t have to suffer through endless interviews with Democrats, and even worse!",
                     MediaType = OwlType.NoMedia,
                     LikesList = new List<int>(),
-                    SavesList = new List<int>()
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -281,10 +280,10 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
-                        "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large"
+                        "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large",
                     },
                     LikesList = new List<int>(),
-                    SavesList = new List<int>()
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -295,10 +294,10 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.Video,
                     Media = new List<string>()
                     {
-                        "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
+                        "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
                     },
                     LikesList = new List<int>(),
-                    SavesList = new List<int>()
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -309,10 +308,10 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
-                        "https://i.gifer.com/Ar.gif"
+                        "https://i.gifer.com/Ar.gif",
                     },
                     LikesList = new List<int>(),
-                    SavesList = new List<int>()
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -323,10 +322,10 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
-                        "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
+                        "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large",
                     },
                     LikesList = new List<int>(),
-                    SavesList = new List<int>()
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -341,7 +340,7 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small"
                     },
                     LikesList = new List<int>(),
-                    SavesList = new List<int>()
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -352,10 +351,10 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
-                        "https://uc.uxpin.com/files/614612/609600/www.GIFCreator.me_W6dTbP.gif"
+                        "https://uc.uxpin.com/files/614612/609600/www.GIFCreator.me_W6dTbP.gif",
                     },
                     LikesList = new List<int>(),
-                    SavesList = new List<int>()
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -365,7 +364,7 @@ namespace InterTwitter.Services.Owl
                     Text = $"This guest post by Charlin Agramonte elaborates on how multilingual support is one of the most common requirements for mobile apps and the simplicity of building mobile apps with #Xamarin that handle multiple languages.",
                     MediaType = OwlType.NoMedia,
                     LikesList = new List<int>(),
-                    SavesList = new List<int>()
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -376,10 +375,10 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.Video,
                     Media = new List<string>()
                     {
-                        "http://vjs.zencdn.net/v/oceans.mp4"
+                        "http://vjs.zencdn.net/v/oceans.mp4",
                     },
                     LikesList = new List<int>(),
-                    SavesList = new List<int>()
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -389,7 +388,7 @@ namespace InterTwitter.Services.Owl
                     Text = "Rocky Balboa is a 2006 American sports drama film written, directed by, and starring Sylvester Stallone.",
                     MediaType = OwlType.NoMedia,
                     LikesList = new List<int>(),
-                    SavesList = new List<int>()
+                    SavesList = new List<int>(),
                 },
                 new OwlModel
                 {
@@ -405,7 +404,7 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EmplPyCW8AAL9g7?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmoZtwnW8AIbaO2?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
-                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
+                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -419,7 +418,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
-                        "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large"
+                        "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -433,7 +432,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.Video,
                     Media = new List<string>()
                     {
-                        "https://twitter.com/i/status/1329535287735816194"
+                        "https://twitter.com/i/status/1329535287735816194",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -457,7 +456,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
-                        "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
+                        "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -472,7 +471,7 @@ namespace InterTwitter.Services.Owl
                     Media = new List<string>()
                     {
                         "https://pbs.twimg.com/media/EfZTe2JWoAAsUuE?format=png&name=small",
-                        "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small"
+                        "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -506,7 +505,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.Video,
                     Media = new List<string>()
                     {
-                        "https://twitter.com/i/status/1262782634335383554"
+                        "https://twitter.com/i/status/1262782634335383554",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -535,7 +534,7 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EmplPyCW8AAL9g7?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmoZtwnW8AIbaO2?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
-                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
+                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -559,7 +558,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
-                        "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large"
+                        "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -573,7 +572,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.Video,
                     Media = new List<string>()
                     {
-                        "https://twitter.com/i/status/1329535287735816194"
+                        "https://twitter.com/i/status/1329535287735816194",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -597,7 +596,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
-                        "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
+                        "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -612,7 +611,7 @@ namespace InterTwitter.Services.Owl
                     Media = new List<string>()
                     {
                         "https://pbs.twimg.com/media/EfZTe2JWoAAsUuE?format=png&name=small",
-                        "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small"
+                        "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -646,7 +645,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.Video,
                     Media = new List<string>()
                     {
-                        "https://twitter.com/i/status/1262782634335383554"
+                        "https://twitter.com/i/status/1262782634335383554",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -675,7 +674,7 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EmplPyCW8AAL9g7?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmoZtwnW8AIbaO2?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
-                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
+                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -699,7 +698,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
-                        "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large"
+                        "https://pbs.twimg.com/media/EnOyo7eXcAURaz6?format=jpg&name=large",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -713,7 +712,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.Video,
                     Media = new List<string>()
                     {
-                        "https://twitter.com/i/status/1329535287735816194"
+                        "https://twitter.com/i/status/1329535287735816194",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -737,7 +736,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.OneImage,
                     Media = new List<string>()
                     {
-                        "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large"
+                        "https://pbs.twimg.com/media/EnsDBAZW4AAov-H?format=jpg&name=large",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -752,7 +751,7 @@ namespace InterTwitter.Services.Owl
                     Media = new List<string>()
                     {
                         "https://pbs.twimg.com/media/EfZTe2JWoAAsUuE?format=png&name=small",
-                        "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small"
+                        "https://pbs.twimg.com/media/Ee1a-gVXgAEZcFT?format=png&name=small",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -786,7 +785,7 @@ namespace InterTwitter.Services.Owl
                     MediaType = OwlType.Video,
                     Media = new List<string>()
                     {
-                        "https://twitter.com/i/status/1262782634335383554"
+                        "https://twitter.com/i/status/1262782634335383554",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -815,7 +814,7 @@ namespace InterTwitter.Services.Owl
                         "https://pbs.twimg.com/media/EmplPyCW8AAL9g7?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmoZtwnW8AIbaO2?format=jpg&name=small",
                         "https://pbs.twimg.com/media/EmfLMz9WEAAinng?format=jpg&name=small",
-                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small"
+                        "https://pbs.twimg.com/media/EmeURLUWMAgBJb_?format=jpg&name=small",
                     },
                     LikesList = new List<int>(),
                     SavesList = new List<int>(),
@@ -870,21 +869,17 @@ namespace InterTwitter.Services.Owl
             _owlsMock[6].LikesList.Insert(0, 3);
             _owlsMock[6].LikesList.Insert(0, 2);
             _owlsMock[6].LikesList.Insert(0, 1);
-<<<<<<< HEAD
+
             _owlsMock[43].LikesList.Insert(0, 2);
             _owlsMock[23].LikesList.Insert(0, 2);
-=======
+
             _owlsMock[6].SavesList.Insert(0, 3);
 
             _owlsMock[11].LikesList.Insert(0, 0);
             _owlsMock[11].LikesList.Insert(0, 1);
-
->>>>>>> 4f369e775b96684cbf34e26f8782cdc53cdbe0c1
             _owlsMock[4].LikesList.Insert(0, 3);
             _owlsMock[4].LikesList.Insert(0, 1);
             _owlsMock[4].SavesList.Insert(0, 1);
-
-            return Task.CompletedTask;
         }
 
         #endregion

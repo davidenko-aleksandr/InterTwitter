@@ -147,7 +147,7 @@ namespace InterTwitter.Services.UserService
                     Name = "Test UserName",
                     Password = "Qwerty12",
                     Avatar = Constants.DefaultProfilePicture,
-                    ProfileHeaderImage = "pic_profile_header_photo.jpg"
+                    ProfileHeaderImage = "pic_profile_header_photo.jpg",
                 },
                 new UserModel()
                 {
