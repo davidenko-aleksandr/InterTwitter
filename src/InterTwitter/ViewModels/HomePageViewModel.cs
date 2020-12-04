@@ -89,18 +89,6 @@ namespace InterTwitter.ViewModels
 
         #region -- Overrides --
 
-        public async override void Initialize(INavigationParameters parameters)
-        {
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                await FillCollectionAsync();
-            }
-            else
-            {
-                Owls = null;
-            }
-        }
-
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             Icon = "ic_home_blue";
@@ -114,7 +102,7 @@ namespace InterTwitter.ViewModels
             }
             else
             {
-                if (Owls is null)
+                if (Owls == null)
                 {
                     State = States.NoInternet;
                 }

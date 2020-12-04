@@ -12,7 +12,7 @@
                         BackgroundColor="{StaticResource bg_1}">
 
     <Grid>
-        
+
         <Grid>
 
             <Grid.RowDefinitions>
@@ -27,7 +27,7 @@
                                               RightIconClickCommand="{Binding MenuClickCommand}"
                                               TitleText="{x:Static resources:AppResource.BookmarksTitle}"
                                               IsBottomLineVisible="True"/>
-            
+
             <!-- STATE CONTAINERS BLOCK-->
             <stateContainer:StateContainer State="{Binding State}"
                                            Grid.Row="1">
@@ -53,7 +53,7 @@
                                                    BackgroundColor="{StaticResource bg_1}"
                                                    SelectionMode="None"
                                                    IsTabStop="True"/>
-                    
+
                 </stateContainer:StateCondition>
 
                 <!-- ERROR -->
@@ -137,7 +137,7 @@
 
                 <TapGestureRecognizer Command="{Binding MenuClickCommand}"/>
 
-            </sh:Shadows.GestureRecognizers>   
+            </sh:Shadows.GestureRecognizers>
 
             <Frame BackgroundColor="{StaticResource bg_1}"
                    CornerRadius="5"
@@ -159,7 +159,7 @@
                 </controls:ClickableContentView>
 
             </Frame>
-            
+
         </sh:Shadows>
 
     </Grid>
