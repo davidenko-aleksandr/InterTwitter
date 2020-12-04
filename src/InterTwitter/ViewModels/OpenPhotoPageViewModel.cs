@@ -126,6 +126,8 @@ namespace InterTwitter.ViewModels
 
                     IsBookmarked = _owlViewModel.IsBookmarked;
 
+                    ImageNumber = 1;
+
                     IsLiked = _owlViewModel.IsLiked;
                 }
             }
