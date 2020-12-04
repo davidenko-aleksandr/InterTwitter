@@ -28,11 +28,6 @@ namespace InterTwitter.Services.Authorization
             get => _settingsService.AuthorizedUserId;
         }
 
-        public bool IsAuthorized
-        {
-            get => _settingsService.AuthorizedUserId != Constants.NoAuthorizedUser;
-        }
-
         public async Task<AOResult<bool>> LogInAsync(string email, string password)
         {
             var result = new AOResult<bool>();

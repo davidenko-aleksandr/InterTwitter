@@ -358,16 +358,29 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Muted profiles.
-        /// </summary>
-        public static string MutedProfilesText {
-            get {
-                return ResourceManager.GetString("MutedProfilesText", resourceCulture);
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string MenuSaveLabelText {
             get {
                 return ResourceManager.GetString("MenuSaveLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        public static string MenuShareLabelText {
+            get {
+                return ResourceManager.GetString("MenuShareLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Muted profiles.
+        /// </summary>
+        public static string MutedProfilesText {
+            get {
+                return ResourceManager.GetString("MutedProfilesText", resourceCulture);
             }
         }
         
@@ -386,11 +399,6 @@ namespace InterTwitter.Resources {
         public static string MuteText {
             get {
                 return ResourceManager.GetString("MuteText", resourceCulture);
-        ///   Looks up a localized string similar to Share.
-        /// </summary>
-        public static string MenuShareLabelText {
-            get {
-                return ResourceManager.GetString("MenuShareLabelText", resourceCulture);
             }
         }
         
@@ -458,7 +466,7 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &gt;&gt;&gt;&gt;&gt;&gt;&gt; 4f369e775b96684cbf34e26f8782cdc53cdbe0c1.
+        ///   Looks up a localized string similar to You have no hashtags yet.
         /// </summary>
         public static string NoHashTags {
             get {
@@ -548,29 +556,20 @@ namespace InterTwitter.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oops, something went wrong.
+        ///   Looks up a localized string similar to Posts.
         /// </summary>
-        public static string RandomError {
+        public static string PostsText {
             get {
-                return ResourceManager.GetString("RandomError", resourceCulture);
+                return ResourceManager.GetString("PostsText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ic_right.png.
+        ///   Looks up a localized string similar to Posts.
         /// </summary>
-        public static string RightImage {
+        public static string PostText {
             get {
-                return ResourceManager.GetString("RightImage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to saved your post.
-        /// </summary>
-        public static string SavedPostText {
-            get {
-                return ResourceManager.GetString("SavedPostText", resourceCulture);
+                return ResourceManager.GetString("PostText", resourceCulture);
             }
         }
         

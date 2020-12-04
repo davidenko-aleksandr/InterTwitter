@@ -6,8 +6,6 @@ namespace InterTwitter.Services.Authorization
 {
     public interface IAuthorizationService
     {
-        bool IsAuthorized { get; }
-
         int AuthorizedUserId { get; }
 
         Task<AOResult<bool>> LogInAsync(string email, string password);
