@@ -10,7 +10,7 @@
                         x:Class="InterTwitter.Views.SearchPage"
                         x:Name="searchPage"
                         IconImageSource="{Binding Icon}"
-                        BackgroundColor="{StaticResource bg_1}">
+                        BackgroundColor="{StaticResource bg_1}">  
 
     <Grid RowSpacing="0">
 
