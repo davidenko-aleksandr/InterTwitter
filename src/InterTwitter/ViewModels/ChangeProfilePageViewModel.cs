@@ -113,6 +113,7 @@ namespace InterTwitter.ViewModels
                 {
                     //NewPassword is null
                 }
+
                 await _userServcie.UpdateUserAsync(User.ToModel());
 
                 var parameters = new NavigationParameters();

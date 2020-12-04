@@ -81,7 +81,7 @@ namespace InterTwitter.Services.Owl
 
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
-                    owls = new List<OwlModel>(owls.Where(x => 
+                    owls = new List<OwlModel>(owls.Where(x =>
                     x.Author.Name.ToUpper().Contains(searchQuery?.ToUpper()) ||
                     x.Text.ToUpper().Contains(searchQuery?.ToUpper())));
                 }
@@ -100,7 +100,6 @@ namespace InterTwitter.Services.Owl
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {
@@ -156,7 +155,6 @@ namespace InterTwitter.Services.Owl
                     {
                         result.SetFailure();
                     }
-
                 }
                 else
                 {
@@ -249,7 +247,7 @@ namespace InterTwitter.Services.Owl
                 new OwlModel
                 {
                     Id = 1,
-                    Author =users[0],
+                    Author = users[0],
                     Date = new DateTime(2020, 11, 20, 12, 00, 00),
                     Text = "Look at this in Michigan! A day AFTER the election, Biden receives a dump of 134,886 votes at 6:31AM!",
                     MediaType = OwlType.OneImage,
@@ -744,7 +742,7 @@ namespace InterTwitter.Services.Owl
                 new OwlModel
                 {
                     Id = 39,
-                    Author =users[3],
+                    Author = users[3],
                     Date = new DateTime(2020, 7, 2, 18, 30, 25),
                     Text = $"This guest post by Charlin Agramonte elaborates on how multilingual support is one of the most common requirements for mobile apps and the simplicity of building mobile apps with #Xamarin that handle multiple languages.",
                     MediaType = OwlType.NoMedia,

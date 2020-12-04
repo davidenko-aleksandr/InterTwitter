@@ -24,7 +24,6 @@ namespace InterTwitter.ViewModels
         private readonly IPostActionService _postActionService;
         private readonly IAuthorizationService _authorizationService;
 
-
         public BookmarksPageViewModel(
             INavigationService navigationService,
             IOwlService owlService,
@@ -98,7 +97,6 @@ namespace InterTwitter.ViewModels
             {
                 BookmarksOwls = null;
             }
-
         }
 
         public async override void OnNavigatedTo(INavigationParameters parameters)
@@ -107,7 +105,6 @@ namespace InterTwitter.ViewModels
             IsMenuVisible = false;
             IsBarIconVisible = false;
 
-            
             Connectivity.ConnectivityChanged += InternetConnectionChanged;
 
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
@@ -125,9 +122,7 @@ namespace InterTwitter.ViewModels
                 {
                     // bookmarksowls is not null
                 }
-
             }
-
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -153,10 +148,8 @@ namespace InterTwitter.ViewModels
             await NavigationService.NavigateAsync(nameof(PostPage), parameters, useModalNavigation: true, true);
         }
 
-
         private async void InternetConnectionChanged(object sender, ConnectivityChangedEventArgs e)
         {
-
             if (e.NetworkAccess == NetworkAccess.Internet)
             {
                 State = States.Loading;
@@ -166,7 +159,6 @@ namespace InterTwitter.ViewModels
             {
                 //no internet connection
             }
-
         }
 
         private async Task OnClearBookmarksCommand()
@@ -218,7 +210,7 @@ namespace InterTwitter.ViewModels
 
         private async Task OnLikeClickCommandAsync(OwlViewModel owl)
         {
-            if (owl is not null)
+            if (owl != null)
             {
                 owl.IsLiked = !owl.IsLiked;
 
@@ -234,7 +226,7 @@ namespace InterTwitter.ViewModels
 
         private async Task OnBookmarkCommandAsync(OwlViewModel owl)
         {
-            if (owl is not null)
+            if (owl != null)
             {
                 owl.IsBookmarked = !owl.IsBookmarked;
 
@@ -245,7 +237,6 @@ namespace InterTwitter.ViewModels
                 //owl is null
             }
         }
-
 
         #endregion
 

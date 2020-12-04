@@ -12,8 +12,7 @@ namespace InterTwitter.Controls.StateContainer
     {
         public List<StateCondition> Conditions { get; set; } = new List<StateCondition>();
 
-
-        public static readonly BindableProperty StateProperty = 
+        public static readonly BindableProperty StateProperty =
             BindableProperty.Create(nameof(State), typeof(object), typeof(StateContainer), null, BindingMode.Default, null, StateChanged);
         public object State
         {
@@ -35,7 +34,7 @@ namespace InterTwitter.Controls.StateContainer
             }
             else
             {
-
+                //parent is null
             }
         }
 
@@ -47,7 +46,7 @@ namespace InterTwitter.Controls.StateContainer
             }
             else
             {
-
+                //conditions is not null
             }
 
             try
@@ -56,15 +55,15 @@ namespace InterTwitter.Controls.StateContainer
                 {
                     if (Content != null)
                     {
-                        await Content.FadeTo(0, 100U); 
-                        Content.IsVisible = false; 
-                        await Task.Delay(30); 
+                        await Content.FadeTo(0, 100U);
+                        Content.IsVisible = false;
+                        await Task.Delay(30);
                     }
                     else
                     {
-
+                        //Content is null
                     }
-  
+
                     stateCondition.Content.Opacity = 0;
                     Content = stateCondition.Content;
                     Content.IsVisible = true;

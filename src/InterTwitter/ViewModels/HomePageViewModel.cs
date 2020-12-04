@@ -74,7 +74,7 @@ namespace InterTwitter.ViewModels
             get => _state;
             set => SetProperty(ref _state, value);
         }
-        
+
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
 
         public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnOpenPostCommandAsync);
@@ -99,7 +99,6 @@ namespace InterTwitter.ViewModels
             {
                 Owls = null;
             }
-
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -123,7 +122,6 @@ namespace InterTwitter.ViewModels
                 {
                     // bookmarksowls is not null
                 }
-
             }
         }
 
@@ -137,7 +135,6 @@ namespace InterTwitter.ViewModels
         #endregion
 
         #region -- Private helpers --
-
 
         private async void InternetConnectionChanged(object sender, ConnectivityChangedEventArgs e)
         {
@@ -170,7 +167,6 @@ namespace InterTwitter.ViewModels
                 {
                     State = States.Normal;
                 }
-
             }
             else
             {
@@ -217,7 +213,7 @@ namespace InterTwitter.ViewModels
 
         private async Task OnBookmarkCommandAsync(OwlViewModel owl)
         {
-            if (owl is not null)
+            if (owl != null)
             {
                 owl.IsBookmarked = !owl.IsBookmarked;
 

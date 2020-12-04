@@ -13,6 +13,5 @@ namespace InterTwitter.Models
         public UserModel User { get; set; }
 
         public OwlAction Action { get; set; }
-
     }
 }

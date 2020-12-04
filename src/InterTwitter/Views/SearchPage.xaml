@@ -87,15 +87,9 @@
         <BoxView Grid.Row="1"
                  Style="{StaticResource boxViewSeparator}"/>
 
-        <!-- TABBED PAGE NAVIGATION BAR -->
-        <controls:TabbedPageNavigationBar  Grid.Row="0"
-                                           IsLeftIconVisible="False"
-                                           TitleText="{x:Static resources:AppResource.NotificationPageTitle}"
-                                           IsBottomLineVisible="True"/>
-
         <!-- STATE CONTAINERS BLOCK-->
         <stateContainer:StateContainer State="{Binding State}"
-                                        Grid.Row="2">
+                                       Grid.Row="2">
 
             <!-- LOADING -->
             <stateContainer:StateCondition State="Loading">

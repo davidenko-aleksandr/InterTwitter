@@ -105,7 +105,6 @@ namespace InterTwitter.Services.UserService
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {

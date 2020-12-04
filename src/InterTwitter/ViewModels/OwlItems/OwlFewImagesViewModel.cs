@@ -7,11 +7,11 @@ namespace InterTwitter.ViewModels.OwlItems
     public class OwlFewImagesViewModel : OwlViewModel
     {
         public OwlFewImagesViewModel(
-            OwlModel model, 
+            OwlModel model,
             int authorizedUserId,
             ICommand itemTappedCommand,
             ICommand likeTappedCommad,
-            ICommand saveTappedCommand) 
+            ICommand saveTappedCommand)
             : base(model, authorizedUserId, itemTappedCommand, likeTappedCommad, saveTappedCommand)
         {
             Media = model.Media;

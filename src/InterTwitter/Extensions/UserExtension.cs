@@ -3,12 +3,12 @@ using InterTwitter.ViewModels;
 
 namespace InterTwitter.Extensions
 {
-    public static class UserExtension 
+    public static class UserExtension
     {
         public static UserModel ToModel(this UserViewModel viewModel)
         {
             UserModel model = null;
-            if(viewModel != null)
+            if (viewModel != null)
             {
                 model = new UserModel
                 {
@@ -31,7 +31,7 @@ namespace InterTwitter.Extensions
         public static UserViewModel ToViewModel(this UserModel model)
         {
             UserViewModel viewModel = null;
-            if (model is not null)
+            if (model != null)
             {
                 viewModel = new UserViewModel(model);
             }

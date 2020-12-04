@@ -30,6 +30,5 @@ namespace InterTwitter.Services.Permission
 
             return permissionStatus;
         }
-
     }
 }

@@ -78,7 +78,6 @@ namespace InterTwitter.ViewModels
             {
                 //no internet connection
             }
-
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -103,7 +102,6 @@ namespace InterTwitter.ViewModels
             {
                 State = States.NoInternet;
             }
-
         }
 
         private async Task OnOpenPostCommandAsync(NotificationViewModel notification)

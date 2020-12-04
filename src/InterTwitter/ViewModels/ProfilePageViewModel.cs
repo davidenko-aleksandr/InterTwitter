@@ -74,7 +74,7 @@ namespace InterTwitter.ViewModels
             {
                 var userResult = result.Result;
 
-                if(userResult != null)
+                if (userResult != null)
                 {
                     User = userResult.ToViewModel();
                 }

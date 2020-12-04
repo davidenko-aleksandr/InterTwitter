@@ -126,7 +126,6 @@ namespace InterTwitter.Services.PostAction
                 {
                     result.SetFailure();
                 }
-
             }
             catch (Exception ex)
             {

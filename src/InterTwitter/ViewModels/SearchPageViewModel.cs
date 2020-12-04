@@ -141,7 +141,6 @@ namespace InterTwitter.ViewModels
             {
                 //no internet connection
             }
-
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
@@ -165,7 +164,6 @@ namespace InterTwitter.ViewModels
             {
                 State = States.NoInternet;
             }
-
         }
 
         private void OnSearchCommand()
@@ -226,7 +224,7 @@ namespace InterTwitter.ViewModels
             var owlsResult = await _owlService.GetAllOwlsAsync();
             if (owlsResult.IsSuccess)
             {
-                var posts = owlsResult.Result.Select(x=> x.ToViewModel(AuthorizedUser.Id, null, null, null));
+                var posts = owlsResult.Result.Select(x => x.ToViewModel(AuthorizedUser.Id, null, null, null));
                 var allPosts = new List<OwlViewModel>();
 
                 foreach (var post in posts)
@@ -244,7 +242,6 @@ namespace InterTwitter.ViewModels
 
                 var groups = allPosts.GroupBy(x => x.CurrentHashtag).Select(g => new Grouping<string, OwlViewModel>(g.Key, g));
                 groups = groups.OrderByDescending(x => x.Count);
-                
                 if (groups == null || !groups.Any())
                 {
                     State = States.NoData;
@@ -262,13 +259,11 @@ namespace InterTwitter.ViewModels
 
                     State = States.Normal;
                 }
-
             }
             else
             {
                 State = States.Error;
             }
-
         }
 
         private async void ShowFoundPostsAsync(string searchQuery)

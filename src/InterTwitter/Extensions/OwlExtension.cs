@@ -44,7 +44,6 @@ namespace InterTwitter.Extensions
                     break;
             }
 
-
             return viewModel;
         }
 
@@ -52,7 +51,7 @@ namespace InterTwitter.Extensions
         {
             OwlModel model = null;
 
-            if(viewModel != null)
+            if (viewModel != null)
             {
                 model = new OwlModel
                 {
@@ -65,7 +64,6 @@ namespace InterTwitter.Extensions
                     MediaType = viewModel.MediaType,
                     Text = viewModel.Text
                 };
-
             }
             else
             {
