@@ -3,7 +3,9 @@ using InterTwitter.Extensions;
 using InterTwitter.Helpers;
 using InterTwitter.Services.PostAction;
 using InterTwitter.ViewModels.OwlItems;
+using InterTwitter.Views;
 using Prism.Navigation;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -58,6 +60,8 @@ namespace InterTwitter.ViewModels
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
         public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnLikeClickCommandAsync);
         public ICommand BookmarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookmarkCommandAsync);
+
+        public ICommand OpenPhotoCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnOpenPhotoCommandAsync);
 
         #endregion
 
@@ -120,6 +124,25 @@ namespace InterTwitter.ViewModels
                 owl.IsBookmarked = !owl.IsBookmarked;
 
                 await _postActionService.SaveActionAsync(owl.ToModel(), OwlAction.Saved);
+            }
+            else
+            {
+                //something went wrong
+            }
+        }
+
+        private async Task OnOpenPhotoCommandAsync(OwlViewModel owl)
+        {
+            if (owl != null)
+            {
+                NavigationParameters parameters = new NavigationParameters
+                {
+                    {
+                        "OwlViewModel", owl
+                    }
+                };
+
+                await NavigationService.NavigateAsync(nameof(OpenPhotoPage), parameters, useModalNavigation: true, true);
             }
             else
             {
