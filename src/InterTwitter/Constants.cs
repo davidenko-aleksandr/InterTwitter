@@ -25,6 +25,7 @@ namespace InterTwitter
             public const string Name = "Name";
             public const string Email = "Email";
             public const string User = "User";
+            public const string UserId = "UserId";
         }
     }
 }

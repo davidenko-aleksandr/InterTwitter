@@ -1,6 +1,49 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <DataTemplate xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InterTwitter.Views.Templates.ProfilePageTemplates.ProfilePagePostsTemplate">
-  
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:transformation="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+              xmlns:controls="clr-namespace:InterTwitter.Controls" 
+              xmlns:helpers="clr-namespace:InterTwitter.Helpers" 
+              xmlns:templates="clr-namespace:InterTwitter.Views.Templates.OwlTemplates" 
+              xmlns:viewModels="clr-namespace:InterTwitter.ViewModels.OwlItems"
+              x:Class="InterTwitter.Views.Templates.ProfilePageTemplates.ProfilePagePostsTemplate">
+
+
+    <Grid>
+
+        <controls:CustomCollectionView x:Name="customCollectionView" 
+                                       ItemsSource="{Binding Owls}"                                       
+                                       ItemsUpdatingScrollMode="KeepItemsInView"
+                                       BackgroundColor="{StaticResource bg_1}"
+                                       SelectionMode="None"
+                                       IsTabStop="True">
+
+            <controls:CustomCollectionView.ItemTemplate>
+                <helpers:OwlTemplateSelector>
+
+                    <helpers:OwlTemplateSelector.OwlFewImageTemplate>
+                        <templates:OwlFewImageTemplate x:DataType="viewModels:OwlViewModel"/>
+                    </helpers:OwlTemplateSelector.OwlFewImageTemplate>
+
+                    <helpers:OwlTemplateSelector.OwlNoMediaTemplate>
+                        <templates:OwlNoMediaTemplate x:DataType="viewModels:OwlViewModel"/>
+                    </helpers:OwlTemplateSelector.OwlNoMediaTemplate>
+
+                    <helpers:OwlTemplateSelector.OwlOneImageTemplate>
+                        <templates:OwlOneImageTemplate x:DataType="viewModels:OwlViewModel"/>
+                    </helpers:OwlTemplateSelector.OwlOneImageTemplate>
+
+                    <helpers:OwlTemplateSelector.OwlVideoTemplate>
+                        <templates:OwlVideoTemplate x:DataType="viewModels:OwlViewModel"/>
+                    </helpers:OwlTemplateSelector.OwlVideoTemplate>
+
+                </helpers:OwlTemplateSelector>
+
+            </controls:CustomCollectionView.ItemTemplate>
+
+        </controls:CustomCollectionView>
+
+    </Grid>
+
 </DataTemplate>

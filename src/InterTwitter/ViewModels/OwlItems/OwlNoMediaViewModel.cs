@@ -8,10 +8,11 @@ namespace InterTwitter.ViewModels.OwlItems
         public OwlNoMediaViewModel(
             OwlModel model,
             int authorizedUserId,
+            ICommand avatarTappedCommand,
             ICommand itemTappedCommand,
             ICommand likeTappedCommad,
             ICommand saveTappedCommand)
-            : base(model, authorizedUserId, itemTappedCommand, likeTappedCommad, saveTappedCommand)
+            : base(model, authorizedUserId, avatarTappedCommand, itemTappedCommand, likeTappedCommad, saveTappedCommand)
         {
         }
     }

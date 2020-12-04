@@ -75,6 +75,8 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _state, value);
         }
 
+        public ICommand GoToProfilePageCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnGoToProfilePageCommandAsync);
+
         public ICommand OpenMenuCommand => SingleExecutionCommand.FromFunc(OnOpenMenuCommandAsync);
 
         public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnOpenPostCommandAsync);
@@ -124,6 +126,15 @@ namespace InterTwitter.ViewModels
 
         #region -- Private helpers --
 
+        private async Task OnGoToProfilePageCommandAsync(OwlViewModel owl)
+        {
+            var navParameters = new NavigationParameters();
+
+            navParameters.Add(Constants.Navigation.UserId, owl.Author.Id);
+
+            await NavigationService.NavigateAsync(nameof(ProfilePage), navParameters, useModalNavigation: true, true);
+        }
+
         private async void InternetConnectionChanged(object sender, ConnectivityChangedEventArgs e)
         {
             if (e.NetworkAccess == NetworkAccess.Internet)
@@ -146,7 +157,7 @@ namespace InterTwitter.ViewModels
             {
                 AuthorizedUser = userResult.Result.ToViewModel();
 
-                Owls = new ObservableCollection<OwlViewModel>(owlsResult.Result.Select(x => x.ToViewModel(AuthorizedUser.Id, OpenPostCommand, LikeClickCommand, BookmarkCommand)));
+                Owls = new ObservableCollection<OwlViewModel>(owlsResult.Result.Select(x => x.ToViewModel(AuthorizedUser.Id, GoToProfilePageCommand, OpenPostCommand, LikeClickCommand, BookmarkCommand)));
                 if (Owls is null || !Owls.Any())
                 {
                     State = States.NoData;

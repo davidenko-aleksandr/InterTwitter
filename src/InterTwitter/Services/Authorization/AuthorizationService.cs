@@ -23,6 +23,11 @@ namespace InterTwitter.Services.Authorization
 
         #region -- IAuthorizationService implementation --
 
+        public int AuthorizedUserId
+        {
+            get => _settingsService.AuthorizedUserId;
+        }
+
         public async Task<AOResult<bool>> LogInAsync(string email, string password)
         {
             var result = new AOResult<bool>();
@@ -82,7 +87,7 @@ namespace InterTwitter.Services.Authorization
                         Name = name,
                         Password = password,
                         Avatar = Constants.DefaultProfilePicture,
-                        ProfileHeaderImage = "pic_profile_header_photo.jpg"
+                        ProfileHeaderImage = "pic_profile_header_photo.jpg",
                     };
 
                     await _userService.AddUserAsync(user);

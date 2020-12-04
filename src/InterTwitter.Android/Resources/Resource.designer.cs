@@ -13925,34 +13925,37 @@ namespace InterTwitter.Droid
 			public const int notify_panel_notification_icon_bg = 2131165351;
 			
 			// aapt resource value: 0x7F0700A8
-			public const int pic_logo_big = 2131165352;
+			public const int pic_image_background = 2131165352;
 			
 			// aapt resource value: 0x7F0700A9
-			public const int pic_logo_small = 2131165353;
+			public const int pic_logo_big = 2131165353;
 			
 			// aapt resource value: 0x7F0700AA
-			public const int pic_profile_big = 2131165354;
+			public const int pic_logo_small = 2131165354;
 			
 			// aapt resource value: 0x7F0700AB
-			public const int pic_profile_header_photo = 2131165355;
+			public const int pic_profile_big = 2131165355;
 			
 			// aapt resource value: 0x7F0700AC
-			public const int pic_profile_small = 2131165356;
+			public const int pic_profile_header_photo = 2131165356;
 			
 			// aapt resource value: 0x7F0700AD
-			public const int roundedbg = 2131165357;
+			public const int pic_profile_small = 2131165357;
 			
 			// aapt resource value: 0x7F0700AE
-			public const int roundedbgdark = 2131165358;
+			public const int roundedbg = 2131165358;
 			
 			// aapt resource value: 0x7F0700AF
-			public const int splash_screen = 2131165359;
+			public const int roundedbgdark = 2131165359;
 			
 			// aapt resource value: 0x7F0700B0
-			public const int tooltip_frame_dark = 2131165360;
+			public const int splash_screen = 2131165360;
 			
 			// aapt resource value: 0x7F0700B1
-			public const int tooltip_frame_light = 2131165361;
+			public const int tooltip_frame_dark = 2131165361;
+			
+			// aapt resource value: 0x7F0700B2
+			public const int tooltip_frame_light = 2131165362;
 			
 			static Drawable()
 			{

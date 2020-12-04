@@ -145,7 +145,7 @@ namespace InterTwitter.ViewModels
             _userDialogs.ActionSheet(parameters);  //await
         }
 
-        private async Task OnSetHeaderImageCommandAsync()
+        private Task OnSetHeaderImageCommandAsync()
         {
             CallerPropertyName = nameof(User.ProfileHeaderImage);
 
@@ -154,7 +154,9 @@ namespace InterTwitter.ViewModels
             parameters.Add(AppResource.TakeGalleryPicture, TakeGalleryPicture, null);
             parameters.SetCancel(AppResource.CancelText, null, null);
 
-            _userDialogs.ActionSheet(parameters); //await
+            _userDialogs.ActionSheet(parameters);
+
+            return Task.CompletedTask;
         }
 
         private bool CheckNewPasswordValidity()
@@ -168,17 +170,17 @@ namespace InterTwitter.ViewModels
 
             if (OldPassword != User.Password)
             {
-                _userDialogs.Toast(AppResource.WrongEmailPasswordText);
+                //_userDialogs.Toast(AppResource.WrongEmailPasswordText);
                 isValid = false;
             }
             else if (!Validator.IsMatch(User.Name, Validator.RegexName))
             {
-                _userDialogs.Toast(AppResource.WrongNameText);
+                //_userDialogs.Toast(AppResource.WrongNameText);
                 isValid = false;
             }
             else if (!Validator.IsMatch(User.Email, Validator.RegexEmail))
             {
-                _userDialogs.Toast(AppResource.WrongEmailPasswordText);
+                //_userDialogs.Toast(AppResource.WrongEmailPasswordText);
                 isValid = false;
             }
             else

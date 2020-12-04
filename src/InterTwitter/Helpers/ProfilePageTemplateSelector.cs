@@ -1,11 +1,12 @@
-﻿using System;
+﻿using InterTwitter.ViewModels.ProfilePageItems;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
 namespace InterTwitter.Helpers
 {
-   public class ProfilePageTemplateSelector : DataTemplateSelector
+    public class ProfilePageTemplateSelector : DataTemplateSelector
     {
         public DataTemplate PostsViewTemplate { get; set; }
 
@@ -13,7 +14,18 @@ namespace InterTwitter.Helpers
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            return LikesViewTemplate;
+            DataTemplate dataTemplate;
+
+            if (item is LikesViewModel)
+            {
+                dataTemplate = LikesViewTemplate;
+            }
+            else
+            {
+                dataTemplate = PostsViewTemplate;
+            }
+
+            return dataTemplate;
         }
     }
 }

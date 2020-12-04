@@ -1,16 +1,13 @@
 ﻿using InterTwitter.Enums;
 using InterTwitter.Models;
 using InterTwitter.ViewModels.OwlItems;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace InterTwitter.Extensions
 {
     public static class OwlExtension
     {
-        public static OwlViewModel ToViewModel(this OwlModel model, int authorizedUserId, ICommand itemTappedCommand, ICommand likeTappedCommand, ICommand saveTappedCommand)
+        public static OwlViewModel ToViewModel(this OwlModel model, int authorizedUserId, ICommand avatarTappedCommand, ICommand itemTappedCommand, ICommand likeTappedCommand, ICommand saveTappedCommand)
         {
             OwlViewModel viewModel = null;
 
@@ -18,25 +15,25 @@ namespace InterTwitter.Extensions
             {
                 case OwlType.OneImage:
                     {
-                        viewModel = new OwlOneImageViewModel(model, authorizedUserId, itemTappedCommand, likeTappedCommand, saveTappedCommand);
+                        viewModel = new OwlOneImageViewModel(model, authorizedUserId, avatarTappedCommand, itemTappedCommand, likeTappedCommand, saveTappedCommand);
                         break;
                     }
 
                 case OwlType.FewImages:
                     {
-                        viewModel = new OwlFewImagesViewModel(model, authorizedUserId, itemTappedCommand, likeTappedCommand, saveTappedCommand);
+                        viewModel = new OwlFewImagesViewModel(model, authorizedUserId, avatarTappedCommand, itemTappedCommand, likeTappedCommand, saveTappedCommand);
                         break;
                     }
 
                 case OwlType.Video:
                     {
-                        viewModel = new OwlVideoViewModel(model, authorizedUserId, itemTappedCommand, likeTappedCommand, saveTappedCommand);
+                        viewModel = new OwlVideoViewModel(model, authorizedUserId, avatarTappedCommand,  itemTappedCommand, likeTappedCommand, saveTappedCommand);
                         break;
                     }
 
                 case OwlType.NoMedia:
                     {
-                        viewModel = new OwlNoMediaViewModel(model, authorizedUserId, itemTappedCommand, likeTappedCommand, saveTappedCommand);
+                        viewModel = new OwlNoMediaViewModel(model, authorizedUserId, avatarTappedCommand, itemTappedCommand, likeTappedCommand, saveTappedCommand);
                         break;
                     }
 
@@ -62,7 +59,7 @@ namespace InterTwitter.Extensions
                     SavesList = viewModel.SavesList,
                     Media = viewModel.Media,
                     MediaType = viewModel.MediaType,
-                    Text = viewModel.Text
+                    Text = viewModel.Text,
                 };
             }
             else

@@ -24,6 +24,8 @@ namespace InterTwitter.iOS
             Xamarin.Calabash.Start();
 #endif
             global::Xamarin.Forms.Forms.Init();
+            Sharpnado.Tabs.iOS.Preserver.Preserve();
+
             Sharpnado.Shades.iOS.iOSShadowsRenderer.Initialize();
             FormsVideoPlayer.Init();
             CachedImageRenderer.Init();
@@ -36,7 +38,10 @@ namespace InterTwitter.iOS
                 VerboseLoadingCancelledLogging = false,
             };
             ImageService.Instance.Initialize(config);
+
             CardsViewRenderer.Preserve();
+
+
 
             LoadApplication(new App(new iOSInitializer()));
 
