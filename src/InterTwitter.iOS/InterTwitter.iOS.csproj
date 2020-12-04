@@ -28,6 +28,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <LangVersion>latestmajor</LangVersion>
+    <CodesignProvision>HW Simple AdHoc</CodesignProvision>
+    <CodesignKey>Apple Distribution: Sergii Gerasymenko (6XMYH77MJ3)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -69,67 +71,58 @@
     <LangVersion>latestmajor</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEV|iPhone' ">
-    <Optimize>false</Optimize>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\DEV</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;DEV;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Sergii Gerasymenko (6XMYH77MJ3)</CodesignKey>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchVerbosity>
-    </MtouchVerbosity>
-    <MtouchFloat32>true</MtouchFloat32>
-    <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchArch>ARM64</MtouchArch>
     <LangVersion>latestmajor</LangVersion>
     <CodesignProvision>HW Simple AdHoc</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DEV|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhoneSimulator\DEV</OutputPath>
     <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;DEV;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchVerbosity>
-    </MtouchVerbosity>
-    <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <LangVersion>latestmajor</LangVersion>
+    <CodesignProvision>HW Simple AdHoc</CodesignProvision>
+    <CodesignKey>Apple Distribution: Sergii Gerasymenko (6XMYH77MJ3)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'STAGE|iPhone' ">
-    <Optimize>false</Optimize>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\STAGE</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;STAGE;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchVerbosity>
-    </MtouchVerbosity>
-    <MtouchFloat32>true</MtouchFloat32>
-    <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>Apple Distribution: Sergii Gerasymenko (6XMYH77MJ3)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchArch>ARM64</MtouchArch>
     <LangVersion>latestmajor</LangVersion>
+    <CodesignProvision>HW Simple AdHoc</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'STAGE|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhoneSimulator\STAGE</OutputPath>
     <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;STAGE;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchVerbosity>
-    </MtouchVerbosity>
-    <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <LangVersion>latestmajor</LangVersion>
+    <CodesignProvision>HW Simple AdHoc</CodesignProvision>
+    <CodesignKey>Apple Distribution: Sergii Gerasymenko (6XMYH77MJ3)</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
