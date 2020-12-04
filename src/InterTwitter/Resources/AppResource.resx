@@ -120,11 +120,32 @@
   <data name="AddPhotoIcon" xml:space="preserve">
     <value>ic_add_photo.png</value>
   </data>
+  <data name="BlacklistText" xml:space="preserve">
+    <value>Profile in BlackList</value>
+  </data>
+  <data name="BookmarksTitle" xml:space="preserve">
+    <value>Bookmarks</value>
+  </data>
   <data name="CameraPermisionWarning" xml:space="preserve">
     <value>You need allow to use camera on your device</value>
   </data>
   <data name="CancelText" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="CantLoadHashTags" xml:space="preserve">
+    <value>Unable to load popular hashtags</value>
+  </data>
+  <data name="CantLoadPost" xml:space="preserve">
+    <value>Unable to load post</value>
+  </data>
+  <data name="CantUpdateBookmarks" xml:space="preserve">
+    <value>Unable to update bookmarks</value>
+  </data>
+  <data name="CantUpdateFeed" xml:space="preserve">
+    <value>Unable to update the feed</value>
+  </data>
+  <data name="CantUpdateNotifications" xml:space="preserve">
+    <value>Unable to update notifications</value>
   </data>
   <data name="ChangeProfileLable" xml:space="preserve">
     <value>Change profile</value>
@@ -144,6 +165,9 @@
   <data name="CreateAccountLabel" xml:space="preserve">
     <value>Create your account</value>
   </data>
+  <data name="DeleteBookmarksText" xml:space="preserve">
+    <value>Delete all bookmarks</value>
+  </data>
   <data name="EmailErrorMessage" xml:space="preserve">
     <value>Wrong Email</value>
   </data>
@@ -153,11 +177,17 @@
   <data name="EmptyEntryText" xml:space="preserve">
     <value>Fields shoudn't be empty</value>
   </data>
+  <data name="ExistEmailError" xml:space="preserve">
+    <value>Email is already exist!</value>
+  </data>
   <data name="EyeOffImage" xml:space="preserve">
     <value>ic_eye_off.png</value>
   </data>
   <data name="EyeOnImage" xml:space="preserve">
     <value>ic_eye_on.png</value>
+  </data>
+  <data name="FromBlackListText" xml:space="preserve">
+    <value>Remove from Blacklist</value>
   </data>
   <data name="GetAccountLabel" xml:space="preserve">
     <value>Get your account</value>
@@ -168,14 +198,38 @@
   <data name="InvalidUserDataText" xml:space="preserve">
     <value>Invalid user data</value>
   </data>
+  <data name="LeftGreyImage" xml:space="preserve">
+    <value>ic_left_grey.png</value>
+  </data>
+  <data name="LeftImage" xml:space="preserve">
+    <value>ic_left.png</value>
+  </data>
   <data name="LikedPostText" xml:space="preserve">
     <value>liked your post</value>
+  </data>
+  <data name="LikesText" xml:space="preserve">
+    <value>Likes</value>
   </data>
   <data name="LogInButton" xml:space="preserve">
     <value>Log In</value>
   </data>
   <data name="LogoImage" xml:space="preserve">
     <value>pic_logo_small.png</value>
+  </data>
+  <data name="MenuSaveLabelText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MenuShareLabelText" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="MutedProfilesText" xml:space="preserve">
+    <value>Muted profiles</value>
+  </data>
+  <data name="MutedText" xml:space="preserve">
+    <value>Muted</value>
+  </data>
+  <data name="MuteText" xml:space="preserve">
+    <value>Mute</value>
   </data>
   <data name="NameEntryPlaceHolder" xml:space="preserve">
     <value>Name</value>
@@ -195,11 +249,29 @@
   <data name="NextButton" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="NoBookmarks" xml:space="preserve">
+    <value>You have no bookmarks yet</value>
+  </data>
+  <data name="NoHashTags" xml:space="preserve">
+    <value>You have no hashtags yet</value>
+  </data>
   <data name="NoInternetText" xml:space="preserve">
     <value>No Internet connection</value>
   </data>
+  <data name="NoNotifications" xml:space="preserve">
+    <value>You have no notifications yet</value>
+  </data>
+  <data name="NoOwls" xml:space="preserve">
+    <value>You have no owls yet</value>
+  </data>
+  <data name="NoResultsText" xml:space="preserve">
+    <value>No results for </value>
+  </data>
   <data name="NotificationPageTitle" xml:space="preserve">
     <value>Notification</value>
+  </data>
+  <data name="OkText" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="OldPasswordText" xml:space="preserve">
     <value>Old password</value>
@@ -210,29 +282,47 @@
   <data name="PasswordText" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PicProfileHeaderImage" xml:space="preserve">
+    <value>pic_profile_header_photo.jpg</value>
+  </data>
+  <data name="PostsText" xml:space="preserve">
+    <value>Posts</value>
+  </data>
+  <data name="ProfileInBlackListText" xml:space="preserve">
+    <value>Profile in BlackList</value>
+  </data>
   <data name="RandomError" xml:space="preserve">
     <value>Oops, something went wrong</value>
+  </data>
+  <data name="RightImage" xml:space="preserve">
+    <value>ic_right.png</value>
   </data>
   <data name="SavedPostText" xml:space="preserve">
     <value>saved your post</value>
   </data>
-  <data name="PicProfileHeaderImage" xml:space="preserve">
-    <value>pic_profile_header_photo.jpg</value>
-  </data>
   <data name="SaveIcon" xml:space="preserve">
     <value>ic_check_blue.png</value>
   </data>
+  <data name="ShareLabelText" xml:space="preserve">
+    <value>Share</value>
+  </data>
   <data name="SignUpButton" xml:space="preserve">
     <value>Sign Up</value>
-  </data>
-  <data name="VideoText" xml:space="preserve">
-    <value>Video</value>
   </data>
   <data name="TakeCameraPicture" xml:space="preserve">
     <value>Take picture from camera</value>
   </data>
   <data name="TakeGalleryPicture" xml:space="preserve">
     <value>Take picture from gallery</value>
+  </data>
+  <data name="ToBlackListText" xml:space="preserve">
+    <value>Add to Blacklist</value>
+  </data>
+  <data name="ToBlackListWarning" xml:space="preserve">
+    <value>This user will not see your posts</value>
+  </data>
+  <data name="VideoText" xml:space="preserve">
+    <value>Video</value>
   </data>
   <data name="WrongEmailPasswordText" xml:space="preserve">
     <value>Wrong email or password</value>
@@ -242,95 +332,5 @@
   </data>
   <data name="WrongOldPassword" xml:space="preserve">
     <value>You entered wrong old password</value>
-  </data>
-  <data name="OkText" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="ExistEmailError" xml:space="preserve">
-    <value>Email is already exist!</value>
-  </data>
-  <data name="BookmarksTitle" xml:space="preserve">
-    <value>Bookmarks</value>
-  </data>
-  <data name="LeftGreyImage" xml:space="preserve">
-    <value>ic_left_grey.png</value>
-  </data>
-  <data name="LeftImage" xml:space="preserve">
-    <value>ic_left.png</value>
-  </data>
-  <data name="RightImage" xml:space="preserve">
-    <value>ic_right.png</value>
-  </data>
-  <data name="DeleteBookmarksText" xml:space="preserve">
-    <value>Delete all bookmarks</value>
-  </data>
-  <data name="BlacklistText" xml:space="preserve">
-    <value>Profile in BlackList</value>
-  </data>
-  <data name="MutedProfilesText" xml:space="preserve">
-    <value>Muted profiles</value>
-  </data>
-  <data name="ShareLabelText" xml:space="preserve">
-    <value>Share</value>
-  </data>
-  <data name="MuteText" xml:space="preserve">
-    <value>Mute</value>
-  </data>
-  <data name="ProfileInBlackListText" xml:space="preserve">
-    <value>Profile in BlackList</value>
-  </data>
-  <data name="LikesText" xml:space="preserve">
-    <value>Likes</value>
-  </data>
-  <data name="PostsText" xml:space="preserve">
-    <value>Posts</value>
-  </data>
-  <data name="MutedText" xml:space="preserve">
-    <value>Muted</value>
-  </data>
-  <data name="FromBlackListText" xml:space="preserve">
-    <value>Remove from Blacklist</value>
-  </data>
-  <data name="ToBlackListText" xml:space="preserve">
-    <value>Add to Blacklist</value>
-  </data>
-  <data name="ToBlackListWarning" xml:space="preserve">
-    <value>This user will not see your posts</value>
-</data>
-  <data name="MenuSaveLabelText" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="MenuShareLabelText" xml:space="preserve">
-    <value>Share</value>
-  </data>
-  <data name="CantUpdateBookmarks" xml:space="preserve">
-    <value>Unable to update bookmarks</value>
-  </data>
-  <data name="CantUpdateFeed" xml:space="preserve">
-    <value>Unable to update the feed</value>
-  </data>
-  <data name="CantUpdateNotifications" xml:space="preserve">
-    <value>Unable to update notifications</value>
-  </data>
-  <data name="NoBookmarks" xml:space="preserve">
-    <value>You have no bookmarks yet</value>
-  </data>
-  <data name="NoNotifications" xml:space="preserve">
-    <value>You have no notifications yet</value>
-  </data>
-  <data name="NoOwls" xml:space="preserve">
-    <value>You have no owls yet</value>
-  </data>
-  <data name="CantLoadPost" xml:space="preserve">
-    <value>Unable to load post</value>
-  </data>
-  <data name="CantLoadHashTags" xml:space="preserve">
-    <value>Unable to load popular hashtags</value>
-  </data>
-  <data name="NoResultsText" xml:space="preserve">
-    <value>No results for </value>
-  </data>
-  <data name="NoHashTags" xml:space="preserve">
-    <value>You have no hashtags yet</value>
   </data>
 </root>
