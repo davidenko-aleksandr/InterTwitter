@@ -33,18 +33,10 @@
                 <cards:CarouselView.ItemTemplate>
                     <DataTemplate>
                         <ContentView>
-                            <Frame 
-                                HeightRequest="300"
-                                WidthRequest="300"
-                                Padding="0" 
-                                HasShadow="false"
-                                IsClippedToBounds="true"
-                                CornerRadius="10">
 
                                 <ffimage:CachedImage Source="{Binding .}"
                                                      BackgroundColor="{StaticResource tx_3}"/>
-
-                            </Frame>
+                            
                         </ContentView>
                     </DataTemplate>
                 </cards:CarouselView.ItemTemplate>

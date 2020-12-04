@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using InterTwitter.Models;
 using InterTwitter.Helpers;
 using Prism.Navigation;
@@ -8,6 +7,7 @@ using InterTwitter.Views;
 using InterTwitter.Services.Authorization;
 using System.Collections.ObjectModel;
 using InterTwitter.Services.Owl;
+using InterTwitter.Extensions;
 
 namespace InterTwitter.ViewModels
 {
@@ -74,42 +74,37 @@ namespace InterTwitter.ViewModels
             {
                 var userResult = result.Result;
 
-                if(userResult is not null)
+                if (userResult != null)
                 {
-                    User = userResult;
+                    User = userResult.ToViewModel();
                 }
                 else
                 {
                     //userResult was null
                 }
-
             }
             else
             {
                 //result is failed
             }
-
         }
 
         private async Task OnChangeProfileCommandAsync()
         {
-            var parameters = new NavigationParameters()
-            {
-                { Constants.Navigation.User, User}
-            };
+            var parameters = new NavigationParameters();
+
+            parameters.Add(Constants.Navigation.User, User);
 
             await NavigationService.NavigateAsync(nameof(ChangeProfilePage), parameters);
         }
 
         private async Task OnBackCommandAsync()
         {
-            var parameters = new NavigationParameters()
-            {
-                { Constants.Navigation.User, User}
-            };
+            var parameters = new NavigationParameters();
+            parameters.Add(Constants.Navigation.User, User);
 
-           await NavigationService.GoBackAsync(parameters);
-        }       
+            await NavigationService.GoBackAsync(parameters);
+        }
 
         #endregion
 

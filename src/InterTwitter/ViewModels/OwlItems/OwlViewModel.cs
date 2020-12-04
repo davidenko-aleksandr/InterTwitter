@@ -1,24 +1,28 @@
 ﻿using InterTwitter.Enums;
 using InterTwitter.Models;
 using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace InterTwitter.ViewModels.OwlItems
 {
     public class OwlViewModel : BindableBase
     {
-        public OwlViewModel() { }
+        public OwlViewModel()
+        {
+        }
 
         public OwlViewModel(
             OwlModel model,
-            UserModel author,
-            int authorizedUserId)
+            int authorizedUserId,
+            ICommand itemTappedCommand,
+            ICommand likeTappedCommad,
+            ICommand saveTappedCommand)
         {
             Id = model.Id;
-            AuthorId = author.Id;
-            AuthorAvatar = author.Avatar;
-            AuthorNickName = author.Name;
+            Author = model.Author;
             Text = model.Text;
             PostDate = model.Date.ToString("dd.MM.yyyy");
             PostTime = model.Date.ToString("HH:mm");
@@ -28,7 +32,11 @@ namespace InterTwitter.ViewModels.OwlItems
             LikesList = model.LikesList;
             SavesList = model.SavesList;
             Media = model.Media;
+            Date = model.Date;
             MediaType = model.MediaType;
+            ItemTappedCommand = itemTappedCommand;
+            LikeTappedCommand = likeTappedCommad;
+            SaveTappedCommand = saveTappedCommand;
             AllHashtags = new List<string>();
 
             foreach (var word in Text.Split(' '))
@@ -44,6 +52,13 @@ namespace InterTwitter.ViewModels.OwlItems
 
         #region -- Public properties --
 
+        private DateTime _date;
+        public DateTime Date
+        {
+            get => _date;
+            set => SetProperty(ref _date, value);
+        }
+
         private int _Id;
         public int Id
         {
@@ -51,25 +66,11 @@ namespace InterTwitter.ViewModels.OwlItems
             set => SetProperty(ref _Id, value);
         }
 
-        private int _authorId;
-        public int AuthorId
+        private UserModel _author;
+        public UserModel Author
         {
-            get => _authorId;
-            set => SetProperty(ref _authorId, value);
-        }
-
-        private string _authorAvatar;
-        public string AuthorAvatar
-        {
-            get => _authorAvatar;
-            set => SetProperty(ref _authorAvatar, value);
-        }
-
-        private string _authorNickName;
-        public string AuthorNickName
-        {
-            get => _authorNickName;
-            set => SetProperty(ref _authorNickName, value);
+            get => _author;
+            set => SetProperty(ref _author, value);
         }
 
         private string _text;
@@ -154,6 +155,27 @@ namespace InterTwitter.ViewModels.OwlItems
         {
             get => _currentHashtag;
             set => SetProperty(ref _currentHashtag, value);
+        }
+
+        private ICommand _itemTappedCommand;
+        public ICommand ItemTappedCommand
+        {
+            get => _itemTappedCommand;
+            set => SetProperty(ref _itemTappedCommand, value);
+        }
+
+        private ICommand _likeTappedCommand;
+        public ICommand LikeTappedCommand
+        {
+            get => _likeTappedCommand;
+            set => SetProperty(ref _likeTappedCommand, value);
+        }
+
+        private ICommand _saveTappedCommand;
+        public ICommand SaveTappedCommand
+        {
+            get => _saveTappedCommand;
+            set => SetProperty(ref _saveTappedCommand, value);
         }
 
         #endregion

@@ -11,6 +11,7 @@ using InterTwitter.Resources;
 using InterTwitter.Services.Permission;
 using static Xamarin.Essentials.Permissions;
 using Xamarin.Essentials;
+using InterTwitter.Extensions;
 
 namespace InterTwitter.ViewModels
 {
@@ -83,7 +84,14 @@ namespace InterTwitter.ViewModels
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             var userResult = await _authorizationService.GetAuthorizedUserAsync();
-            User = userResult.Result;
+            if (userResult.IsSuccess)
+            {
+                User = userResult.Result.ToViewModel();
+            }
+            else
+            {
+                //userResult failed
+            }
         }
 
         #endregion
@@ -105,12 +113,12 @@ namespace InterTwitter.ViewModels
                 {
                     //NewPassword is null
                 }
-                await _userServcie.UpdateUserAsync(User);
 
-                var parameters = new NavigationParameters()
-                {
-                    { Constants.Navigation.User, User }
-                };
+                await _userServcie.UpdateUserAsync(User.ToModel());
+
+                var parameters = new NavigationParameters();
+
+                parameters.Add(Constants.Navigation.User, User);
 
                 await NavigationService.GoBackAsync(parameters);
             }
@@ -134,7 +142,7 @@ namespace InterTwitter.ViewModels
             parameters.Add(AppResource.TakeGalleryPicture, TakeGalleryPicture, null);
             parameters.SetCancel(AppResource.CancelText, null, null);
 
-            _userDialogs.ActionSheet(parameters);  //await 
+            _userDialogs.ActionSheet(parameters);  //await
         }
 
         private async Task OnSetHeaderImageCommandAsync()
@@ -157,6 +165,7 @@ namespace InterTwitter.ViewModels
         private bool CheckUserDataValidity()
         {
             bool isValid;
+
             if (OldPassword != User.Password)
             {
                 _userDialogs.Toast(AppResource.WrongEmailPasswordText);
@@ -194,7 +203,7 @@ namespace InterTwitter.ViewModels
 
                     MediaFile file = await _mediaPluggin.TakePhotoAsync(options);
 
-                    if (file is not null)
+                    if (file != null)
                     {
                         SetPicture(CallerPropertyName, file.Path);
                     }
@@ -210,7 +219,7 @@ namespace InterTwitter.ViewModels
             }
             else
             {
-                await _userDialogs.AlertAsync(AppResource.CameraPermisionWarning, okText: AppResource.OkText);                
+                await _userDialogs.AlertAsync(AppResource.CameraPermisionWarning, okText: AppResource.OkText);
                 await _permissionService.RequestPermissionAsync<Camera>();
             }
         }
@@ -245,11 +254,13 @@ namespace InterTwitter.ViewModels
                         User.ProfileHeaderImage = path;
                         break;
                     }
+
                 case nameof(User.Avatar):
                     {
                         User.Avatar = path;
                         break;
                     }
+
                 default:
                     {
                         break;

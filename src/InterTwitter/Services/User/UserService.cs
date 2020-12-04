@@ -1,11 +1,9 @@
 ﻿using InterTwitter.Helpers;
 using InterTwitter.Models;
-using InterTwitter.ViewModels;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using InterTwitter.Extensions;
 
 namespace InterTwitter.Services.UserService
 {
@@ -20,16 +18,15 @@ namespace InterTwitter.Services.UserService
 
         #region -- IUserService Implementation --
 
-        public async Task<AOResult<List<UserViewModel>>> GetUsersAsync()
+        public async Task<AOResult<IEnumerable<UserModel>>> GetUsersAsync()
         {
-            var result = new AOResult<List<UserViewModel>>();
+            var result = new AOResult<IEnumerable<UserModel>>();
 
             try
             {
                 if (_usersRepositoryMock != null)
                 {
-                    var list = _usersRepositoryMock.Select(x => new UserViewModel(x)).ToList();
-                    result.SetSuccess(list);
+                    result.SetSuccess(_usersRepositoryMock);
                 }
                 else
                 {
@@ -50,7 +47,7 @@ namespace InterTwitter.Services.UserService
 
             try
             {
-                var user = _usersRepositoryMock.First(x => x.Id == id);
+                var user = _usersRepositoryMock.FirstOrDefault(x => x.Id == id);
 
                 if (user != null)
                 {
@@ -75,7 +72,7 @@ namespace InterTwitter.Services.UserService
             try
             {
                 _usersRepositoryMock.Add(user);
-                
+
                 result.SetSuccess(true);
             }
             catch (Exception ex)
@@ -86,22 +83,21 @@ namespace InterTwitter.Services.UserService
             return result;
         }
 
-        public async Task<AOResult<bool>> UpdateUserAsync(UserViewModel userViewModel)
+        public async Task<AOResult<bool>> UpdateUserAsync(UserModel userModel)
         {
-             
             var result = new AOResult<bool>();
 
             try
             {
-                var changingUser = _usersRepositoryMock.FirstOrDefault(x => x.Id == userViewModel.Id);
+                var changingUser = _usersRepositoryMock.FirstOrDefault(x => x.Id == userModel.Id);
 
-                if (changingUser is not null)
+                if (changingUser != null)
                 {
-                    changingUser.Avatar = userViewModel.Avatar;
-                    changingUser.Email = userViewModel.Email;
-                    changingUser.ProfileHeaderImage = userViewModel.ProfileHeaderImage;
-                    changingUser.Name = userViewModel.Name;
-                    changingUser.Password = userViewModel.Password;
+                    changingUser.Avatar = userModel.Avatar;
+                    changingUser.Email = userModel.Email;
+                    changingUser.ProfileHeaderImage = userModel.ProfileHeaderImage;
+                    changingUser.Name = userModel.Name;
+                    changingUser.Password = userModel.Password;
 
                     result.SetSuccess(true);
                 }
@@ -120,7 +116,7 @@ namespace InterTwitter.Services.UserService
 
         #endregion
 
-        #region -- Private Helpers -- 
+        #region -- Private Helpers --
 
         private void InitData()
         {
@@ -159,11 +155,10 @@ namespace InterTwitter.Services.UserService
                     Email = "xamarin@bugs.net",
                     Name = "Xamarin",
                     Password = "Xamarin20",
-                    Avatar = "https://pbs.twimg.com/profile_images/471641515756769282/RDXWoY7W_400x400.png",
+                    Avatar = "https://camo.githubusercontent.com/c44a0cd002d743f55c5cace3716bd2dc87055d796fd681af90d564d669d5b27c/68747470733a2f2f672e7265646469746d656469612e636f6d2f46326d53715263654e5162596457684161546f307879347552345178516c424d524659416e3178724b4b342e6769663f773d33323026733d6232643165353665383237333333373130343861376532623664363162376638",
                     ProfileHeaderImage = "https://pbs.twimg.com/profile_banners/299659914/1401283128/1500x500",
-                }
+                },
             };
-
         }
 
         #endregion

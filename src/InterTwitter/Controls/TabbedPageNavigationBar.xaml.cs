@@ -95,7 +95,7 @@ namespace InterTwitter.Controls
             var oldOffset = (MovingStates)oldValue;
             var newOffset = (MovingStates)newValue;
 
-            if (tab is not null && oldOffset != newOffset)
+            if (tab != null && oldOffset != newOffset)
             {
                 switch (newOffset)
                 {
@@ -105,12 +105,14 @@ namespace InterTwitter.Controls
                             tab.FadeTo(1, 300);
                             break;
                         }
+
                     case MovingStates.MovingDown:
                         {
                             tab.TranslateTo(0, -tab.Height);
                             tab.FadeTo(0, 300);
                             break;
                         }
+
                     default:
                         {
                             break;
@@ -119,7 +121,7 @@ namespace InterTwitter.Controls
             }
             else
             {
-                //tab is null of oldOffset == newOffset 
+                //tab is null of oldOffset == newOffset
             }
         }
 

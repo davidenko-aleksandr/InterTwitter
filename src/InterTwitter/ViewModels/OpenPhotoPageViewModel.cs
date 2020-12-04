@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using InterTwitter.Enums;
+using InterTwitter.Extensions;
 using InterTwitter.Helpers;
 using InterTwitter.Services.PostAction;
 using InterTwitter.ViewModels.OwlItems;
@@ -20,7 +21,7 @@ namespace InterTwitter.ViewModels
         private OwlViewModel _owlViewModel;
 
         public OpenPhotoPageViewModel(
-            IUserDialogs userDialogs, 
+            IUserDialogs userDialogs,
             INavigationService navigationService,
             IPostActionService postActionService)
             : base(navigationService)
@@ -86,7 +87,7 @@ namespace InterTwitter.ViewModels
             get => _IsMenuVisible;
             set => SetProperty(ref _IsMenuVisible, value);
         }
-                            
+
         public ICommand MenuClickCommand => SingleExecutionCommand.FromFunc(OnMenuClickCommand);
 
         public ICommand GoBackCommand => SingleExecutionCommand.FromFunc(OnGoBackCommandAsync);
@@ -150,7 +151,7 @@ namespace InterTwitter.ViewModels
 
                 LikesCount = _owlViewModel.LikesCount;
 
-                await _postActionService.SaveActionAsync(_owlViewModel, OwlAction.Liked);
+                await _postActionService.SaveActionAsync(_owlViewModel.ToModel(), OwlAction.Liked);
             }
             else
             {
@@ -166,7 +167,7 @@ namespace InterTwitter.ViewModels
 
                 IsBookmarked = _owlViewModel.IsBookmarked;
 
-                await _postActionService.SaveActionAsync(_owlViewModel, OwlAction.Saved);
+                await _postActionService.SaveActionAsync(_owlViewModel.ToModel(), OwlAction.Saved);
             }
             else
             {

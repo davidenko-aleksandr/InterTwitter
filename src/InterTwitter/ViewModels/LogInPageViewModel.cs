@@ -7,6 +7,7 @@ using InterTwitter.Services.Keyboard;
 using InterTwitter.Views;
 using Prism.Navigation;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace InterTwitter.ViewModels
 {
@@ -81,7 +82,6 @@ namespace InterTwitter.ViewModels
 
             if (current == NetworkAccess.Internet)
             {
-
                 if (!string.IsNullOrWhiteSpace(EmailEntry) || !string.IsNullOrWhiteSpace(PasswordEntry))
                 {
                     var result = await _authorizationService.LogInAsync(EmailEntry, PasswordEntry);
@@ -90,7 +90,7 @@ namespace InterTwitter.ViewModels
 
                     if (isUserExist)
                     {
-                        await NavigationService.NavigateAsync($"/{nameof(MenuPage)}");
+                        await NavigationService.NavigateAsync($"/{nameof(MenuPage)}/{nameof(NavigationPage)}/{nameof(MainTabbedPage)}");
                     }
                     else
                     {
@@ -109,7 +109,6 @@ namespace InterTwitter.ViewModels
                 var errorText = Resources.AppResource.NoInternetText;
                 _userDialogs.Toast(errorText);
             }
-
         }
 
         private Task OnSignUpCommandAsync()
@@ -133,7 +132,6 @@ namespace InterTwitter.ViewModels
             var keyboardHeight = _keyboardService.FrameHeight;
 
             KeyboardButtonTranslationY = keyboardHeight != 0.0f ? -keyboardHeight : KeyboardButtonTranslationY;
-
         }
 
         #endregion
