@@ -13,6 +13,8 @@ using InterTwitter.ViewModels.OwlItems;
 using InterTwitter.Enums;
 using Xamarin.Essentials;
 using InterTwitter.Extensions;
+using InterTwitter.Views;
+using InterTwitter.Services.PostAction;
 
 namespace InterTwitter.ViewModels
 {
@@ -20,14 +22,18 @@ namespace InterTwitter.ViewModels
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly IOwlService _owlService;
+        private readonly IPostActionService _postActionService;
+
         public SearchPageViewModel(
             INavigationService navigationService,
             IAuthorizationService authorizationService,
-            IOwlService owlService)
+            IOwlService owlService,
+            IPostActionService postActionService)
             : base(navigationService)
         {
             _authorizationService = authorizationService;
             _owlService = owlService;
+            _postActionService = postActionService;
         }
 
         #region -- Public Properties --
@@ -37,6 +43,13 @@ namespace InterTwitter.ViewModels
         {
             get => _searchQuery;
             set => SetProperty(ref _searchQuery, value);
+        }
+
+        private string _emptyStateText;
+        public string EmptyStateText
+        {
+            get => _emptyStateText;
+            set => SetProperty(ref _emptyStateText, value);
         }
 
         private string _icon = "ic_search_gray";
@@ -95,6 +108,13 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isFoundPostsVisible, value);
         }
 
+        private bool _isEmptyStateVisible;
+        public bool IsEmptyStateVisible
+        {
+            get => _isEmptyStateVisible;
+            set => SetProperty(ref _isEmptyStateVisible, value);
+        }
+
         private ObservableCollection<Grouping<string, OwlViewModel>> _popularThemes;
         public ObservableCollection<Grouping<string, OwlViewModel>> PopularThemes
         {
@@ -118,8 +138,16 @@ namespace InterTwitter.ViewModels
 
         private ICommand _searchCommand;
         public ICommand SearchCommand => _searchCommand ??= new Command(OnSearchCommand);
+
         public ICommand HashtagClickCommand => SingleExecutionCommand.FromFunc(OnHashtagClickCommandAsync);
+
         public ICommand IconClickCommand => SingleExecutionCommand.FromFunc(OnIconClickCommandAsync);
+
+        public ICommand OpenPostCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnOpenPostCommandAsync);
+
+        public ICommand LikeClickCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnLikeClickCommandAsync, delayMillisec: 50);
+
+        public ICommand BookmarkCommand => SingleExecutionCommand.FromFunc<OwlViewModel>(OnBookmarkCommandAsync, delayMillisec: 50);
 
         #endregion
 
@@ -152,6 +180,47 @@ namespace InterTwitter.ViewModels
 
         #region -- Private helpers --
 
+        private async Task OnOpenPostCommandAsync(OwlViewModel owl)
+        {
+            NavigationParameters parameters = new NavigationParameters
+            {
+                {
+                    "OwlViewModel", owl
+                },
+            };
+
+            await NavigationService.NavigateAsync(nameof(PostPage), parameters, useModalNavigation: true, true);
+        }
+
+        private async Task OnLikeClickCommandAsync(OwlViewModel owl)
+        {
+            if (owl != null)
+            {
+                owl.IsLiked = !owl.IsLiked;
+                owl.LikesCount = owl.IsLiked ? ++owl.LikesCount : --owl.LikesCount;
+
+                await _postActionService.SaveActionAsync(owl.ToModel(), OwlAction.Liked);
+            }
+            else
+            {
+                //owl is null
+            }
+        }
+
+        private async Task OnBookmarkCommandAsync(OwlViewModel owl)
+        {
+            if (owl != null)
+            {
+                owl.IsBookmarked = !owl.IsBookmarked;
+
+                await _postActionService.SaveActionAsync(owl.ToModel(), OwlAction.Saved);
+            }
+            else
+            {
+                //owl is null
+            }
+        }
+
         private async void InternetConnectionChanged(object sender, ConnectivityChangedEventArgs e)
         {
             if (e.NetworkAccess == NetworkAccess.Internet)
@@ -181,15 +250,18 @@ namespace InterTwitter.ViewModels
                 IsPopularThemesVisible = true;
                 SearchBarIconSource = AuthorizedUser.Avatar;
                 IsFoundPostsVisible = false;
+                IsEmptyStateVisible = false;
             }
         }
 
-        private async Task OnHashtagClickCommandAsync(object group)
+        private Task OnHashtagClickCommandAsync(object group)
         {
             SearchQuery = (group as Grouping<string, OwlViewModel>).Header;
+
+            return Task.CompletedTask;
         }
 
-        private async Task OnIconClickCommandAsync()
+        private Task OnIconClickCommandAsync()
         {
             if (SearchBarIconSource == AuthorizedUser.Avatar)
             {
@@ -203,6 +275,8 @@ namespace InterTwitter.ViewModels
             {
                 //icon source is not set
             }
+
+            return Task.CompletedTask;
         }
 
         private async Task SetUserDataAsync()
@@ -231,12 +305,10 @@ namespace InterTwitter.ViewModels
                 {
                     foreach (var hashtag in post.AllHashtags)
                     {
-                        var newPost = new OwlViewModel
+                        allPosts.Add(new OwlViewModel
                         {
-                            CurrentHashtag = hashtag
-                        };
-
-                        allPosts.Add(newPost);
+                            CurrentHashtag = hashtag,
+                        });
                     }
                 }
 
@@ -271,13 +343,23 @@ namespace InterTwitter.ViewModels
             var owlsResult = await _owlService.GetAllOwlsAsync(searchQuery);
             if (owlsResult.IsSuccess)
             {
-                var collection = owlsResult.Result.Select(x => x.ToViewModel(AuthorizedUser.Id, null, null, null));
-                FoundPosts = new ObservableCollection<OwlViewModel>(collection);
+                var foundPosts = new List<OwlViewModel>();
+                foreach (var owl in owlsResult.Result)
+                {
+                    var owlVM = owl.ToViewModel(AuthorizedUser.Id, OpenPostCommand, LikeClickCommand, BookmarkCommand);
+                    owlVM.SearchQuery = searchQuery;
+                    foundPosts.Add(owlVM);
+                }
+
+                FoundPosts = new ObservableCollection<OwlViewModel>(foundPosts);
             }
             else
             {
                 //owlsResult failed
             }
+
+            EmptyStateText = $"\"{SearchQuery}\"";
+            IsEmptyStateVisible = FoundPosts.Count == 0;
         }
 
         #endregion

@@ -12,6 +12,24 @@
                         IconImageSource="{Binding Icon}"
                         BackgroundColor="{StaticResource bg_1}">  
 
+    <views:BaseContentPage.Resources>
+
+        <Style x:Key="EmptyStateStyle"
+               TargetType="Label">
+
+            <Setter Property="FontSize"
+                    Value="Large"/>
+            <Setter Property="HorizontalTextAlignment"
+                    Value="Center"/>
+            <Setter Property="LineBreakMode"
+                    Value="WordWrap"/>
+            <Setter Property="TextColor"
+                    Value="Black"/>
+
+        </Style>
+        
+    </views:BaseContentPage.Resources>
+
     <Grid RowSpacing="0">
 
         <Grid.RowDefinitions>
@@ -258,7 +276,7 @@
                 <StackLayout HorizontalOptions="Center"
                              VerticalOptions="Center">
 
-                    <ffimageloading:CachedImage Source="ic_Empty_State"
+                    <ffimageloading:CachedImage Source="ic_empty_state"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"/>
 
@@ -276,7 +294,7 @@
                 <StackLayout HorizontalOptions="Center"
                              VerticalOptions="Center">
 
-                    <ffimageloading:CachedImage Source="ic_Empty_State"
+                    <ffimageloading:CachedImage Source="ic_empty_state"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"/>
 
@@ -294,7 +312,7 @@
                 <StackLayout HorizontalOptions="Center"
                              VerticalOptions="Center">
 
-                    <ffimageloading:CachedImage Source="ic_Empty_State"
+                    <ffimageloading:CachedImage Source="ic_empty_state"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"/>
 
@@ -307,6 +325,34 @@
             </stateContainer:StateCondition>
 
         </stateContainer:StateContainer>
+
+        <StackLayout Grid.Row="0"
+                     Grid.RowSpan="3"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center"
+                     WidthRequest="200"
+                     Spacing="20"
+                     IsVisible="{Binding IsEmptyStateVisible}">
+
+            <Image Source="ic_empty_state"/>
+
+            <Label Style="{StaticResource EmptyStateStyle}">
+
+                <Label.FormattedText>
+
+                    <FormattedString>
+
+                        <Span Text="{x:Static resources:AppResource.NoResultsText}"/>
+
+                        <Span Text="{Binding EmptyStateText}"/>
+
+                    </FormattedString>
+                    
+                </Label.FormattedText>
+                
+            </Label>
+
+        </StackLayout>
 
     </Grid>
 

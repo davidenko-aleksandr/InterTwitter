@@ -97,7 +97,7 @@
                 <StackLayout HorizontalOptions="Center"
                              VerticalOptions="Center">
 
-                    <forms:CachedImage Source="ic_Empty_State"
+                    <forms:CachedImage Source="ic_empty_state"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"/>
 
@@ -115,7 +115,7 @@
                 <StackLayout HorizontalOptions="Center"
                              VerticalOptions="Center">
 
-                    <forms:CachedImage Source="ic_Empty_State"
+                    <forms:CachedImage Source="ic_empty_state"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"/>
 
@@ -133,7 +133,7 @@
                 <StackLayout HorizontalOptions="Center"
                              VerticalOptions="Center">
 
-                    <forms:CachedImage Source="ic_Empty_State"
+                    <forms:CachedImage Source="ic_empty_state"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"/>
 
