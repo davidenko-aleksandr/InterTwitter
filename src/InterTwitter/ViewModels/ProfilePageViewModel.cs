@@ -85,8 +85,8 @@ namespace InterTwitter.ViewModels
             set => SetProperty(ref _isAuthorized, value);
         }
 
-        private ObservableCollection<PofilePageItemViewModel> _tabs;
-        public ObservableCollection<PofilePageItemViewModel> Tabs
+        private ObservableCollection<ProfilePageItemViewModel> _tabs;
+        public ObservableCollection<ProfilePageItemViewModel> Tabs
         {
             get => _tabs;
             set => SetProperty(ref _tabs, value);
@@ -207,13 +207,13 @@ namespace InterTwitter.ViewModels
 
         private void InitTabs()
         {
-            var tabs = new List<PofilePageItemViewModel>()
+            var tabs = new List<ProfilePageItemViewModel>()
             {
                 { new PostsViewModel("Posts", Owls) },
                 { new LikesViewModel("Likes", LikedOwls) },
             };
 
-            Tabs = new ObservableCollection<PofilePageItemViewModel>(tabs);
+            Tabs = new ObservableCollection<ProfilePageItemViewModel>(tabs);
         }
 
         private async Task SetDataAsync()

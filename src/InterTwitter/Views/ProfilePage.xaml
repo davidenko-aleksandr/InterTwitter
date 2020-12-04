@@ -9,13 +9,13 @@
                         xmlns:sharpnado="http://sharpnado.com"
                         xmlns:helpers="clr-namespace:InterTwitter.Helpers"
                         xmlns:templates="clr-namespace:InterTwitter.Views.Templates.ProfilePageTemplates" 
-                        xmlns:viewModels="clr-namespace:InterTwitter.ViewModels.ProfilePageItems" xmlns:controls="clr-namespace:InterTwitter.Controls"
+                        xmlns:viewModels="clr-namespace:InterTwitter.ViewModels.ProfilePageItems"
+                        xmlns:controls="clr-namespace:InterTwitter.Controls"
                         x:Class="InterTwitter.Views.ProfilePage">                      
 
     <views:BaseContentPage.Resources>
         
         <ResourceDictionary>
-
 
             <Style x:Key="OnHeaderImageButtonStyle" 
                    TargetType="ImageButton">
@@ -123,7 +123,8 @@
                                     Margin="0"
                                     VerticalOptions="Fill"
                                     DownsampleToViewSize="True"
-                                    LoadingPlaceholder="pic_logo_small.png"
+                                    ErrorPlaceholder="pic_image_background"
+                                    LoadingPlaceholder="pic_image_background"
                                     Source="{Binding User.ProfileHeaderImage}"
                                     Aspect="AspectFill"/>
 
@@ -138,7 +139,7 @@
                      Style="{StaticResource OnHeaderImageButtonStyle}"
                      VerticalOptions="Start"
                      HorizontalOptions="End"
-                     Source="ic_hidden_menu_gray"
+                     Source="ic_hidden_menu_white"
                      Command="{Binding MenuClickCommand}"/>
 
         <Frame Grid.Row="1"
@@ -307,11 +308,11 @@
                     <helpers:ProfilePageTemplateSelector>                       
 
                         <helpers:ProfilePageTemplateSelector.PostsViewTemplate>
-                            <templates:ProfilePagePostsTemplate x:DataType="viewModels:PofilePageItemViewModel"/>
+                            <templates:ProfilePagePostsTemplate x:DataType="viewModels:ProfilePageItemViewModel"/>
                         </helpers:ProfilePageTemplateSelector.PostsViewTemplate>
                         
                         <helpers:ProfilePageTemplateSelector.LikesViewTemplate>
-                            <templates:ProfilePageLikesTemplate x:DataType="viewModels:PofilePageItemViewModel"/>
+                            <templates:ProfilePageLikesTemplate x:DataType="viewModels:ProfilePageItemViewModel"/>
                         </helpers:ProfilePageTemplateSelector.LikesViewTemplate>
                         
                     </helpers:ProfilePageTemplateSelector>

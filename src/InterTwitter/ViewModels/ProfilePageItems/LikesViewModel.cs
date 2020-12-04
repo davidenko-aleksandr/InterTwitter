@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace InterTwitter.ViewModels.ProfilePageItems
 {
-    public class LikesViewModel : PofilePageItemViewModel
+    public class LikesViewModel : ProfilePageItemViewModel
     {
         public LikesViewModel(string title, ObservableCollection<OwlViewModel> likes)
             : base(title)

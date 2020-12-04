@@ -713,6 +713,15 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_left_white%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pic_image_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pic_image_background%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pic_image_background%403x.png" />
+  </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties TriggeredFromHotReload="False" />

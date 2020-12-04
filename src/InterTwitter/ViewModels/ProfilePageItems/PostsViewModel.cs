@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace InterTwitter.ViewModels.ProfilePageItems
 {
-    public class PostsViewModel : PofilePageItemViewModel
+    public class PostsViewModel : ProfilePageItemViewModel
     {
         public PostsViewModel(string title, ObservableCollection<OwlViewModel> owls)
             : base(title)
@@ -27,28 +27,6 @@ namespace InterTwitter.ViewModels.ProfilePageItems
             set => SetProperty(ref _owls, value);
         }
 
-        #endregion
-
-        #region -- Private properties --
-
-        //private async void InitDataAsync()
-        //{
-        //    var isConnected = Connectivity.NetworkAccess;
-
-        //    if (isConnected == NetworkAccess.Internet)
-        //    {
-        //        var user = await _authorizationService.GetAuthorizedUserAsync();
-        //        User = user.Result;
-
-        //        var owls = await _owlService.GetAuthorOwlsAsync(User.Id);
-
-        //        Owls = new ObservableCollection<OwlViewModel>(owls.Result);
-        //    }
-        //    else
-        //    {
-        //        // IUserDialogs.Toast("No internet connection");
-        //    }
-        //}
         #endregion
     }
 }
