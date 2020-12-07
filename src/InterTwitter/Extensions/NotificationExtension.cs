@@ -18,7 +18,7 @@ namespace InterTwitter.Extensions
                     Owl = model.Owl.ToViewModel(model.Author.Id, null, null, null, null),
                     Action = model.Action,
                     User = model.User.ToViewModel(),
-                    ItemTappedCommand = openPostCommand
+                    ItemTappedCommand = openPostCommand,
                 };
             }
             else

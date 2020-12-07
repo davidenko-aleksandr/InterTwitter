@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using InterTwitter.Helpers;
 using System.Runtime.CompilerServices;
 
@@ -89,7 +86,7 @@ namespace InterTwitter.Controls
                         {
                             var usualSpan = new Span
                             {
-                                Text = usualString
+                                Text = usualString,
                             };
 
                             formattedText.Spans.Add(usualSpan);
@@ -107,7 +104,7 @@ namespace InterTwitter.Controls
                             var highlightedSpan = new Span
                             {
                                 Text = highlightedString,
-                                BackgroundColor = Color.FromHex("#C7D6F7")
+                                BackgroundColor = Color.FromHex("#C7D6F7"),
                             };
 
                             formattedText.Spans.Add(highlightedSpan);
@@ -130,7 +127,7 @@ namespace InterTwitter.Controls
                             {
                                 var lastSpan = new Span
                                 {
-                                    Text = lastString
+                                    Text = lastString,
                                 };
 
                                 formattedText.Spans.Add(lastSpan);
